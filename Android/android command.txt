@@ -1,0 +1,122 @@
+Usage:
+  android [global options] action [action options]
+
+Global options:
+  -v --verbose  Verbose mode: errors, warnings and informational messages are printed.
+  -h --help     Help on a specific command.
+  -s --silent   Silent mode: only errors are printed out.
+
+Valid actions are composed of a verb and an optional direct object:
+-   list             : Lists existing targets or virtual devices.
+-   list avd         : Lists existing Android Virtual Devices.
+-   list target      : Lists existing targets.
+- create avd         : Creates a new Android Virtual Device.
+-   move avd         : Moves or renames an Android Virtual Device.
+- delete avd         : Deletes an Android Virtual Device.
+- update avd         : Updates an Android Virtual Device to match the folders of a new SDK.
+- create project     : Creates a new Android Project.
+- update project     : Updates an Android Project (must have an AndroidManifest.xml).
+- create test-project: Creates a new Android Test Project.
+- update test-project: Updates an Android Test Project (must have an AndroidManifest.xml).
+- create lib-project : Creates a new Android Library Project.
+- update lib-project : Updates an Android Library Project (must have an AndroidManifest.xml).
+- update adb         : Updates adb to support the USB devices declared in the SDK add-ons.
+- update sdk         : Updates the SDK by suggesting new platforms to install if available.
+
+Action "list ":
+  Lists existing targets or virtual devices.
+Options:
+  No options
+
+Action "list avd":
+  Lists existing Android Virtual Devices.
+Options:
+  No options
+
+Action "list target":
+  Lists existing targets.
+Options:
+  No options
+
+Action "create avd":
+  Creates a new Android Virtual Device.
+Options:
+  -c --sdcard   Path to a shared SD card image, or size of a new sdcard for the new AVD
+  -t --target   Target id of the new AVD [required]
+  -n --name     Name of the new AVD [required]
+  -p --path     Location path of the directory where the new AVD will be created
+  -f --force    Force creation (override an existing AVD)
+  -s --skin     Skin of the new AVD
+
+Action "move avd":
+  Moves or renames an Android Virtual Device.
+Options:
+  -p --path     New location path of the directory where to move the AVD
+  -n --name     Name of the AVD to move or rename [required]
+  -r --rename   New name of the AVD to rename
+
+Action "delete avd":
+  Deletes an Android Virtual Device.
+Options:
+  -n --name     Name of the AVD to delete [required]
+
+Action "update avd":
+  Updates an Android Virtual Device to match the folders of a new SDK.
+Options:
+  -n --name     Name of the AVD to update [required]
+
+Action "create project":
+  Creates a new Android Project.
+Options:
+  -n --name     Project name
+  -t --target   Target id of the new project [required]
+  -p --path     Location path of new project [required]
+  -k --package  Package name [required]
+  -a --activity Activity name [required]
+
+Action "update project":
+  Updates an Android Project (must have an AndroidManifest.xml).
+Options:
+  -p --path     Location path of the project [required]
+  -l --library  Location path of an Android Library to add, relative to the main project
+  -n --name     Project name
+  -t --target   Target id to set for the project
+  -s --subprojects Also update any projects in sub-folders, such as test projects.
+
+Action "create test-project":
+  Creates a new Android Test Project.
+Options:
+  -p --path     Location path of new project [required]
+  -m --main     Location path of the project to test, relative to the new project [required]
+  -n --name     Project name
+
+Action "update test-project":
+  Updates an Android Test Project (must have an AndroidManifest.xml).
+Options:
+  -m --main     Location path of the project to test, relative to the new project [required]
+  -p --path     Location path of the project [required]
+
+Action "create lib-project":
+  Creates a new Android Library Project.
+Options:
+  -n --name     Project name
+  -p --path     Location path of new project [required]
+  -t --target   Target id of the new project [required]
+  -k --package  Package name [required]
+
+Action "update lib-project":
+  Updates an Android Library Project (must have an AndroidManifest.xml).
+Options:
+  -p --path     Location path of the project [required]
+  -l --library  Location path of an Android Library to add, relative to the main project
+  -t --target   Target id to set for the project
+
+Action "update adb":
+  Updates adb to support the USB devices declared in the SDK add-ons.
+Options:
+  No options
+
+Action "update sdk":
+  Updates the SDK by suggesting new platforms to install if available.
+Options:
+  No options
