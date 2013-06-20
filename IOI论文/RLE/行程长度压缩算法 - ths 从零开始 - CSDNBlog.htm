@@ -1,0 +1,337 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0061)http://blog.csdn.net/thszhong/archive/2007/09/17/1788860.aspx -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>行程长度压缩算法 - ths 从零开始 - CSDNBlog</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content=ths name=author>
+<META content=Csdn name=Copyright>
+<META content=行程长度压缩算法 name=description>
+<META content=ths,行程长度压缩算法 name=keywords><LINK 
+href="http://profile.csdn.net/thszhong/picture/1.ico" rel="Shortcut Icon"><LINK 
+media=all href="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/Cogitation_1.css" 
+type=text/css rel=stylesheet><LINK title=RSS 
+href="http://blog.csdn.net/thszhong/rss.aspx" type=application/rss+xml 
+rel=alternate>
+<META content="MSHTML 6.00.2900.5512" name=GENERATOR></HEAD>
+<BODY id=defaultuser>
+<DIV id=csdnblog_allwrap>
+<FORM language=javascript id=Form1 name=Form1 
+onsubmit="javascript:return WebForm_OnSubmit();" action=1788860.aspx 
+method=post><INPUT id=__EVENTTARGET type=hidden name=__EVENTTARGET> <INPUT 
+id=__EVENTARGUMENT type=hidden name=__EVENTARGUMENT> <INPUT 
+id="&#13;&#10;__VIEWSTATE" type=hidden name=__VIEWSTATE>
+<SCRIPT type=text/javascript>
+<!--
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+//<![CDATA[
+var Anthem_FormID = "Form1";
+//]]>
+</SCRIPT>
+
+<SCRIPT src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/WebResource.axd" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT 
+src="D:\My Documents\RLE\行程长度压缩算法 - ths 从零开始 - CSDNBlog.files\WebResource(1).axd" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>
+<!--
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+// -->
+</SCRIPT>
+ 
+<DIV id=csdnblog_midwrap>
+<DIV id=csdnblog_header>
+<H1><A id=Header1_HeaderTitle href="http://blog.csdn.net/thszhong/">ths 
+从零开始</A></H1>
+<H2>零是一个圆.零的开始亦是零的结束.</H2>
+<UL id=personalnav>
+  <LI><A href="http://passport.csdn.net/UserLogin.aspx">登录</A></LI>
+  <LI><A href="http://passport.csdn.net/CSDNUserRegister.aspx">注册</A></LI></UL>
+<UL id=blogsearchsty>
+  <LI><INPUT class=bolgsearch id=inputSearch 
+onkeydown="return keyb(event)"></LI>
+  <LI class=selectsty><SELECT id=Search_ddlSearchScope 
+  name=Search:ddlSearchScope><OPTION value=all selected>全站</OPTION><OPTION 
+    value=thszhong>当前博客</OPTION></SELECT></LI>
+  <LI><INPUT class=bolggobtn onclick=checkNull() type=button value=搜索></LI></UL>
+<UL id=menu>
+  <LI><A href="http://hi.csdn.net/thszhong">空间</A></LI>
+  <LI><A class=on href="http://blog.csdn.net/thszhong">博客</A></LI>
+  <LI><A 
+  href="http://hi.csdn.net/thszhong/profile/contactlist/1.html">好友</A></LI>
+  <LI><A href="http://album.hi.csdn.net/" target=_blank>相册</A></LI>
+  <LI><A class=last 
+  href="http://hi.csdn.net/thszhong/profile/notebook/1.html">留言</A></LI></UL></DIV>
+<DIV id=csdnblog_sidebar>
+<DIV class=gutter>
+<DIV class=aboutauthor>
+<DL>
+  <DT>用户操作
+  <DD class=middle><A 
+  href="http://passport.csdn.net/UserLogin.aspx?from=http://webim.csdn.net/Messages/thszhong.ashx" 
+  target=_blank>[即时聊天]</A> <A 
+  href="http://passport.csdn.net/UserLogin.aspx?from=http://hi.csdn.net/Admin/WriteMessage.aspx?Receiver=thszhong" 
+  target=_blank>[发私信]</A> <A 
+  href="http://passport.csdn.net/UserLogin.aspx?from=http://webim.csdn.net/AddFriends/thszhong.ashx" 
+  target=_blank>[加为好友]</A>
+  <DT>ths<SPAN>ID：thszhong</SPAN>
+  <DD class=middle><IMG alt="" 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/1_thszhong.jpg">
+  <DD class=middle><A href="http://profile.csdn.net/8/E4/edit.html"></A>
+  <DD>共<EM>4744</EM>次访问，排名<EM>18761(-11)</EM>好友<EM>2</EM>人，关注者<EM>3</EM>人<BR>
+  <DD>
+  <DT>thszhong的文章
+  <DD>原创 19 篇
+  <DD>翻译 0 篇
+  <DD>转载 22 篇
+  <DD>评论 5 篇 
+  <DT>最近评论
+  <DD>tao_tao_bu_jue：<A title=点击查看《回复:北京赛区网络赛小结》 
+  href="http://blog.csdn.net/thszhong/archive/2008/10/01/3007625.aspx#915356">Orz....<BR>恭喜大大...<BR>Orz..</A>
+  <DD>xningcat：<A title="点击查看《回复:[转载]从kernel和其他opensource 扒出来的常见的宏》" 
+  href="http://blog.csdn.net/thszhong/archive/2008/10/01/3008118.aspx#915334">大量用到typeof，这个是gcc的扩展，在vc下好像是不能用的，移植不好移植，不过vc里可以用STL和ATL里面一些宏和模板来实现的</A>
+  <DD>xningcat：<A title=点击查看《回复:北京赛区网络赛小结》 
+  href="http://blog.csdn.net/thszhong/archive/2008/10/01/3007625.aspx#915330">excellent<BR><BR>恭喜dou&amp;coral和你<BR>祝福fzu</A>
+  <DD>xningcat：<A title=点击查看《回复:北京赛区网络赛小结》 
+  href="http://blog.csdn.net/thszhong/archive/2008/10/01/3007625.aspx#915329">excellent<BR><BR>恭喜dou&amp;coral和你<BR>祝福fzu</A>
+  <DD>zjfei：<A title="点击查看《回复: Page.IsPostback 和 AutoPostback 》" 
+  href="http://blog.csdn.net/thszhong/archive/2007/09/06/1775226.aspx#722646">似乎是把IsPostBack 
+  给 搞懂啦，<BR>谢谢 F！</A> 
+  <DT>文章分类
+  <DD>
+  <DIV class=publiclist_sidebar>
+  <UL>
+    <LI><A href="http://blog.csdn.net/thszhong/category/331474.aspx">acm火花</A><A 
+    href="http://blog.csdn.net/thszhong/category/331474.aspx/rss">(RSS)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/category/331478.aspx">linux学习</A><A 
+    href="http://blog.csdn.net/thszhong/category/331478.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/339088.aspx">程序设计</A><A 
+    href="http://blog.csdn.net/thszhong/category/339088.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/346044.aspx">电脑技术</A><A 
+    href="http://blog.csdn.net/thszhong/category/346044.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/469264.aspx">疯狂网摘</A><A 
+    href="http://blog.csdn.net/thszhong/category/469264.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/331481.aspx">生活细节</A><A 
+    href="http://blog.csdn.net/thszhong/category/331481.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/471706.aspx">算法与数学</A><A 
+    href="http://blog.csdn.net/thszhong/category/471706.aspx/rss">(RSS)</A>
+    <LI><A href="http://blog.csdn.net/thszhong/category/331479.aspx">网页制作</A><A 
+    href="http://blog.csdn.net/thszhong/category/331479.aspx/rss">(RSS)</A></LI></UL></DIV>
+  <DT>收藏
+  <DD>
+  <DIV class=publiclist_sidebar>
+  <UL></UL></DIV>
+  <DT>相册
+  <DT>存档
+  <DD>
+  <DIV class=publiclist_sidebar>
+  <UL>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2008/10.aspx">2008年10月(18)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2008/08.aspx">2008年08月(1)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2007/12.aspx">2007年12月(2)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2007/11.aspx">2007年11月(3)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2007/10.aspx">2007年10月(10)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2007/09.aspx">2007年09月(5)</A>
+    <LI><A 
+    href="http://blog.csdn.net/thszhong/archive/2007/08.aspx">2007年08月(2)</A></LI></UL></DIV><SPAN 
+  id=RecentVisitors></SPAN>
+  <DT>软件项目交易
+  <DD><IFRAME 
+  style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 180px; PADDING-TOP: 0px; HEIGHT: 32px" 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/CsdnBlogPage.htm" frameBorder=0 
+  scrolling=no></IFRAME><SPAN id=SubscriptionList>
+  <DT>订阅我的博客
+  <DD><A href="http://blog.csdn.net/thszhong/Rss.aspx"><IMG alt=XML聚合 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/xml.gif" border=0></A>&nbsp;&nbsp;<A 
+  href="http://feeds.feedsky.com/csdn.net/thszhong" target=_blank><IMG 
+  alt=FeedSky src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/feedsky.gif" 
+  border=0></A>
+  <DD><A 
+  href="http://www.xianguo.com/subscribe.php?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到鲜果 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_xianguo.jpg" border=0></A>
+  <DD><A 
+  href="http://fusion.google.com/add?feedurl=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到Google 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_google.gif" border=0></A>
+  <DD><A 
+  href="http://www.zhuaxia.com/add_channel.php?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到抓虾 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_zhuaxia.gif" border=0></A>
+  <DD><A 
+  href="http://www.bloglines.com/sub/http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到BlogLines 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_bloglines.gif" border=0></A>
+  <DD><A 
+  href="http://add.my.yahoo.com/rss?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到Yahoo 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_yahoo.gif" border=0></A>
+  <DD><A 
+  href="http://rss.gougou.com/find_rss.jsp?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到GouGou 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_gougou.gif" border=0></A>
+  <DD><A 
+  href="http://www.pageflakes.com/subscribe.aspx?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到飞鸽 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_pageflakes.gif" border=0></A>
+  <DD><A 
+  href="http://www.rojo.com/add-subscription?resource=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到Rojo 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_rojo.gif" border=0></A>
+  <DD><A 
+  href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到newsgator 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_newsgator.gif" border=0></A>
+  <DD><A 
+  href="http://www.netvibes.com/subscribe.php?url=http://blog.csdn.net/thszhong/Rss.aspx" 
+  target=_blank><IMG alt=订阅到netvibes 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/rss_netvibes.gif" 
+  border=0></A></SPAN> </DD></DL></DIV></DIV></DIV>
+<DIV id=csdnblog_content>
+<DIV class=gutter>
+<DIV class=default_contents>
+<DIV class=user_article>
+<SCRIPT src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/LoadFeedbackCount.js" 
+type=text/javascript></SCRIPT>
+
+<H1><IMG height=14 alt=转载 
+src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/turnship.gif" width=15 
+border=0>&nbsp;<A 
+href="http://blog.csdn.net/thszhong/archive/2007/09/17/1788860.aspx">行程长度压缩算法</A><CITE 
+class=fav_csdnstylebykimi><A class=fav_csdnstylebykimi title=收藏到我的网摘中，并分享给我的朋友 
+href="javascript:d=document;t=d.selection?(d.selection.type!='None'?d.selection.createRange().text:''):(d.getSelection?d.getSelection():'');void(saveit=window.open('http://wz.csdn.net/storeit.aspx?t='+escape(d.title)+'&amp;u='+escape(d.location.href)+'&amp;c='+escape(t),'saveit','scrollbars=no,width=590,height=300,left=75,top=20,status=no,resizable=yes'));saveit.focus();">收藏</A></CITE></H1>
+<DIV class=blogstory><SPAN id=Post.ascx_ViewPost_PreviousAndNextEntriesUp>
+<H3><A 
+href="http://blog.csdn.net/thszhong/archive/2007/10/01/1809294.aspx">新一篇:&nbsp;oj挂了</A>&nbsp;|&nbsp;<A 
+href="http://blog.csdn.net/thszhong/archive/2007/09/15/1786641.aspx">旧一篇:&nbsp;ACM联系建议 
+</A></H3></SPAN>
+<SCRIPT>function StorePage(){d=document;t=d.selection?(d.selection.type!='None'?d.selection.createRange().text:''):(d.getSelection?d.getSelection():'');void(keyit=window.open('http://www.365key.com/storeit.aspx?t='+escape(d.title)+'&u='+escape(d.location.href)+'&c='+escape(t),'keyit','scrollbars=no,width=475,height=575,left=75,top=20,status=no,resizable=yes'));keyit.focus();}</SCRIPT>
+
+<P><FONT size=4><STRONG></STRONG></FONT></P>&nbsp;Run-Length 
+Encoding（RLE）行程长度的原理是将一扫描行中的颜色值相同的相邻像素用一个计数值和那些像素的颜色值来代替。例如:aaabccccccddeee，则可用3a1b6c2d3e来代替。对于拥有大面积，相同颜色区域的图像，用RLE压缩方法非常有效。由RLE原理派生出许多具体行程压缩方法： 
+
+<P><BR>　　1、PCX行程压缩方法：该算法实际上是位映射格式到压缩格式的转换算法，该算法对于连续出现1次的字节Ch，若Ch&gt;0xc0则压缩时在该字节前加上0xc1，否则直接输出Ch，对于连续出现N&nbsp;次的字节Ch，则压缩成0xc0 
++ N，Ch这两个字节，因而N最大只能为ff - c0=3fh(十进制为63)，当N大于63时，&nbsp;则需分多次压缩。</P>
+<P><BR>　　2、BI_RLE8压缩方法：在WINDOWS的位图文件中采用了这种压缩方法。该压缩方法编码也是以两个字节为基本单位。其中第一个字节规定了用第二个字节指定的颜色重复次数。&nbsp;如编码&nbsp;0504表示从当前位置开始连续显示5个颜色值为04的像素。当第二个字节为零时第二个字节有特殊含义：0表示行末；1表示图末；2转义后面2个字节，&nbsp;这两个字节分别表示下一像素相对于当前位置的水平位移和垂直位移。这种压缩方法所能压缩的图像像素位数最大为8位(256色)图像。</P>
+<P><BR>　　3、BI_RLE压缩方法：该方法也用于WINDOWS位图文件中，它与&nbsp;BI_RLE8编码类似，唯一不同是，BI_RLE4的一个字节包含了两个像素的颜色，因此，它只能压缩的颜色数不超过16的图像。因而这种压缩应用范围有限。&nbsp;</P>
+<P><BR>　　4、紧缩位压缩方法(Packbits)：该方法是用于Apple公司的Macintosh机上的位图数据压缩&nbsp;方法，&nbsp;TIFF&nbsp;规范中使用了这种方法，&nbsp;这种压缩方法与BI_RLE8压缩方法相似，如1c1c1c2132325648&nbsp;压缩为:83&nbsp;1c&nbsp;21&nbsp;81&nbsp;32&nbsp;56&nbsp;48，显而易见，&nbsp;这种压缩方法最好情况是每连续128个字节相同，这128个字节可压缩为一个数值7f。这种方法还是非常有效的。&nbsp;</P>
+<P class="right articalinfo">发表于 @ <A title=permalink 
+href="http://blog.csdn.net/thszhong/archive/2007/09/17/1788860.aspx">2007年09月17日 
+23:00:00</A>|<A title=评论 
+href="http://blog.csdn.net/thszhong/archive/2007/09/17/1788860.aspx#FeedBack">评论(<SPAN 
+id=FeedbackCount_1788860>loading...</SPAN>
+<SCRIPT type=text/javascript>AddFeedbackCountStack("1788860")</SCRIPT>
+)</A>|<A title=编辑 
+href="http://writeblog.csdn.net/PostEdit.aspx?entryId=1788860">编辑</A></P><SPAN 
+id=Post.ascx_ViewPost_PreviousAndNextEntriesDown>
+<H3><A 
+href="http://blog.csdn.net/thszhong/archive/2007/10/01/1809294.aspx">新一篇:&nbsp;oj挂了</A>&nbsp;|&nbsp;<A 
+href="http://blog.csdn.net/thszhong/archive/2007/09/15/1786641.aspx">旧一篇:&nbsp;ACM联系建议 
+</A></H3></SPAN></DIV></DIV>
+<DIV class=commentslist><SPAN id=Anthem_Post.ascx_Comments_ltlComments__><SPAN 
+id=Post.ascx_Comments_ltlComments>
+<DIV id=commentslist>
+<H3>评论：没有评论。</H3></DIV></SPAN></SPAN></DIV>
+<DIV class=spacecommment>
+<DIV id=Anthem_Post.ascx_PostComment_CommentUpdatePanel__>
+<DIV id=Post.ascx_PostComment_CommentUpdatePanel>
+<FIELDSET><LEGEND>发表评论</LEGEND>
+<UL>
+  <LI>姓&nbsp;&nbsp;&nbsp;名：<INPUT id=Post.ascx_PostComment_tbName disabled 
+  maxLength=32 size=40 name=Post.ascx:PostComment:tbName><SPAN 
+  id=Post.ascx_PostComment_RequiredFieldValidator2 
+  style="VISIBILITY: hidden; COLOR: red" initialvalue="" 
+  evaluationfunction="RequiredFieldValidatorEvaluateIsValid" 
+  errormessage="请输入名字" 
+  controltovalidate="Post.ascx_PostComment_tbName">请输入名字</SPAN> 
+  <LI>主&nbsp;&nbsp;&nbsp;页：<INPUT id=Post.ascx_PostComment_tbUrl disabled 
+  maxLength=256 size=40 name=Post.ascx:PostComment:tbUrl> 
+  <LI>
+  <DIV id=Post.ascx_PostComment_AntiBotImageRegion>校验码： <INPUT 
+  id=Post.ascx_PostComment_tbAntiBotImage style="WIDTH: 75px" 
+  name=Post.ascx:PostComment:tbAntiBotImage> <SPAN 
+  id=Post.ascx_PostComment_valAntiBotImage style="DISPLAY: none; COLOR: red" 
+  evaluationfunction="CustomValidatorEvaluateIsValid" 
+  display="Dynamic">检验码无效!</SPAN> <SPAN 
+  id=Anthem_Post.ascx_PostComment_imgAntiBotImage__><IMG 
+  id=Post.ascx_PostComment_imgAntiBotImage alt="" 
+  src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/AntiBotImage.jpg" align=absMiddle 
+  border=0></SPAN> <SPAN 
+  id=Anthem_Post.ascx_PostComment_lbCreateAntiBotImage__><A 
+  id=Post.ascx_PostComment_lbCreateAntiBotImage 
+  onclick="javascript:Anthem_FireCallBackEvent(this,event,'Post.ascx:PostComment:lbCreateAntiBotImage','',false,'','','',true,null,null,null,true,true);return false;" 
+  href="javascript:__doPostBack('Post.ascx$PostComment$lbCreateAntiBotImage','')">看不清,换一张</A></SPAN> 
+  </DIV></LI></UL><SPAN id=Post.ascx_PostComment_RequiredFieldValidator3 
+style="VISIBILITY: hidden; COLOR: red" initialvalue="" 
+evaluationfunction="RequiredFieldValidatorEvaluateIsValid" errormessage="请输入评论" 
+controltovalidate="Post.ascx_PostComment_tbComment">请输入评论</SPAN><BR><TEXTAREA id=Post.ascx_PostComment_tbComment disabled name=Post.ascx:PostComment:tbComment rows=10 cols=50></TEXTAREA><BR><SPAN 
+id=Anthem_Post.ascx_PostComment_btnSubmit__></SPAN><BR><SPAN 
+id=Post.ascx_PostComment_Message 
+style="COLOR: red">当前用户设置只有注册用户才能发表评论。如果你没有登录，请点击<A 
+href="http://passport.csdn.net/member/UserLogin.aspx?from=http://blog.csdn.net/thszhong/archive/2007/09/17/1788860.aspx">登录</A></SPAN> 
+</FIELDSET> </DIV></DIV></DIV>
+<SCRIPT type=text/javascript>
+    LoadFeedbackCount();//加载评论
+    document.write("<img src='http://counter.csdn.net/pv.aspx?id=24' border=0 width=0 height=0>");// 计数器
+    </SCRIPT>
+
+<SCRIPT src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/HighLighter.js" 
+type=text/javascript></SCRIPT>
+</DIV></DIV></DIV>
+<DIV id=pubfooter>
+<DL>
+  <DT>
+  <DD>Csdn Blog version 3.1a 
+  <DD>Copyright © ths </DD></DL></DIV></DIV>
+<SCRIPT type=text/javascript>
+<!--
+var Page_Validators =  new Array(document.getElementById("Post.ascx_PostComment_RequiredFieldValidator2"), document.getElementById("Post.ascx_PostComment_valAntiBotImage"), document.getElementById("Post.ascx_PostComment_RequiredFieldValidator3"));
+// -->
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+<!--
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+// -->
+</SCRIPT>
+</FORM>
+<SCRIPT src="行程长度压缩算法 - ths 从零开始 - CSDNBlog.files/counter.js" 
+type=text/javascript></SCRIPT>
+</DIV></BODY></HTML>
