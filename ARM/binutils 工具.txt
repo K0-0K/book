@@ -1,0 +1,23 @@
+		ar      c  创建归档文件
+            r  添加新文件或替换已存在的旧文件(eg: ar r libNAME.a obj.o)
+            x  解压归档文件
+            d  删除归档文0件中的内容(eg: ar d libNAME.a obj.o)
+            s  生成归档索引，可以加快连接速度.( ranlib )
+    objdump    -h  以16进制显示目标文件中各段的描述
+           		 -x   
+        			 -s  以16进制显示目标文件中各段的内容
+            	 -d  显示代码段反汇编
+          		 -r  查看.o文件中的重定位信息
+             	 -f	 显示目标文件的头信息
+    objcopy  	 -j	 抽取一个段
+             	 -R  删除一个段
+    size  	filename.o   显示pe文件的 .text代码段 .data数据段 .bss段的大小
+    readelf
+    nm  		filename.o   显示.o文件的符号表信息
+    c++filt 函数或变量符号 解释编译后的C++变量名或函数符号
+              eg: >>c++filt __ZN1N1C4funcEid 
+                    >>N::C::func(int, double)
+    strip 	Removes symbols and sections from files
+    strings 输出程序的可显字符
+    addr2line 根据地址可以查到对应的源文件和对应行(eg: addr2line -f address -e NAME.exe)
+    
