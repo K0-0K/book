@@ -1,0 +1,89 @@
+Microsoft (R) Macro Assembler Version 6.11		    02/23/02 18:58:48
+.\src\intel.asm						     Page 1 - 1
+
+
+				;$Id: intel.asm,v 1.2 2002/02/07 01:08:53 linfusheng Exp $
+
+				;*************************************************************************
+				;  USAGE:  UINT intel16( UINT val )
+				;          - convert to intel format
+				;*************************************************************************
+
+				;×Ó³ÌÐò intel.asm
+
+				.386p
+				.model flat
+ 00000000			_TEXT segment dword public use32 "CODE"
+
+ 00000000			_intel16 proc near
+ 00000000  55			push ebp
+ 00000001  8B EC		mov ebp,esp
+ 00000003  66| 8B 45 08		mov ax,word ptr[ebp+8]
+ 00000007  86 C4		xchg al,ah
+ 00000009  5D			pop ebp
+ 0000000A  C3			ret
+ 0000000B			_intel16 endp
+
+
+ 0000000B			_intel proc near
+ 0000000B  55			push ebp
+ 0000000C  8B EC		mov ebp,esp
+ 0000000E  8B 45 08		mov eax,[ebp+8]
+ 00000011  86 C4		xchg al,ah
+ 00000013  C1 C8 10		ror	eax,16
+ 00000016  86 C4		xchg al,ah
+ 00000018  5D			pop ebp
+ 00000019  C3			ret
+ 0000001A			_intel endp
+
+
+ 0000001A			_TEXT ends
+
+				end
+
+				;$Log: intel.asm,v $
+				;Revision 1.2  2002/02/07 01:08:53  linfusheng
+				;update
+				;
+				;Revision 1.1  2002/01/28 01:19:34  linfusheng
+				;update
+				;¡¡¡¡
+Microsoft (R) Macro Assembler Version 6.11		    02/23/02 18:58:48
+.\src\intel.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000001A DWord	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+_intel16 . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000000B Public
+_intel . . . . . . . . . . . . .	P Near	 0000000B _TEXT	Length= 0000000F Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,11 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\.win]
+   @="WINFile"
+[HKEY_CLASSES_ROOT\WINFile]
+   @="File Type Example"
+   
+[HKEY_CLASSES_ROOT\WINFile\DefaultIcon]
+   @="shell32.dll,-152"
+[HKEY_CLASSES_ROOT\WINFile\shell\open\command]
+   @ = "NOTEPAD.EXE %1"

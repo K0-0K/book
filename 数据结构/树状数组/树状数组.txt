@@ -1,0 +1,139 @@
+树状数组是一种非常优雅的数据结构.
+
+    当要频繁的对数组元素进行修改,同时又要频繁的查询数组内任一区间元素之和的时候,可以考虑使用树状数组.
+    最直接的算法可以在O(1)时间内完成一次修改,但是需要O(n)时间来进行一次查询.而树状数组的修改和查询均可在O(log(n))的时间内完成.
+    设a[1...N]为原数组,定义c[1...N]为对应的树状数组:
+    c[i] = a[i - 2^k + 1] + a[i - 2^k + 2] + ... + a[i]
+    其中k为i的二进制表示末尾0的个数,所以2^k即为i的二进制表示的最后一个1的权值.
+    所以2^k可以表示为n&(n^(n-1))或更简单的n&(-n):
+
+view plaincopy to clipboardprint?
+int lowbit(int n)   
+{   
+    return n& (-n);  //or return n&(n^(n-1));   
+}  
+int lowbit(int n)
+{
+    return n& (-n);  //or return n&(n^(n-1));
+}
+
+    对a[n]进行修改后,需要相应的修改c数组中的p1, p2, p3...等一系列元素
+    其中p1 = n,  pi+1 = pi + lowbit(pi)
+    所以修改原数组中的第n个元素可以实现为:
+
+view plaincopy to clipboardprint?
+void Modify(int n, int delta)   
+{   
+    while(n <= N)   
+    {    
+      c[n] += delta;    
+      n += lowbit(n);   
+    }   
+}  
+void Modify(int n, int delta)
+{
+    while(n <= N)
+    { 
+      c[n] += delta; 
+      n += lowbit(n);
+    }
+} 
+
+当要查询a[1],a[2]...a[n]的元素之和时,需要累加c数组中的q1, q2, q3...等一系列元素
+其中q1  = n,
+       qi+1 = qi - lowbit(qi)
+所以计算a[1] + a[2] + .. a[n]可以实现为:
+
+view plaincopy to clipboardprint?
+int Sum(int n)   
+{   
+     int result = 0;   
+     while(n != 0)   
+     { result += c[n]; n -= lowbit(n); }   
+    return result;   
+}  
+int Sum(int n)
+{
+     int result = 0;
+     while(n != 0)
+     { result += c[n]; n -= lowbit(n); }
+    return result;
+} 
+
+树状数组可以扩充到二维。在二维情况下:
+
+C[x][y] = ∑ a[i][j], 其中，
+x-lowbit(x) + 1 <= i <= x,
+y-lowbit(y) + 1 <= j <= y.
+
+
+在二维情况下，对应的更新和查询函数为：
+
+view plaincopy to clipboardprint?
+void Modify(int x, int y, int delta)   
+{   
+    for(int i = x; i <= N; i += lowbit(i))   
+       for(int j = y; j <= N; j += lowbit(i))   
+          C[x][y] += delta;   
+}   
+  
+int Sum(int i, int j)   
+{   
+    int result = 0;   
+    for(int x = i; x > 0; x -= lowerbit(x))   
+    {   
+        for(int y = j; y > 0; y -= lowerbit(y))   
+        {   
+            result += C[x][y];   
+        }   
+    }   
+  
+    return result;   
+}  
+void Modify(int x, int y, int delta)
+{
+    for(int i = x; i <= N; i += lowbit(i))
+       for(int j = y; j <= N; j += lowbit(i))
+          C[x][y] += delta;
+}
+
+int Sum(int i, int j)
+{
+    int result = 0;
+    for(int x = i; x > 0; x -= lowerbit(x))
+    {
+        for(int y = j; y > 0; y -= lowerbit(y))
+        {
+            result += C[x][y];
+        }
+    }
+
+    return result;
+} 
+
+树状数组可以解决更新线段区间，查询某个点的问题。
+在这种情况下，更新线段区间和查询点的时间复杂度仍然为O(logn).
+
+设A[1,N]为我们要处理的数组。
+另外设置一个数组B[1,N]，使得B[1] + B[2] + .. B[i] = A[i], 其中1 <= i <= N.
+
+即B[i] = A[i] - A[i-1]
+
+当要查询A[i]的时候，我们只需在数组B上使用一般的树状数组操作查询区间[1,i]即可
+当我们要给区间A[a~b]加上delta时，只需要在数组B上对B[a]进行一般树状数组的更新delta的操作，同时对数组B上对B[b+1]进行 - delta操作。
+
+这种使用方式同样可以扩展到二维。
+二维情况下，
+B[i][j] = A[i][j] - A[i-1][j] - A[i][j-1]
+当要查询A[i][j]的时候，只需在数组B上查询B[0][0]到B[i][j]的和即可。
+当要给矩形A[x1][y1],A[x2][y2]加上delta的时候，只需要在数组B上对B[x1][y1], [x2+1][y2+1]进行一般树状数组的更新delta的操作，同时对B[x1][y2+1], B[x2+1][y1]进行一般树状数组的更新-delta的操作即可。
+通过上面的讨论可以看出。树状数组支持对点的更新，对区间和点的查询。
+
+通过稍微改变，可以支持对区间的更新，对点的查询。但是不支持对区间的查询(偶没想出来)。
+
+通过使用线段树，可以支持所有这些操作，包括对区间的更新和对区间的查询。
+但是线段树的实现更为复杂，所以能用树状数组解决的问题不需要用线段树
+
+
+
+本文来自CSDN博客，转载请标明出处：http://blog.csdn.net/cg05568256068/archive/2009/05/05/4151760.aspx

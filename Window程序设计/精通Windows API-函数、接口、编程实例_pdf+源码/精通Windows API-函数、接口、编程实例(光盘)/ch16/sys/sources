@@ -1,0 +1,6 @@
+TARGETNAME=xioctl
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+
+
+SOURCES=xioctl.c xioctl.rc

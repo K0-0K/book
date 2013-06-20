@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://www.jz123.cn/text/2129569.html -->
+<HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>linux教程:Git使用基础篇</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META name=keywords content="">
+<META name=description content=linux教程:Git使用基础篇>
+<SCRIPT language=JavaScript src="linux教程Git使用基础篇_files/dedeajax3.js"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+function CheckLogin(){
+var taget_obj = document.getElementById('_loginform');
+myajax = new DedeAjax(taget_obj,false,false,"","","");
+myajax.SendGet("/member/loginindex.php");
+}
+</SCRIPT>
+
+<SCRIPT language=javascript>
+function Digg(divId,aid){
+   var taget_obj = document.getElementById(divId+''+aid);
+   var myajax = new DedeAjax(taget_obj,false,false,"","","");
+   myajax.SendGet2("/digg.php?action=digg&aid="+aid);
+   DedeXHTTP = null;
+}
+</SCRIPT>
+<LINK rel=stylesheet type=text/css href="linux教程Git使用基础篇_files/css.css">
+<STYLE>.context {
+	WIDTH: 638px; CLEAR: both
+}
+.diggArea {
+	BACKGROUND-IMAGE: url(/plus/img/diggbg2.gif); PADDING-BOTTOM: 0px; LINE-HEIGHT: 23px; MARGIN: 0px 0px 10px; PADDING-LEFT: 0px; WIDTH: 60px; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 58px; PADDING-TOP: 0px
+}
+.diggNum {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 8px 0px 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; COLOR: #cc0000; FONT-SIZE: 12px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink A {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+</STYLE>
+
+<SCRIPT>
+
+function submitfun(sid,kwid,formid)
+{
+	var se=document.getElementById(sid);
+	var kw=document.getElementById(kwid);
+	var _form=document.getElementById(formid);
+	
+	if (se.value=='1')
+	{
+		_form.action="http://www.jz123.cn/soft/search.asp";
+	}
+	else
+	{
+			_form.action="/plus/search.php";	
+	}
+	_form.submit();
+	return false;
+}
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY>
+<DIV style="DISPLAY: none">
+<SCRIPT language=javascript type=text/javascript 
+src="linux教程Git使用基础篇_files/count.htm"></SCRIPT>
+</DIV>
+<DIV id=container>
+<DIV id=headerNav><SPAN id=_loginform>
+<FORM class=login method=post name=form1 action=/member/index_do.php 
+target=_blank><INPUT value=login type=hidden name=fmdo> <INPUT value=login 
+type=hidden name=dopost> <INPUT type=hidden name=gourl> 用户名：<INPUT id=userid 
+class=dl name=userid> 密码：<INPUT class=dl type=password name=pwd> 验证码：<INPUT 
+id=vdcode class=dl name=vdcode> <IMG class=code name=vdcode alt="" 
+align=absMiddle src="linux教程Git使用基础篇_files/vdimgck.jpg" width=50 height=20> <INPUT class=anniu value="登 陆" type=submit> <INPUT class=anniu onclick="location.href='/member/index_do.php?fmdo=user&amp;dopost=regnew'" value=注册 type=button name=按钮> 
+</FORM></SPAN>
+<SCRIPT language=JavaScript>CheckLogin();</SCRIPT>
+<A href="http://www.jz123.cn/soft/">源码</A> | <A 
+href="http://book.jz123.cn/">书库</A> | <A href="http://moban.jz123.cn/">模板</A> | 
+<A href="http://myjs.jz123.cn/">特效</A> | <A href="http://ad.jz123.cn/">广告</A> | 
+<A href="http://sc.jz123.cn/">素材</A> | <A href="http://tool.jz123.cn/">工具</A> | 
+<A href="http://wwww.jz123.cn/zz.htm">必备</A> | <A 
+href="http://alexa.jz123.cn/">ALEXA</A> | <A 
+href="http://ziti.jz123.cn/">字体</A></DIV>
+<DIV id=header class=clearfix><A href="http://www.jz123.cn/"><IMG id=logo 
+border=0 name=logo src="linux教程Git使用基础篇_files/logo.png"></A> 
+<DIV class=ad468>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/banner.js"></SCRIPT>
+</DIV>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/ad_js.htm"></SCRIPT>
+</DIV>
+<DIV id=nav>
+<UL>
+  <LI id=homepage><A href="http://www.jz123.cn/">首页</A> </LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/news/">互联资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/zhanzhang/">站长在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/SEO/">SEO搜索</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/yunying/">网站运营</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/lianmengzixun/">联盟资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fuwuqi/">服务器类</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/shejizaixian/">设计在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/jianzhanjishu/">网络编程</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fangfa/">程序集锦</A> </LI></UL></DIV>
+<DIV id=userInfo><SPAN><A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><IMG 
+src="linux教程Git使用基础篇_files/td_icon.gif"> 会员投稿</A> <A 
+href="http://www.jz123.cn/zhinan.htm"><IMG 
+src="linux教程Git使用基础篇_files/tg_icon.gif"> 投稿指南 </A><A 
+href="http://www.jz123.cn/plus/rssmap.html"><IMG 
+src="linux教程Git使用基础篇_files/rss.gif"> RSS订阅</A></SPAN> 
+<FORM id=f1 name=formsearch action=/plus/search.php target=_blank><INPUT value=0 
+type=hidden name=kwtype> <INPUT id=keyword class="searchtxt dl" name=keyword> 
+<SELECT id=searchtype name=select> <OPTION selected value=1>源码软件搜索</OPTION> 
+  <OPTION value=titlekeyword>站长资讯搜索</OPTION> <OPTION 
+value=title>仅搜索标题</OPTION></SELECT> <INPUT value=topic type=hidden name=act> <INPUT class=anniu onclick="return submitfun('searchtype','keyword','f1')" value="搜 索" type=submit name=""> 
+</FORM></DIV>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/ad_js(1).htm"></SCRIPT>
+
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/9w.js"></SCRIPT>
+
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/rd.js"></SCRIPT>
+
+<DIV id=main class=clearfix>
+<DIV class="small right">
+<H2>栏目导航</H2>
+<UL>
+  <LI><A href="http://ad.jz123.cn/">广告代码</A> <A 
+  href="http://tool.jz123.cn/">站长工具</A> <A 
+  href="http://www.jz123.cn/soft/">源码下载</A> <A 
+  href="http://font.jz123.cn/">英文字体</A> 
+  <LI><A href="http://book.jz123.cn/">站长书库</A> <A 
+  href="http://moban.jz123.cn/">网页模板</A> <A 
+  href="http://myjs.jz123.cn/">网页特效</A> <A 
+  href="http://alexa.jz123.cn/">排名查询</A> </LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/260.js"></SCRIPT>
+</DIV>
+<H2>热点推荐</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/2024370.html">笔/面试中常考到的一些linux脚本</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/249407.html">Linux操作系统下隐藏文件的新方</A>
+  <LI><A href="http://www.jz123.cn/text/185024.html">linux操作系统下的域名解析系统</A>
+  <LI><A 
+href="http://www.jz123.cn/text/154728.html">Linux与Unix比较Ftp/Telnet服务</A>
+  <LI><A href="http://www.jz123.cn/text/074402.html">虚拟主机为什么大多要使用Linux</A>
+  <LI><A href="http://www.jz123.cn/text/304121.html">LinuxIPv6环境下DNS服务器配置攻</A>
+  <LI><A href="http://www.jz123.cn/text/304117.html">服务器维护：RHEL5系统下故障处</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/30855.html">Linux无法解析域名的解决办法</A> 
+</LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/248.js"></SCRIPT>
+</DIV>
+<H2>阅览排行</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/0817261.html">检测Linux系统是否被黑的技巧</A>
+  <LI><A href="http://www.jz123.cn/text/1720453.html">Linux Find 命令使用详解</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/177043.html">Apache [forbidden 
+  403]错误的解</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/1217470.html">Linux下Apache配置虚拟主机+SSL</A>
+  <LI><A href="http://www.jz123.cn/text/2814289.html">Linux系统中如何添加自己的库文</A>
+  <LI><A href="http://www.jz123.cn/text/051199.html">关于Linux Grep命令使用的详细介</A>
+  <LI><A href="http://www.jz123.cn/text/2212848.html">基于Linux系统的包过滤防火墙</A>
+  <LI><A href="http://www.jz123.cn/text/0116946.html">Linux操作系统如何释放cache内存</A>
+  <LI><A href="http://www.jz123.cn/text/1824274.html">SSH命令详解</A>
+  <LI><A href="http://www.jz123.cn/text/2223214.html">linux smb.conf详解</A>
+  <LI><A href="http://www.jz123.cn/text/1318817.html">Linux操作系统服务器上进行安全</A>
+  <LI><A href="http://www.jz123.cn/text/2319261.html">如何加强Linux系统在安全方面的</A> 
+</LI></UL></DIV>
+<DIV id=list class=left>
+<DIV id=location>您当前的位置是：<A href="http://www.jz123.cn/">主页</A>&gt;<A 
+href="http://www.jz123.cn/text/fuwuqi/">服务器类</A>&gt;<A 
+href="http://www.jz123.cn/text/Linux/">Linux服务器</A>&gt;</DIV>
+<DIV id=arcContent>
+<H1>linux教程:Git使用基础篇</H1>
+<P class=info><A href="http://www.jz123.cn/"><FONT 
+color=red>www.jz123.cn</FONT></A>&nbsp;&nbsp;2010-04-21&nbsp;&nbsp; 
+来源:&nbsp;&nbsp; <FONT color=#000099>中国建站 </FONT>&nbsp;&nbsp; <FONT 
+color=#000099>责任编辑(袁袁)</FONT> &nbsp;&nbsp; <A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><FONT 
+color=red>我要投递新闻</FONT></A></P>
+<DIV id=adart class=clearfix><SPAN style="MARGIN: 0px" class=ad310>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/101.js"></SCRIPT>
+</SPAN><SPAN style="MARGIN: 0px" class=310>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/102.js"></SCRIPT>
+</SPAN></DIV>
+<P>　　Git是一个分布式的版本控制工具，本篇文章从介绍Git开始，重点在于介绍Git的基本命令和使用技巧，让你尝试使用Git的同时，体验到原来一个版本控制工具可以对开发产生如此之多的影响，文章分为两部分，第一部分介绍Git的一些常用命令，其中穿插介绍Git的基本概念和原理，第二篇重点介绍Git的使用技巧，最后会在Git 
+Hub上创建一个开源项目开启你的Git实战之旅</P>
+<P>　　Git是什么</P>
+<P>　　Git在Wikipedia上的定义：它是一个免费的、分布式的版本控制工具，或是一个强调了速度快的源代码管理工具。Git最初被Linus 
+Torvalds开发出来用于管理Linux内核的开发。每一个Git的工作目录都是一个完全独立的代码库，并拥有完整的历史记录和版本追踪能力，不依赖于网络和中心服务器。</P>
+<P>　　Git的出现减轻了许多开发者和开源项目对于管理分支代码的压力，由于对分支的良好控制，更鼓励开发者对自己感兴趣的项目做出贡献。其实许多开源项目包括Linux 
+kernel, Samba, X.org Server, Ruby on 
+Rails，都已经过渡到使用Git作为自己的版本控制工具。对于我们这些喜欢写代码的开发者嘛，有两点最大的好处，我们可以在任何地点(在上班的地铁上)提交自己的代码和查看代码版本;我们可以开许许多多个分支来实践我们的想法，而合并这些分支的开销几乎可以忽略不计。</P>
+<P>　　Git 1+1</P>
+<P>　　现在进入本篇文章真正的主题，介绍一下Git的基本命令和操作，会从Git的版本库的初始化，基本操作和独有的常用命令三部分着手，让大家能够开始使用Git。</P>
+<P>　　Git通常有两种方式来进行初始化:</P>
+<P>　　git clone: 这是较为简单的一种初始化方式，当你已经有一个远程的Git版本库，只需要在本地克隆一份，例如'git clone 
+git://github.com/someone/some_project.git 
+some_project'命令就是将'git://github.com/someone/some_project.git'这个URL地址的远程版 
+本库完全克隆到本地some_project目录下面</P>
+<P>　　git init和git remote：这种方式稍微复杂一些，当你本地创建了一个工作目录，你可以进入这个目录，使用'git 
+init'命令进行初始化，Git以后就会对该目录下的文件进行版本控制，这时候如果你需要将它放到远程服务器上，可以在远程服务器上创建一个目录，并把 
+可访问的URL记录下来，此时你就可以利用'git remote add'命令来增加一个远程服务器端，例如'git remote add origin 
+git://github.com/someone/another_project.git'这条命令就会增加URL地址为'git: 
+//github.com/someone/another_project.git'，名称为origin的远程服务器，以后提交代码的时候只需要使用 
+origin别名即可</P>
+<P>　　现在我们有了本地和远程的版本库，让我们来试着用用Git的基本命令吧：</P>
+<P>　　git pull：从其他的版本库(既可以是远程的也可以是本地的)将代码更新到本地，例如：'git pull origin 
+master'就是将origin这个版本库的代码更新到本地的master主枝，该功能类似于SVN的update</P>
+<P>　　git 
+add：是将当前更改或者新增的文件加入到Git的索引中，加入到Git的索引中就表示记入了版本历史中，这也是提交之前所需要执行的一步，例如'git add 
+app/model/user.rb'就会增加app/model/user.rb文件到Git的索引中</P>
+<P>　　git rm：从当前的工作空间中和索引中删除文件，例如'git rm app/model/user.rb'</P>
+<P>　　git commit：提交当前工作空间的修改内容，类似于SVN的commit命令，例如'git commit -m "story #3, add 
+user model"'，提交的时候必须用-m来输入一条提交信息</P>
+<P>　　git push：将本地commit的代码更新到远程版本库中，例如'git push 
+origin'就会将本地的代码更新到名为orgin的远程版本库中</P>
+<P>　　git log：查看历史日志</P>
+<P>　　git revert：还原一个版本的修改，必须提供一个具体的Git版本号，例如'git revert 
+bbaf6fb5060b4875b18ff9ff637ce118256d6f20'，Git的版本号都是生成的一个哈希值</P>
+<P>　　上面的命令几乎都是每个版本控制工具所公有的，下面就开始尝试一下Git独有的一些命令：</P>
+<P>　　git branch：对分支的增、删、查等操作，例如'git branch 
+new_branch'会从当前的工作版本创建一个叫做new_branch的新分支，'git branch -D 
+new_branch'就会强制删除叫做new_branch的分支，'git branch'就会列出本地所有的分支</P>
+<P>　　git checkout：Git的checkout有两个作用，其一是在不同的branch之间进行切换，例如'git checkout 
+new_branch'就会切换到new_branch的分支上去;另一个功能是还原代码的作用，例如'git checkout 
+app/model/user.rb'就会将user.rb文件从上一个已提交的版本中更新回来，未提交的内容全部会回滚</P>
+<P>　　git rebase：用下面两幅图解释会比较清楚一些，rebase命令执行后，实际上是将分支点从C移到了G，这样分支也就具有了从C到G的功能</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用基础篇（图一） src="linux教程Git使用基础篇_files/1047040.png" width=570 
+height=195></CENTER>
+<P>&nbsp;</P>
+<P>　　git reset：将当前的工作目录完全回滚到指定的版本号，假设如下图，我们有A-G五次提交的版本，其中C的版本号是 
+bbaf6fb5060b4875b18ff9ff637ce118256d6f20，我们执行了'git reset 
+bbaf6fb5060b4875b18ff9ff637ce118256d6f20'那么结果就只剩下了A-C三个提交的版本</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用基础篇（图二） src="linux教程Git使用基础篇_files/1047041.png" width=570 
+height=181></CENTER>
+<P>&nbsp;</P>
+<P>　　git stash：将当前未提交的工作存入Git工作栈中，时机成熟的时候再应用回来，这里暂时提一下这个命令的用法，后面在技巧篇会重点讲解</P>
+<P>　　git config：利用这个命令可以新增、更改Git的各种设置，例如'git config branch.master.remote 
+origin'就将master的远程版本库设置为别名叫做origin版本库，后面在技巧篇会利用这个命令个性化设置你的Git，为你打造独一无二的 Git</P>
+<P>　　git tag：可以将某个具体的版本打上一个标签，这样你就不需要记忆复杂的版本号哈希值了，例如你可以使用'git tag revert_version 
+bbaf6fb5060b4875b18ff9ff637ce118256d6f20'来标记这个被你还原的版本，那么以后你想查看该版本时，就可以使用 
+revert_version标签名，而不是哈希值了</P>
+<P>　　Git之所以能够提供方便的本地分支等特性，是与它的文件存储机制有关的。Git存储版本控制信息时使用它自己定义的一套文件系统存储机制，在代码根目录下有一个.git文件夹，会有如下这样的目录结构：</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用基础篇（图三） src="linux教程Git使用基础篇_files/1047042.png" width=570 
+height=71></CENTER>
+<P>&nbsp;</P>
+<P>　　有几个比较重要的文件和目录需要解释一下：HEAD文件存放根节点的信息，其实目录结构就表示一个树型结构，Git采用这种树形结构来存储版本信息，那么HEAD就表示根;refs目录存储了你在当前版本控制目录下的各种不同引用(引用指的是你本地和远程所用到的各个树分支的信息)，它有heads、remotes、stash、tags四个子目录，分别存储对不同的根、远程版本库、Git栈和标签的四种引用，你可以通过命令'git 
+show-ref'更清晰地查看引用信息;logs目录根据不同的引用存储了日志信息。因此，Git只需要代码根目录下的这一个.git目录就可以记录完整的版本控制信息，而不是像SVN那样根目录和子目录下都有.svn目录。那么下面就来看一下Git与SVN的区别吧</P>
+<P>　　Git与SVN的不同</P>
+<P>　　SVN(Subversion)是当前使用最多的版本控制工具。与它相比较，Git最大的优势在于两点：易于本地增加分支和分布式的特性。</P>
+<P>　　下面两幅图可以形象的展示Git与SVN的不同之处</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用基础篇（图四） align=center 
+src="linux教程Git使用基础篇_files/1047043.png" width=570 height=279></CENTER>
+<P>&nbsp;</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用基础篇（图五） src="linux教程Git使用基础篇_files/1047044.png" width=570 
+height=279></CENTER>
+<P>&nbsp;</P>
+<P>　　对于易于本地增加分支，图中Git本地和服务器端结构都很灵活，所有版本都存储在一个目录中，你只需要进行分支的切换即可达到在某个分支工作的效果。而SVN则完全不同，如果你需要在本地试验一些自己的代码，只能本地维护多个不同的拷贝，每个拷贝对应一个SVN服务器地址。举一个实际的例子，以前我所在的小组使用SVN作为版本控制工具，当我正在试图增强一个模块，工作做到一半，由于会改变原模块的行为导致代码服务器上许多测试的失败，所以并没有提交代码。这时候上级对我说，现在有一个很紧急的Bug需要处理， 
+必须在两个小时内完成。我只好将本地的所有修改diff，并输出成为一个patch文件，然后回滚有关当前任务的所有代码，再开始修改Bug的任务，等到修改好后，在将patch应用回来。前前后后要完成多个繁琐的步骤，这还不计中间代码发生冲突所要进行的工作量。可是如果使用Git， 
+我们只需要开一个分支或者转回到主分支上，就可以随时开始Bug修改的任务，完成之后，只要切换到原来的分支就可以优雅的继续以前的任务。只要你愿意，每一个新的任务都可以开一个分支，完成后，再将它合并到主分支上，轻松而优雅。</P>
+<P>　　分布式对于Git而言，你可以本地提交代码，所以在上面的图中，Git有利于将一个大任务分解，进行本地的多次提交，而SVN只能在本地进行大量的一次性更改，导致将来合并到主干上造成巨大的风险。Git的代码日志是在本地的，可以随时查看。SVN的日志在服务器上的，每次查看日志需要先从服务器上下载下来。我工作的小组，代码服务器在美国，每次查看小组几年前所做的工作时，日志下载就需要十分钟，这不能不说是一个痛苦。后来我们迁移到Git上，利用Git日志在本地的特性，我用Ruby编写了一个Rake脚本，可以查看某个具体任务的所有代码历史，每次只需要几秒钟，大大方便我的工作。当然分布式并不是说用了Git就不需要一个代码中心服务器，如果你工作在一个团队里，还是需要一个服务器来保存所有的代码的。</P>
+<P>　　总结</P>
+<P>　　本篇介绍了Git的基本概念、一些常用命令和原理，大家可以尝试动手体会一下，下一篇会重点介绍Git命令的使用技巧，Git附带的工具，最后会在Git 
+Hub上创建一个开源项目，敬请期待</P>
+<DIV id=page><BR>
+<P><A href="http://www.jz123.cn/plus/Archiver.php" target=_blank><B><FONT 
+color=#191970>点击浏览当日最新新闻资讯</FONT></B></A></P>
+<P>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/468.js"></SCRIPT>
+</P></DIV>
+<DIV style="PADDING-BOTTOM: 10px" class=clearfix>
+<DIV id=digg29569 class=diggArea>
+<DIV class=diggNum>0</DIV>
+<DIV class=diggLink><A href="javascript:Digg('digg',29569);">顶一下</A></DIV></DIV>
+<P>
+<SCRIPT language=javascript src=""></SCRIPT>
+</P>
+<P>
+<SCRIPT language=javascript src="linux教程Git使用基础篇_files/ShouCang.js"></SCRIPT>
+</P></DIV>
+<P class=updown>上一篇：<A 
+href="http://www.jz123.cn/text/1929470.html">linux制作光盘镜像文件</A> 下一篇：<A 
+href="http://www.jz123.cn/text/2129570.html">linux教程:Git使用技巧篇</A> </P>
+<DIV class=arcbox>
+<H2>相关文章列表</H2>
+<UL class=clearfix>
+  <LI><A href="http://www.jz123.cn/text/2129570.html">linux教程:Git使用技巧篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/2129569.html">linux教程:Git使用基础篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929470.html">linux制作光盘镜像文件</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929469.html">一个硬盘上实现双Linux系统办法</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929468.html">linux基础：tty pty pts 
+  tts介绍</A></LI>
+  <LI><A 
+  href="http://www.jz123.cn/text/1929467.html">linux用busybox制作ramdisk的脚本分</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929466.html">如何获取Linux命令的源代码</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929465.html">linux如何修改用户主目录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929464.html">Linux如何删除用户的历史记录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929463.html">linux远程文件拷贝命令：scp</A></LI>
+  <LI><A href="http://www.jz123.cn/text/0228975.html">如何实时添加Bash 
+History</A></LI>
+  <LI><A href="http://www.jz123.cn/text/0228974.html">linux大文件分割 split命令</A> 
+  </LI></UL></DIV>
+<FORM class=feedback method=post name=feedback 
+action=/plus/feedback.php?action=send><INPUT value=29569 type=hidden name=arcID> 
+<TEXTAREA rows=6 cols=60 name=msg></TEXTAREA> <STRONG>用户名：</STRONG> <INPUT 
+class="username dl" name=username> <STRONG>密码：</STRONG> <INPUT 
+class="password dl" maxLength=20 type=password name=pwd> <INPUT value=1 
+type=checkbox name=notuser> <STRONG>匿名?</STRONG> <INPUT class=anniu onclick='javascript:if(document.feedback.msg.value!="") document.feedback.submit(); else alert("评论内容不能为空！");' value=发表评论 type=button name=sb> 
+<A href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew" 
+target=_blank>注册</A></FORM>
+<DIV id=feedbox>
+<H2><SPAN>评论总数：<STRONG>0 </STRONG>条 <A 
+href="http://www.jz123.cn/plus/feedback.php?arcID=29569" target=_blank>[ 查看全部 ] 
+</A></SPAN>网友评论</H2>
+<SCRIPT src="linux教程Git使用基础篇_files/feedback_js.htm"></SCRIPT>
+</DIV></DIV></DIV><BR class=clearfloat></DIV>
+<DIV id=bottomNav><A href="http://www.jz123.cn/about.htm">关于我们</A> ┆ <A 
+href="http://www.jz123.cn/Disclaimer.htm">隐私版权</A> ┆ <A 
+href="http://www.jz123.cn/contact.htm">广告服务</A> ┆ <A 
+href="http://www.jz123.cn/text/">友情链接</A> ┆ <A 
+href="http://www.jz123.cn/lianxi.htm">联系我们</A> ┆ <A 
+href="http://www.jz123.cn/plus/sitemap.html">网站地图</A> </DIV>
+<DIV id=footer>
+<P>中国建站意见反馈留言板　 电话：021-5430-5621　广告业务:QQ:9576619 
+<P>郑重声明：未经授权禁止转载、摘编、复制或建立镜像.如有违反，追究法律责任 </P>
+<P>Copyright @2004-2008 JZ123 Corporation, All Rights Reserved </P>
+<P><A href="http://www.miibeian.gov.cn/">苏ICP备08101582号</A></P></DIV>
+<DIV style="DISPLAY: none">
+<SCRIPT language=JavaScript charset=gb2312 
+src="linux教程Git使用基础篇_files/stat.htm"></SCRIPT>
+</DIV>
+<SCRIPT language=JavaScript src="linux教程Git使用基础篇_files/fz.js"></SCRIPT>
+</DIV></BODY></HTML>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SrvCtrl", "SrvCtrl\SrvCtrl.vcproj", "{02F94186-1665-4CD8-AB4C-C7CEFE68EF24}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SplSrv", "SplSrv\SplSrv.vcproj", "{E9A87DF5-DD2E-46B7-94E6-9F3D1FFFF0DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02F94186-1665-4CD8-AB4C-C7CEFE68EF24}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02F94186-1665-4CD8-AB4C-C7CEFE68EF24}.Debug|Win32.Build.0 = Debug|Win32
+		{02F94186-1665-4CD8-AB4C-C7CEFE68EF24}.Release|Win32.ActiveCfg = Release|Win32
+		{02F94186-1665-4CD8-AB4C-C7CEFE68EF24}.Release|Win32.Build.0 = Release|Win32
+		{E9A87DF5-DD2E-46B7-94E6-9F3D1FFFF0DF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9A87DF5-DD2E-46B7-94E6-9F3D1FFFF0DF}.Debug|Win32.Build.0 = Debug|Win32
+		{E9A87DF5-DD2E-46B7-94E6-9F3D1FFFF0DF}.Release|Win32.ActiveCfg = Release|Win32
+		{E9A87DF5-DD2E-46B7-94E6-9F3D1FFFF0DF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

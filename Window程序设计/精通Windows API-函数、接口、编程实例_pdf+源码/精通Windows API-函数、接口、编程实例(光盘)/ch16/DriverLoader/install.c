@@ -1,0 +1,372 @@
+/* ************************************
+*《精通Windows API》
+* 示例代码
+* install.c
+* 16.2 IO控制、内核通信
+**************************************/
+/* 头文件 */
+#include <windows.h>
+#include <winioctl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "..\sys\xioctl.h"
+/* 全局变量 */
+char OutputBuffer[100];
+char InputBuffer[100];
+/* 函数声明 */
+BOOL InstallDriver( SC_HANDLE, LPCTSTR, LPCTSTR );
+BOOL RemoveDriver( SC_HANDLE, LPCTSTR );
+BOOL StartDriver( SC_HANDLE , LPCTSTR );
+BOOL StopDriver( SC_HANDLE , LPCTSTR );
+
+/*************************************
+* InstallDriver
+* 功能 创建服务、安装驱动
+* 参数 SchSCManager，服务控制器句柄
+*         DriverName，服务名
+*         ServiceExe，驱动的可执行程序路径
+**************************************/
+BOOL InstallDriver(
+				   SC_HANDLE SchSCManager,
+				   LPCTSTR DriverName,
+				   LPCTSTR ServiceExe
+				   )
+{
+	SC_HANDLE schService;
+	DWORD err;
+
+	// 调用CreateService创建服务
+	schService = CreateService(SchSCManager, // 服务控制器，SCM句柄
+		DriverName, // 服务名
+		DriverName, // 服务的显示名
+		SERVICE_ALL_ACCESS, // 存取权限
+		SERVICE_KERNEL_DRIVER, // 服务类型
+		SERVICE_DEMAND_START, // 启动类型
+		SERVICE_ERROR_NORMAL, // 启动错误的处理
+		ServiceExe, // 可执行程序
+		NULL, NULL, NULL, NULL, NULL
+		);
+
+	if (schService == NULL)
+	{
+		// 创建服务失败
+		err = GetLastError();
+		// 服务已经存在
+		if (err == ERROR_SERVICE_EXISTS)
+		{
+			return TRUE;// 返回成功
+		}
+		else
+		{
+			// 输出错误信息，返回失败
+			printf("CreateService failed! Error = %d \n", err );
+			return FALSE;
+		}
+	}
+	// 创建成功，关闭服务
+	if (schService)
+	{
+		CloseServiceHandle(schService);
+	}
+	// 返回成功
+	return TRUE;
+}
+
+/*************************************
+* RemoveDriver
+* 功能 删除驱动服务
+* 参数 SchSCManager，服务控制器句柄
+*         DriverName，服务名
+**************************************/
+BOOL RemoveDriver(
+			 SC_HANDLE SchSCManager,
+			 LPCTSTR DriverName
+			 )
+{
+	SC_HANDLE schService;
+	BOOLEAN rCode;
+
+	// 打开服务
+	schService = OpenService(SchSCManager,
+		DriverName,
+		SERVICE_ALL_ACCESS
+		);
+
+	if (schService == NULL)
+	{
+		// 服务打开失败
+		printf("OpenService failed! Error = %d \n", GetLastError());
+		return FALSE;
+	}
+
+	// 删除服务
+	if (DeleteService(schService))
+	{
+		rCode = TRUE;
+	} 
+	else
+	{
+		//失败
+		printf("DeleteService failed! Error = %d \n", GetLastError());
+		rCode = FALSE;
+	}
+
+	// 关闭服务句柄
+	if (schService)
+	{
+		CloseServiceHandle(schService);
+	}
+	return rCode;
+}
+
+/*************************************
+* StartDriver
+* 功能 起动服务，加载执行驱动
+* 参数 SchSCManager，服务控制器句柄
+*         DriverName，服务名
+**************************************/
+BOOL StartDriver(
+			SC_HANDLE SchSCManager,
+			LPCTSTR DriverName
+			)
+{
+	SC_HANDLE schService;
+	DWORD err;
+
+	// 打开服务
+	schService = OpenService(SchSCManager,
+		DriverName,
+		SERVICE_ALL_ACCESS
+		);
+	if (schService == NULL)
+	{
+		// 失败
+		printf("OpenService failed! Error = %d \n", GetLastError());
+		return FALSE;
+	}
+
+	// 启动服务
+	if (!StartService(schService, // 服务句柄
+		0, // 参数个数，无
+		NULL // 参数指针，无
+		))
+	{
+		// 启动失败
+		err = GetLastError();
+		// 已经开始运行
+		if (err == ERROR_SERVICE_ALREADY_RUNNING)
+		{
+			// 返回成功
+			return TRUE;
+		}
+		else
+		{
+			// 失败，打印错误
+			printf("StartService failure! Error = %d \n", err );
+			return FALSE;
+		}
+	}
+
+	// 关闭服务句柄
+	if (schService)
+	{
+		CloseServiceHandle(schService);
+	}
+
+	return TRUE;
+
+}
+
+/*************************************
+* StopDriver
+* 功能 停止服务，停止驱动运行
+* 参数 SchSCManager，服务控制器句柄
+*         DriverName，服务名
+**************************************/
+BOOL StopDriver(
+		   SC_HANDLE SchSCManager,
+		   LPCTSTR DriverName
+		   )
+{
+	BOOLEAN rCode = TRUE;
+	SC_HANDLE schService;
+	SERVICE_STATUS serviceStatus;
+
+	// 打开服务
+	schService = OpenService(SchSCManager,
+		DriverName,
+		SERVICE_ALL_ACCESS
+		);
+
+	if (schService == NULL)
+	{
+		// 失败
+		printf("OpenService failed! Error = %d \n", GetLastError());
+		return FALSE;
+	}
+
+	// 停止运行
+	if (ControlService(schService,
+		SERVICE_CONTROL_STOP,
+		&serviceStatus
+		))
+	{
+		rCode = TRUE;
+	}
+	else 
+	{
+		// 失败
+		printf("ControlService failed! Error = %d \n", GetLastError() );
+		rCode = FALSE;
+	}
+
+	// 关闭服务句柄
+	if (schService)
+	{
+		CloseServiceHandle (schService);
+	}
+	return rCode;
+
+} 
+
+/*************************************
+* GetDriverPath
+* 功能 获得服务驱动的路径
+* 参数 DriverLocation，返回驱动的路径
+**************************************/
+BOOL GetDriverPath(
+				LPSTR DriverLocation
+				)
+{
+
+	DWORD driverLocLen = 0;
+
+	// 驱动.sys文件在本程序同一目标下
+	driverLocLen = GetCurrentDirectory(MAX_PATH,
+		DriverLocation
+		);
+
+	if (!driverLocLen)
+	{
+		printf("GetCurrentDirectory failed! Error = %d \n", GetLastError());
+		return FALSE;
+	}
+
+	// 构造路径，加上驱动名
+	lstrcat(DriverLocation, "\\");
+	lstrcat(DriverLocation, DRIVER_NAME);
+	lstrcat(DriverLocation, ".sys");
+
+	return TRUE;
+}
+
+/*************************************
+* int _cdecl main( )
+* 功能 加载驱动，进行控制
+**************************************/
+int _cdecl main()
+{
+	HANDLE hDevice;
+	BOOL bRc;
+	ULONG bytesReturned;
+	DWORD errNum = 0;
+	UCHAR driverLocation[MAX_PATH];
+
+	SC_HANDLE schSCManager;// 服务控制器句柄
+	// 打开服务控制器，后续安装、启动都会使用到。
+	schSCManager = OpenSCManager(NULL, // 本机
+		NULL, // 本机数据库
+		SC_MANAGER_ALL_ACCESS // 存取权限
+		);
+	if (!schSCManager)
+	{
+		// 打开失败
+		printf("Open SC Manager failed! Error = %d \n", GetLastError());
+		return 1;
+	}
+	// 获得驱动文件的路径
+	if (!GetDriverPath(driverLocation))
+	{
+		return 1;
+	}
+	// 安装驱动服务
+	if (InstallDriver(schSCManager,
+		DRIVER_NAME,
+		driverLocation
+		))
+	{
+		// 安装成功，启动服务，运行驱动
+		if(!StartDriver(schSCManager, DRIVER_NAME ))
+		{
+			printf("Unable to start driver. \n");
+			return 1;
+		}
+	}
+	else
+	{
+		// 安装失败，删除驱动。
+		RemoveDriver(schSCManager, DRIVER_NAME );
+		printf("Unable to install driver. \n");
+		return 1;
+	}
+	// 打开驱动，获得控制所用的句柄
+	// 由驱动创建的符号链接
+	hDevice = CreateFile( "\\\\.\\IoctlTest",
+		GENERIC_READ | GENERIC_WRITE,
+		0,
+		NULL,
+		CREATE_ALWAYS,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL);
+	if ( hDevice == INVALID_HANDLE_VALUE )
+	{
+		printf ( "Error: CreatFile Failed : %d\n", GetLastError());
+		return 1;
+	}
+
+	// 打印，输入输出。
+	printf("InputBuffer Pointer = %p, BufLength = %d\n", InputBuffer,
+		sizeof(InputBuffer));
+	printf("OutputBuffer Pointer = %p BufLength = %d\n", OutputBuffer,
+		sizeof(OutputBuffer));
+	
+	// 输入到内核的数据，
+	lstrcpy(InputBuffer,
+		"This String is from User Application; using IOCTL_XIOCTL_BUFFER");
+	printf("\nCalling DeviceIoControl IOCTL_XIOCTL_BUFFER:\n");
+	
+	// 清空输出缓存
+	memset(OutputBuffer, 0, sizeof(OutputBuffer));
+	// 进行IO控制，
+	bRc = DeviceIoControl ( hDevice,// 句柄
+		(DWORD) IOCTL_XIOCTL_BUFFER,// IOCTL
+		&InputBuffer,// 输入数据
+		strlen ( InputBuffer )+1,// 输入数据的长度
+		&OutputBuffer,// 输出数据
+		sizeof( OutputBuffer),// 输出数据长度
+		&bytesReturned,// 实际输出的数据长度
+		NULL
+		);
+	// 判断是否成功
+	if ( !bRc )
+	{
+		printf ( "Error in DeviceIoControl : %d", GetLastError());
+		return 1;
+	}
+	// 打印从内核输出的内容
+	printf(" OutBuffer (%d): %s\n", bytesReturned, OutputBuffer);
+	// 关闭句柄
+	CloseHandle ( hDevice );
+	// 停止运行
+	StopDriver(schSCManager,
+		DRIVER_NAME
+		);
+	// 删除服务
+	RemoveDriver(schSCManager,
+		DRIVER_NAME
+		);
+	// 关闭服务控制器
+	CloseServiceHandle (schSCManager);
+	return 0;
+}

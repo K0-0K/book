@@ -1,0 +1,199 @@
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+9 10 11 12 13 14 15 16 17 18 19 20 21 
+10 11 12 13 14 15 16 17 18 19 20 21 
+11 12 13 14 15 16 17 18 19 20 21 
+12 13 14 15 16 17 18 19 20 21 
+13 14 15 16 17 18 19 20 21 
+14 15 16 17 18 19 20 21 
+15 16 17 18 19 20 21 
+16 17 18 19 20 21 
+17 18 19 20 21 
+18 19 20 21 
+19 20 21 
+20 21 
+21 
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No

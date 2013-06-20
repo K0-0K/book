@@ -1,0 +1,24 @@
+/* ************************************
+*《精通Windows API》 
+* 示例代码
+* time.c
+* 10.2  系统时间
+**************************************/
+#include <Windows.h>
+#include <stdio.h>
+/* ************************************
+* int main()
+* 功能	获取并显示系统当前时间，然后将时间提前一个小时
+**************************************/
+int main()
+{
+	SYSTEMTIME st;
+	// 获取当前时间，以本时区时间格式
+	GetLocalTime( &st );
+	printf("Now: %d-%d-%d, %d:%d:%d",
+		st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+	// 提前一小时
+	st.wHour --;
+	// 设置当前系统时间
+	SetLocalTime( &st );
+}

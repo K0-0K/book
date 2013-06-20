@@ -1,0 +1,14 @@
+# Microsoft Developer Studio Generated Dependency File, included by MyTask.mak
+
+.\MyTask.c : \
+	".\includes.h"\
+	".\Os_cfg.h"\
+	".\os_cpu.h"\
+	".\ucos_ii.h"\
+	
+
+.\os_cpu_c.c : \
+	".\Os_cfg.h"\
+	".\os_cpu.h"\
+	".\ucos_ii.h"\
+	

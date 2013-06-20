@@ -1,0 +1,270 @@
+/**********
+
+This is ¡þCogitation¡þ Blog Template Style Files
+Author:wuyue@csdn.net
+Last Modify:2008/05/06
+
+*************/
+body{height:100%;min-width:760px;}
+
+
+a{text-decoration:none;color:#369;}
+a:hover{text-decoration:none;color:#D59139;}
+.spadding{margin:0;padding:0;}
+.middle{text-align:center;}
+.small{font-size:9px;}
+.left{text-align:left;}
+.right{text-align:right;}
+/****Over****/
+
+
+
+
+
+/***SideBar Style***/
+#csdnblog_sidebar div.gutter{overflow:hidden;background:#F5F5F5;float:left;width:95%;margin:0 5px;display:inline;font-family:"Microsoft yahei",verdana,sans-serif;}
+
+/*about author*/
+.aboutauthor{float:left;height:100%;padding:1em;}
+.aboutauthor dl{word-break:break-all;overflow: hidden; text-overflow:ellipsis;}
+.aboutauthor dt{background:url(csdnblog_titlebg2.gif) right no-repeat;clear:both;border-bottom:1px solid #CCC;font:bold 14px "Microsoft yahei",verdana,sans-serif;color:#000;margin:20px 0 5px 0;}
+.aboutauthor dt span{margin:0 0 0 6px;font:normal 9px verdana,sans-serif;color:#BF7B05;}
+.aboutauthor dd{margin:8px 0;}
+.aboutauthor dd img{border:1px solid #CCC;padding:2px;}
+.aboutauthor dd em{color:#93B300;margin:0 2px;}
+
+
+/*readingbook*/
+.readingbook{float:left;width:100%;}
+.readingbook ul{float:left;}
+.readingbook li{float:left;margin:5px 10px 0 4px;display:inline;}	
+.readingbook li span{display:block;word-break:break-all;overflow:hidden;width:70px;white-space:nowrap;}
+.readingbook li.viewallfriends{clear:both;display:block;width:90%;}
+.readingbook ul.spacefriend li{height:75px;}
+/*sidebar list style*/
+.publiclist_sidebar ul li{background:url(csdnblog_listico.gif) 3px 8px no-repeat;line-height:24px;}
+.publiclist_sidebar ul li a{padding:0 0 0 15px;}
+.friendslist_sidebar ul li{background:url(iconi01.gif) 3px 7px no-repeat;line-height:24px;}
+.friendslist_sidebar ul li a{padding:0 0 0 15px;}
+
+/***Contents Style***/
+#csdnblog_content div.gutter{margin:0 .5em;float:left;width:98%;display:inline;}
+
+/*default contents*/
+.writeblog{float:left;width:95%;margin:5px 0;}
+.writeblog ul{float:left;width:100%;}
+.writeblog li{float:right;margin:0 0 0 6px;}
+.writeblog li a{float:left;font-weight:bold;color:#555;background:#CCC;padding:.2em 2em;border:1px solid #CCC;}
+.default_contents{text-align:left;float:left;margin:0 0 20px;display:inline;width:97%;border:1px solid #CCC;word-break:break-all;overflow: hidden; text-overflow:ellipsis;}
+.default_contents h1{font-size:15px;font-family:"Microsoft yahei","heiti",verdana,sans-serif;padding:0 1em;background:url(authorship.gif) left top no-repeat;padding:0 0 .5em 1.5em;}
+.default_contents h3{background:#F5F5F5;padding:.5em 1em;font-size:12px;font-family:"Microsoft yahei",verdana,sans-serif;}
+.default_contents h3 span{font:normal 12px verdana,sans-serif;display:block;text-align:right;}
+.default_contents h3 a{color:#000;}
+.default_contents h3 a:hover{color:#F60;}
+.default_contents h6{font:bold 12px "Georgia",sans-serif;background:#F5F5F5;border-bottom:1px solid #DCDCDC;padding:0 0 0 10px;text-align:left;line-height:24px;color:#000;}
+.user_article{padding:1em;margin:0 0 10px;word-break:break-all;overflow: hidden; text-overflow:ellipsis;}
+.user_article h1{font-size:15px;font-family:"Microsoft yahei",verdana,sans-serif;padding:0 0 .5em 1.5em;border-bottom:2px solid #DCDCDC;}
+.user_article h1 img{margin:0 5px 0 -20px;}
+.user_article h1 img.dingpic{margin:0 25px 0 -25px;} /*Modify at 08-06-11*/
+.user_article p{text-indent:2em;padding:.9em 0;margin:0;}
+.user_article p cite{font-size:15px;font-weight:bold;margin:0 6px 0 0;color:#D59139;font-family:"Microsoft yahei",verdana,sans-serif;}
+.user_article p code a{margin:0 0 0 6px;color:#D59139;text-decoration:underline;}
+.user_article p code a:hover{text-decoration:none;}
+.user_article p.articalinfo{margin:0;padding:3px 0;font-size:12px;background:#F5F5F5;}
+.user_article p.articalinfo a{margin:0 3px 0;text-decoration:underline;}
+
+/*pagelist*/
+/*pagelist*/
+.pagelist{float:left;width:90%;padding:0 .5em;}
+.pagelist a{margin:0 5px 0 0;padding:3px 5px;background:#369;color:#FFF;}
+.pagelist a:hover{background:#F60;color:#FFF;}
+.pagelist a.on{background:#F60;}
+
+/***CSDN Blog Story Style***/
+.blogstory{float:left;width:100%;}
+.blogstory h3{font-size:12px;padding:.6em;border:1px dotted #CCC;margin:6px 0 0;}
+.blogstory p{margin:1em 0 .5em;padding:0;text-indent:2em;line-height:22px;font-size:14px;}
+.blogstory h5{font:normal 12px verdana,sans-serif;margin:1.5em 0 0}
+.blogstory h5 a{text-decoration:underline;padding:0 .4em;}
+/*Modify this at 08/05/06 AM9:58*/
+.blogstory ul{margin:5px 0 5px 35px;}
+.blogstory ul li{list-style-type:disc;padding:2px 0;} 
+.blogstory ol{margin:5px 0 5px 35px;}
+.blogstory ol li{list-style-type:decimal;padding:2px 0;}
+/*over*/
+.blogstory dl.aboutartical{float:left;width:45%;display:inline;margin:5px 10px 0 0;border:1px solid #E1E1E1;padding:1em .5em;}
+.blogstory dl.aboutartical dt{font-weight:bold;border-bottom:1px solid #CCC;margin:0 0 8px;}
+.blogstory dl.authorart{float:right;width:45%;display:inline;margin:5px 0 0 10px;border:1px solid #E1E1E1;padding:1em .5em;}
+.blogstory dl.authorart dt{font-weight:bold;border-bottom:1px solid #CCC;margin:0 0 8px;}
+.blogstory dl.aboutartical dd,.blogstory dl.authorart dd{width:90%;background:url(http://csdn.net/images/newcsdn_pic4.gif) 0 6px no-repeat;overflow:hidden;white-space:nowrap;word-break:break-all;}
+.blogstory dl.aboutartical dd a,.blogstory dl.authorart dd a{margin:0 0 0 9px;}
+.blogstory dl.csdntagad{margin:.6em 0;border:1px solid #E1E1E1;}
+.blogstory dl.csdntagad dt{padding:.5em 1em 0;}
+.blogstory dl.csdntagad	dt cite{margin:0 0 0 8px;vertical-align:bottom;}
+.blogstory dl.csdntagad dt.tagadtit{font-weight:bold;}
+.blogstory dl.csdntagad dd{display:inline;padding:1em;}
+.blogstory dl.csdntagad dd a{text-decoration:underline;margin:0 5px 0 0;}
+/***CSDN Blog album Style***/
+.csdnblogalbum{float:left;width:100%;}
+.csdnblogalbum h3{font-size:16px;padding:1em;}
+.csdnblogalbum ul{margin:1em 1.5em;width:95%;float:left;display:inline;}
+.csdnblogalbum li{display:inline;float:left;margin:1em 1.5em 0 0;}
+.csdnblogalbum li img{padding:2px;border:1px solid #333;background:#FFF;}
+.csdnblogalbum li code{display:block;text-align:center;padding:5px 0 0;}
+.csdnblogalbum p{text-align:center;}
+.csdnblogalbum p em{margin:0 10px;}
+.csdnblogalbum p em a{padding:0 6px;text-decoration:underline;}
+.csdnblogalbum p.csdnptodesc{margin:0 2em;padding:1em;text-align:left;border:1px dotted #e1e1e1;}
+
+/***PublicFooter***/
+#pubfooter{float:left;width:100%;border-top:1px solid #CCC;margin:5px 0 0;}
+#pubfooter dl dd{padding:3px 0;}
+#pubfooter dl dd a{padding:0 5px;}
+
+/**********
+
+This is ¡þCogitation¡þ Blog Template Style Files
+Author:wuyue@csdn.net
+Last Modify:2008/04/09
+
+*************/
+.solidline{border-bottom:1px solid #ccc;}
+.dottedline{border-bottom:1px dotted #ccc;}
+input,textarea{border:1px solid #CCC;margin:6px 3px 0;padding:2px 4px;}
+input:hover,textarea:hover{background:#FEFCE2;border:1px solid #CCC;padding:2px 4px;}
+input:focus,textarea:focus{background:#FEFCE2;border:1px solid #CCC;padding:2px 4px;}
+.noborder{margin:6px 0 0;padding:2px 4px;border:0;}
+.noborder:hover{background:#FEFCE2;padding:2px 4px;border:0;}
+.noborder:focus{background:#FEFCE2;padding:2px 4px;border:0;}
+/****Over****/
+
+/***Contents Style***/
+#csdnblog_content div.gutter{margin:0 .5em;float:left;width:98%;display:inline;}
+
+/*default contents*/
+
+.default_contents ul.spacetab{background:url(images/csdntabbg_bottom.gif) center bottom scroll repeat-x;margin:20px 10px;line-height:2.2em;}
+.default_contents ul.spacetab li{display:inline;margin:0 0 0 10px;}
+.default_contents ul.spacetab li a{background:#e1e1e1;padding:4px 15px;border:1px solid #AAA;border-bottom:0;}
+.default_contents ul.spacetab li a span{font-weight:bold;margin:0 5px 0;}
+.default_contents ul.spacetab li a.on{background:#FFF;padding:4px 15px 5px;}
+.user_article dl.myspacelist{margin:-20px 0 0;position:relative;background:url(images/csdnblog_databg.gif) top right no-repeat;border-bottom:1px dotted #CCC;padding:0 0 30px;}
+.user_article dl.myspacelist dt{position:absolute;top:5px;right:7px;font:bold 12px "Georgia",sans-serif;color:#FE0000;text-align:center;z-index:100;}
+*html .user_article dl.myspacelist dt{right:19px;}
+.user_article dl.myspacelist dt span{display:block;font-size:24px;}
+.user_article dl.myspacelist dt dfn{display:block;font-size:14px;padding:15px 0 0;}
+.user_article dl.myspacelist dd{margin:10px 0;width:87%;overflow:hidden;}
+.user_article dl.myspacelist dd a{padding:0 6px;}
+.user_article dl.myspacelist dd span{font:normal 12px "Georgia",sans-serif;margin:0 0 0 6px;color:#8E8E8E;}
+.user_article dl.userinformation{float:left;width:98%;margin:5px 0;padding:5px 0;border-bottom:1px dotted #CCC;}
+.user_article dl.userinformation dt img{float:left;margin:0 15px 0 0;padding:2px; border:1px solid #CCC;}
+.user_article dl.userinformation dd{padding:3px 0 0;}
+.user_article dl.userinformation dd span{font:bold 14px "Microsoft Yahei",sans-serif;margin:0 10px 0 0;}
+.user_article dl.userinformation dd img{margin:0 5px 0 20px;}
+.user_article dl.userinformation dd em{font-size:12px;font-weight:normal;}
+.user_article dl.userinformation dd cite{font:normal 12px verdana,sans-serif;color:#CCC;}
+.user_article dl.userinformation dd dfn{font:normal 12px verdana,sans-serif;color:#090;}
+.user_article dl.userinformation dd code{font:bold 14px "Microsoft Yahei",sans-serif;}
+.user_article dl.userinformation dd a{text-decoration:underline;}
+
+/*Comments style*/
+.spacecommment{margin:0 20px 15px;float:left;display:inline;position:relative;}
+.spacecommment fieldset{border:1px solid #CCC;padding:10px;width:500px;}
+.spacecommment legend{font:bold 12px "Microsoft Yahei",sans-serif;color:#1A66B3;padding:10px 25px;}
+.spacecommment legend dfn{font:normal 12px sans-serif;color:#F00;margin:0 0 0 10px;}/*modify at 09-01-09*/
+.spacecommment legend dfn a{text-decoration:underline;color:#03c;padding:0 2px;}/*modify at 09-01-09*/
+.spacecommment input.submitbtn{display:block;}/*modify at 09-01-09*/
+.spacecommment em{position:absolute;top:45px;left:7px;}
+html>/**/body .spacecommment em{top:50px;}
+.commentslist{text-align:left;margin:10px 20px 0;float:left;width:98%;display:inline;}
+.commentslist dl.question{float:left;width:98%;display:inline;}
+.commentslist dl.question dt{background:#FBF9F9;border-top:1px solid #369;padding:3px 10px;margin:5px 0 6px;}
+.commentslist dl.question dt a{padding:0 6px;text-decoration:underline;}
+.commentslist dl.question dt span{background:url(csdnblog_sidebartitbg.gif) repeat-x;padding:0 50px 0 10px;}
+.commentslist dl.question dd{padding:0 0 5px;}
+.commentslist dl.question dd.quesauthor img{float:left;margin:0 10px 0 0;}
+.commentslist dl.ask{clear:both;border:1px solid #BAD1E9;margin:10px 50px 0;padding:.2em .5em .9em;background:#F5FAFF;} /*Modify this at 08/04/16*/
+.commentslist dl.ask dt{margin:0;padding:0 0 0 50px;}
+.commentslist dl.ask dt a{padding:0 6px 0;text-decoration:underline;}
+.commentslist dl.ask dd.askauthor img{float:left;margin:-15px 5px 0;}
+.commentslist dl.ask dd{color:#D28900;}
+.commentslist dl.ask dd.hiddeninput{clear:left;}	
+
+
+/**********
+
+This is ¡þCogitation¡þ Blog Template Style Files
+Author:wuyue@csdn.net
+Last Modify:2008/04/09
+
+*************/
+
+@import url(blogtemp.css);
+@import url(myspace.css);
+/***CSDN_BLOG Default Template Style********************************************************************/
+#csdnblog_allwrap{width:100%;min-width:760px;margin:0 auto;}
+#csdnblog_midwrap{float:left;width:100%;background:#FFF;height:100%;padding:0 0 .5em;}
+#csdnblog_header{position:relative;float:left;height:125px;width:100%;text-align:left;background:#014E82;font-family:"Microsoft Yahei",verdana,sans-serif;}
+#csdnblog_sidebar{float:left;width:20%;text-align:left;display:inline;margin:5px 0 0;}
+#csdnblog_content{float:left;width:79%;display:inline;margin:5px 0 0;}
+/***over********************************************************************/
+ 
+/***Header Style***/
+#csdnblog_header h1{font-size:22px;padding:.8em 1em;color:#FFF;}
+#csdnblog_header h1 a{color:#FFF;}
+#csdnblog_header h1 a:hover{color:#FFF;}
+#csdnblog_header h2{font-size:15px;padding:.2em 1.6em;color:#FFF;}
+#csdnblog_header ul#personalnav{float:right;margin:0 1em;position:absolute;top:10px;right:2%;}
+#csdnblog_header ul#personalnav li{float:left;margin:0 1px;}
+#csdnblog_header ul#personalnav li a em{color:#F6FF00;margin:0 0 0 5px;}
+#csdnblog_header ul#personalnav li a{float:left;padding:2px 10px;color:#FFF;text-decoration:none;}
+#csdnblog_header ul#personalnav li a:hover{color:#F00;}
+#csdnblog_header p{float:right;position:absolute;right:2%;}
+
+/*Modify at 08-05-09*/
+#csdnblog_header ul#blogsearchsty{float:left;position:absolute;top:45px;right:2%;float:right;margin:0 1em;}
+#csdnblog_header ul#blogsearchsty li{float:left;}
+#csdnblog_header ul#blogsearchsty li input{padding:2px 2px 2px;}
+#csdnblog_header ul#blogsearchsty li.selectsty{margin:6px 0 0;}
+*+html #csdnblog_header ul#blogsearchsty li.selectsty{margin:7px 0 0;}
+*html #csdnblog_header ul#blogsearchsty li.selectsty{margin:7px 0 0;}
+#csdnblog_header ul#blogsearchsty li input.bolggobtn{padding:1px 3px;}
+*+html #csdnblog_header ul#blogsearchsty li input.bolggobtn{padding:0 3px;margin:7px 0 0 3px;}
+
+
+/*menubar*/
+#csdnblog_header ul#menu{background:url(images/BlueTabbtm.gif) bottom repeat-x;height:26px;float:left;top:96px;position:absolute;width:100%;font-size:12px;border-bottom:3px solid #000;}
+#csdnblog_header ul#menu li{float:left;background:url(images/BlueTabFace.jpg) repeat-x;line-height:25px;}
+#csdnblog_header ul#menu li a{float:left;padding:2px 40px 0;color:#FFF;}
+#csdnblog_header ul#menu li a:hover{color:#FFF;}
+#csdnblog_header ul#menu li a.last{background:url(images/BlueTabRight.jpg) right no-repeat;width:87px;}
+
+/**********NOTICE
+
+Theme Name:CSDN BLOG css style;
+Description:This is style templet file
+author:wuyue@csdn.net
+time:2008-05-06
+location:unknown
+last modify:2007-05-06
+
+*************************************/
+
+body{
+text-align:center;
+margin:0;
+padding:0;
+font:normal 75% verdana,sans-serif;
+color:#000;
+line-height:150%;
+}
+
+
+
+.clear{clear:both;}
+img{border:0;}
+
+h1,h2,h3,h4,h5,h6,dl,dt,dd,ol,ul,li,form{margin:0;padding:0;}
+ol,ul{list-style-type:none;}
+input,textarea,select{font-size:12px;font-family:verdana,sans-serif;}
+code,samp,cite,em,dfn{font-style:normal;}

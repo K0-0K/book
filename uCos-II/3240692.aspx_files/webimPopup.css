@@ -1,0 +1,17 @@
+﻿/*old version 1.0.0.0 style
+.im_popupWindow{font:normal 12px/20px verdana,sans-serif;border:1px solid #000;position:absolute; z-index:10; width:380px; text-align:left; background-color:White;-moz-user-select:none;}
+.im_popupWindow .layer{padding:0; margin:0;}
+.im_popupWindowCaption{background:url(images/webimframe_055.gif) repeat-x;height:26px;line-height:26px;padding-left:10px;}
+.im_popupWindowCaption span{float:right;padding-right:8px;height:20px;cursor:default;}
+.im_popupWindowCaption img.im_minimize{cursor:pointer;}
+.im_popupWindowCaption img.im_close{cursor:pointer;}
+.im_popupWindowContent{padding:3px;margin:0;max-height:200px;overflow:auto;text-align:left;line-height:160%;overflow:auto;}
+.im_popupWindow div{margin:0;text-align:left; padding:5px;overflow:auto;}
+.im_popupWindowCaption span .hide{display:none;}
+.draggable {cursor:move;}
+.dragging {border:solid 1px black;position:absolute;z-index:65500;background-color:Red;}
+.userAvatar{margin-bottom:2px;border:0;vertical-align:middle;width:20px;height:20px;}
+*/
+
+/*version 1.1.0.0 move to skin directory*/
+@import "skin/default/style.css";

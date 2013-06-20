@@ -1,0 +1,833 @@
+Microsoft (R) Macro Assembler Version 6.11		    02/23/02 18:58:47
+.\src\os_cpu_a.asm					     Page 1 - 1
+
+
+				; $Id: os_cpu_a.asm,v 1.6 2002/02/07 01:08:53 linfusheng Exp $
+
+					.386P						; Priviledged instructions can be used.
+
+
+ 00000000			_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+ 0000				_TEXT	ENDS
+ 00000000			_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+ 0000				_DATA	ENDS
+ 00000000			CONST	SEGMENT DWORD USE32 PUBLIC 'CONST'
+ 0000				CONST	ENDS
+ 00000000			_BSS	SEGMENT DWORD USE32 PUBLIC 'BSS'
+ 0000				_BSS	ENDS
+ 00000000			_TLS	SEGMENT DWORD USE32 PUBLIC 'TLS'
+ 0000				_TLS	ENDS
+
+				; Put all segment directives into one single group (flat memory model).
+
+				GFLAT	GROUP _TEXT, _DATA, CONST, _BSS
+						ASSUME	CS: GFLAT, DS: GFLAT, ES: GFLAT, SS: GFLAT
+
+ 00000000			_TEXT	SEGMENT
+
+				;=======================================================================
+				; uCOS-II Functions
+				;=======================================================================
+
+
+
+				;-----------------------------------------------------------------------
+				; OSTickISR
+				;-----------------------------------------------------------------------
+
+				PUBLIC	_OSTickISR
+				EXTRN	_OSIntEnter:NEAR
+				EXTRN	_OSTimeTick:NEAR
+				EXTRN	_OSIntExit:NEAR
+
+ 00000000			_OSTickISR	PROC NEAR
+
+ 00000000  60					pushad
+
+				; Send an end-of-interrupt to the i8259.
+
+ 00000001  B0 20				mov	al,20h
+ 00000003  E6 20				out	20h,al
+
+				; Standard uCOS processing.
+
+ 00000005  E8 00000000 E			call	_OSIntEnter
+ 0000000A  E8 00000000 E			call	_OSTimeTick
+ 0000000F  E8 00000000 E			call	_OSIntExit
+
+ 00000014  61					popad
+ 00000015  CF					iretd
+
+ 00000016			_OSTickISR ENDP
+
+
+
+
+				;-----------------------------------------------------------------------
+				; OSStartHighRdy
+				;-----------------------------------------------------------------------
+
+				PUBLIC	_OSStartHighRdy
+				EXTRN	_OSTaskSwHook:NEAR
+				EXTRN	_OSRunning:BYTE
+				EXTRN	_OSTCBHighRdy:DWORD
+
+ 00000016			_OSStartHighRdy PROC NEAR
+
+
+					; Call OSTaskSwHook();
+
+ 00000016  E8 00000000 E			call	_OSTaskSwHook
+
+					; Increment OSRunning by 1 (the documentation says to set it to 1,
+					; but the ix86l example increments it).
+
+ 0000001B  FE 05 00000000 E			inc		[_OSRunning]
+
+					; Load the processor stack pointer with OSTCBHighRdy->OSTCBStkPtr
+
+ 00000021  A1 00000000 E			mov	eax,[_OSTCBHighRdy]	; Point to TCB of highest priority task ready to run
+ 00000026  8B 20				mov	esp,[eax]			; ESP = OSTCBHighRdy->OSTCBStkPtr
+
+					; Pop all the processor registers from the stack
+
+ 00000028  61					popad
+
+					; Execute a Return from interrupt intruction;
+
+ 00000029  CF					iretd
+
+ 0000002A			_OSStartHighRdy ENDP
+
+				;-----------------------------------------------------------------------
+				; OSCtxSw
+				;-----------------------------------------------------------------------
+
+				PUBLIC	_OSCtxSw
+				EXTRN	_OSTCBCur:DWORD
+				EXTRN	_OSTaskSwHook:NEAR
+				EXTRN	_OSPrioHighRdy:BYTE
+				EXTRN	_OSPrioCur:BYTE
+				EXTRN	_OSTCBHighRdy:DWORD
+
+ 0000002A			_OSCtxSw	PROC NEAR
+
+					; PUSH processor registers onto the current task's stack
+
+ 0000002A  60					pushad
+
+					; Save the stack pointer into OSTCBCur->OSTCBStkPtr
+
+ 0000002B  A1 00000000 E			mov	eax,[_OSTCBCur]
+ 00000030  89 20				mov	[eax],esp			; Stack pointer is ESP
+
+					; Call OSTaskSwHook();
+
+ 00000032  E8 00000000 E			call	_OSTaskSwHook
+
+					; OSPrioCur = OSPrioHighRdy
+
+ 00000037  A0 00000000 E			mov	al,[_OSPrioHighRdy] ; AL is OSPrioHighRdy
+ 0000003C  A2 00000000 E			mov	[_OSPrioCur],al
+
+					; OSTCBCur = OSTCBHighRdy
+
+ 00000041  A1 00000000 E			mov	eax,[_OSTCBHighRdy]	; EAX is OSTCBHighRdy
+ 00000046  A3 00000000 E			mov	[_OSTCBCur],eax
+
+					; Load the processor stack pointer with OSTCBHighRdy->OSTCBStkPtr
+					; Note that EAX is still OSTCBHighRdy.
+
+ 0000004B  8B 20				mov	esp,[eax]			; ESP = OSTCBHighRdy->OSTCBStkPtr
+
+					; Pop all the processor registers from the stack
+
+ 0000004D  61					popad
+
+					; Execute a Return from interrupt intruction;
+
+ 0000004E  CF					iretd
+
+ 0000004F			_OSCtxSw	ENDP
+
+				;-----------------------------------------------------------------------
+				; OSIntCtxSw
+				;-----------------------------------------------------------------------
+
+				PUBLIC	_OSIntCtxSw
+				EXTRN	_OSTCBCur:DWORD
+				EXTRN	_OSTaskSwHook:NEAR
+				EXTRN	_OSPrioHighRdy:BYTE
+				EXTRN	_OSPrioCur:BYTE
+				EXTRN	_OSTCBHighRdy:DWORD
+
+ 0000004F			_OSIntCtxSw PROC NEAR
+
+					; Adjust the stack pointer to remove call to OsIntExit(), locals in 
+					; OsIntExit() and the call to OSIntCtxSw();
+
+				;IFDEF _SAVE_INT_STATUS
+ 0000004F  83 C4 0C				add	esp,12			; Ignore calls to OSIntExit, PUSHFD and OSIntCtxSw
+				;ELSE
+				;		add	esp,8			; Ignore calls to OSIntExit and OSIntCtxSw
+				;ENDIF
+
+					; Save the stack pointer into OSTCBCur->OSTCBStkPtr
+
+ 00000052  A1 00000000 E			mov	eax,[_OSTCBCur]
+ 00000057  89 20				mov	[eax],esp			; Stack pointer is ESP
+
+					; Call OSTaskSwHook();
+
+ 00000059  E8 00000000 E			call	_OSTaskSwHook
+
+					; OSPrioCur = OSPrioHighRdy
+
+ 0000005E  A0 00000000 E			mov	al,[_OSPrioHighRdy] ; AL is OSPrioHighRdy
+ 00000063  A2 00000000 E			mov	[_OSPrioCur],al
+
+					; OSTCBCur = OSTCBHighRdy
+
+ 00000068  A1 00000000 E			mov	eax,[_OSTCBHighRdy]	; EAX is OSTCBHighRdy
+ 0000006D  A3 00000000 E			mov	[_OSTCBCur],eax
+
+					; Load the processor stack pointer with OSTCBHighRdy->OSTCBStkPtr
+					; Note that EAX is still OSTCBHighRdy.
+
+ 00000072  8B 20				mov	esp,[eax]			; ESP = OSTCBHighRdy->OSTCBStkPtr
+
+					; Pop all the processor registers from the stack
+
+ 00000074  61					popad
+
+					; Execute a Return from interrupt intruction;
+
+ 00000075  CF					iretd
+
+ 00000076			_OSIntCtxSw ENDP
+
+				;=======================================================================
+				; x86 Helper Functions.
+				;=======================================================================
+
+				;-----------------------------------------------------------------------
+				; void DefIntHandler();
+				;
+				; Default interrupt handler. It simply performs an interrupt return.
+				; It is required to initialize all interrupt entries in the IDT.
+				;-----------------------------------------------------------------------
+
+				PUBLIC		_DefIntHandler
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000076			_DefIntHandler	PROC NEAR
+
+ 00000076  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000077  E8 00000000 E			call	_OSIntEnter
+ 0000007C  E8 00000000 E			call	_OSDefault_interrupt
+ 00000081  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 00000086  B0 20				mov	al,20h
+ 00000088  E6 20				out	20h,al
+
+ 0000008A  B0 20				mov al,20h
+ 0000008C  E6 A1				out 0a1h,al
+
+
+ 0000008E  61					popad
+ 0000008F  CF					iretd
+
+ 00000090			_DefIntHandler	ENDP
+
+
+
+				; 中断 0
+				PUBLIC		_DefIntHandler0
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt_i:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000090			_DefIntHandler0	PROC NEAR
+
+ 00000090  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000091  E8 00000000 E			call	_OSIntEnter
+ 00000096  B8 00000000				mov		eax,0h
+ 0000009B  50					push	eax
+ 0000009C  E8 00000000 E			call	_OSDefault_interrupt_i
+ 000000A1  66| 83 C4 04				add		sp,4
+ 000000A5  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000000AA  B0 20				mov	al,20h
+ 000000AC  E6 20				out	20h,al
+
+ 000000AE  B0 20				mov al,20h
+ 000000B0  E6 A1				out 0a1h,al
+
+
+ 000000B2  61					popad
+ 000000B3  CF					iretd
+
+ 000000B4			_DefIntHandler0	ENDP
+
+
+
+				;中断1
+				PUBLIC		_DefIntHandler1
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000000B4			_DefIntHandler1	PROC NEAR
+
+ 000000B4  60					pushad
+
+
+				; Standard uCOS processing.
+
+ 000000B5  E8 00000000 E			call	_OSIntEnter
+ 000000BA  B8 00000001				mov		eax,01h
+ 000000BF  50					push	eax
+ 000000C0  E8 00000000 E			call	_OSDefault_interrupt
+ 000000C5  66| 83 C4 04				add		sp,4
+ 000000C9  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000000CE  B0 20				mov	al,20h
+ 000000D0  E6 20				out	20h,al
+
+ 000000D2  B0 20				mov al,20h
+ 000000D4  E6 A1				out 0a1h,al
+
+ 000000D6  61					popad
+ 000000D7  CF					iretd
+
+ 000000D8			_DefIntHandler1	ENDP
+
+				;中断2
+				PUBLIC		_DefIntHandler2
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000000D8			_DefIntHandler2	PROC NEAR
+
+ 000000D8  60					pushad
+
+				; Standard uCOS processing.
+
+ 000000D9  E8 00000000 E			call	_OSIntEnter
+ 000000DE  B8 00000002				mov		eax,02h
+ 000000E3  50					push	eax
+ 000000E4  E8 00000000 E			call	_OSDefault_interrupt
+ 000000E9  66| 83 C4 04				add		sp,4
+ 000000ED  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000000F2  B0 20				mov	al,20h
+ 000000F4  E6 20				out	20h,al
+
+ 000000F6  B0 20				mov al,20h
+ 000000F8  E6 A1				out 0a1h,al
+
+
+ 000000FA  61					popad
+ 000000FB  CF					iretd
+
+ 000000FC			_DefIntHandler2	ENDP
+
+
+
+				;中断3
+				PUBLIC		_DefIntHandler3
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000000FC			_DefIntHandler3	PROC NEAR
+
+ 000000FC  60					pushad
+
+				; Standard uCOS processing.
+
+ 000000FD  E8 00000000 E			call	_OSIntEnter
+ 00000102  B8 00000003				mov		eax,03h
+ 00000107  50					push	eax
+ 00000108  E8 00000000 E			call	_OSDefault_interrupt
+ 0000010D  66| 83 C4 04				add		sp,4
+ 00000111  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 00000116  B0 20				mov	al,20h
+ 00000118  E6 20				out	20h,al
+
+ 0000011A  B0 20				mov al,20h
+ 0000011C  E6 A1				out 0a1h,al
+
+ 0000011E  61					popad
+ 0000011F  CF					iretd
+
+ 00000120			_DefIntHandler3	ENDP
+
+
+				;中断4
+				PUBLIC		_DefIntHandler4
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000120			_DefIntHandler4	PROC NEAR
+
+ 00000120  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000121  E8 00000000 E			call	_OSIntEnter
+ 00000126  B8 00000004				mov		eax,04h
+ 0000012B  50					push	eax
+ 0000012C  E8 00000000 E			call	_OSDefault_interrupt
+ 00000131  66| 83 C4 04				add		sp,4		
+ 00000135  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 0000013A  B0 20				mov	al,20h
+ 0000013C  E6 20				out	20h,al
+
+ 0000013E  B0 20				mov al,20h
+ 00000140  E6 A1				out 0a1h,al
+
+ 00000142  61					popad
+ 00000143  CF					iretd
+
+ 00000144			_DefIntHandler4	ENDP
+
+
+
+				;中断5
+				PUBLIC		_DefIntHandler5
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000144			_DefIntHandler5	PROC NEAR
+
+ 00000144  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000145  E8 00000000 E			call	_OSIntEnter
+ 0000014A  B8 00000005				mov		eax,05h
+ 0000014F  50					push	eax
+ 00000150  E8 00000000 E			call	_OSDefault_interrupt
+ 00000155  66| 83 C4 04				add		sp,4		
+ 00000159  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 0000015E  B0 20				mov	al,20h
+ 00000160  E6 20				out	20h,al
+
+ 00000162  B0 20				mov al,20h
+ 00000164  E6 A1				out 0a1h,al
+
+ 00000166  61					popad
+ 00000167  CF					iretd
+
+ 00000168			_DefIntHandler5	ENDP
+
+
+				;中断6
+				PUBLIC		_DefIntHandler6
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000168			_DefIntHandler6	PROC NEAR
+
+ 00000168  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000169  E8 00000000 E			call	_OSIntEnter
+ 0000016E  B8 00000006				mov		eax,06h
+ 00000173  50					push	eax
+ 00000174  E8 00000000 E			call	_OSDefault_interrupt
+ 00000179  66| 83 C4 04				add		sp,4		
+ 0000017D  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 00000182  B0 20				mov	al,20h
+ 00000184  E6 20				out	20h,al
+
+ 00000186  B0 20				mov al,20h
+ 00000188  E6 A1				out 0a1h,al
+
+ 0000018A  61					popad
+ 0000018B  CF					iretd
+
+ 0000018C			_DefIntHandler6	ENDP
+
+
+				;中断7
+				PUBLIC		_DefIntHandler7
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 0000018C			_DefIntHandler7	PROC NEAR
+
+ 0000018C  60					pushad
+
+				; Standard uCOS processing.
+
+ 0000018D  E8 00000000 E			call	_OSIntEnter
+ 00000192  B8 00000007				mov		eax,07h
+ 00000197  50					push	eax
+ 00000198  E8 00000000 E			call	_OSDefault_interrupt
+ 0000019D  66| 83 C4 04				add		sp,4		
+ 000001A1  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000001A6  B0 20				mov	al,20h
+ 000001A8  E6 20				out	20h,al
+
+ 000001AA  B0 20				mov al,20h
+ 000001AC  E6 A1				out 0a1h,al
+
+ 000001AE  61					popad
+ 000001AF  CF					iretd
+
+ 000001B0			_DefIntHandler7	ENDP
+
+
+				;中断8
+				PUBLIC		_DefIntHandler8
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000001B0			_DefIntHandler8	PROC NEAR
+
+ 000001B0  60					pushad
+
+				; Standard uCOS processing.
+
+ 000001B1  E8 00000000 E			call	_OSIntEnter
+ 000001B6  B8 00000008				mov		eax,08h
+ 000001BB  50					push	eax
+ 000001BC  E8 00000000 E			call	_OSDefault_interrupt
+ 000001C1  66| 83 C4 04				add		sp,4		
+ 000001C5  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000001CA  B0 20				mov	al,20h
+ 000001CC  E6 20				out	20h,al
+
+ 000001CE  B0 20				mov al,20h
+ 000001D0  E6 A1				out 0a1h,al
+
+ 000001D2  61					popad
+ 000001D3  CF					iretd
+
+ 000001D4			_DefIntHandler8	ENDP
+
+
+
+				;中断9
+				PUBLIC		_DefIntHandler9
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000001D4			_DefIntHandler9	PROC NEAR
+
+ 000001D4  60					pushad
+
+				; Standard uCOS processing.
+
+ 000001D5  E8 00000000 E			call	_OSIntEnter
+ 000001DA  B8 00000009				mov		eax,09h
+ 000001DF  50					push	eax
+ 000001E0  E8 00000000 E			call	_OSDefault_interrupt
+ 000001E5  66| 83 C4 04				add		sp,4		
+ 000001E9  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000001EE  B0 20				mov	al,20h
+ 000001F0  E6 20				out	20h,al
+
+ 000001F2  B0 20				mov al,20h
+ 000001F4  E6 A1				out 0a1h,al
+
+ 000001F6  61					popad
+ 000001F7  CF					iretd
+
+ 000001F8			_DefIntHandler9	ENDP
+
+
+				;中断10
+				PUBLIC		_DefIntHandler10
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000001F8			_DefIntHandler10	PROC NEAR
+
+ 000001F8  60					pushad
+
+				; Standard uCOS processing.
+
+ 000001F9  E8 00000000 E			call	_OSIntEnter
+ 000001FE  B8 0000000A				mov		eax,0ah
+ 00000203  50					push	eax
+ 00000204  E8 00000000 E			call	_OSDefault_interrupt
+ 00000209  66| 83 C4 04				add		sp,4h
+ 0000020D  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 00000212  B0 20				mov	al,20h
+ 00000214  E6 20				out	20h,al
+
+ 00000216  B0 20				mov al,20h
+ 00000218  E6 A1				out 0a1h,al
+
+ 0000021A  61					popad
+ 0000021B  CF					iretd
+
+ 0000021C			_DefIntHandler10	ENDP
+
+
+
+
+
+				;中断11
+				PUBLIC		_DefIntHandler11
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 0000021C			_DefIntHandler11	PROC NEAR
+
+ 0000021C  60					pushad
+
+				; Standard uCOS processing.
+
+ 0000021D  E8 00000000 E			call	_OSIntEnter
+ 00000222  B8 0000000B				mov		eax,0bh
+ 00000227  50					push	eax
+ 00000228  E8 00000000 E			call	_OSDefault_interrupt
+ 0000022D  66| 83 C4 04				add		sp,4		
+ 00000231  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 00000236  B0 20				mov	al,20h
+ 00000238  E6 20				out	20h,al
+
+ 0000023A  B0 20				mov al,20h
+ 0000023C  E6 A1				out 0a1h,al
+
+ 0000023E  61					popad
+ 0000023F  CF					iretd
+
+ 00000240			_DefIntHandler11	ENDP
+
+				;中断12
+				PUBLIC		_DefIntHandler12
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000240			_DefIntHandler12	PROC NEAR
+
+ 00000240  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000241  E8 00000000 E			call	_OSIntEnter
+ 00000246  B8 0000000C				mov		eax,0ch
+ 0000024B  50					push	eax
+ 0000024C  E8 00000000 E			call	_OSDefault_interrupt
+ 00000251  66| 83 C4 04				add		sp,4		
+ 00000255  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 0000025A  B0 20				mov	al,20h
+ 0000025C  E6 20				out	20h,al
+
+ 0000025E  B0 20				mov al,20h
+ 00000260  E6 A1				out 0a1h,al
+
+ 00000262  61					popad
+ 00000263  CF					iretd
+
+ 00000264			_DefIntHandler12	ENDP
+
+
+				;中断13
+				PUBLIC		_DefIntHandler13
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000264			_DefIntHandler13	PROC NEAR
+
+ 00000264  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000265  E8 00000000 E			call	_OSIntEnter
+ 0000026A  B8 0000000D				mov		eax,0dh
+ 0000026F  50					push	eax
+ 00000270  E8 00000000 E			call	_OSDefault_interrupt
+ 00000275  66| 83 C4 04				add		sp,4		
+ 00000279  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 0000027E  B0 20				mov	al,20h
+ 00000280  E6 20				out	20h,al
+
+ 00000282  B0 20				mov al,20h
+ 00000284  E6 A1				out 0a1h,al
+
+ 00000286  61					popad
+ 00000287  CF					iretd
+
+ 00000288			_DefIntHandler13	ENDP
+
+
+
+				;中断14
+				PUBLIC		_DefIntHandler14
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 00000288			_DefIntHandler14	PROC NEAR
+
+ 00000288  60					pushad
+
+				; Standard uCOS processing.
+
+ 00000289  E8 00000000 E			call	_OSIntEnter
+ 0000028E  B8 0000000E				mov		eax,0eh
+ 00000293  50					push	eax
+ 00000294  E8 00000000 E			call	_OSDefault_interrupt
+ 00000299  66| 83 C4 04				add		sp,4		
+ 0000029D  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000002A2  B0 20				mov	al,20h
+ 000002A4  E6 20				out	20h,al
+
+ 000002A6  B0 20				mov al,20h
+ 000002A8  E6 A1				out 0a1h,al
+
+ 000002AA  61					popad
+ 000002AB  CF					iretd
+
+ 000002AC			_DefIntHandler14	ENDP
+
+
+
+
+				;中断15
+				PUBLIC		_DefIntHandler15
+				EXTRN		_OSIntEnter:NEAR
+				EXTRN		_OSDefault_interrupt:NEAR
+				EXTRN		_OSIntExit:NEAR
+ 000002AC			_DefIntHandler15	PROC NEAR
+
+ 000002AC  60					pushad
+
+				; Standard uCOS processing.
+
+ 000002AD  E8 00000000 E			call	_OSIntEnter
+ 000002B2  B8 0000000F				mov		eax,0fh
+ 000002B7  50					push	eax
+ 000002B8  E8 00000000 E			call	_OSDefault_interrupt
+ 000002BD  66| 83 C4 04				add		sp,4		
+ 000002C1  E8 00000000 E			call	_OSIntExit
+
+				; Send an end-of-interrupt to the i8259.
+ 000002C6  B0 20				mov	al,20h
+ 000002C8  E6 20				out	20h,al
+
+ 000002CA  B0 20				mov al,20h
+ 000002CC  E6 A1				out 0a1h,al
+
+ 000002CE  61					popad
+ 000002CF  CF					iretd
+
+ 000002D0			_DefIntHandler15	ENDP
+				;-----------------------------------------------------------------------
+				; void DumpStackHandler();
+				;
+				; This is usefull handler that dumps the last three DWORDS pushed
+				; on the stack. This is convenient in a fault handler to determine the
+				; source of the fault. The function never returns.
+				;
+				; _DEBUG must be defined for this code to be effective.
+				;-----------------------------------------------------------------------
+
+				IFDEF _DEBUG
+				ENDIF
+
+ 02D0				_TEXT		ENDS
+						END
+
+
+Microsoft (R) Macro Assembler Version 6.11		    02/23/02 18:58:47
+.\src\os_cpu_a.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+GFLAT  . . . . . . . . . . . . .	GROUP
+_TEXT  . . . . . . . . . . . . .	32 Bit	 02D0	  Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 0000	  DWord	  Public  'DATA'	
+CONST  . . . . . . . . . . . . .	32 Bit	 0000	  DWord	  Public  'CONST'	 
+_BSS . . . . . . . . . . . . . .	32 Bit	 0000	  DWord	  Public  'BSS'  
+_TLS . . . . . . . . . . . . . .	32 Bit	 0000	  DWord	  Public  'TLS'  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+_DefIntHandler0  . . . . . . . .	P Near	 0090	  _TEXT	Length= 0024 Public
+_DefIntHandler10 . . . . . . . .	P Near	 01F8	  _TEXT	Length= 0024 Public
+_DefIntHandler11 . . . . . . . .	P Near	 021C	  _TEXT	Length= 0024 Public
+_DefIntHandler12 . . . . . . . .	P Near	 0240	  _TEXT	Length= 0024 Public
+_DefIntHandler13 . . . . . . . .	P Near	 0264	  _TEXT	Length= 0024 Public
+_DefIntHandler14 . . . . . . . .	P Near	 0288	  _TEXT	Length= 0024 Public
+_DefIntHandler15 . . . . . . . .	P Near	 02AC	  _TEXT	Length= 0024 Public
+_DefIntHandler1  . . . . . . . .	P Near	 00B4	  _TEXT	Length= 0024 Public
+_DefIntHandler2  . . . . . . . .	P Near	 00D8	  _TEXT	Length= 0024 Public
+_DefIntHandler3  . . . . . . . .	P Near	 00FC	  _TEXT	Length= 0024 Public
+_DefIntHandler4  . . . . . . . .	P Near	 0120	  _TEXT	Length= 0024 Public
+_DefIntHandler5  . . . . . . . .	P Near	 0144	  _TEXT	Length= 0024 Public
+_DefIntHandler6  . . . . . . . .	P Near	 0168	  _TEXT	Length= 0024 Public
+_DefIntHandler7  . . . . . . . .	P Near	 018C	  _TEXT	Length= 0024 Public
+_DefIntHandler8  . . . . . . . .	P Near	 01B0	  _TEXT	Length= 0024 Public
+_DefIntHandler9  . . . . . . . .	P Near	 01D4	  _TEXT	Length= 0024 Public
+_DefIntHandler . . . . . . . . .	P Near	 0076	  _TEXT	Length= 001A Public
+_OSCtxSw . . . . . . . . . . . .	P Near	 002A	  _TEXT	Length= 0025 Public
+_OSIntCtxSw  . . . . . . . . . .	P Near	 004F	  _TEXT	Length= 0027 Public
+_OSStartHighRdy  . . . . . . . .	P Near	 0016	  _TEXT	Length= 0014 Public
+_OSTickISR . . . . . . . . . . .	P Near	 0000	  _TEXT	Length= 0016 Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+_OSDefault_interrupt_i . . . . .	L Near	 0000	  _TEXT	External
+_OSDefault_interrupt . . . . . .	L Near	 0000	  _TEXT	External
+_OSIntEnter  . . . . . . . . . .	L Near	 0000	  _TEXT	External
+_OSIntExit . . . . . . . . . . .	L Near	 0000	  _TEXT	External
+_OSPrioCur . . . . . . . . . . .	Byte	 0000	  _TEXT	External
+_OSPrioHighRdy . . . . . . . . .	Byte	 0000	  _TEXT	External
+_OSRunning . . . . . . . . . . .	Byte	 0000	  _TEXT	External
+_OSTCBCur  . . . . . . . . . . .	DWord	 0000	  _TEXT	External
+_OSTCBHighRdy  . . . . . . . . .	DWord	 0000	  _TEXT	External
+_OSTaskSwHook  . . . . . . . . .	L Near	 0000	  _TEXT	External
+_OSTimeTick  . . . . . . . . . .	L Near	 0000	  _TEXT	External
+
+	   0 Warnings
+	   0 Errors

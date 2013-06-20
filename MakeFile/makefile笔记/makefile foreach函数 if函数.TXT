@@ -1,0 +1,32 @@
+foreach 函数
+函数"foreach"不同于其它函数. 它是一个循环函数.类似于Linux的shell中的for语句.
+"foreach"函数的语法: 
+$(foreach VAR, LIST, TEXT)
+函数功能：将LIST中的值依次赋值给VAR, 并执行依次TEXT描述的表达式.
+返回值：空格分割的多次表达式"TEXT"的计算的结果.
+eg:
+dirs := a b c d
+files := $(foreach dir, $(dirs), $(wildcard $(dir)/*))
+"TEXT"的表达式为"$(wildcard $(dir)/*)".
+表达式第一次执行时表达式为"$(wildcard a/*)";
+表达式第二次执行时表达式为"$(wildcard b/*)"; 
+...依次类推.
+所以此函数所实现的功能就和一下语句等价:
+files := $(wildcard a/* b/* c/* d/*)
+当函数的"TEXT"表达式过于复杂时, 我们可以通过定义一个中间变量, 此变量代表表达式的一部分. 并在函数的"TEXT"中引用这个变量.
+上边的例子也可以这样来实现：
+find_files = $(wildcard $(dir)/*)
+dirs := a b c d
+files := $(foreach dir, $(dirs), $(find_files))
+
+if 函数
+函数"if"提供了一个在函数上下文中实现条件判断的功能.
+函数语法：
+$(if CONDITION, THEN-PART[,ELSE-PART])
+函数功能：第一个参数"CONDITION", 在函数执行时忽略其前导和结尾空字符, 如果包含对其他变量或者函数的引用则进行展开.
+1. "CONDITION"的展开结果非空, 则条件为真, 就将第二个参数"THEN_PATR"作为函数的计算表达式.
+2. "CONDITION"的展开结果为空, 将第三个参数"ELSE-PART"作为函数的表达式, 函数的返回结果为有效表达式的计算结果.
+返回值：根据条件决定函数的返回值是第一个或者第二个参数表达式的计算结果. 当不存在第三个参数"ELSE-PART", 
+并且"CONDITION"展开为空, 函数返回空.
+SUBDIR += $(if $(SRC_DIR) $(SRC_DIR), /home/src)
+函数的结果是: 如果"SRC_DIR"变量值不为空, 则将变量"SRC_DIR"指定的目录作为一个子目录; 否则将目录"/home/src"作为一个子目录.

@@ -1,0 +1,952 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="ModDate" content="D:20031113120208+08'00'"><meta name="CreationDate" content="D:20031113120138+08'00'"><meta name="Creator" content="Acrobat PDFMaker 6.0 for PowerPoint"><meta name="Producer" content="Acrobat Distiller 6.0 (Windows)"><meta name="Author" content="AHER"><title>Chapter 9 Event Flag Management</title></head><body vlink="blue" bgcolor="#ffffff" link="blue"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">这是 <a href="http://osnet.inm.nchu.edu.tw/powpoint/seminar/MicroC_OS_II/ucos_ch09.pdf" style="text-decoration: underline; color: rgb(0, 0, 204);">http://osnet.inm.nchu.edu.tw/powpoint/seminar/MicroC_OS_II/ucos_ch09.pdf</a> 的 HTML 档。<br> <b><font color="#0039b6">G</font> <font color="#c41200">o</font> <font color="#f3c518">o</font> <font color="#0039b6">g</font> <font color="#30a72f">l</font> <font color="#c41200">e</font></b> 在网路漫游时会自动将档案转换成 HTML 网页来储存。</div></div><div style="position: relative;">
+
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="1"><b>Page 1</b></a></font></td></tr></tbody></table><font size="7" face="Times"><span style="font-size: 58px; font-family: Times;">
+<div style="position: absolute; top: 464px; left: 166px;"><nobr><b>Chapter 9</b></nobr></div>
+<div style="position: absolute; top: 536px; left: 166px;"><nobr><b>Event Flag Management</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 795px; left: 641px;"><nobr>79256030  張景和</nobr></div>
+<div style="position: absolute; top: 838px; left: 641px;"><nobr>s9256030@cs.nchu.edu.tw</nobr></div>
+<div style="position: absolute; top: 877px; left: 686px;"><nobr>中興大學資科所</nobr></div>
+<div style="position: absolute; top: 920px; left: 686px;"><nobr>系統與網路實驗室</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 1067px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="2"><b>Page 2</b></a></font></td></tr></tbody></table></div><font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 1399px; left: 201px;"><nobr>μC/OS-II event flags consist of two elements:</nobr></div>
+<div style="position: absolute; top: 1489px; left: 242px;"><nobr>A series of bits (either 8,16,32) used to hold the current state</nobr></div>
+<div style="position: absolute; top: 1532px; left: 237px;"><nobr>of the events in the group .</nobr></div>
+<div style="position: absolute; top: 1575px; left: 242px;"><nobr>A list of tasks waiting for a combination of these bits to </nobr></div>
+<div style="position: absolute; top: 1618px; left: 237px;"><nobr>be either set (1) or cleared (0).</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 1959px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="3"><b>Page 3</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 2140px; left: 277px;"><nobr><b>Event flag configuration constant in OS_CFG.H</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 22px; font-family: Times;">
+<div style="position: absolute; top: 2339px; left: 314px;"><nobr>μC/OS-II Event Flag Service       Enableed when set 1 in OS_CFG.H</nobr></div>
+<div style="position: absolute; top: 2417px; left: 314px;"><nobr>OSFlagAccept()                    </nobr></div>
+<div style="position: absolute; top: 2417px; left: 688px;"><nobr>OS_FLAG_ACCEPT_EN </nobr></div>
+<div style="position: absolute; top: 2446px; left: 314px;"><nobr>OSFlagCreate()                   </nobr></div>
+<div style="position: absolute; top: 2475px; left: 314px;"><nobr>OSFlagDel()                      </nobr></div>
+<div style="position: absolute; top: 2475px; left: 690px;"><nobr>OS_FLAG_DEL_EN</nobr></div>
+<div style="position: absolute; top: 2504px; left: 314px;"><nobr>OSFlagPenf()                  </nobr></div>
+<div style="position: absolute; top: 2533px; left: 314px;"><nobr>OSFlagPost()</nobr></div>
+<div style="position: absolute; top: 2561px; left: 314px;"><nobr>OSFlagQuery()                      </nobr></div>
+<div style="position: absolute; top: 2561px; left: 692px;"><nobr>OS_FLAG_QUERY_EN   </nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 2851px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="4"><b>Page 4</b></a></font></td></tr></tbody></table></div><font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 3241px; left: 938px;"><nobr>Task</nobr></div>
+<div style="position: absolute; top: 3250px; left: 263px;"><nobr>Task</nobr></div>
+<div style="position: absolute; top: 3174px; left: 398px;"><nobr>OSFlagCreate()</nobr></div>
+<div style="position: absolute; top: 3217px; left: 398px;"><nobr>OSFlagDel()</nobr></div>
+<div style="position: absolute; top: 3260px; left: 398px;"><nobr>OSFlagPost()</nobr></div>
+<div style="position: absolute; top: 3165px; left: 704px;"><nobr>OSFlagAccept()</nobr></div>
+<div style="position: absolute; top: 3208px; left: 704px;"><nobr>OSFlagPend()</nobr></div>
+<div style="position: absolute; top: 3251px; left: 704px;"><nobr><b style="color: black; background-color: rgb(160, 255, 255);">OSFlag</b></nobr></div>
+</span></font>
+<font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 3025px; left: 299px;"><nobr>μ<b>C/OS-II event flag services</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 3448px; left: 525px;"><nobr>Event Flag Group</nobr></div>
+<div style="position: absolute; top: 3516px; left: 281px;"><nobr>ISR</nobr></div>
+<div style="position: absolute; top: 3498px; left: 416px;"><nobr>OSFlagPost()</nobr></div>
+<div style="position: absolute; top: 3525px; left: 956px;"><nobr>ISR</nobr></div>
+<div style="position: absolute; top: 3498px; left: 704px;"><nobr>OSFlagAccept()</nobr></div>
+<div style="position: absolute; top: 3541px; left: 704px;"><nobr>OSFlagQuery()</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 3743px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="5"><b>Page 5</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 3912px; left: 309px;"><nobr>Event Flag Group data structure</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 22px; font-family: Times;">
+<div style="position: absolute; top: 4174px; left: 165px;"><nobr>typedef struct {</nobr></div>
+<div style="position: absolute; top: 4174px; left: 479px;"><nobr>/* Event Flag Group  </nobr></div>
+<div style="position: absolute; top: 4174px; left: 912px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 4203px; left: 190px;"><nobr>INT8U</nobr></div>
+<div style="position: absolute; top: 4203px; left: 311px;"><nobr>OSFlagType;              /* Should be set to OS_EVENT_TYPE_FLAG          </nobr></div>
+<div style="position: absolute; top: 4203px; left: 1083px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 4232px; left: 190px;"><nobr>void         *OSFlagWaitList;   </nobr></div>
+<div style="position: absolute; top: 4232px; left: 519px;"><nobr>/* Pointer to first NODE of task waiting on event flag     */</nobr></div>
+<div style="position: absolute; top: 4261px; left: 190px;"><nobr>OS_FLAGS      OSFlagFlags;          /* 8, 16 or 32 bit flags                         </nobr></div>
+<div style="position: absolute; top: 4261px; left: 968px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 4289px; left: 165px;"><nobr>} OS_FLAG_GRP; </nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 4635px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="6"><b>Page 6</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size: 16px; font-family: Times;">
+<div style="position: absolute; top: 5280px; left: 103px;"><nobr>μ</nobr></div>
+<div style="position: absolute; top: 5043px; left: 500px;"><nobr>AND or OR</nobr></div>
+<div style="position: absolute; top: 5028px; left: 178px;"><nobr>OS_EVENT_TYPE_FLAG</nobr></div>
+<div style="position: absolute; top: 5043px; left: 707px;"><nobr>AND or OR</nobr></div>
+<div style="position: absolute; top: 5042px; left: 925px;"><nobr>AND or OR</nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 5075px; left: 1073px;"><nobr>0</nobr></div>
+<div style="position: absolute; top: 5122px; left: 353px;"><nobr>0</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size: 18px; font-family: Times;">
+<div style="position: absolute; top: 4955px; left: 984px;"><nobr>OSFlagNodeFlagGrp</nobr></div>
+<div style="position: absolute; top: 4992px; left: 983px;"><nobr>OSFlagNodeFlags</nobr></div>
+<div style="position: absolute; top: 5063px; left: 978px;"><nobr>OSFlagNodeWaitType</nobr></div>
+<div style="position: absolute; top: 5122px; left: 993px;"><nobr>OSFlagNodePrev</nobr></div>
+<div style="position: absolute; top: 5090px; left: 991px;"><nobr>OSFlagNodeNext</nobr></div>
+<div style="position: absolute; top: 5154px; left: 992px;"><nobr>OSFlagNodeTCB</nobr></div>
+<div style="position: absolute; top: 5090px; left: 228px;"><nobr>OSFlagType</nobr></div>
+<div style="position: absolute; top: 4956px; left: 92px;"><nobr>OSFlagWaitList</nobr></div>
+<div style="position: absolute; top: 5001px; left: 92px;"><nobr>OSFlagFlags</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 4914px; left: 129px;"><nobr>OS_FLAG_GRP</nobr></div>
+<div style="position: absolute; top: 4875px; left: 903px;"><nobr>OS_FLAG_NODE</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 22px; font-family: Times;">
+<div style="position: absolute; top: 5273px; left: 309px;"><nobr>OSTCBFlagNode</nobr></div>
+</span></font>
+<font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 4773px; left: 156px;"><nobr><b>Relations between event flag group,event flag nodes, and TCBs</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 5423px; left: 506px;"><nobr>OS_TCB</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 5527px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="7"><b>Page 7</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 5697px; left: 263px;"><nobr><b>Event flag group node data structure</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 5866px; left: 138px;"><nobr>typedef struct {</nobr></div>
+<div style="position: absolute; top: 5866px; left: 491px;"><nobr>/* Event Flag Wait List Node      </nobr></div>
+<div style="position: absolute; top: 5866px; left: 1010px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 5898px; left: 166px;"><nobr>void</nobr></div>
+<div style="position: absolute; top: 5898px; left: 274px;"><nobr>*OSFlagNodeNext;           /* Pointer to next NODE in wait list </nobr></div>
+<div style="position: absolute; top: 5898px; left: 1083px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 5931px; left: 166px;"><nobr>void</nobr></div>
+<div style="position: absolute; top: 5931px; left: 274px;"><nobr>*OSFlagNodePrev;           /* Pointer to previous NODE in wait list            </nobr></div>
+<div style="position: absolute; top: 5931px; left: 1096px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 5963px; left: 166px;"><nobr>void</nobr></div>
+<div style="position: absolute; top: 5963px; left: 274px;"><nobr>*OSFlagNodeTCB;            /* Pointer to TCB of waiting task</nobr></div>
+<div style="position: absolute; top: 5963px; left: 1082px;"><nobr>*/  </nobr></div>
+<div style="position: absolute; top: 5996px; left: 166px;"><nobr>void</nobr></div>
+<div style="position: absolute; top: 5996px; left: 274px;"><nobr>*OSFlagNodeFlagGrp;</nobr></div>
+<div style="position: absolute; top: 5996px; left: 566px;"><nobr>/* Pointer to Event Flag Group                          */</nobr></div>
+<div style="position: absolute; top: 6028px; left: 166px;"><nobr>OS_FLAGS      OSFlagNodeFlags;</nobr></div>
+<div style="position: absolute; top: 6028px; left: 597px;"><nobr>/* Event flag to wait on                             </nobr></div>
+<div style="position: absolute; top: 6028px; left: 1083px;"><nobr>*/  </nobr></div>
+<div style="position: absolute; top: 6061px; left: 166px;"><nobr>INT8U         OSFlagNodeWaitType;</nobr></div>
+<div style="position: absolute; top: 6061px; left: 592px;"><nobr>/* Type of wait:</nobr></div>
+<div style="position: absolute; top: 6061px; left: 1055px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 6093px; left: 444px;"><nobr>/*      OS_FLAG_WAIT_AND</nobr></div>
+<div style="position: absolute; top: 6093px; left: 1006px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 6125px; left: 444px;"><nobr>/*      OS_FLAG_WAIT_ALL</nobr></div>
+<div style="position: absolute; top: 6125px; left: 1000px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 6158px; left: 444px;"><nobr>/*      OS_FLAG_WAIT_OR                                    */</nobr></div>
+<div style="position: absolute; top: 6190px; left: 444px;"><nobr>/*      OS_FLAG_WAIT_ANY</nobr></div>
+<div style="position: absolute; top: 6190px; left: 1006px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 6223px; left: 138px;"><nobr>} OS_FLAG_NODE;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 6419px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="8"><b>Page 8</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 6566px; left: 317px;"><nobr>Creating an Event Flag Group,OSFlagCreate()</nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 6633px; left: 372px;"><nobr>This function is called to create an event flag group</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 6747px; left: 149px;"><nobr>OS_FLAG_GRP  *OSFlagCreate (OS_FLAGS flags, INT8U *err)</nobr></div>
+<div style="position: absolute; top: 6780px; left: 149px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 6812px; left: 149px;"><nobr>#if OS_CRITICAL_METHOD == 3                   /* Allocate storage for CPU status register   */</nobr></div>
+<div style="position: absolute; top: 6845px; left: 177px;"><nobr>OS_CPU_SR    cpu_sr;</nobr></div>
+<div style="position: absolute; top: 6877px; left: 149px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 6910px; left: 177px;"><nobr>OS_FLAG_GRP *pgrp;</nobr></div>
+<div style="position: absolute; top: 7007px; left: 177px;"><nobr>if (OSIntNesting &gt; 0) {</nobr></div>
+<div style="position: absolute; top: 7007px; left: 590px;"><nobr>/* See if called from ISR ...   </nobr></div>
+<div style="position: absolute; top: 7007px; left: 990px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7039px; left: 205px;"><nobr>*err = OS_ERR_CREATE_ISR;</nobr></div>
+<div style="position: absolute; top: 7039px; left: 671px;"><nobr>/* ... can't CREATE from an ISR            */</nobr></div>
+<div style="position: absolute; top: 7072px; left: 205px;"><nobr>return ((OS_FLAG_GRP *)0);</nobr></div>
+<div style="position: absolute; top: 7104px; left: 177px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 7311px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="9"><b>Page 9</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 7458px; left: 263px;"><nobr>Creating an Event Flag Group,OSFlagCreate() (Cont.)</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 7605px; left: 128px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 7637px; left: 156px;"><nobr>pgrp = OSFlagFreeList;</nobr></div>
+<div style="position: absolute; top: 7637px; left: 580px;"><nobr>/* Get next free event flag          </nobr></div>
+<div style="position: absolute; top: 7637px; left: 1016px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7670px; left: 156px;"><nobr>if (pgrp != (OS_FLAG_GRP *)0) {                 /* See if we have event flag groups available      */</nobr></div>
+<div style="position: absolute; top: 7702px; left: 488px;"><nobr>/* Adjust free list</nobr></div>
+<div style="position: absolute; top: 7702px; left: 889px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7735px; left: 183px;"><nobr>OSFlagFreeList</nobr></div>
+<div style="position: absolute; top: 7735px; left: 394px;"><nobr>= (OS_FLAG_GRP *)OSFlagFreeList-&gt;OSFlagWaitList;</nobr></div>
+<div style="position: absolute; top: 7767px; left: 183px;"><nobr>pgrp-&gt;OSFlagType = OS_EVENT_TYPE_FLAG;  /* Set to event flag group type     </nobr></div>
+<div style="position: absolute; top: 7767px; left: 1139px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7800px; left: 183px;"><nobr>pgrp-&gt;OSFlagFlags = flags;   </nobr></div>
+<div style="position: absolute; top: 7800px; left: 595px;"><nobr>/* Set to desired initial value      </nobr></div>
+<div style="position: absolute; top: 7800px; left: 1029px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7832px; left: 183px;"><nobr>pgrp-&gt;OSFlagWaitList = (void *)0;</nobr></div>
+<div style="position: absolute; top: 7832px; left: 625px;"><nobr>/* Clear list of tasks waiting on flags </nobr></div>
+<div style="position: absolute; top: 7832px; left: 1087px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 7864px; left: 183px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 7897px; left: 183px;"><nobr>*err                 = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 7929px; left: 156px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 7962px; left: 183px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 7994px; left: 183px;"><nobr>*err                 = OS_FLAG_GRP_DEPLETED;</nobr></div>
+<div style="position: absolute; top: 8027px; left: 156px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 8059px; left: 156px;"><nobr>return (pgrp);                    </nobr></div>
+<div style="position: absolute; top: 8059px; left: 530px;"><nobr>/* Return pointer to event flag group</nobr></div>
+<div style="position: absolute; top: 8059px; left: 1003px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 8091px; left: 128px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 8203px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="10"><b>Page 10</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 8319px; left: 236px;"><nobr><b>Deleting an Event Flag Group.OSFlagDel()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 8363px; left: 237px;"><nobr>This function deletes an event flag group and readies all tasks</nobr></div>
+<div style="position: absolute; top: 8406px; left: 237px;"><nobr>pending on the event flag group</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 8511px; left: 137px;"><nobr>OS_FLAG_GRP  *OSFlagDel (OS_FLAG_GRP *pgrp, INT8U opt, INT8U *err)</nobr></div>
+<div style="position: absolute; top: 8543px; left: 137px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 8576px; left: 137px;"><nobr>#if OS_CRITICAL_METHOD == 3                          /* Allocate storage for CPU status register */</nobr></div>
+<div style="position: absolute; top: 8608px; left: 164px;"><nobr>OS_CPU_SR     cpu_sr;</nobr></div>
+<div style="position: absolute; top: 8640px; left: 137px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 8673px; left: 164px;"><nobr>BOOLEAN       tasks_waiting;</nobr></div>
+<div style="position: absolute; top: 8705px; left: 164px;"><nobr>OS_FLAG_NODE *pnode;</nobr></div>
+<div style="position: absolute; top: 8803px; left: 164px;"><nobr>if (OSIntNesting &gt; 0) {                                /* See if called from ISR ...               */</nobr></div>
+<div style="position: absolute; top: 8835px; left: 192px;"><nobr>*err = OS_ERR_DEL_ISR;                             /* ... can't DELETE from an ISR             */</nobr></div>
+<div style="position: absolute; top: 8867px; left: 192px;"><nobr>return (pgrp);</nobr></div>
+<div style="position: absolute; top: 8900px; left: 164px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 9095px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="11"><b>Page 11</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 9238px; left: 218px;"><nobr><b>Deleting an Event Flag Group.OSFlagDel()(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 9403px; left: 146px;"><nobr>#if OS_ARG_CHK_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 9435px; left: 173px;"><nobr>if (pgrp == (OS_FLAG_GRP *)0) {                        /* Validate 'pgrp'                          */</nobr></div>
+<div style="position: absolute; top: 9468px; left: 201px;"><nobr>*err = OS_FLAG_INVALID_PGRP;</nobr></div>
+<div style="position: absolute; top: 9500px; left: 201px;"><nobr>return (pgrp);</nobr></div>
+<div style="position: absolute; top: 9532px; left: 173px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 9565px; left: 173px;"><nobr>if (pgrp-&gt;OSFlagType != OS_EVENT_TYPE_FLAG) {          /* Validate event group type  */</nobr></div>
+<div style="position: absolute; top: 9597px; left: 201px;"><nobr>*err = OS_ERR_EVENT_TYPE;</nobr></div>
+<div style="position: absolute; top: 9630px; left: 201px;"><nobr>return (pgrp);</nobr></div>
+<div style="position: absolute; top: 9662px; left: 173px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 9695px; left: 146px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 9727px; left: 173px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 9759px; left: 173px;"><nobr>if (pgrp-&gt;OSFlagWaitList != (void *)0) {               /* See if any tasks waiting on event flags  */</nobr></div>
+<div style="position: absolute; top: 9792px; left: 201px;"><nobr>tasks_waiting = TRUE;</nobr></div>
+<div style="position: absolute; top: 9792px; left: 651px;"><nobr>/* Yes      </nobr></div>
+<div style="position: absolute; top: 9792px; left: 980px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 9824px; left: 173px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 9857px; left: 201px;"><nobr>tasks_waiting = FALSE;</nobr></div>
+<div style="position: absolute; top: 9857px; left: 655px;"><nobr>/* No</nobr></div>
+<div style="position: absolute; top: 9857px; left: 983px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 9889px; left: 173px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 9987px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="12"><b>Page 12</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 10121px; left: 209px;"><nobr><b>Deleting an Event Flag Group.OSFlagDel()(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 10286px; left: 128px;"><nobr>switch (opt) {</nobr></div>
+<div style="position: absolute; top: 10318px; left: 183px;"><nobr>case OS_DEL_NO_PEND:</nobr></div>
+<div style="position: absolute; top: 10318px; left: 679px;"><nobr>/* Delete group if no task waiting          */</nobr></div>
+<div style="position: absolute; top: 10351px; left: 218px;"><nobr>if (tasks_waiting == FALSE) {</nobr></div>
+<div style="position: absolute; top: 10383px; left: 246px;"><nobr>pgrp-&gt;OSFlagType = OS_EVENT_TYPE_UNUSED;</nobr></div>
+<div style="position: absolute; top: 10415px; left: 246px;"><nobr>pgrp-&gt;OSFlagWaitList = (void *)OSFlagFreeList; /* Return group to free list</nobr></div>
+<div style="position: absolute; top: 10415px; left: 1118px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 10448px; left: 246px;"><nobr>OSFlagFreeList</nobr></div>
+<div style="position: absolute; top: 10448px; left: 456px;"><nobr>= pgrp;</nobr></div>
+<div style="position: absolute; top: 10480px; left: 246px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 10513px; left: 246px;"><nobr>*err                 = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 10545px; left: 246px;"><nobr>return ((OS_FLAG_GRP *)0);</nobr></div>
+<div style="position: absolute; top: 10545px; left: 671px;"><nobr>/* Event Flag Group has been deleted</nobr></div>
+<div style="position: absolute; top: 10545px; left: 1113px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 10578px; left: 218px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 10610px; left: 246px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 10642px; left: 246px;"><nobr>*err                 = OS_ERR_TASK_WAITING;</nobr></div>
+<div style="position: absolute; top: 10675px; left: 246px;"><nobr>return (pgrp);</nobr></div>
+<div style="position: absolute; top: 10707px; left: 218px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 10879px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="13"><b>Page 13</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 11013px; left: 236px;"><nobr><b>Deleting an Event Flag Group.OSFlagDel()(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 11182px; left: 145px;"><nobr>case OS_DEL_ALWAYS:</nobr></div>
+<div style="position: absolute; top: 11182px; left: 641px;"><nobr>/* Always delete the event flag group       */</nobr></div>
+<div style="position: absolute; top: 11214px; left: 229px;"><nobr>pnode = (OS_FLAG_NODE *)pgrp-&gt;OSFlagWaitList;</nobr></div>
+<div style="position: absolute; top: 11247px; left: 229px;"><nobr>while (pnode != (OS_FLAG_NODE *)0) {          /* Ready ALL tasks waiting for flags   */</nobr></div>
+<div style="position: absolute; top: 11279px; left: 256px;"><nobr>OS_FlagTaskRdy(pnode, (OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 11312px; left: 256px;"><nobr>pnode = (OS_FLAG_NODE *)pnode-&gt;OSFlagNodeNext;</nobr></div>
+<div style="position: absolute; top: 11344px; left: 229px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 11377px; left: 229px;"><nobr>pgrp-&gt;OSFlagType = OS_EVENT_TYPE_UNUSED;</nobr></div>
+<div style="position: absolute; top: 11409px; left: 229px;"><nobr>pgrp-&gt;OSFlagWaitList = (void *)OSFlagFreeList;/* Return group to free list</nobr></div>
+<div style="position: absolute; top: 11409px; left: 1129px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 11441px; left: 229px;"><nobr>OSFlagFreeList</nobr></div>
+<div style="position: absolute; top: 11441px; left: 439px;"><nobr>= pgrp;</nobr></div>
+<div style="position: absolute; top: 11474px; left: 229px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 11506px; left: 229px;"><nobr>if (tasks_waiting == TRUE) {                  /* Reschedule only if task(s) were waiting  */</nobr></div>
+<div style="position: absolute; top: 11539px; left: 256px;"><nobr>OS_Sched();                               /* Find highest priority task ready to run  */</nobr></div>
+<div style="position: absolute; top: 11571px; left: 229px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 11604px; left: 229px;"><nobr>*err = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 11636px; left: 229px;"><nobr>return ((OS_FLAG_GRP *)0);</nobr></div>
+<div style="position: absolute; top: 11636px; left: 682px;"><nobr>/* Event Flag Group has been deleted</nobr></div>
+<div style="position: absolute; top: 11636px; left: 1124px;"><nobr>*/</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 11771px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="14"><b>Page 14</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 11905px; left: 236px;"><nobr><b>Deleting an Event Flag Group.OSFlagDel()(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 12115px; left: 164px;"><nobr>default:</nobr></div>
+<div style="position: absolute; top: 12147px; left: 254px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 12180px; left: 254px;"><nobr>*err = OS_ERR_INVALID_OPT;</nobr></div>
+<div style="position: absolute; top: 12212px; left: 254px;"><nobr>return (pgrp);</nobr></div>
+<div style="position: absolute; top: 12244px; left: 191px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 12277px; left: 164px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 12663px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="15"><b>Page 15</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 12827px; left: 217px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 12880px; left: 266px;"><nobr>This function is called to wait for a combination of bits to be </nobr></div>
+<div style="position: absolute; top: 12924px; left: 266px;"><nobr>set in an event flag group.Your application can wait for ANY </nobr></div>
+<div style="position: absolute; top: 12967px; left: 266px;"><nobr>bit to be set or ALL bits to be set.</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 13020px; left: 166px;"><nobr>OS_FLAGS  OSFlagPend (OS_FLAG_GRP *pgrp, OS_FLAGS flags, INT8U wait_type,</nobr></div>
+<div style="position: absolute; top: 13053px; left: 166px;"><nobr>INT16U timeout, INT8U *err)</nobr></div>
+<div style="position: absolute; top: 13085px; left: 166px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 13118px; left: 166px;"><nobr>#if OS_CRITICAL_METHOD == 3               /* Allocate storage for CPU status register */</nobr></div>
+<div style="position: absolute; top: 13150px; left: 193px;"><nobr>OS_CPU_SR     cpu_sr;</nobr></div>
+<div style="position: absolute; top: 13182px; left: 166px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 13215px; left: 193px;"><nobr>OS_FLAG_NODE  node;</nobr></div>
+<div style="position: absolute; top: 13247px; left: 193px;"><nobr>OS_FLAGS      flags_cur;</nobr></div>
+<div style="position: absolute; top: 13280px; left: 193px;"><nobr>OS_FLAGS      flags_rdy;</nobr></div>
+<div style="position: absolute; top: 13312px; left: 193px;"><nobr>BOOLEAN       consume;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 13555px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="16"><b>Page 16</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 13696px; left: 189px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 13739px; left: 189px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 13804px; left: 141px;"><nobr>if (OSIntNesting &gt; 0) {                    /* See if called from ISR ...       */</nobr></div>
+<div style="position: absolute; top: 13847px; left: 213px;"><nobr>*err = OS_ERR_PEND_ISR;    /* ... can't PEND from an ISR */</nobr></div>
+<div style="position: absolute; top: 13890px; left: 213px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 13934px; left: 177px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 13977px; left: 141px;"><nobr>#if OS_ARG_CHK_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 14020px; left: 177px;"><nobr>if (pgrp == (OS_FLAG_GRP *)0)        /* Validate 'pgrp'            */</nobr></div>
+<div style="position: absolute; top: 14063px; left: 213px;"><nobr>*err = OS_FLAG_INVALID_PGRP;</nobr></div>
+<div style="position: absolute; top: 14106px; left: 213px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 14149px; left: 177px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 14192px; left: 177px;"><nobr>if (pgrp-&gt;OSFlagType != OS_EVENT_TYPE_FLAG) {</nobr></div>
+<div style="position: absolute; top: 14235px; left: 141px;"><nobr>*err = OS_ERR_EVENT_TYPE;</nobr></div>
+<div style="position: absolute; top: 14278px; left: 213px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 14322px; left: 177px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 14365px; left: 141px;"><nobr>#endif</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 14447px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="17"><b>Page 17</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 14571px; left: 155px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 14614px; left: 155px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 14719px; left: 149px;"><nobr>if (wait_type &amp; OS_FLAG_CONSUME)     /* See if we need to consume the flags */</nobr></div>
+<div style="position: absolute; top: 14752px; left: 203px;"><nobr>wait_type &amp;= OS_FLAG_CONSUME;</nobr></div>
+<div style="position: absolute; top: 14784px; left: 203px;"><nobr>consume    = TRUE;</nobr></div>
+<div style="position: absolute; top: 14816px; left: 176px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 14849px; left: 203px;"><nobr>consume    = FALSE;</nobr></div>
+<div style="position: absolute; top: 14881px; left: 176px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 14914px; left: 176px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 14946px; left: 176px;"><nobr>switch (wait_type) {</nobr></div>
+<div style="position: absolute; top: 14979px; left: 203px;"><nobr>case OS_FLAG_WAIT_SET_ALL:                         /* See if all required flags are set   */</nobr></div>
+<div style="position: absolute; top: 15011px; left: 237px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; flags;        /* Extract only the bits we want       */</nobr></div>
+<div style="position: absolute; top: 15044px; left: 237px;"><nobr>if (flags_rdy == flags) {                     /* Must match ALL the bits that we want     */</nobr></div>
+<div style="position: absolute; top: 15076px; left: 264px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 15108px; left: 291px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= flags_rdy;   /* Clear ONLY the flags that we wanted */</nobr></div>
+<div style="position: absolute; top: 15141px; left: 264px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 15173px; left: 264px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;            /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 15206px; left: 264px;"><nobr>OS_EXIT_CRITICAL();                       /* Yes, condition met, return to caller     */</nobr></div>
+<div style="position: absolute; top: 15238px; left: 264px;"><nobr>*err      = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 15271px; left: 264px;"><nobr>return (flags_cur);</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 15339px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="18"><b>Page 18</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 15471px; left: 147px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 15515px; left: 147px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 15605px; left: 130px;"><nobr>} else {                                      /* Block task until events occur or timeout */</nobr></div>
+<div style="position: absolute; top: 15638px; left: 245px;"><nobr>OS_FlagBlock(pgrp, &amp;node, flags, wait_type, timeout);</nobr></div>
+<div style="position: absolute; top: 15670px; left: 245px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 15702px; left: 218px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 15735px; left: 218px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 15800px; left: 184px;"><nobr>case OS_FLAG_WAIT_SET_ANY:</nobr></div>
+<div style="position: absolute; top: 15832px; left: 218px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; flags;        /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 15865px; left: 218px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {               /* See if any flag set         </nobr></div>
+<div style="position: absolute; top: 15865px; left: 1054px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 15897px; left: 245px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 15929px; left: 272px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= flags_rdy;      /* Clear ONLY the flags that we got     */</nobr></div>
+<div style="position: absolute; top: 15962px; left: 245px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 15994px; left: 245px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;            /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 16027px; left: 245px;"><nobr>OS_EXIT_CRITICAL();                       /* Yes, condition met, return to caller     */</nobr></div>
+<div style="position: absolute; top: 16059px; left: 245px;"><nobr>*err      = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 16092px; left: 245px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 16124px; left: 218px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 16231px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="19"><b>Page 19</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 16355px; left: 189px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 16398px; left: 189px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 16514px; left: 138px;"><nobr>else {                                      /* Block task until events occur or timeout */</nobr></div>
+<div style="position: absolute; top: 16547px; left: 253px;"><nobr>OS_FlagBlock(pgrp, &amp;node, flags, wait_type, timeout);</nobr></div>
+<div style="position: absolute; top: 16579px; left: 253px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 16612px; left: 226px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 16644px; left: 226px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 16676px; left: 138px;"><nobr>#if OS_FLAG_WAIT_CLR_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 16709px; left: 192px;"><nobr>case OS_FLAG_WAIT_CLR_ALL:                  /* See if all required flags are cleared    */</nobr></div>
+<div style="position: absolute; top: 16741px; left: 226px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; flags;     /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 16774px; left: 226px;"><nobr>if (flags_rdy == flags) {                     /* Must match ALL the bits that we want     */</nobr></div>
+<div style="position: absolute; top: 16806px; left: 253px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 16839px; left: 280px;"><nobr>pgrp-&gt;OSFlagFlags |= flags_rdy;     /* Set ONLY the flags that we wanted        */</nobr></div>
+<div style="position: absolute; top: 16871px; left: 253px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 16903px; left: 253px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;            /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 16936px; left: 253px;"><nobr>OS_EXIT_CRITICAL();                       /* Yes, condition met, return to caller     */</nobr></div>
+<div style="position: absolute; top: 16968px; left: 253px;"><nobr>*err      = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 17001px; left: 253px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 17033px; left: 226px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 17123px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="20"><b>Page 20</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 17238px; left: 206px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 17282px; left: 206px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 17423px; left: 130px;"><nobr>else {                                      /* Block task until events occur or timeout */</nobr></div>
+<div style="position: absolute; top: 17456px; left: 245px;"><nobr>OS_FlagBlock(pgrp, &amp;node, flags, wait_type, timeout);</nobr></div>
+<div style="position: absolute; top: 17488px; left: 245px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 17521px; left: 218px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 17553px; left: 218px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 17618px; left: 184px;"><nobr>case OS_FLAG_WAIT_CLR_ANY:</nobr></div>
+<div style="position: absolute; top: 17650px; left: 218px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; flags;       /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 17683px; left: 218px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {               /* See if any flag cleared     </nobr></div>
+<div style="position: absolute; top: 17683px; left: 1075px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 17715px; left: 245px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 17748px; left: 272px;"><nobr>pgrp-&gt;OSFlagFlags |= flags_rdy;       /* Set ONLY the flags that we got           */</nobr></div>
+<div style="position: absolute; top: 17780px; left: 245px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 17812px; left: 245px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;            /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 17845px; left: 245px;"><nobr>OS_EXIT_CRITICAL();                       /* Yes, condition met, return to caller     */</nobr></div>
+<div style="position: absolute; top: 17877px; left: 245px;"><nobr>*err      = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 17910px; left: 245px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 17942px; left: 218px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 18015px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="21"><b>Page 21</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 18139px; left: 172px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 18182px; left: 172px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 18307px; left: 138px;"><nobr>else {                                      /* Block task until events occur or timeout */</nobr></div>
+<div style="position: absolute; top: 18339px; left: 253px;"><nobr>OS_FlagBlock(pgrp, &amp;node, flags, wait_type, timeout);</nobr></div>
+<div style="position: absolute; top: 18371px; left: 253px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 18404px; left: 226px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 18436px; left: 226px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 18469px; left: 138px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 18534px; left: 192px;"><nobr>default:</nobr></div>
+<div style="position: absolute; top: 18566px; left: 226px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 18599px; left: 226px;"><nobr>flags_cur = (OS_FLAGS)0;</nobr></div>
+<div style="position: absolute; top: 18631px; left: 226px;"><nobr>*err      = OS_FLAG_ERR_WAIT_TYPE;</nobr></div>
+<div style="position: absolute; top: 18663px; left: 226px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 18696px; left: 165px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 18728px; left: 165px;"><nobr>OS_Sched();                                            /* Find next HPT ready to run               */</nobr></div>
+<div style="position: absolute; top: 18761px; left: 165px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 18907px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="22"><b>Page 22</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 19031px; left: 189px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 19074px; left: 189px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 19199px; left: 145px;"><nobr>if (OSTCBCur-&gt;OSTCBStat &amp; OS_STAT_FLAG) {         /* Have we timed-out */</nobr></div>
+<div style="position: absolute; top: 19231px; left: 192px;"><nobr>OS_FlagUnlink(&amp;node);</nobr></div>
+<div style="position: absolute; top: 19263px; left: 192px;"><nobr>OSTCBCur-&gt;OSTCBStat = OS_STAT_RDY;           /* Yes, make task ready-to-run     */</nobr></div>
+<div style="position: absolute; top: 19296px; left: 192px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 19328px; left: 192px;"><nobr>flags_cur</nobr></div>
+<div style="position: absolute; top: 19328px; left: 367px;"><nobr>= (OS_FLAGS)0;</nobr></div>
+<div style="position: absolute; top: 19361px; left: 192px;"><nobr>*err                = OS_TIMEOUT;                  /* Indicate that we timed-out waiting       */</nobr></div>
+<div style="position: absolute; top: 19393px; left: 165px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 19426px; left: 192px;"><nobr>if (consume == TRUE) {                             /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 19458px; left: 219px;"><nobr>switch (wait_type) {</nobr></div>
+<div style="position: absolute; top: 19491px; left: 246px;"><nobr>case OS_FLAG_WAIT_SET_ALL:</nobr></div>
+<div style="position: absolute; top: 19523px; left: 246px;"><nobr>case OS_FLAG_WAIT_SET_ANY:            /* Clear ONLY the flags we got         */</nobr></div>
+<div style="position: absolute; top: 19555px; left: 280px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= OSTCBCur-&gt;OSTCBFlagsRdy;</nobr></div>
+<div style="position: absolute; top: 19588px; left: 280px;"><nobr>break;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 19799px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="23"><b>Page 23</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 19940px; left: 206px;"><nobr><b>Waiting for Event(s) of an Event Flag Group,OSFlagPend()</b></nobr></div>
+<div style="position: absolute; top: 19983px; left: 206px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 20116px; left: 164px;"><nobr>#if OS_FLAG_WAIT_CLR_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 20149px; left: 272px;"><nobr>case OS_FLAG_WAIT_CLR_ALL:</nobr></div>
+<div style="position: absolute; top: 20181px; left: 272px;"><nobr>case OS_FLAG_WAIT_CLR_ANY:            /* Set   ONLY the flags we got      */</nobr></div>
+<div style="position: absolute; top: 20213px; left: 305px;"><nobr>pgrp-&gt;OSFlagFlags |= OSTCBCur-&gt;OSTCBFlagsRdy;</nobr></div>
+<div style="position: absolute; top: 20246px; left: 305px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 20278px; left: 164px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 20311px; left: 245px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 20343px; left: 218px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 20376px; left: 218px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;</nobr></div>
+<div style="position: absolute; top: 20408px; left: 218px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 20441px; left: 218px;"><nobr>*err      = OS_NO_ERR;                             /* Event(s) must have occurred           */</nobr></div>
+<div style="position: absolute; top: 20473px; left: 191px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 20505px; left: 191px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 20538px; left: 164px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 20691px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="24"><b>Page 24</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 20849px; left: 189px;"><nobr><b>Adding a task to the event flag group wait list,OS_FlagBlock()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 20900px; left: 223px;"><nobr>This function is internal to <b style="color: black; background-color: rgb(255, 255, 102);">uC/OS-II</b> and is used to put a task to </nobr></div>
+<div style="position: absolute; top: 20943px; left: 223px;"><nobr>sleep until the desired event flag bit(s) are set .</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 21034px; left: 164px;"><nobr>static  void  OS_FlagBlock (OS_FLAG_GRP *pgrp, OS_FLAG_NODE *pnode,</nobr></div>
+<div style="position: absolute; top: 21066px; left: 170px;"><nobr>OS_FLAGS flags, INT8U wait_type, INT16U timeout)</nobr></div>
+<div style="position: absolute; top: 21099px; left: 164px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 21131px; left: 191px;"><nobr>OS_FLAG_NODE  *pnode_next;</nobr></div>
+<div style="position: absolute; top: 21228px; left: 191px;"><nobr>OSTCBCur-&gt;OSTCBStat</nobr></div>
+<div style="position: absolute; top: 21228px; left: 512px;"><nobr>|= OS_STAT_FLAG;</nobr></div>
+<div style="position: absolute; top: 21261px; left: 191px;"><nobr>OSTCBCur-&gt;OSTCBDly</nobr></div>
+<div style="position: absolute; top: 21261px; left: 524px;"><nobr>= timeout;              /* Store timeout in task's TCB  </nobr></div>
+<div style="position: absolute; top: 21261px; left: 1138px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 21293px; left: 164px;"><nobr>#if OS_TASK_DEL_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 21326px; left: 191px;"><nobr>OSTCBCur-&gt;OSTCBFlagNode = pnode;                /* TCB to link to node                   */</nobr></div>
+<div style="position: absolute; top: 21358px; left: 164px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 21390px; left: 191px;"><nobr>pnode-&gt;OSFlagNodeFlags = flags;                /* Save the flags that we need to wait for  */</nobr></div>
+<div style="position: absolute; top: 21423px; left: 191px;"><nobr>pnode-&gt;OSFlagNodeWaitType = wait_type;         /* Save the type of wait we are doing */</nobr></div>
+<div style="position: absolute; top: 21455px; left: 191px;"><nobr>pnode-&gt;OSFlagNodeTCB</nobr></div>
+<div style="position: absolute; top: 21455px; left: 515px;"><nobr>= (void *)OSTCBCur;     /* Link to task's TCB                */</nobr></div>
+<div style="position: absolute; top: 21488px; left: 191px;"><nobr>pnode-&gt;OSFlagNodeNext = pgrp-&gt;OSFlagWaitList; </nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 21583px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="25"><b>Page 25</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 21733px; left: 164px;"><nobr><b>Adding a task to the event flag group wait list,OS_FlagBlock()</b></nobr></div>
+<div style="position: absolute; top: 21776px; left: 164px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 21934px; left: 155px;"><nobr>pnode-&gt;OSFlagNodePrev = (void *)0;</nobr></div>
+<div style="position: absolute; top: 21967px; left: 182px;"><nobr>pnode-&gt;OSFlagNodeFlagGrp = (void *)pgrp;         /* Link to Event Flag Group           */</nobr></div>
+<div style="position: absolute; top: 21999px; left: 182px;"><nobr>pnode_next</nobr></div>
+<div style="position: absolute; top: 21999px; left: 416px;"><nobr>= (OS_FLAG_NODE *)pgrp-&gt;OSFlagWaitList;</nobr></div>
+<div style="position: absolute; top: 22032px; left: 182px;"><nobr>if (pnode_next != (void *)0) {                    /* Is this the first NODE to insert?             */</nobr></div>
+<div style="position: absolute; top: 22064px; left: 209px;"><nobr>pnode_next-&gt;OSFlagNodePrev = pnode;           /* No, link in doubly linked list          */</nobr></div>
+<div style="position: absolute; top: 22129px; left: 182px;"><nobr>pgrp-&gt;OSFlagWaitList = (void *)pnode;</nobr></div>
+<div style="position: absolute; top: 22161px; left: 520px;"><nobr>/* Suspend current task until flag(s) received   */</nobr></div>
+<div style="position: absolute; top: 22194px; left: 182px;"><nobr>if ((OSRdyTbl[OSTCBCur-&gt;OSTCBY] &amp;= OSTCBCur-&gt;OSTCBBitX) == 0) {</nobr></div>
+<div style="position: absolute; top: 22226px; left: 209px;"><nobr>OSRdyGrp &amp;= OSTCBCur-&gt;OSTCBBitY;</nobr></div>
+<div style="position: absolute; top: 22259px; left: 182px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 22291px; left: 155px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 22475px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="26"><b>Page 26</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 22607px; left: 138px;"><nobr><b>Setting or Clearing Event(s) in an Event Flag group,OSFlagPost()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 22658px; left: 164px;"><nobr>This function is called to set or clear some bits in an event flag group. </nobr></div>
+<div style="position: absolute; top: 22702px; left: 164px;"><nobr>The bits to set or clear are specified by a 'bit mask'.</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 22809px; left: 125px;"><nobr>OS_FLAGS  OSFlagPost (OS_FLAG_GRP *pgrp, OS_FLAGS flags, INT8U opt, INT8U *err)</nobr></div>
+<div style="position: absolute; top: 22842px; left: 125px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 22874px; left: 125px;"><nobr>#if OS_CRITICAL_METHOD == 3           /* Allocate storage for CPU status register       */</nobr></div>
+<div style="position: absolute; top: 22907px; left: 152px;"><nobr>OS_CPU_SR     cpu_sr;</nobr></div>
+<div style="position: absolute; top: 22939px; left: 125px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 22972px; left: 152px;"><nobr>OS_FLAG_NODE *pnode;</nobr></div>
+<div style="position: absolute; top: 23004px; left: 152px;"><nobr>BOOLEAN       sched;</nobr></div>
+<div style="position: absolute; top: 23036px; left: 152px;"><nobr>OS_FLAGS      flags_cur;</nobr></div>
+<div style="position: absolute; top: 23069px; left: 152px;"><nobr>OS_FLAGS      flags_rdy;</nobr></div>
+<div style="position: absolute; top: 23166px; left: 125px;"><nobr>#if OS_ARG_CHK_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 23199px; left: 152px;"><nobr>if (pgrp == (OS_FLAG_GRP *)0) {                  /* Validate 'pgrp'                                */</nobr></div>
+<div style="position: absolute; top: 23231px; left: 179px;"><nobr>*err = OS_FLAG_INVALID_PGRP;</nobr></div>
+<div style="position: absolute; top: 23263px; left: 179px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 23296px; left: 152px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 23367px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="27"><b>Page 27</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 23482px; left: 121px;"><nobr><b>Setting or Clearing Event(s) in an Event Flag group,OSFlagPost()</b></nobr></div>
+<div style="position: absolute; top: 23526px; left: 121px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 23669px; left: 139px;"><nobr>if (pgrp-&gt;OSFlagType != OS_EVENT_TYPE_FLAG) {    </nobr></div>
+<div style="position: absolute; top: 23701px; left: 186px;"><nobr>*err = OS_ERR_EVENT_TYPE;</nobr></div>
+<div style="position: absolute; top: 23734px; left: 186px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 23766px; left: 159px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 23799px; left: 132px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 23831px; left: 132px;"><nobr>/*$PAGE*/,</nobr></div>
+<div style="position: absolute; top: 23864px; left: 159px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 23896px; left: 159px;"><nobr>switch (opt) {</nobr></div>
+<div style="position: absolute; top: 23928px; left: 186px;"><nobr>case OS_FLAG_CLR:</nobr></div>
+<div style="position: absolute; top: 23961px; left: 220px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= flags;            /* Clear the flags specified in the group</nobr></div>
+<div style="position: absolute; top: 23961px; left: 1127px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 23993px; left: 220px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 24058px; left: 186px;"><nobr>case OS_FLAG_SET:</nobr></div>
+<div style="position: absolute; top: 24091px; left: 220px;"><nobr>pgrp-&gt;OSFlagFlags |=  flags;            /* Set   the flags specified in the group</nobr></div>
+<div style="position: absolute; top: 24091px; left: 1093px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 24123px; left: 220px;"><nobr>break;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 24259px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="28"><b>Page 28</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 24374px; left: 147px;"><nobr><b>Setting or Clearing Event(s) in an Event Flag group,OSFlagPost()</b></nobr></div>
+<div style="position: absolute; top: 24418px; left: 147px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 24542px; left: 137px;"><nobr>default:</nobr></div>
+<div style="position: absolute; top: 24575px; left: 218px;"><nobr>OS_EXIT_CRITICAL();                     /* INVALID option                                 */</nobr></div>
+<div style="position: absolute; top: 24607px; left: 218px;"><nobr>*err = OS_FLAG_INVALID_OPT;</nobr></div>
+<div style="position: absolute; top: 24640px; left: 218px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 24672px; left: 157px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 24704px; left: 157px;"><nobr>sched = FALSE;                                   /* Indicate that we don't need rescheduling       */</nobr></div>
+<div style="position: absolute; top: 24737px; left: 157px;"><nobr>pnode = (OS_FLAG_NODE *)pgrp-&gt;OSFlagWaitList;</nobr></div>
+<div style="position: absolute; top: 24769px; left: 157px;"><nobr>while (pnode != (OS_FLAG_NODE *)0) {    /*Go through all tasks waiting on event flag(s)*/</nobr></div>
+<div style="position: absolute; top: 24802px; left: 184px;"><nobr>switch (pnode-&gt;OSFlagNodeWaitType) {</nobr></div>
+<div style="position: absolute; top: 24834px; left: 211px;"><nobr>case OS_FLAG_WAIT_SET_ALL:       /*See if all req. flags are set for current node */</nobr></div>
+<div style="position: absolute; top: 24867px; left: 245px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; pnode-&gt;OSFlagNodeFlags;</nobr></div>
+<div style="position: absolute; top: 24899px; left: 245px;"><nobr>if (flags_rdy == pnode-&gt;OSFlagNodeFlags) {</nobr></div>
+<div style="position: absolute; top: 24931px; left: 272px;"><nobr>if (OS_FlagTaskRdy(pnode, flags_rdy) == TRUE) {</nobr></div>
+<div style="position: absolute; top: 24964px; left: 299px;"><nobr>sched = TRUE;                               /* When done we will reschedule   */</nobr></div>
+<div style="position: absolute; top: 24996px; left: 272px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25029px; left: 245px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25061px; left: 245px;"><nobr>break;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 25151px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="29"><b>Page 29</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 25283px; left: 164px;"><nobr><b>Setting or Clearing Event(s) in an Event Flag group,OSFlagPost()</b></nobr></div>
+<div style="position: absolute; top: 25327px; left: 164px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 25430px; left: 213px;"><nobr>case OS_FLAG_WAIT_SET_ANY:               /* See if any flag set                            */</nobr></div>
+<div style="position: absolute; top: 25462px; left: 247px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; pnode-&gt;OSFlagNodeFlags;</nobr></div>
+<div style="position: absolute; top: 25495px; left: 247px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {</nobr></div>
+<div style="position: absolute; top: 25527px; left: 274px;"><nobr>if (OS_FlagTaskRdy(pnode, flags_rdy) == TRUE) {</nobr></div>
+<div style="position: absolute; top: 25560px; left: 308px;"><nobr>sched = TRUE;                               /* When done we will reschedule   */</nobr></div>
+<div style="position: absolute; top: 25592px; left: 274px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25625px; left: 247px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25657px; left: 247px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 25722px; left: 132px;"><nobr>#if OS_FLAG_WAIT_CLR_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 25754px; left: 213px;"><nobr>case OS_FLAG_WAIT_CLR_ALL:     /* See if all req. flags are set for current node */</nobr></div>
+<div style="position: absolute; top: 25787px; left: 247px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; pnode-&gt;OSFlagNodeFlags;</nobr></div>
+<div style="position: absolute; top: 25819px; left: 247px;"><nobr>if (flags_rdy == pnode-&gt;OSFlagNodeFlags) {</nobr></div>
+<div style="position: absolute; top: 25852px; left: 274px;"><nobr>if (OS_FlagTaskRdy(pnode, flags_rdy) == TRUE) {</nobr></div>
+<div style="position: absolute; top: 25884px; left: 301px;"><nobr>sched = TRUE;                               /* When done we will reschedule   */</nobr></div>
+<div style="position: absolute; top: 25917px; left: 274px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25949px; left: 247px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 25982px; left: 247px;"><nobr>break;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 26043px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="30"><b>Page 30</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 26107px; left: 155px;"><nobr><b>Setting or Clearing Event(s) in an Event Flag group,OSFlagPost()</b></nobr></div>
+<div style="position: absolute; top: 26151px; left: 155px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 26196px; left: 132px;"><nobr>case OS_FLAG_WAIT_CLR_ANY:               /* See if any flag set </nobr></div>
+<div style="position: absolute; top: 26196px; left: 1045px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 26228px; left: 247px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; pnode-&gt;OSFlagNodeFlags;</nobr></div>
+<div style="position: absolute; top: 26261px; left: 247px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {</nobr></div>
+<div style="position: absolute; top: 26293px; left: 274px;"><nobr>if (OS_FlagTaskRdy(pnode, flags_rdy) == TRUE) {</nobr></div>
+<div style="position: absolute; top: 26326px; left: 301px;"><nobr>sched = TRUE;                               /* When done we will reschedule   */</nobr></div>
+<div style="position: absolute; top: 26358px; left: 274px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 26391px; left: 247px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 26423px; left: 247px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 26456px; left: 132px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 26488px; left: 186px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 26520px; left: 186px;"><nobr>pnode = (OS_FLAG_NODE *)pnode-&gt;OSFlagNodeNext; </nobr></div>
+<div style="position: absolute; top: 26553px; left: 159px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 26585px; left: 159px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 26618px; left: 159px;"><nobr>if (sched == TRUE) {</nobr></div>
+<div style="position: absolute; top: 26650px; left: 186px;"><nobr>OS_Sched();</nobr></div>
+<div style="position: absolute; top: 26683px; left: 159px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 26715px; left: 159px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 26748px; left: 159px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;</nobr></div>
+<div style="position: absolute; top: 26780px; left: 159px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 26812px; left: 159px;"><nobr>*err      = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 26845px; left: 159px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 26877px; left: 132px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 26935px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="31"><b>Page 31</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 27022px; left: 192px;"><nobr><b>Make a waiting task ready to run,OS_FlagTaskRdy()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 27082px; left: 175px;"><nobr>This function is internal to <b style="color: black; background-color: rgb(255, 255, 102);">uC/OS-II</b> and is used to make a task </nobr></div>
+<div style="position: absolute; top: 27125px; left: 175px;"><nobr>ready-to-run because the desired event flag bits have been set.</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 27173px; left: 134px;"><nobr>static  BOOLEAN  OS_FlagTaskRdy (OS_FLAG_NODE *pnode, OS_FLAGS flags_rdy)</nobr></div>
+<div style="position: absolute; top: 27206px; left: 134px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 27238px; left: 161px;"><nobr>OS_TCB   *ptcb;</nobr></div>
+<div style="position: absolute; top: 27271px; left: 161px;"><nobr>BOOLEAN   sched;</nobr></div>
+<div style="position: absolute; top: 27303px; left: 161px;"><nobr>ptcb</nobr></div>
+<div style="position: absolute; top: 27303px; left: 315px;"><nobr>= (OS_TCB *)pnode-&gt;OSFlagNodeTCB;  /* Point to TCB of waiting task   */</nobr></div>
+<div style="position: absolute; top: 27335px; left: 161px;"><nobr>ptcb-&gt;OSTCBDly</nobr></div>
+<div style="position: absolute; top: 27335px; left: 399px;"><nobr>= 0;</nobr></div>
+<div style="position: absolute; top: 27368px; left: 161px;"><nobr>ptcb-&gt;OSTCBFlagsRdy = flags_rdy;</nobr></div>
+<div style="position: absolute; top: 27400px; left: 161px;"><nobr>ptcb-&gt;OSTCBStat &amp;= OS_STAT_FLAG;</nobr></div>
+<div style="position: absolute; top: 27433px; left: 161px;"><nobr>if (ptcb-&gt;OSTCBStat == OS_STAT_RDY) {                  /* Put task into ready list </nobr></div>
+<div style="position: absolute; top: 27433px; left: 1103px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 27465px; left: 188px;"><nobr>OSRdyGrp</nobr></div>
+<div style="position: absolute; top: 27465px; left: 410px;"><nobr>|= ptcb-&gt;OSTCBBitY;</nobr></div>
+<div style="position: absolute; top: 27498px; left: 188px;"><nobr>OSRdyTbl[ptcb-&gt;OSTCBY] |= ptcb-&gt;OSTCBBitX;</nobr></div>
+<div style="position: absolute; top: 27530px; left: 188px;"><nobr>sched</nobr></div>
+<div style="position: absolute; top: 27530px; left: 377px;"><nobr>= TRUE;</nobr></div>
+<div style="position: absolute; top: 27562px; left: 161px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 27595px; left: 188px;"><nobr>sched</nobr></div>
+<div style="position: absolute; top: 27595px; left: 377px;"><nobr>= FALSE;</nobr></div>
+<div style="position: absolute; top: 27627px; left: 161px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 27660px; left: 161px;"><nobr>OS_FlagUnlink(pnode);</nobr></div>
+<div style="position: absolute; top: 27692px; left: 161px;"><nobr>return (sched);</nobr></div>
+<div style="position: absolute; top: 27725px; left: 134px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 27827px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="32"><b>Page 32</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 27959px; left: 198px;"><nobr><b>Unlinking an OS_FLAG_NODE,OS_Flagunlink()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 28019px; left: 215px;"><nobr>This function is internal to <b style="color: black; background-color: rgb(255, 255, 102);">uC/OS-II</b> and is used to unlink an</nobr></div>
+<div style="position: absolute; top: 28062px; left: 224px;"><nobr>event flag node from a list of tasks waiting for the event flag.</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 28144px; left: 138px;"><nobr>void  OS_FlagUnlink (OS_FLAG_NODE *pnode)</nobr></div>
+<div style="position: absolute; top: 28177px; left: 138px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 28209px; left: 138px;"><nobr>#if OS_TASK_DEL_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 28241px; left: 165px;"><nobr>OS_TCB       *ptcb;</nobr></div>
+<div style="position: absolute; top: 28274px; left: 138px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 28306px; left: 165px;"><nobr>OS_FLAG_GRP  *pgrp;</nobr></div>
+<div style="position: absolute; top: 28339px; left: 165px;"><nobr>OS_FLAG_NODE *pnode_prev;</nobr></div>
+<div style="position: absolute; top: 28371px; left: 165px;"><nobr>OS_FLAG_NODE *pnode_next;</nobr></div>
+<div style="position: absolute; top: 28404px; left: 165px;"><nobr>pnode_prev = (OS_FLAG_NODE *)pnode-&gt;OSFlagNodePrev;</nobr></div>
+<div style="position: absolute; top: 28436px; left: 165px;"><nobr>pnode_next = (OS_FLAG_NODE *)pnode-&gt;OSFlagNodeNext;</nobr></div>
+<div style="position: absolute; top: 28469px; left: 165px;"><nobr>if (pnode_prev == (OS_FLAG_NODE *)0) {                      /* Is it first node in wait list?      */</nobr></div>
+<div style="position: absolute; top: 28501px; left: 192px;"><nobr>pgrp</nobr></div>
+<div style="position: absolute; top: 28501px; left: 356px;"><nobr>= (OS_FLAG_GRP *)pnode-&gt;OSFlagNodeFlagGrp;</nobr></div>
+<div style="position: absolute; top: 28533px; left: 192px;"><nobr>pgrp-&gt;OSFlagWaitList = (void *)pnode_next;              /*  Update list for new 1st node   */</nobr></div>
+<div style="position: absolute; top: 28566px; left: 192px;"><nobr>if (pnode_next != (OS_FLAG_NODE *)0) {</nobr></div>
+<div style="position: absolute; top: 28598px; left: 219px;"><nobr>pnode_next-&gt;OSFlagNodePrev = (OS_FLAG_NODE *)0;   </nobr></div>
+<div style="position: absolute; top: 28631px; left: 192px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 28663px; left: 165px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 28719px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="33"><b>Page 33</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 28892px; left: 158px;"><nobr><b>Unlinking an OS_FLAG_NODE,OS_Flagunlink() (Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 29036px; left: 138px;"><nobr>else {                                                    /* No, A node somewhere in the list   */</nobr></div>
+<div style="position: absolute; top: 29069px; left: 192px;"><nobr>pnode_prev-&gt;OSFlagNodeNext = pnode_next;          /*  Link around the node to unlink */</nobr></div>
+<div style="position: absolute; top: 29101px; left: 192px;"><nobr>if (pnode_next != (OS_FLAG_NODE *)0) {           /*  Was this the LAST node?  </nobr></div>
+<div style="position: absolute; top: 29101px; left: 1117px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 29133px; left: 219px;"><nobr>pnode_next-&gt;OSFlagNodePrev = pnode_prev;        /*  No, Link around current node   */</nobr></div>
+<div style="position: absolute; top: 29166px; left: 192px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 29198px; left: 165px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 29231px; left: 138px;"><nobr>#if OS_TASK_DEL_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 29263px; left: 165px;"><nobr>ptcb</nobr></div>
+<div style="position: absolute; top: 29263px; left: 320px;"><nobr>= (OS_TCB *)pnode-&gt;OSFlagNodeTCB;</nobr></div>
+<div style="position: absolute; top: 29296px; left: 165px;"><nobr>ptcb-&gt;OSTCBFlagNode = (OS_FLAG_NODE *)0;</nobr></div>
+<div style="position: absolute; top: 29328px; left: 138px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 29361px; left: 138px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 29393px; left: 138px;"><nobr>#endif</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 29611px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="34"><b>Page 34</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 29668px; left: 141px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 29848px; left: 102px;"><nobr>OS_FLAGS  OSFlagAccept (OS_FLAG_GRP *pgrp, OS_FLAGS flags, INT8U wait_type,</nobr></div>
+<div style="position: absolute; top: 29881px; left: 109px;"><nobr>INT8U *err)</nobr></div>
+<div style="position: absolute; top: 29913px; left: 102px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 29945px; left: 102px;"><nobr>#if OS_CRITICAL_METHOD == 3                        /* Allocate storage for CPU status register */</nobr></div>
+<div style="position: absolute; top: 29978px; left: 129px;"><nobr>OS_CPU_SR     cpu_sr;</nobr></div>
+<div style="position: absolute; top: 30010px; left: 102px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 30043px; left: 129px;"><nobr>OS_FLAGS      flags_cur;</nobr></div>
+<div style="position: absolute; top: 30075px; left: 129px;"><nobr>OS_FLAGS      flags_rdy;</nobr></div>
+<div style="position: absolute; top: 30108px; left: 129px;"><nobr>BOOLEAN       consume;</nobr></div>
+<div style="position: absolute; top: 30172px; left: 102px;"><nobr>#if OS_ARG_CHK_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 30205px; left: 129px;"><nobr>if (pgrp == (OS_FLAG_GRP *)0) {                        /* Validate 'pgrp'                          */</nobr></div>
+<div style="position: absolute; top: 30237px; left: 156px;"><nobr>*err = OS_FLAG_INVALID_PGRP;</nobr></div>
+<div style="position: absolute; top: 30270px; left: 156px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 30302px; left: 129px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 30335px; left: 129px;"><nobr>if (pgrp-&gt;OSFlagType != OS_EVENT_TYPE_FLAG) {          /* Validate event block type  */</nobr></div>
+<div style="position: absolute; top: 30367px; left: 156px;"><nobr>*err = OS_ERR_EVENT_TYPE;</nobr></div>
+<div style="position: absolute; top: 30399px; left: 156px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 30432px; left: 123px;"><nobr>}</nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 29724px; left: 125px;"><nobr>This function is called to check the status of a combination of bits to be </nobr></div>
+<div style="position: absolute; top: 29767px; left: 125px;"><nobr>set or cleared in an event flag group.Your application can check for </nobr></div>
+<div style="position: absolute; top: 29810px; left: 125px;"><nobr>ANY bit to be set/cleared or ALL bits to be set/cleared.</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 30503px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="35"><b>Page 35</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 30618px; left: 155px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+<div style="position: absolute; top: 30662px; left: 155px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 30767px; left: 102px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 30799px; left: 129px;"><nobr>if (wait_type &amp; OS_FLAG_CONSUME) {               /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 30832px; left: 156px;"><nobr>wait_type &amp;= OS_FLAG_CONSUME;</nobr></div>
+<div style="position: absolute; top: 30864px; left: 156px;"><nobr>consume    = TRUE;</nobr></div>
+<div style="position: absolute; top: 30896px; left: 129px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 30929px; left: 156px;"><nobr>consume    = FALSE;</nobr></div>
+<div style="position: absolute; top: 30961px; left: 129px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 30994px; left: 102px;"><nobr>/*$PAGE*/,</nobr></div>
+<div style="position: absolute; top: 31026px; left: 129px;"><nobr>*err = OS_NO_ERR;                                      /* Assume NO error until proven otherwise.  */</nobr></div>
+<div style="position: absolute; top: 31059px; left: 129px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 31091px; left: 129px;"><nobr>switch (wait_type) {</nobr></div>
+<div style="position: absolute; top: 31124px; left: 156px;"><nobr>case OS_FLAG_WAIT_SET_ALL:                     /* See if all required flags are set        */</nobr></div>
+<div style="position: absolute; top: 31156px; left: 190px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; flags;        /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 31188px; left: 190px;"><nobr>if (flags_rdy == flags) {                     /* Must match ALL the bits that we want     */</nobr></div>
+<div style="position: absolute; top: 31221px; left: 217px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 31253px; left: 244px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= flags_rdy;      /* Clear ONLY the flags that we wanted    */</nobr></div>
+<div style="position: absolute; top: 31286px; left: 217px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 31318px; left: 190px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 31395px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="36"><b>Page 36</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 31519px; left: 164px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+<div style="position: absolute; top: 31562px; left: 164px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 31678px; left: 121px;"><nobr>else {</nobr></div>
+<div style="position: absolute; top: 31711px; left: 236px;"><nobr>*err  = OS_FLAG_ERR_NOT_RDY;</nobr></div>
+<div style="position: absolute; top: 31743px; left: 209px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 31776px; left: 209px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;                /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 31808px; left: 209px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 31840px; left: 209px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 31905px; left: 175px;"><nobr>case OS_FLAG_WAIT_SET_ANY:</nobr></div>
+<div style="position: absolute; top: 31938px; left: 209px;"><nobr>flags_rdy = pgrp-&gt;OSFlagFlags &amp; flags;        /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 31970px; left: 209px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {               /* See if any flag set         </nobr></div>
+<div style="position: absolute; top: 31970px; left: 1046px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 32003px; left: 236px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 32035px; left: 263px;"><nobr>pgrp-&gt;OSFlagFlags &amp;= flags_rdy;      /* Clear ONLY the flags that we got         */</nobr></div>
+<div style="position: absolute; top: 32067px; left: 236px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 32100px; left: 209px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 32132px; left: 236px;"><nobr>*err  = OS_FLAG_ERR_NOT_RDY;</nobr></div>
+<div style="position: absolute; top: 32165px; left: 209px;"><nobr>}</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 32287px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="37"><b>Page 37</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 32408px; left: 183px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+<div style="position: absolute; top: 32452px; left: 183px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 32579px; left: 137px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;                /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 32611px; left: 218px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 32643px; left: 218px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 32708px; left: 130px;"><nobr>#if OS_FLAG_WAIT_CLR_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 32741px; left: 184px;"><nobr>case OS_FLAG_WAIT_CLR_ALL:                    /* See if all required flags are cleared    */</nobr></div>
+<div style="position: absolute; top: 32773px; left: 218px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; flags;       /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 32806px; left: 218px;"><nobr>if (flags_rdy == flags) {                     /* Must match ALL the bits that we want     */</nobr></div>
+<div style="position: absolute; top: 32838px; left: 245px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 32871px; left: 272px;"><nobr>pgrp-&gt;OSFlagFlags |= flags_rdy;       /* Set ONLY the flags that we wanted        */</nobr></div>
+<div style="position: absolute; top: 32903px; left: 245px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 32935px; left: 218px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 32968px; left: 245px;"><nobr>*err  = OS_FLAG_ERR_NOT_RDY;</nobr></div>
+<div style="position: absolute; top: 33000px; left: 218px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 33033px; left: 218px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;                /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 33065px; left: 218px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 33098px; left: 218px;"><nobr>break;</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 33179px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="38"><b>Page 38</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 33294px; left: 172px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+<div style="position: absolute; top: 33338px; left: 172px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 33492px; left: 180px;"><nobr>case OS_FLAG_WAIT_CLR_ANY:</nobr></div>
+<div style="position: absolute; top: 33524px; left: 213px;"><nobr>flags_rdy =pgrp-&gt;OSFlagFlags &amp; flags;       /* Extract only the bits we want            */</nobr></div>
+<div style="position: absolute; top: 33557px; left: 213px;"><nobr>if (flags_rdy != (OS_FLAGS)0) {               /* See if any flag cleared     </nobr></div>
+<div style="position: absolute; top: 33557px; left: 1071px;"><nobr>*/</nobr></div>
+<div style="position: absolute; top: 33589px; left: 240px;"><nobr>if (consume == TRUE) {                    /* See if we need to consume the flags      */</nobr></div>
+<div style="position: absolute; top: 33622px; left: 267px;"><nobr>pgrp-&gt;OSFlagFlags |= flags_rdy;       /* Set ONLY the flags that we got           */</nobr></div>
+<div style="position: absolute; top: 33654px; left: 240px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 33687px; left: 213px;"><nobr>} else {</nobr></div>
+<div style="position: absolute; top: 33719px; left: 240px;"><nobr>*err  = OS_FLAG_ERR_NOT_RDY;</nobr></div>
+<div style="position: absolute; top: 33751px; left: 213px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 33784px; left: 213px;"><nobr>flags_cur = pgrp-&gt;OSFlagFlags;                /* Will return the state of the group       */</nobr></div>
+<div style="position: absolute; top: 33816px; left: 213px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 33849px; left: 213px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 33881px; left: 126px;"><nobr>#endif</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 34071px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="39"><b>Page 39</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 34203px; left: 181px;"><nobr><b>Looking for Event(s) of an Event Flag Group,OSFlagAccept()</b></nobr></div>
+<div style="position: absolute; top: 34247px; left: 181px;"><nobr><b>(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 34420px; left: 166px;"><nobr>default:</nobr></div>
+<div style="position: absolute; top: 34452px; left: 254px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 34485px; left: 254px;"><nobr>flags_cur = (OS_FLAGS)0;</nobr></div>
+<div style="position: absolute; top: 34517px; left: 254px;"><nobr>*err      = OS_FLAG_ERR_WAIT_TYPE;</nobr></div>
+<div style="position: absolute; top: 34549px; left: 254px;"><nobr>break;</nobr></div>
+<div style="position: absolute; top: 34582px; left: 193px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 34614px; left: 193px;"><nobr>return (flags_cur);</nobr></div>
+<div style="position: absolute; top: 34647px; left: 166px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 34679px; left: 166px;"><nobr>#endif</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 34963px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="40"><b>Page 40</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 35119px; left: 234px;"><nobr><b>Querying an Event Flag Group,OSFlagQuery()</b></nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size: 34px; font-family: Times;">
+<div style="position: absolute; top: 35178px; left: 209px;"><nobr>This function is used to check the value of the event flag group.</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 35235px; left: 149px;"><nobr>OS_FLAGS  OSFlagQuery (OS_FLAG_GRP *pgrp, INT8U *err)</nobr></div>
+<div style="position: absolute; top: 35268px; left: 149px;"><nobr>{</nobr></div>
+<div style="position: absolute; top: 35300px; left: 149px;"><nobr>#if OS_CRITICAL_METHOD == 3              /* Allocate storage for CPU status register     */</nobr></div>
+<div style="position: absolute; top: 35332px; left: 176px;"><nobr>OS_CPU_SR  cpu_sr;</nobr></div>
+<div style="position: absolute; top: 35365px; left: 149px;"><nobr>#endif</nobr></div>
+<div style="position: absolute; top: 35397px; left: 176px;"><nobr>OS_FLAGS   flags;</nobr></div>
+<div style="position: absolute; top: 35495px; left: 149px;"><nobr>#if OS_ARG_CHK_EN &gt; 0</nobr></div>
+<div style="position: absolute; top: 35527px; left: 176px;"><nobr>if (pgrp == (OS_FLAG_GRP *)0) {               /* Validate 'pgrp'                               */</nobr></div>
+<div style="position: absolute; top: 35560px; left: 203px;"><nobr>*err = OS_FLAG_INVALID_PGRP;</nobr></div>
+<div style="position: absolute; top: 35592px; left: 203px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 35624px; left: 176px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 35657px; left: 176px;"><nobr>if (pgrp-&gt;OSFlagType != OS_EVENT_TYPE_FLAG) { /* Validate event block type       */</nobr></div>
+<div style="position: absolute; top: 35689px; left: 203px;"><nobr>*err = OS_ERR_EVENT_TYPE;</nobr></div>
+<div style="position: absolute; top: 35722px; left: 203px;"><nobr>return ((OS_FLAGS)0);</nobr></div>
+<div style="position: absolute; top: 35754px; left: 176px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 35787px; left: 149px;"><nobr>#endif</nobr></div>
+</span></font>
+
+<div style="position: absolute; top: 35855px; left: 0pt;"><hr><table width="100%" border="0"><tbody><tr><td align="right" bgcolor="#eeeeee"><font face="arial,sans-serif"><a name="41"><b>Page 41</b></a></font></td></tr></tbody></table></div><font size="5" color="#ff0000" face="Times"><span style="font-size: 34px; font-family: Times; color: rgb(255, 0, 0);">
+<div style="position: absolute; top: 36005px; left: 232px;"><nobr><b>Querying an Event Flag Group,OSFlagQuery(),(Cont.)</b></nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size: 25px; font-family: Times;">
+<div style="position: absolute; top: 36229px; left: 175px;"><nobr>OS_ENTER_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 36262px; left: 202px;"><nobr>flags = pgrp-&gt;OSFlagFlags;</nobr></div>
+<div style="position: absolute; top: 36294px; left: 202px;"><nobr>OS_EXIT_CRITICAL();</nobr></div>
+<div style="position: absolute; top: 36326px; left: 202px;"><nobr>*err = OS_NO_ERR;</nobr></div>
+<div style="position: absolute; top: 36359px; left: 202px;"><nobr>return (flags);                             /* Return the current value of the event flags       */</nobr></div>
+<div style="position: absolute; top: 36391px; left: 175px;"><nobr>}</nobr></div>
+<div style="position: absolute; top: 36424px; left: 175px;"><nobr>#endif</nobr></div>
+</span></font>
+</div></body></html>

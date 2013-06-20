@@ -1,0 +1,119 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MyTask - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A7.bat" with contents
+[
+@echo off
+ml /c /coff /Fl.\Release\os_cpu_a.lst /Fo.\Release\os_cpu_a.obj .\src\os_cpu_a.asm
+]
+Creating command line "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A7.bat"
+Creating temporary file "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A8.bat" with contents
+[
+@echo off
+ml /c /coff /Fl.\Release\intel.lst /Fo.\Release\intel.obj .\src\intel.asm
+]
+Creating command line "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A8.bat"
+Creating temporary file "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A9.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\arp.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\br.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\command.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\debug.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\interrupt.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\ip.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\MyTask.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\nic.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\os_cpu_c.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\pci.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\rtl8139.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\serial.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\sjy.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\sjy22.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\ucos_timer.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\InetAddr.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\neticmp.c"
+"D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\in_cksum.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6A9.tmp" 
+Performing Custom Build Step on .\src\os_cpu_a.asm
+Microsoft (R) Macro Assembler Version 6.11
+Copyright (C) Microsoft Corp 1981-1993.  All rights reserved.
+
+ Assembling: .\src\os_cpu_a.asm
+Performing Custom Build Step on .\src\intel.asm
+Microsoft (R) Macro Assembler Version 6.11
+Copyright (C) Microsoft Corp 1981-1993.  All rights reserved.
+
+ Assembling: .\src\intel.asm
+Creating temporary file "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6AA.tmp" with contents
+[
+..\Entry\Entry.obj ..\bin\ucos-ii.lib /nologo /base:"0x00000000" /entry:"main" /pdb:none /map:"Release/MyTask.map" /machine:I386 /out:"Release/MyTask.exe" /fixed 
+".\Release\arp.obj"
+".\Release\br.obj"
+".\Release\command.obj"
+".\Release\debug.obj"
+".\Release\interrupt.obj"
+".\Release\ip.obj"
+".\Release\MyTask.obj"
+".\Release\nic.obj"
+".\Release\os_cpu_c.obj"
+".\Release\pci.obj"
+".\Release\rtl8139.obj"
+".\Release\serial.obj"
+".\Release\sjy.obj"
+".\Release\sjy22.obj"
+".\Release\ucos_timer.obj"
+".\Release\intel.obj"
+".\Release\os_cpu_a.obj"
+".\Release\InetAddr.obj"
+".\Release\neticmp.obj"
+".\Release\in_cksum.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6AA.tmp"
+Creating temporary file "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6AB.bat" with contents
+[
+@echo off
+..\bin\ExeToImg .\Release\MyTask.exe
+]
+Creating command line "C:\DOCUME~1\LINFUS~1.000\LOCALS~1\Temp\RSP6AB.bat"
+Compiling...
+arp.c
+br.c
+command.c
+D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\command.c(189) : warning C4133: 'function' : incompatible types - from 'struct ifreq *' to 'char *'
+debug.c
+interrupt.c
+ip.c
+MyTask.c
+nic.c
+os_cpu_c.c
+pci.c
+rtl8139.c
+serial.c
+sjy.c
+sjy22.c
+ucos_timer.c
+InetAddr.c
+neticmp.c
+in_cksum.c
+Generating Code...
+D:\cvs_m\ucos-ii_vc\m-ix86pm\MyTask\src\sjy22.c(19) : warning C4761: integral size mismatch in argument; conversion supplied
+Linking...
+LINK : warning LNK4096: /BASE value "0" is invalid for Windows 95; image may not run
+<h3>Output Window</h3>
+Converting...
+ExeToImg 1.1 Copyright (C) 1998, Exposé Corp.
+
+
+
+<h3>Results</h3>
+MyTask.exe - 0 error(s), 3 warning(s)
+</pre>
+</body>
+</html>

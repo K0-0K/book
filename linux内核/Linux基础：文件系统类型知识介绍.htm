@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://www.jz123.cn/text/2129571.html -->
+<HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Linux基础：文件系统类型知识介绍</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META name=keywords content="">
+<META name=description content=Linux基础：文件系统类型知识介绍>
+<SCRIPT language=JavaScript 
+src="Linux基础：文件系统类型知识介绍_files/dedeajax3.js"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+function CheckLogin(){
+var taget_obj = document.getElementById('_loginform');
+myajax = new DedeAjax(taget_obj,false,false,"","","");
+myajax.SendGet("/member/loginindex.php");
+}
+</SCRIPT>
+
+<SCRIPT language=javascript>
+function Digg(divId,aid){
+   var taget_obj = document.getElementById(divId+''+aid);
+   var myajax = new DedeAjax(taget_obj,false,false,"","","");
+   myajax.SendGet2("/digg.php?action=digg&aid="+aid);
+   DedeXHTTP = null;
+}
+</SCRIPT>
+<LINK rel=stylesheet type=text/css href="Linux基础：文件系统类型知识介绍_files/css.css">
+<STYLE>.context {
+	WIDTH: 638px; CLEAR: both
+}
+.diggArea {
+	BACKGROUND-IMAGE: url(/plus/img/diggbg2.gif); PADDING-BOTTOM: 0px; LINE-HEIGHT: 23px; MARGIN: 0px 0px 10px; PADDING-LEFT: 0px; WIDTH: 60px; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 58px; PADDING-TOP: 0px
+}
+.diggNum {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 8px 0px 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; COLOR: #cc0000; FONT-SIZE: 12px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink A {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+</STYLE>
+
+<SCRIPT>
+
+function submitfun(sid,kwid,formid)
+{
+	var se=document.getElementById(sid);
+	var kw=document.getElementById(kwid);
+	var _form=document.getElementById(formid);
+	
+	if (se.value=='1')
+	{
+		_form.action="http://www.jz123.cn/soft/search.asp";
+	}
+	else
+	{
+			_form.action="/plus/search.php";	
+	}
+	_form.submit();
+	return false;
+}
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY>
+<DIV style="DISPLAY: none">
+<SCRIPT language=javascript type=text/javascript 
+src="Linux基础：文件系统类型知识介绍_files/count.htm"></SCRIPT>
+</DIV>
+<DIV id=container>
+<DIV id=headerNav><SPAN id=_loginform>
+<FORM class=login method=post name=form1 action=/member/index_do.php 
+target=_blank><INPUT value=login type=hidden name=fmdo> <INPUT value=login 
+type=hidden name=dopost> <INPUT type=hidden name=gourl> 用户名：<INPUT id=userid 
+class=dl name=userid> 密码：<INPUT class=dl type=password name=pwd> 验证码：<INPUT 
+id=vdcode class=dl name=vdcode> <IMG class=code name=vdcode alt="" 
+align=absMiddle src="Linux基础：文件系统类型知识介绍_files/vdimgck.jpg" width=50 height=20> <INPUT class=anniu value="登 陆" type=submit> <INPUT class=anniu onclick="location.href='/member/index_do.php?fmdo=user&amp;dopost=regnew'" value=注册 type=button name=按钮> 
+</FORM></SPAN>
+<SCRIPT language=JavaScript>CheckLogin();</SCRIPT>
+<A href="http://www.jz123.cn/soft/">源码</A> | <A 
+href="http://book.jz123.cn/">书库</A> | <A href="http://moban.jz123.cn/">模板</A> | 
+<A href="http://myjs.jz123.cn/">特效</A> | <A href="http://ad.jz123.cn/">广告</A> | 
+<A href="http://sc.jz123.cn/">素材</A> | <A href="http://tool.jz123.cn/">工具</A> | 
+<A href="http://wwww.jz123.cn/zz.htm">必备</A> | <A 
+href="http://alexa.jz123.cn/">ALEXA</A> | <A 
+href="http://ziti.jz123.cn/">字体</A></DIV>
+<DIV id=header class=clearfix><A href="http://www.jz123.cn/"><IMG id=logo 
+border=0 name=logo src="Linux基础：文件系统类型知识介绍_files/logo.png"></A> 
+<DIV class=ad468>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/banner.js"></SCRIPT>
+</DIV>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/ad_js.htm"></SCRIPT>
+</DIV>
+<DIV id=nav>
+<UL>
+  <LI id=homepage><A href="http://www.jz123.cn/">首页</A> </LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/news/">互联资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/zhanzhang/">站长在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/SEO/">SEO搜索</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/yunying/">网站运营</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/lianmengzixun/">联盟资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fuwuqi/">服务器类</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/shejizaixian/">设计在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/jianzhanjishu/">网络编程</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fangfa/">程序集锦</A> </LI></UL></DIV>
+<DIV id=userInfo><SPAN><A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><IMG 
+src="Linux基础：文件系统类型知识介绍_files/td_icon.gif"> 会员投稿</A> <A 
+href="http://www.jz123.cn/zhinan.htm"><IMG 
+src="Linux基础：文件系统类型知识介绍_files/tg_icon.gif"> 投稿指南 </A><A 
+href="http://www.jz123.cn/plus/rssmap.html"><IMG 
+src="Linux基础：文件系统类型知识介绍_files/rss.gif"> RSS订阅</A></SPAN> 
+<FORM id=f1 name=formsearch action=/plus/search.php target=_blank><INPUT value=0 
+type=hidden name=kwtype> <INPUT id=keyword class="searchtxt dl" name=keyword> 
+<SELECT id=searchtype name=select> <OPTION selected value=1>源码软件搜索</OPTION> 
+  <OPTION value=titlekeyword>站长资讯搜索</OPTION> <OPTION 
+value=title>仅搜索标题</OPTION></SELECT> <INPUT value=topic type=hidden name=act> <INPUT class=anniu onclick="return submitfun('searchtype','keyword','f1')" value="搜 索" type=submit name=""> 
+</FORM></DIV>
+<SCRIPT language=javascript 
+src="Linux基础：文件系统类型知识介绍_files/ad_js(1).htm"></SCRIPT>
+
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/9w.js"></SCRIPT>
+
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/rd.js"></SCRIPT>
+
+<DIV id=main class=clearfix>
+<DIV class="small right">
+<H2>栏目导航</H2>
+<UL>
+  <LI><A href="http://ad.jz123.cn/">广告代码</A> <A 
+  href="http://tool.jz123.cn/">站长工具</A> <A 
+  href="http://www.jz123.cn/soft/">源码下载</A> <A 
+  href="http://font.jz123.cn/">英文字体</A> 
+  <LI><A href="http://book.jz123.cn/">站长书库</A> <A 
+  href="http://moban.jz123.cn/">网页模板</A> <A 
+  href="http://myjs.jz123.cn/">网页特效</A> <A 
+  href="http://alexa.jz123.cn/">排名查询</A> </LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/260.js"></SCRIPT>
+</DIV>
+<H2>热点推荐</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/2024370.html">笔/面试中常考到的一些linux脚本</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/249407.html">Linux操作系统下隐藏文件的新方</A>
+  <LI><A href="http://www.jz123.cn/text/185024.html">linux操作系统下的域名解析系统</A>
+  <LI><A 
+href="http://www.jz123.cn/text/154728.html">Linux与Unix比较Ftp/Telnet服务</A>
+  <LI><A href="http://www.jz123.cn/text/074402.html">虚拟主机为什么大多要使用Linux</A>
+  <LI><A href="http://www.jz123.cn/text/304121.html">LinuxIPv6环境下DNS服务器配置攻</A>
+  <LI><A href="http://www.jz123.cn/text/304117.html">服务器维护：RHEL5系统下故障处</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/30855.html">Linux无法解析域名的解决办法</A> 
+</LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/248.js"></SCRIPT>
+</DIV>
+<H2>阅览排行</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/0817261.html">检测Linux系统是否被黑的技巧</A>
+  <LI><A href="http://www.jz123.cn/text/1720453.html">Linux Find 命令使用详解</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/177043.html">Apache [forbidden 
+  403]错误的解</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/1217470.html">Linux下Apache配置虚拟主机+SSL</A>
+  <LI><A href="http://www.jz123.cn/text/2814289.html">Linux系统中如何添加自己的库文</A>
+  <LI><A href="http://www.jz123.cn/text/051199.html">关于Linux Grep命令使用的详细介</A>
+  <LI><A href="http://www.jz123.cn/text/2212848.html">基于Linux系统的包过滤防火墙</A>
+  <LI><A href="http://www.jz123.cn/text/0116946.html">Linux操作系统如何释放cache内存</A>
+  <LI><A href="http://www.jz123.cn/text/1824274.html">SSH命令详解</A>
+  <LI><A href="http://www.jz123.cn/text/2223214.html">linux smb.conf详解</A>
+  <LI><A href="http://www.jz123.cn/text/1318817.html">Linux操作系统服务器上进行安全</A>
+  <LI><A href="http://www.jz123.cn/text/2319261.html">如何加强Linux系统在安全方面的</A> 
+</LI></UL></DIV>
+<DIV id=list class=left>
+<DIV id=location>您当前的位置是：<A href="http://www.jz123.cn/">主页</A>&gt;<A 
+href="http://www.jz123.cn/text/fuwuqi/">服务器类</A>&gt;<A 
+href="http://www.jz123.cn/text/Linux/">Linux服务器</A>&gt;</DIV>
+<DIV id=arcContent>
+<H1>Linux基础：文件系统类型知识介绍</H1>
+<P class=info><A href="http://www.jz123.cn/"><FONT 
+color=red>www.jz123.cn</FONT></A>&nbsp;&nbsp;2010-04-21&nbsp;&nbsp; 
+来源:&nbsp;&nbsp; <FONT color=#000099>中国建站 </FONT>&nbsp;&nbsp; <FONT 
+color=#000099>责任编辑(袁袁)</FONT> &nbsp;&nbsp; <A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><FONT 
+color=red>我要投递新闻</FONT></A></P>
+<DIV id=adart class=clearfix><SPAN style="MARGIN: 0px" class=ad310>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/101.js"></SCRIPT>
+</SPAN><SPAN style="MARGIN: 0px" class=310>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/102.js"></SCRIPT>
+</SPAN></DIV>
+<P>　　随着Linux的不断发展，Linux所支持的文件系统类型也在迅速 扩充。伴随着 Linux 2.4 版本的发行，出现了大量的文件系统可能性，其中包括 
+ReiserFS、XFS、JFS 
+和其它文件系统。每一个不同版本的Linux所支持的文件系统类型种类都有所不同，如何知道自己的Linux发行版本的类型哪?可以这样操作：(以笔者使 
+用的Mandrake Linux 8.2为例,)</P>
+<P>　　以超级用户权限登陆Linux，进入/Lib/modules/2.4.18-6mdk/kernel/fs目录执行命令(不同Linux发行版本的Fs目录有些不同你可以用查找FS文件夹的方法找到它)：</P>
+<P>　　#ls</P>
+<P>　　Mandrake Linux 支持的文件系统类型</P>
+<P>　　/Lib/modules/2.4.18-6mdk/kernel/fs中查出当前系统所支持的文件系统种类。从图-1中可以看到笔者使用的 Mandrake 
+Linux 8.2支持的文件系统非常多。Linux系统核心支持十多种文件系统类型：jfs、 
+ReiserFS、ext、ext2、ext3、iso9660、xfs、 
+minx、msdos、umsdos、Vfat、NTFS、Hpfs、Nfs、smb、sysv、proc等。</P>
+<P>　　这里我们对最常用的几个文件系统的发展情况和优缺点作详细介绍：ext、ext2、ext3、jsf、 、xfs、ReiserFS。</P>
+<P>　　一、 ext</P>
+<P>　　ext是第一个专门为Linux的文件系统类型，叫做扩展文件系统。它在1992年4月完成的。它为Linux的发展取得了重要作用。但是在性能和兼容性上存在许多缺陷。现在已经很少使用了。</P>
+<P>　　二、 ext2</P>
+<P>　　ext2是为解决ext文件系统的缺陷而设计的可扩展的高性能的文件系统。又被称为二级扩展文件系统。它是在1993年发布的,设计者是Rey 
+Card。ext2是Linux文件系统类型中使用最多的格式。并且在速度和CPU利用率上较突出，是 GNU/Linux 
+系统中标准的文件系统，其特点为存取文件的性能极好，对于中小型的文件更显示出优势，这主要得利于其簇快取层的优良设计。Ext2 
+可以支持256字节的长文件名，其单一文件大小与文件系统本身的容量上限与文件系统本身的簇大小有关，在一般常见的Intel x86兼容处理器的系统中，簇最大为 
+4KB, 则单一文件大小上限为 2048GB, 而文件系统的容量上限为 
+6384GB。尽管Linux可以支持种类繁多的文件系统，但是2000年以前几乎所有的Linux发行版都用ext2作为默认的文件系统。</P>
+<P>　　ext2的缺点：ext2的设计者主要考虑的是文件系统性能方面的问题。ext2在写入文件内容的同时并没有同时写入文件的meta-data 
+(和文件有关的信息，例如：权限、所有者以及创建和访问时间)。换句话说，Linux先写入文件的内容，然后等到有空的时候才写入文件的meta- 
+data。这样若出现写入文件内容之后但在写入文件的meta-data之前系统突然断电，就可能造成在文件系统就会处于不一致的状态。在一个有大量文件 
+操作的系统中出现这种情况会导致很严重的后果。另外但由于目前核心 2.4 所能使用的单一分割区最大只有 2048GB，尽管文件系统的容量上限为 
+6384G但是实际上能使用的文件系统容量最多也只有 2048GB。</P>
+<P>　　三、 ext3</P>
+<P>　　ext3是由开放资源社区开发的日志文件系统，主要开发人员是Stephen 
+tweedie。ext3被设计成是ext2的升级版本，尽可能地方便用户从ext2fs向ext3fs迁移。ext3在ext2的基础上加入了记录元数 
+据的日志功能，努力保持向前和向后的兼容性。这个文件系统被称为ext2的下一个版本。也就是在保有目前 ext2 
+的格式之下再加上日志功能。ext3是一种日志式文件系统。日志式文件系统的优越性在于：由于文件系统都有快取层参与运作，如不使用时必须将文件系统卸 
+下，以便将快取层的资料写回磁盘中。因此每当系统要关机时，必须将其所有的文件系统全部卸下后才能进行关机。如果在文件系统尚未卸下前就关机 (如停电) 
+时，下次重开机后会造成文件系统的资料不一致，故这时必须做文件系统的重整工作，将不一致与错误的地方修复。然而，此一重整的工作是相当耗时的，特别是容 
+量大的文件系统，而且也不能百分之百保证所有的资料都不会流失。故这在大型的伺服器上可能会造成问题。</P>
+<P>　　ext3的缺点：其最大的缺点是没有现代文件系统所具有的能提高文件数据处理速度和解压的高性能，另外使用ext3文件系统时要注意硬盘限额问题,在这个问题解决之前,不推荐在重要的企业应用上采用ext3+disk 
+quota(磁盘配额)。</P>
+<P>　　四、 jsf</P>
+<P>　　jsf提供了基于日志的字节级文件系统，该文件系统是为面向事务的高性能系统而开发的。jsf(Journaled File System 
+Technology for 
+Linux)的开发者包括AIX(IBM的Unix)的jsf的主要开发者。在AIX上，jfs已经经受住了考验。它是可靠、快速和容易使用的。2000 
+年2月，ibm宣布在一个开放资源许可证下，移植linux版的JSF文件系统。JSFs也是一个有大量用户安装使用的企业级文件系统。它具有可伸缩性和 
+健壮性，与非日志文件系统相比，它的优点是其快速重启能力：Jfs 能够在几秒或几分钟内就把文件系统恢复到一致状态。虽然 jsf 
+主要是为满足服务器(从单处理器系统到高级多处理器和群集系统)的高吞吐量和可靠性需求而设计的，jsf 
+还可用于想得到高性能和可靠性的客户机配置因为在系统崩溃时，jsf 能提供快速文件系统重启时间，所以它是因特网文件服务器的关键技术。使用数据库日志处理技术，jsf 
+能在几秒或几分钟之内把文件系统恢复到一致状态。而在非日志文件系统中，文件恢复可能花费几小时或几天。</P>
+<P>　　jsf的缺点：使用jsf日志文件系统，性能上会有一定损失，系统资源占用的比率也偏高。是因为当它保持一个日志时，系统需要写许多数据。</P>
+<P>　　五、ReiserFS</P>
+<P>　　ReiserFS的第一次公开亮相是在1997年7月23日，Hans 
+Reiser把他的基于平衡树结构的ReiserFS文件系统在网上公布。ReiserFS 3.6.x(作为 Linux 2.4 一部分的版本)是由 Hans 
+Reiser 和他的在Namesys 的开发组共同开发设计的。Hans 
+和他的组员们相信最好的文件系统是那些能够有助于创建独立的共享环境或者命名空间的文件系统，应用程序可以在其中更直接、有效和有力地相互作用。为了实现 
+这一目标，文件系统就应该满足其使用者对性能和功能方面的需要。那样，使用者就能够继续直接地使用文件系统，而不必建造运行在文件系统之上(如数据库之 
+类)的特殊目的层。ReiserFS 使用了特殊的优化 b* 
+平衡树(每个文件系统一个)来组织所有的文件系统数据。这为其自身提供了非常不错的性能改进，也能够减轻文件系统设计上的人为约束。例如，现在一个目录下 可以容纳 
+ext00,000 个子目录。另一个使用 b* 树的好处就是 ReiserFS 
+能够像大多其它的下一代文件系统一样，根据需要动态地分配索引节，而不必在文件系统创建时建立固定的索引节。这有助于文件系统更灵活地适应其面临的各种存 
+储需要，同时提供附加的空间有效率。</P>
+<P>　　Reiserfs被看作是一个更加激进和现代的文件系统。传统的UNIX文件系统是按盘块来进行空间分配的，对于目录和文件等的查找使用了简单的线性查 
+找。这些设计在当时是合适的，但随着磁盘容量的增大和应用需求的增加，传统文件系统在存储效率，速度和功能上已显落后。在reiserfs的下一版 
+reiser4中还提供了对事务的支持。在[url]http://www.namesys.com/v4/v4.html[/url] 
+中有reiser4的介绍和一个简单的reiser4的性能测试。</P>
+<P>　　ReiserFS的缺点：ReiserFS一个最受人批评的缺点是每升级一个版本，都将要将磁盘重新格式化一次。你可以在[url]http://www.namesys.com/[/url] 
+网站了解关于 ReiserFS 的更多信息。</P>
+<P>　　六、Xfs</P>
+<P>　　xfs是一种非常优秀的日志文件系统，它是SGI公司设计的。xfs被称为业界最先进的、最具可升级性的文件系统技术。它是一个全64位,快速、稳固的日 
+志文件系统，多年用于SGI的IRIX操作系统。sgi决定支持Linux社区，将关键的基本架构技术授权于Linux。它以开放资源形式发布了他们自己 
+拥有的xfs的源代码，并开始进行移植。此工作进展得很快，目前已进入beta版阶段。作为一个64位文件系统，xfs可以支持超大数量的文件(9g× 
+1gb，甚至更大的18g×1gb)，可在大型 2d 和 3d 
+数据方面提供显着的性能。xfs有能力预测其它文件系统薄弱环节，同时xfs提供了在不妨碍性能的情况下增强可靠性和快速的事故恢复。SGI的xfs可为 
+linux和开放资源社区带来的新特性有：可升级性：xfs被设计成可升级，以面对大多数的存储容量和i/o存储需求，可处理大型文件和包含巨大数量文件 
+的大型目录，满足二十一世纪快速增长的磁盘需求。xfs有能力动态地为文件分配索引空间，使系统形成高效支持大数量文件的能力。在它的支持下，用户可使用 
+1exabyte (1g×1gb) 大的文件，远远大于现在最大的文件系统。优秀的i/o 
+性能：典型的现代服务器使用大型的条带式磁盘阵列，以提供达数gb/秒的总带宽。xfs可以很好地满足I/O请求的大小和并发I/O请求的数量。　xfs 
+可作为root文件系统,并被lilo支持.在NFS服务器上使用也没问题.支持软件磁盘阵列(RAID)和虚拟集群(LVM)。SGI最新发布xfs为 
+1.0.1版.(在：[url]http://http://oss.sgi.com/projects/xfs/[/url] 可以下载它)。</P>
+<P>　　xfs的缺点：由于xfs比较复杂，实施起来有一些难度，所以目前xfs主要应用于Linux企业应用的高端。</P>
+<P>　　其他文件系统简介：</P>
+<P>　　Minix：Llnux支持的第一个文件系统，对用户有很多限制而且性能低下。有些没有时间标记，其文件名最长l 4个字符。minix 
+文件系统最大的缺点是最大只能使用64M 的硬盘分区，所以在目前已经没有人使用它了。</P>
+<P>　　Xia：Minix文件系统修正后的版本。在一定程度上解决了文件名和文件系统大小的局限。但没有新的特色，目前很少有人使用。</P>
+<P>　　Msdos：msdos 是在Dos、Windows和某些OS/2 
+操作系统上使用的一种文件系统，其名称采用“8+3”的形式，即8个字符的文件名加上3个字符的扩展名。</P>
+<P>　　umsdos： Linux下的扩展msdos文件系统驱动，支持长文件名、所有者、允许权限、连接和设备文件。允许一个普通的msdo 
+s文件系统用于Linux，而且无须为它建立单独的分区。</P>
+<P>　　iso9660： 标准CDROM文件系统，通用的Rock Ridge增强系统，允许长文件名。</P>
+<P>　　Vfat:vfat是Windows9x 和　Windows NT/2000下使用的一种Dos文件系统，其在　Dos 
+文件系统的基础上增加了对长文件名的支持。</P>
+<P>　　Nfs： Sun公司推出的网络文件系统，允许多台计算机之间共享同一文件系统，易于从所有这些计算机上存取文件。</P>
+<P>　　Hpfs： High Performance File System(HPFS) 高性能文件系统(HPFS) HPFS是Microsoft的LAN 
+Manager中的文件系统，同时也是IBM的LAN 
+Server和OS/2的文件系统。HPFS能访问较大的硬盘驱动器，提供更多的组织特性并改善了文件系统的安全特性。</P>
+<P>　　Smb:smb是一种支持 Windows for workgroups、Windows NT 和Lan 
+Manager的基于SMB协议的网络操作系统。</P>
+<P>　　Sysv: sysv文件系统实际上是System V/Coherent 在Linux平台上的文件系统。</P>
+<P>　　Ncpfs:ncpfs是一种Novell NetWare 使用的NCP协议的网络操作系统。</P>
+<P>　　Proc:proc是Linux 系统中作为一种伪文件系统出现的，它用来作为连接内核数据结构的界面。</P>
+<P>　　NTFS：微软Windows NT内核的系列操作系统支持的、一个特别为网络和磁盘配额、文件加密等管理安全特性设计的磁盘格式</P>
+<DIV id=page><BR>
+<P><A href="http://www.jz123.cn/plus/Archiver.php" target=_blank><B><FONT 
+color=#191970>点击浏览当日最新新闻资讯</FONT></B></A></P>
+<P>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/468.js"></SCRIPT>
+</P></DIV>
+<DIV style="PADDING-BOTTOM: 10px" class=clearfix>
+<DIV id=digg29571 class=diggArea>
+<DIV class=diggNum>0</DIV>
+<DIV class=diggLink><A href="javascript:Digg('digg',29571);">顶一下</A></DIV></DIV>
+<P>
+<SCRIPT language=javascript src=""></SCRIPT>
+</P>
+<P>
+<SCRIPT language=javascript src="Linux基础：文件系统类型知识介绍_files/ShouCang.js"></SCRIPT>
+</P></DIV>
+<P class=updown>上一篇：<A 
+href="http://www.jz123.cn/text/2129570.html">linux教程:Git使用技巧篇</A> 下一篇：<A 
+href="http://www.jz123.cn/text/2129572.html">深入研究Linux高精确时序函数</A> </P>
+<DIV class=arcbox>
+<H2>相关文章列表</H2>
+<UL class=clearfix>
+  <LI><A href="http://www.jz123.cn/text/2129572.html">深入研究Linux高精确时序函数</A></LI>
+  <LI><A 
+href="http://www.jz123.cn/text/2129571.html">Linux基础：文件系统类型知识介绍</A></LI>
+  <LI><A href="http://www.jz123.cn/text/2129570.html">linux教程:Git使用技巧篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/2129569.html">linux教程:Git使用基础篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929470.html">linux制作光盘镜像文件</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929469.html">一个硬盘上实现双Linux系统办法</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929468.html">linux基础：tty pty pts 
+  tts介绍</A></LI>
+  <LI><A 
+  href="http://www.jz123.cn/text/1929467.html">linux用busybox制作ramdisk的脚本分</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929466.html">如何获取Linux命令的源代码</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929465.html">linux如何修改用户主目录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929464.html">Linux如何删除用户的历史记录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929463.html">linux远程文件拷贝命令：scp</A> 
+</LI></UL></DIV>
+<FORM class=feedback method=post name=feedback 
+action=/plus/feedback.php?action=send><INPUT value=29571 type=hidden name=arcID> 
+<TEXTAREA rows=6 cols=60 name=msg></TEXTAREA> <STRONG>用户名：</STRONG> <INPUT 
+class="username dl" name=username> <STRONG>密码：</STRONG> <INPUT 
+class="password dl" maxLength=20 type=password name=pwd> <INPUT value=1 
+type=checkbox name=notuser> <STRONG>匿名?</STRONG> <INPUT class=anniu onclick='javascript:if(document.feedback.msg.value!="") document.feedback.submit(); else alert("评论内容不能为空！");' value=发表评论 type=button name=sb> 
+<A href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew" 
+target=_blank>注册</A></FORM>
+<DIV id=feedbox>
+<H2><SPAN>评论总数：<STRONG>0 </STRONG>条 <A 
+href="http://www.jz123.cn/plus/feedback.php?arcID=29571" target=_blank>[ 查看全部 ] 
+</A></SPAN>网友评论</H2>
+<SCRIPT src="Linux基础：文件系统类型知识介绍_files/feedback_js.htm"></SCRIPT>
+</DIV></DIV></DIV><BR class=clearfloat></DIV>
+<DIV id=bottomNav><A href="http://www.jz123.cn/about.htm">关于我们</A> ┆ <A 
+href="http://www.jz123.cn/Disclaimer.htm">隐私版权</A> ┆ <A 
+href="http://www.jz123.cn/contact.htm">广告服务</A> ┆ <A 
+href="http://www.jz123.cn/text/">友情链接</A> ┆ <A 
+href="http://www.jz123.cn/lianxi.htm">联系我们</A> ┆ <A 
+href="http://www.jz123.cn/plus/sitemap.html">网站地图</A> </DIV>
+<DIV id=footer>
+<P>中国建站意见反馈留言板　 电话：021-5430-5621　广告业务:QQ:9576619 
+<P>郑重声明：未经授权禁止转载、摘编、复制或建立镜像.如有违反，追究法律责任 </P>
+<P>Copyright @2004-2008 JZ123 Corporation, All Rights Reserved </P>
+<P><A href="http://www.miibeian.gov.cn/">苏ICP备08101582号</A></P></DIV>
+<DIV style="DISPLAY: none">
+<SCRIPT language=JavaScript charset=gb2312 
+src="Linux基础：文件系统类型知识介绍_files/stat.htm"></SCRIPT>
+</DIV>
+<SCRIPT language=JavaScript src="Linux基础：文件系统类型知识介绍_files/fz.js"></SCRIPT>
+</DIV></BODY></HTML>

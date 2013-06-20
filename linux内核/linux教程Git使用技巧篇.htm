@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://www.jz123.cn/text/2129570.html -->
+<HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>linux教程:Git使用技巧篇</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META name=keywords content="">
+<META name=description content=linux教程:Git使用技巧篇>
+<SCRIPT language=JavaScript src="linux教程Git使用技巧篇_files/dedeajax3.js"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+function CheckLogin(){
+var taget_obj = document.getElementById('_loginform');
+myajax = new DedeAjax(taget_obj,false,false,"","","");
+myajax.SendGet("/member/loginindex.php");
+}
+</SCRIPT>
+
+<SCRIPT language=javascript>
+function Digg(divId,aid){
+   var taget_obj = document.getElementById(divId+''+aid);
+   var myajax = new DedeAjax(taget_obj,false,false,"","","");
+   myajax.SendGet2("/digg.php?action=digg&aid="+aid);
+   DedeXHTTP = null;
+}
+</SCRIPT>
+<LINK rel=stylesheet type=text/css href="linux教程Git使用技巧篇_files/css.css">
+<STYLE>.context {
+	WIDTH: 638px; CLEAR: both
+}
+.diggArea {
+	BACKGROUND-IMAGE: url(/plus/img/diggbg2.gif); PADDING-BOTTOM: 0px; LINE-HEIGHT: 23px; MARGIN: 0px 0px 10px; PADDING-LEFT: 0px; WIDTH: 60px; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 58px; PADDING-TOP: 0px
+}
+.diggNum {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 8px 0px 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; COLOR: #cc0000; FONT-SIZE: 12px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 58px; PADDING-RIGHT: 0px; HEIGHT: 23px; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.diggLink A {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+</STYLE>
+
+<SCRIPT>
+
+function submitfun(sid,kwid,formid)
+{
+	var se=document.getElementById(sid);
+	var kw=document.getElementById(kwid);
+	var _form=document.getElementById(formid);
+	
+	if (se.value=='1')
+	{
+		_form.action="http://www.jz123.cn/soft/search.asp";
+	}
+	else
+	{
+			_form.action="/plus/search.php";	
+	}
+	_form.submit();
+	return false;
+}
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY>
+<DIV style="DISPLAY: none">
+<SCRIPT language=javascript type=text/javascript 
+src="linux教程Git使用技巧篇_files/count.htm"></SCRIPT>
+</DIV>
+<DIV id=container>
+<DIV id=headerNav><SPAN id=_loginform>
+<FORM class=login method=post name=form1 action=/member/index_do.php 
+target=_blank><INPUT value=login type=hidden name=fmdo> <INPUT value=login 
+type=hidden name=dopost> <INPUT type=hidden name=gourl> 用户名：<INPUT id=userid 
+class=dl name=userid> 密码：<INPUT class=dl type=password name=pwd> 验证码：<INPUT 
+id=vdcode class=dl name=vdcode> <IMG class=code name=vdcode alt="" 
+align=absMiddle src="linux教程Git使用技巧篇_files/vdimgck.jpg" width=50 height=20> <INPUT class=anniu value="登 陆" type=submit> <INPUT class=anniu onclick="location.href='/member/index_do.php?fmdo=user&amp;dopost=regnew'" value=注册 type=button name=按钮> 
+</FORM></SPAN>
+<SCRIPT language=JavaScript>CheckLogin();</SCRIPT>
+<A href="http://www.jz123.cn/soft/">源码</A> | <A 
+href="http://book.jz123.cn/">书库</A> | <A href="http://moban.jz123.cn/">模板</A> | 
+<A href="http://myjs.jz123.cn/">特效</A> | <A href="http://ad.jz123.cn/">广告</A> | 
+<A href="http://sc.jz123.cn/">素材</A> | <A href="http://tool.jz123.cn/">工具</A> | 
+<A href="http://wwww.jz123.cn/zz.htm">必备</A> | <A 
+href="http://alexa.jz123.cn/">ALEXA</A> | <A 
+href="http://ziti.jz123.cn/">字体</A></DIV>
+<DIV id=header class=clearfix><A href="http://www.jz123.cn/"><IMG id=logo 
+border=0 name=logo src="linux教程Git使用技巧篇_files/logo.png"></A> 
+<DIV class=ad468>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/banner.js"></SCRIPT>
+</DIV>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/ad_js.htm"></SCRIPT>
+</DIV>
+<DIV id=nav>
+<UL>
+  <LI id=homepage><A href="http://www.jz123.cn/">首页</A> </LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/news/">互联资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/zhanzhang/">站长在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/SEO/">SEO搜索</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/yunying/">网站运营</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/lianmengzixun/">联盟资讯</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fuwuqi/">服务器类</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/shejizaixian/">设计在线</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/jianzhanjishu/">网络编程</A></LI>
+  <LI>|</LI>
+  <LI><A href="http://www.jz123.cn/text/fangfa/">程序集锦</A> </LI></UL></DIV>
+<DIV id=userInfo><SPAN><A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><IMG 
+src="linux教程Git使用技巧篇_files/td_icon.gif"> 会员投稿</A> <A 
+href="http://www.jz123.cn/zhinan.htm"><IMG 
+src="linux教程Git使用技巧篇_files/tg_icon.gif"> 投稿指南 </A><A 
+href="http://www.jz123.cn/plus/rssmap.html"><IMG 
+src="linux教程Git使用技巧篇_files/rss.gif"> RSS订阅</A></SPAN> 
+<FORM id=f1 name=formsearch action=/plus/search.php target=_blank><INPUT value=0 
+type=hidden name=kwtype> <INPUT id=keyword class="searchtxt dl" name=keyword> 
+<SELECT id=searchtype name=select> <OPTION selected value=1>源码软件搜索</OPTION> 
+  <OPTION value=titlekeyword>站长资讯搜索</OPTION> <OPTION 
+value=title>仅搜索标题</OPTION></SELECT> <INPUT value=topic type=hidden name=act> <INPUT class=anniu onclick="return submitfun('searchtype','keyword','f1')" value="搜 索" type=submit name=""> 
+</FORM></DIV>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/ad_js(1).htm"></SCRIPT>
+
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/9w.js"></SCRIPT>
+
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/rd.js"></SCRIPT>
+
+<DIV id=main class=clearfix>
+<DIV class="small right">
+<H2>栏目导航</H2>
+<UL>
+  <LI><A href="http://ad.jz123.cn/">广告代码</A> <A 
+  href="http://tool.jz123.cn/">站长工具</A> <A 
+  href="http://www.jz123.cn/soft/">源码下载</A> <A 
+  href="http://font.jz123.cn/">英文字体</A> 
+  <LI><A href="http://book.jz123.cn/">站长书库</A> <A 
+  href="http://moban.jz123.cn/">网页模板</A> <A 
+  href="http://myjs.jz123.cn/">网页特效</A> <A 
+  href="http://alexa.jz123.cn/">排名查询</A> </LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/260.js"></SCRIPT>
+</DIV>
+<H2>热点推荐</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/2024370.html">笔/面试中常考到的一些linux脚本</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/249407.html">Linux操作系统下隐藏文件的新方</A>
+  <LI><A href="http://www.jz123.cn/text/185024.html">linux操作系统下的域名解析系统</A>
+  <LI><A 
+href="http://www.jz123.cn/text/154728.html">Linux与Unix比较Ftp/Telnet服务</A>
+  <LI><A href="http://www.jz123.cn/text/074402.html">虚拟主机为什么大多要使用Linux</A>
+  <LI><A href="http://www.jz123.cn/text/304121.html">LinuxIPv6环境下DNS服务器配置攻</A>
+  <LI><A href="http://www.jz123.cn/text/304117.html">服务器维护：RHEL5系统下故障处</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/30855.html">Linux无法解析域名的解决办法</A> 
+</LI></UL>
+<DIV class=ad250>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/248.js"></SCRIPT>
+</DIV>
+<H2>阅览排行</H2>
+<UL>
+  <LI><A href="http://www.jz123.cn/text/0817261.html">检测Linux系统是否被黑的技巧</A>
+  <LI><A href="http://www.jz123.cn/text/1720453.html">Linux Find 命令使用详解</A>
+  <LI><A href="http://www.jz123.cn/text/1116033.html">Linux操作系统上安装MySQL数据库</A>
+  <LI><A href="http://www.jz123.cn/text/177043.html">Apache [forbidden 
+  403]错误的解</A>
+  <LI><A href="http://www.jz123.cn/text/263910.html">高手进阶Linux架设最简单的VPN系</A>
+  <LI><A href="http://www.jz123.cn/text/1217470.html">Linux下Apache配置虚拟主机+SSL</A>
+  <LI><A href="http://www.jz123.cn/text/2814289.html">Linux系统中如何添加自己的库文</A>
+  <LI><A href="http://www.jz123.cn/text/051199.html">关于Linux Grep命令使用的详细介</A>
+  <LI><A href="http://www.jz123.cn/text/2212848.html">基于Linux系统的包过滤防火墙</A>
+  <LI><A href="http://www.jz123.cn/text/0116946.html">Linux操作系统如何释放cache内存</A>
+  <LI><A href="http://www.jz123.cn/text/1824274.html">SSH命令详解</A>
+  <LI><A href="http://www.jz123.cn/text/2223214.html">linux smb.conf详解</A>
+  <LI><A href="http://www.jz123.cn/text/1318817.html">Linux操作系统服务器上进行安全</A>
+  <LI><A href="http://www.jz123.cn/text/2319261.html">如何加强Linux系统在安全方面的</A> 
+</LI></UL></DIV>
+<DIV id=list class=left>
+<DIV id=location>您当前的位置是：<A href="http://www.jz123.cn/">主页</A>&gt;<A 
+href="http://www.jz123.cn/text/fuwuqi/">服务器类</A>&gt;<A 
+href="http://www.jz123.cn/text/Linux/">Linux服务器</A>&gt;</DIV>
+<DIV id=arcContent>
+<H1>linux教程:Git使用技巧篇</H1>
+<P class=info><A href="http://www.jz123.cn/"><FONT 
+color=red>www.jz123.cn</FONT></A>&nbsp;&nbsp;2010-04-21&nbsp;&nbsp; 
+来源:&nbsp;&nbsp; <FONT color=#000099>中国建站 </FONT>&nbsp;&nbsp; <FONT 
+color=#000099>责任编辑(袁袁)</FONT> &nbsp;&nbsp; <A 
+href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew"><FONT 
+color=red>我要投递新闻</FONT></A></P>
+<DIV id=adart class=clearfix><SPAN style="MARGIN: 0px" class=ad310>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/101.js"></SCRIPT>
+</SPAN><SPAN style="MARGIN: 0px" class=310>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/102.js"></SCRIPT>
+</SPAN></DIV>
+<P>　　上一篇介绍了Git的基本概念和一些基本命令，本篇的重点在如下三个部分：个性化定制你的Git，更酷更巧妙的使用Git，以及如何在Git 
+Hub上开启你自己的开源项目。在所有技巧中，最重要的技巧是学会查看Git的帮助，因为Git是一个相对复杂的版本控制工具，如果你熟悉它的命令，那么给你带来的价值是不言而喻的，所以要学会掌握那根金手指─查看Git的帮助，在任何Git命令后加上'--help'就会显示该命令的帮助文档，例如 
+'git log --help'你就可以看到命令'git log'的所有使用方法。接下来，从打扮Git开始吧。</P>
+<P>　　Git梳妆</P>
+<P>　　我们可以利用Git的config命令或者直接编辑~/.gitconfig文件(如果没有的话创建它)来为自己打造独一无二的Git。我建议直接编辑用户目录下得.gitconfig文件，拿我本地的文件为例，一一为大家解说，完整的文件内容如下：</P>
+<P>　　[user]</P>
+<P>　　name = Phoenix</P>
+<P>　　email = phoenixtoday@gmail.com</P>
+<P>　　[alias]</P>
+<P>　　co = checkout</P>
+<P>　　ci = commit -a</P>
+<P>　　st = status</P>
+<P>　　br = branch</P>
+<P>　　oneline = log --pretty=oneline --since='2 days ago'</P>
+<P>　　onelog = log -p -1</P>
+<P>　　[color]</P>
+<P>　　status = auto</P>
+<P>　　branch = auto</P>
+<P>　　ui = auto</P>
+<P>　　该文件主要包含三个部分的内容：</P>
+<P>　　用户基本信息：可以设置你的名字和email，这样在你提交代码的时候就会显示出你的名字</P>
+<P>　　命令别名：这是.gitconfig文件中，我最喜欢的部分，它可以大大减少你敲击键盘的次数(俗话说优秀的程序员都很懒么)。在该文件中，我将co设置为checkout的别名，那么下次我只要用'git 
+co new_branch'就可以切换到new_branch分支下了，简洁而优雅;将ci设置为commit 
+-a的别名，-a选项表示我不需要将修改和删除的文件通过'git add'命令来加入索引，这样设置在使用'git ci 
+-m"message"'这样的命令时，相当于连续执行了'git add 被修改和删除的文件'和'git commit 
+-m"message"'两条命令，再一次节省了我们宝贵的时间;最酷的是最后两行，后面的章节会一一介绍。Git提供许多优雅、人性化的选项，我们如果再结合别名的设置，可以发挥你最大的想象力，真的让你自己的Git活起来</P>
+<P>　　颜色：每次看diff时是不是挺痛苦的?那么为什么不给我们的Git加上颜色呢?只需要加上那三行，就可以让红色和绿色的提示出现在你的控制台中</P>
+<P>　　Git灵动</P>
+<P>　　现在来讲讲'git log'，'git stash'，'git formate-patch'三个命令的用法和技巧：</P>
+<P>　　git log：不同于SVN，Git将代码的历史记录全部在本地克隆了一份，所以这就使得'git 
+log'这样的命令使用起来非常的迅速，也是我最常使用的Git命令之一。在使用'git 
+log'的时候，你可以加入很多的后缀。'-p'表示查看修改的具体内容，例如'git log 
+-p'它不但会打印出提交的时间、版本号、人员等，还会将具体的代码修改部分打印出来;'-n'其中n表示一个数字，这表示打印出具体的几个日志，例如 'git -p 
+-1'正如我的Git配置文件中设置的onelog别名的内容一样，就表示打印出当前最新的一次日志记录及具体修改内容;'--since="时间/日期"'，'--until="时间/日期"'表示你希望查找某个日期段的日志记录，例如'git 
+log --since="2 days ago" --until="1 hour 
+ago"'就表示你希望查找两天前到一小时前的日志记录，Git是足够聪明的，它可以将类似于'2 days ago'和'1 hour 
+ago'这种表示时间的英语转化为具体的时间数字;有的时候，你不希望翻很多页才可以看到所有的日志，你只希望看到简短的说明，那么Git为你提供打印格式的定制'git 
+--pretty=格式种类'，其中格式种类有full、short、oneline等，例如'git log 
+pretty=oneline'就会将每条代码历史记录放在一行里，看起来简单明了</P>
+<P>　　git 
+stash：在第一篇中，我举了一个使用branch解决紧急任务切换的问题，其实stash命令也可以很好的解决这样的问题。当你不想提交当前完成了一半的代码，但是却不得不修改一个紧急Bug，那么使用'git 
+stash'就可以将你当前未提交到本地(和服务器)的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的，所以你可以放心的修 
+Bug，等到修完Bug，提交到服务器上后，再使用'git stash 
+apply'将以前一半的工作应用回来。也许有的人会说，那我可不可以多次将未提交的代码压入到栈中?答案是可以的。当你多次使用'git 
+stash'命令后，你的栈里将充满了未提交的代码，这时候你会对将哪个版本应用回来有些困惑，'git stash 
+list'命令可以将当前的Git栈信息打印出来，你只需要将找到对应的版本号，例如使用'git stash apply 
+stash@{1}'就可以将你指定版本号为stash@{1}的工作取出来，当你将所有的栈都应用回来的时候，可以使用'git stash 
+clear'来将栈清空</P>
+<P>　　git 
+format-patch：当你想给一个开源项目(例如Rails)提交一段代码的时候，或者你想给小组成员展示一段你并不想提交的代码，那么你还是需要 
+patch的，Git的'format-patch'命令良好的支持了这个功能。我来基本描述一下使用这个命令的步骤和方法：第一，利用branch命令创建一个分支;第二，修改你的代码;第三，在该分支上提交你的修改;第四，使用'git 
+format-patch'命令来生成一个patch文件，例如：'git format-patch master --stdout &gt; 
+~/Desktop/tmp.patch'就是将工作分支与master主干的不同，存放在'~/Desktop'文件夹下，生成一个叫做 
+tmp.patch的文件(另一种简单的版本是利用diff命令，例如'git diff ..master &gt; 
+~/Desktop/tmp.patch')，这样就生成了patch文件。那么别人就可以使用'git apply'命令来应用patch，例如'git apply 
+~/Desktop/tmp.patch'就是将patch打在当前的工作分支上</P>
+<P>　　Git亲友团</P>
+<P>　　Git的使用技巧还包括利用Git包含的和附加的一些强大工具，这些工具主要包括git svn、git 
+citool、gitk和Git的自动提示脚本：</P>
+<P>　　git 
+svn：Git和SVN可以很方便的集成在一起，这就大大减少了从SVN向Git迁移的学习成本，这也是我特别建议大家首次接触Git的使用方式。git 
+svn是一个Git内置的工具，你安装了Git也就安装了它，譬如说你们团队有一个SVN服务器，但是你想利用Git本地的一些强大特性，那么你依然可以安装Git，使用Git的branch功能，只不过再更新代码和提交代码的时候，使用git 
+svn命令即可。在这里我简单的讲讲最常使用和需要注意的两个命令，其余的命令读者可以通过'git svn --help'来查看：'git svn 
+rebase'命令取代了'svn update'用于将服务器代码更新到本地;'git svn dcommit'取代了'svn 
+ci'，需要注意的是，本地必须用Git提交了代码之后，再使用'git svn dcommit'。只需要这样，你就可以轻松地从SVN转向Git了。</P>
+<P>　　git 
+citool：这是我个人使用率最频繁的一个工具，上一篇文章也提到了，Git可以本地提交代码，那么你自然可以本地修改你的提交了，这个工具就是可视化界面，用于修改你本地的提交。只要在你的工作区间输入'git 
+citool'，就会出现如下的界面</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用技巧篇（图一） src="linux教程Git使用技巧篇_files/1048070.png" width=570 
+height=315></CENTER>
+<P>&nbsp;</P>
+<P>　　你可以用它来提交代码，可以用它来将你本地的修改追加在上一次提交的代码中，你还可以用它来修改你上次提交的信息等等。这个工具可以大大帮助你完成以前SVN不可能完成的任务</P>
+<P>　　gitk：是一个查看主干/分支情况的工具，它主要用于观察整个项目的分支状况，使用'gitk'命令就会出现一个图形化界面供你查看，本篇就简单的说一下，大家回去试试就知道了</P>
+<P>　　Git 的自动提示脚本：它是Shawn O. 
+Pearce为了让Git使用起来更方便而写得Shell脚本，你可以在http://gitweb.hawaga.org.uk/ 
+找到一个叫做gitcompletion的脚本，下载下来，并按照该脚本中指导的方式进行配置，你就具有了Git自动提示(敲入部分Git命令，再按 
+Tab键)的功能，而且有了这个脚本，你也可以看到你当前工作在哪个branch下。惟一的不足是，它只支持Linux、Unix、Mac操作系统(推荐大家都用Mac进行开发)</P>
+<P>　　Git实战─Git Hub</P>
+<P>　　经过这么长时间理论知识的熏陶，想必大家早已跃跃欲试了，那么我们在Git Hub上建立一个开源项目作为实战演习吧。Git 
+Hub是全球最大的Git服务器供应商，每个帐号有100M的免费使用空间，网址是：https://github.com/</P>
+<P>　　首先我们在Git Hub上创建一个帐号，按照上面指导的方法设置好你的认证信息(每次提交代码都会需要这个认证信息)</P>
+<P>　　然后，如下图新建一个项目(选择Create a New Repository)，名叫git usage</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用技巧篇（图二） src="linux教程Git使用技巧篇_files/1048071.png" width=570 
+height=296></CENTER>
+<P>&nbsp;</P>
+<P>　　在服务器端，你可以看到这个项目的信息，包括项目源代码的URL，如下图</P>
+<P>　　 </P>
+<CENTER><IMG alt=Git使用技巧篇（图三） src="linux教程Git使用技巧篇_files/1048072.png" width=395 
+height=114></CENTER>
+<P>&nbsp;</P>
+<P>　　在本地使用如下的命令，就可以完成你的第一次提交了：</P>
+<P>　　mkdir git-usage(创建项目目录) cd git-usage(进入项目目录) git init(Git初始化) touch 
+README(创建一个README文件) git add README(增加该文件到索引) git commit -m 'first commit'(本地提交) 
+git remote add origin git@github.com:phoenixtoday/git-usage.git(增加远程服务器代码库地址) 
+git push origin master(将本地代码提交到远程服务器上)</P>
+<P>　　总结</P>
+<P>　　我所在的项目小组自从使用Git后，发现Git提供的种种特性大大提高了我们的开发效率，在认识Git前我们无法想象一个版本控制工具可以让开发任务切换变得如此自然流畅。所以我强烈推荐大家使用Git，你付出的学习绝对物有所值</P>
+<DIV id=page><BR>
+<P><A href="http://www.jz123.cn/plus/Archiver.php" target=_blank><B><FONT 
+color=#191970>点击浏览当日最新新闻资讯</FONT></B></A></P>
+<P>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/468.js"></SCRIPT>
+</P></DIV>
+<DIV style="PADDING-BOTTOM: 10px" class=clearfix>
+<DIV id=digg29570 class=diggArea>
+<DIV class=diggNum>0</DIV>
+<DIV class=diggLink><A href="javascript:Digg('digg',29570);">顶一下</A></DIV></DIV>
+<P>
+<SCRIPT language=javascript src=""></SCRIPT>
+</P>
+<P>
+<SCRIPT language=javascript src="linux教程Git使用技巧篇_files/ShouCang.js"></SCRIPT>
+</P></DIV>
+<P class=updown>上一篇：<A 
+href="http://www.jz123.cn/text/2129569.html">linux教程:Git使用基础篇</A> 下一篇：<A 
+href="http://www.jz123.cn/text/2129571.html">Linux基础：文件系统类型知识介绍</A> </P>
+<DIV class=arcbox>
+<H2>相关文章列表</H2>
+<UL class=clearfix>
+  <LI><A 
+href="http://www.jz123.cn/text/2129571.html">Linux基础：文件系统类型知识介绍</A></LI>
+  <LI><A href="http://www.jz123.cn/text/2129570.html">linux教程:Git使用技巧篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/2129569.html">linux教程:Git使用基础篇</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929470.html">linux制作光盘镜像文件</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929469.html">一个硬盘上实现双Linux系统办法</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929468.html">linux基础：tty pty pts 
+  tts介绍</A></LI>
+  <LI><A 
+  href="http://www.jz123.cn/text/1929467.html">linux用busybox制作ramdisk的脚本分</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929466.html">如何获取Linux命令的源代码</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929465.html">linux如何修改用户主目录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929464.html">Linux如何删除用户的历史记录</A></LI>
+  <LI><A href="http://www.jz123.cn/text/1929463.html">linux远程文件拷贝命令：scp</A></LI>
+  <LI><A href="http://www.jz123.cn/text/0228975.html">如何实时添加Bash History</A> 
+  </LI></UL></DIV>
+<FORM class=feedback method=post name=feedback 
+action=/plus/feedback.php?action=send><INPUT value=29570 type=hidden name=arcID> 
+<TEXTAREA rows=6 cols=60 name=msg></TEXTAREA> <STRONG>用户名：</STRONG> <INPUT 
+class="username dl" name=username> <STRONG>密码：</STRONG> <INPUT 
+class="password dl" maxLength=20 type=password name=pwd> <INPUT value=1 
+type=checkbox name=notuser> <STRONG>匿名?</STRONG> <INPUT class=anniu onclick='javascript:if(document.feedback.msg.value!="") document.feedback.submit(); else alert("评论内容不能为空！");' value=发表评论 type=button name=sb> 
+<A href="http://www.jz123.cn/member/index_do.php?fmdo=user&amp;dopost=regnew" 
+target=_blank>注册</A></FORM>
+<DIV id=feedbox>
+<H2><SPAN>评论总数：<STRONG>0 </STRONG>条 <A 
+href="http://www.jz123.cn/plus/feedback.php?arcID=29570" target=_blank>[ 查看全部 ] 
+</A></SPAN>网友评论</H2>
+<SCRIPT src="linux教程Git使用技巧篇_files/feedback_js.htm"></SCRIPT>
+</DIV></DIV></DIV><BR class=clearfloat></DIV>
+<DIV id=bottomNav><A href="http://www.jz123.cn/about.htm">关于我们</A> ┆ <A 
+href="http://www.jz123.cn/Disclaimer.htm">隐私版权</A> ┆ <A 
+href="http://www.jz123.cn/contact.htm">广告服务</A> ┆ <A 
+href="http://www.jz123.cn/text/">友情链接</A> ┆ <A 
+href="http://www.jz123.cn/lianxi.htm">联系我们</A> ┆ <A 
+href="http://www.jz123.cn/plus/sitemap.html">网站地图</A> </DIV>
+<DIV id=footer>
+<P>中国建站意见反馈留言板　 电话：021-5430-5621　广告业务:QQ:9576619 
+<P>郑重声明：未经授权禁止转载、摘编、复制或建立镜像.如有违反，追究法律责任 </P>
+<P>Copyright @2004-2008 JZ123 Corporation, All Rights Reserved </P>
+<P><A href="http://www.miibeian.gov.cn/">苏ICP备08101582号</A></P></DIV>
+<DIV style="DISPLAY: none">
+<SCRIPT language=JavaScript charset=gb2312 
+src="linux教程Git使用技巧篇_files/stat.htm"></SCRIPT>
+</DIV>
+<SCRIPT language=JavaScript src="linux教程Git使用技巧篇_files/fz.js"></SCRIPT>
+</DIV></BODY></HTML>

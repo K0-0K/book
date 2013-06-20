@@ -1,0 +1,68 @@
+#include <Windows.h>
+#include "resource.h"
+
+#pragma code_page(936)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_ABOUT DIALOGEX 0, 0, 290, 59		//DIALOGEX RESOURCE
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"		// CAPTION   STATEMENT
+FONT 8, "MS Shell Dlg", 400, 0, 0x1		// FONT  STATEMENT
+BEGIN
+    LTEXT           "Windows Resource Demo",3001,26,14,119,8,SS_NOPREFIX	//  CONTROL
+    LTEXT           "Copyright (C) 2008",3002,26,30,119,8						//  CONTROL
+    DEFPUSHBUTTON   "OK",IDOK,234,14,32,14,WS_GROUP				//  CONTROL
+    DEFPUSHBUTTON   "Quit",IDCANCEL,234,31,32,14,WS_GROUP			//   CONTROL
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_MAIN MENU		//MENU RESOURCE
+BEGIN
+    POPUP "File"		// POPUP RESOURCE
+    BEGIN
+        MENUITEM "&Open",		ID_FILE_COPY	// MENUITEM  STATEMENT
+        MENUITEM "&Save",		ID_FILE_SAVE40002// MENUITEM  STATEMENT
+        MENUITEM SEPARATOR			// MENUITEM  STATEMENT
+        MENUITEM "E&xit", 		ID_FILE_EXIT  // MENUITEM  STATEMENT
+    END
+    POPUP "Eidt"		// POPUP RESOURCE
+    BEGIN
+        MENUITEM "&Copy",		ID_EIDT_COPY// MENUITEM  STATEMENT
+        MENUITEM "&Paste", 	ID_EIDT_PASTE// MENUITEM  STATEMENT
+    END
+    POPUP "Help"		// POPUP RESOURCE
+    BEGIN
+        MENUITEM "&About",	ID_HELP_ABOUT// MENUITEM  STATEMENT
+    END
+END
+
+IDR_MENU_POPUP MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Copy",		ID_POPUP_COPY
+        MENUITEM "&Paste",		ID_POPUP_PASTE
+        MENUITEM "Cu&t",		ID_POPUP_CUT
+        POPUP "&Info"
+        BEGIN
+            MENUITEM "Co&unt", 		ID_INFO_A
+            MENUITEM "&Size",			ID_INFO_B
+        END
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_ICON_MAIN			ICON			"res\\icon.ico"  //ICON RESOURCE

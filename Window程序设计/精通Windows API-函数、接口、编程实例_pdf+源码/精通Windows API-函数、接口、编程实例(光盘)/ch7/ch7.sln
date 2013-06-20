@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Event", "Event\Event.vcproj", "{EC4ABC7C-8E8C-4823-9642-5351124A5940}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mutex", "Mutex\Mutex.vcproj", "{8187B10F-3523-4D96-9B1E-32C1E3888695}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Semaphore", "Semaphore\Semaphore.vcproj", "{65A74A86-2519-4B93-9230-305A58E602D0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Timer", "Timer\Timer.vcproj", "{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EventM", "EventM\EventM.vcproj", "{D4A7B85E-1D17-4558-B496-51904F253B07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Mutex|Win32 = Mutex|Win32
+		Non_Mutex|Win32 = Non_Mutex|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Debug|Win32.Build.0 = Debug|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Mutex|Win32.ActiveCfg = Mutex|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Mutex|Win32.Build.0 = Mutex|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Non_Mutex|Win32.ActiveCfg = Non_Mutex|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Non_Mutex|Win32.Build.0 = Non_Mutex|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Release|Win32.ActiveCfg = Release|Win32
+		{EC4ABC7C-8E8C-4823-9642-5351124A5940}.Release|Win32.Build.0 = Release|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Debug|Win32.Build.0 = Debug|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Mutex|Win32.ActiveCfg = Mutex|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Mutex|Win32.Build.0 = Mutex|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Non_Mutex|Win32.ActiveCfg = Non_Mutex|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Non_Mutex|Win32.Build.0 = Non_Mutex|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Release|Win32.ActiveCfg = Release|Win32
+		{8187B10F-3523-4D96-9B1E-32C1E3888695}.Release|Win32.Build.0 = Release|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Debug|Win32.Build.0 = Debug|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Mutex|Win32.ActiveCfg = Mutex|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Mutex|Win32.Build.0 = Mutex|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Non_Mutex|Win32.ActiveCfg = Non_Mutex|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Non_Mutex|Win32.Build.0 = Non_Mutex|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Release|Win32.ActiveCfg = Release|Win32
+		{65A74A86-2519-4B93-9230-305A58E602D0}.Release|Win32.Build.0 = Release|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Debug|Win32.Build.0 = Debug|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Mutex|Win32.ActiveCfg = Mutex|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Mutex|Win32.Build.0 = Mutex|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Non_Mutex|Win32.ActiveCfg = Non_Mutex|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Non_Mutex|Win32.Build.0 = Non_Mutex|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Release|Win32.ActiveCfg = Release|Win32
+		{7DA6417F-1FB9-4773-9A13-2B2F5C31B994}.Release|Win32.Build.0 = Release|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Debug|Win32.Build.0 = Debug|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Mutex|Win32.ActiveCfg = Mutex|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Mutex|Win32.Build.0 = Mutex|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Non_Mutex|Win32.ActiveCfg = Non_Mutex|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Non_Mutex|Win32.Build.0 = Non_Mutex|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Release|Win32.ActiveCfg = Release|Win32
+		{D4A7B85E-1D17-4558-B496-51904F253B07}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

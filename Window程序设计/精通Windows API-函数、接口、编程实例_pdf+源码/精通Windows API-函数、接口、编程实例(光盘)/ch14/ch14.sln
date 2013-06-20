@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sock_srv", "sock_srv\sock_srv.vcproj", "{3CAD1C97-BACA-4869-A799-D9A2D2456451}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sock_cnt", "sock_cnt\sock_cnt.vcproj", "{84B70C8C-F550-4AA5-B383-45BA098B8CF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ip", "ip\ip.vcproj", "{7BD977F3-D87C-4623-95F1-4EE8B9AC5A2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CAD1C97-BACA-4869-A799-D9A2D2456451}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3CAD1C97-BACA-4869-A799-D9A2D2456451}.Debug|Win32.Build.0 = Debug|Win32
+		{3CAD1C97-BACA-4869-A799-D9A2D2456451}.Release|Win32.ActiveCfg = Release|Win32
+		{3CAD1C97-BACA-4869-A799-D9A2D2456451}.Release|Win32.Build.0 = Release|Win32
+		{84B70C8C-F550-4AA5-B383-45BA098B8CF7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{84B70C8C-F550-4AA5-B383-45BA098B8CF7}.Debug|Win32.Build.0 = Debug|Win32
+		{84B70C8C-F550-4AA5-B383-45BA098B8CF7}.Release|Win32.ActiveCfg = Release|Win32
+		{84B70C8C-F550-4AA5-B383-45BA098B8CF7}.Release|Win32.Build.0 = Release|Win32
+		{7BD977F3-D87C-4623-95F1-4EE8B9AC5A2D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7BD977F3-D87C-4623-95F1-4EE8B9AC5A2D}.Debug|Win32.Build.0 = Debug|Win32
+		{7BD977F3-D87C-4623-95F1-4EE8B9AC5A2D}.Release|Win32.ActiveCfg = Release|Win32
+		{7BD977F3-D87C-4623-95F1-4EE8B9AC5A2D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

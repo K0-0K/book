@@ -1,0 +1,363 @@
+编译环境：
+内核名称:Linux
+内核发行版：3.0.0-25-generic
+内核版本：#41-Ubuntu SMP Mon Aug 13 17:59:54 UTC 2012
+硬件架构名称：i686
+硬件平台：i386
+操作系统：GNU/Linux
+当前系统gcc版本号：4.6.1
+
+在Linux中建立整个ARM交叉编译环境的整体过程为： 
+1、  下载源码包
+2、  建立编译目录并设置环境变量
+3、  安装内核头文件
+4、  安装二进制工具（binutils）
+5、  安装glibc头文件
+6、  建立初始编译器工具链（简版gcc）
+7、  建立glibc库
+8、  建立全套编译器工具链（full gcc）
+9、  验证
+
+一、下载源码包
+
+GNU的所有源码文件都可以到这个地址下载：http://ftp.gnu.org/gnu/
+Linux Kernel源代码可以去这里下载：http://www.kernel.org
+mpc可以去这里下载：http://www.multiprecision.org
+
+下载的源码包如下：
+binutils-2.22.1.tar.bz2
+wget -c http://ftp.gnu.org/gnu/binutils/binutils-2.22.1.tar.bz2
+
+gcc-4.6.1.tar.bz2			
+wget -c http://ftp.gnu.org/gnu/gcc/gcc-4.6.3/gcc-4.6.1.tar.bz2
+
+glibc-2.13.tar.bz2 
+wget -c http://ftp.gnu.org/gnu/glibc/glibc-2.13.tar.bz2 
+
+glibc-linuxthreads-2.5.tar.bz2 
+wget -c http://ftp.gnu.org/gnu/glibc/glibc-linuxthreads-2.5.tar.bz2 
+
+glibc-ports-2.13.tar.bz2
+wget -c http://ftp.gnu.org/gnu/glibc/glibc-ports-2.13.tar.bz2  
+
+gmp-5.0.2.tar.bz2 
+wget -c http://ftp.gnu.org/gnu/gmp/gmp-5.0.2.tar.bz2 
+
+mpc-0.9.tar.gz
+wget -c http://www.multiprecision.org/mpc/download/mpc-0.9.tar.gz
+
+mpfr-3.0.1.tar.bz2 
+wget -c http://ftp.gnu.org/gnu/mpfr/mpfr-3.0.1.tar.bz2
+
+linux-3.0.3.tar.bz2
+wget -c http://www.kernel.org/pub/linux/kernel/v2.6/longterm/v2.6.32/linux-3.0.3.tar.bz2
+
+二、建立编译目录并设置环境变量
+
+选定自己的工作目录，如我选择/mnt/cctc作为自己的工作目录。然后再cctc中建立source, cross-tools目录，实例：
+
+mount -v -t ext4 /dev/sda8 /mnt/cctc
+cd /mnt/cctc
+mkdir -v source
+mkdir -v cross-tools
+
+各文件夹的作用如下：
+
+/mnt/cctc：交叉编译环境的主目录
+
+/mnt/cctc/source：存放binutils、gcc、glibc, kernel源码, 以及各源码编译目录。
+
+/mnt/cctc/cross-tools: 存放编译好的目标体系的 头文件，库，工具等
+
+
+建立好编译目录之后便是设置环境变量（建议直接在~/.bashrc中修改，注意修改之后要source一下）。如下：
+=============================================================================================================
+#让bash 无记忆
+set +h
+
+#禁用参数
+unset CFLAGS
+unset CXXFLAGS
+
+#整个交叉编译环境的根目录
+export CCTC_DIR=/mnt/cctc						
+
+#设置编译参数HOST, TARGET, BUILD
+export CCTC_HOST_ARM="$(echo $MACHTYPE | sed "s/$(echo $MACHTYPE | cut -d- -f2)/cross/")"
+export CCTC_TARGET_ARM="arm-none-linux-gnueabi"
+export CCTC_BUILD_ARM="$(echo $MACHTYPE | sed "s/$(echo $MACHTYPE | cut -d- -f2)/cross/")"
+
+#源码路径根目录
+export SOURCE_DIR=$CCTC_DIR/source
+
+#当前使用的arm-linux- binutils工具类的版本
+export CUR_BINUTILS_VERSION=2.22
+#当前使用的arm-linux-gcc工具类的版本
+export CUR_GCC_VERSION=4.6.3
+#当前使用的kernel的版本
+export CUR_KERNEL_VERSION=3.0.3
+#当前使用的glibc的版本
+export CUR_GLIBC_VERSION=2.13
+#当前使用的linuxthreads的版本
+export CUR_GLIBC_LINUXTHREADS_VERSION=2.5
+#当前使用的ports的版本
+export CUR_GLIBC_PORTS_VERSION=2.13
+#当前使用的gmp的版本
+export CUR_GMP_VERSION=5.0.5
+#当前使用的mpfr的版本
+export CUR_MPFR_VERSION=3.0.1
+#当前使用的mpc的版本
+export CUR_MPC_VERSION=0.9
+
+#编译出来的工具路径根目录
+export TOOLS_DIR_ARM=$CCTC_DIR/cross-tools/arm
+
+#目标文件夹的路径前缀
+export BUILD_TARGET_PREFIX_ARM=$TOOLS_DIR_ARM/$CUR_GCC_VERSION
+
+#目标体系 根目录
+export SYSROOT_ARM=$BUILD_TARGET_PREFIX_ARM
+
+#当前使用的arm-linux-gcc工具类的路径
+export CUR_GCC_PATH_ARM=$BUILD_TARGET_PREFIX_ARM
+
+#当前使用的kernel的路径
+export CUR_KERNEL_PATH=$SOURCE_DIR/linux-$CUR_KERNEL_VERSION
+
+#当前使用的arm-linux- binutils工具类的路径
+export CUR_BINUTILS_PATH_ARM=$BUILD_TARGET_PREFIX_ARM
+
+#导入到PATH中，并前置。
+export PATH=$CUR_GCC_PATH_ARM/bin:$PATH
+
+============================================================================================================
+
+sudo apt-get install texinfo bison dejagnu ecpect flex build-essential libncurses5-dev autoconf libgd2-xpm-dev
+
+先安装 
+ppl-0.10.2 
+cloog-ppl-0.15.9 
+再装 ppl-0.11.2
+
+拷贝所有源码到$SOURCE_DIR
+跳到工作目录
+cd $SOURCE_DIR
+
+三、安装内核头文件
+
+首先解压Linux内核源文件
+tar -zxf linux-${CUR_KERNEL_VERSION}.tar.gz
+cd linux-${CUR_KERNEL_VERSION}
+cp -v arch/arm/configs/s3c2410_defconfig ./.config
+make ARCH=arm CROSS_COMPILE=arm-linux- menuconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-
+mkdir -pv ${SYSROOT_ARM}/usr/include/asm
+cp -rv include/{asm-generic,linux,mtd,scsi,sound} ${SYSROOT_ARM}/usr/include
+cp -rv arch/arm/include/asm ${SYSROOT_ARM}/usr/include/asm
+
+
+四、安装二进制工具（binutils）
+
+Binutils是一些二进制工具集合，其中包含了常用的一些命令。首先将binutils-2.22.tar.gz解压, 然后进入build-binutils目录，配置并编译binutils，最后使用make install进行安装。实例：
+cd ${SOURCE_DIR}
+tar -zxf binutils-${CUR_BINUTILS_VERSION}.tar.gz
+mkdir -v binutils-build
+cd binutils-build
+
+export AR=ar
+export AS=as
+../binutils-${CUR_BINUTILS_VERSION}/configure \
+--target=${CCTC_TARGET_ARM} \
+--prefix=${BUILD_TARGET_PREFIX_ARM} \
+--with-sysroot=${SYSROOT_ARM} \
+--disable-nls --disable-multilib \
+--enable-shared --enable-werror=no
+make configure-host
+make
+make install
+
+cp -v ../binutils-${CUR_BINUTILS_VERSION}/include/libiberty.h ${SYSROOT_ARM}/usr/include
+完成后，检查一下生成的工具。实例：
+ls $CUR_BINUTILS_PATH_ARM/bin
+
+可以看到这些：
+arm-lshain-linux-gnueabi-addr2line  arm-lshain-linux-gnueabi-nm
+arm-lshain-linux-gnueabi-ar         arm-lshain-linux-gnueabi-objcopy
+arm-lshain-linux-gnueabi-as         arm-lshain-linux-gnueabi-objdump
+arm-lshain-linux-gnueabi-c++filt    arm-lshain-linux-gnueabi-ranlib
+arm-lshain-linux-gnueabi-elfedit    arm-lshain-linux-gnueabi-readelf
+arm-lshain-linux-gnueabi-gprof      arm-lshain-linux-gnueabi-size
+arm-lshain-linux-gnueabi-ld         arm-lshain-linux-gnueabi-strings
+arm-lshain-linux-gnueabi-ld.bfd     arm-lshain-linux-gnueabi-strip
+这些生成的文件的作用分别为：
+arm-lshain-linux-gnueabi-addr2line：将你要找的地址转成文件和行号，它要使用 debug 信息
+arm-lshain-linux-gnueabi-ar：产生、修改和解开一个存档文件
+arm-lshain-linux-gnueabi-as：GNU的汇编器
+arm-lshain-linux-gnueabi-c++filt：C++ 和 java 中有一种重载函数，所用的重载函数最后会被编译转化成汇编的标，c++filt 就是实现这种反向的转化，根据标号得到函数名
+arm-lshain-linux-gnueabi-elfedit：elfedit updates the ELF header of ELF files which have the matching ELF
+       		   machine and file types.  The options control how and which fields in
+       		   the ELF header should be updated.
+arm-lshain-linux-gnueabi-gprof：GNU汇编器预编译器
+arm-lshain-linux-gnueabi-ld：GNU的连接器
+arm-lshain-linux-gnueabi-ld.bfd：用途暂时未知
+arm-lshain-linux-gnueabi-nm：列出目标文件的符号和对应的地址
+arm-lshain-linux-gnueabi-objcopy：将某种格式的目标文件转化成另外格式的目标文件
+arm-lshain-linux-gnueabi-objdump：显示目标文件的信息
+arm-lshain-linux-gnueabi-ranlib：为一个存档文件产生一个索引，并将这个索引存入存档文件中
+arm-lshain-linux-gnueabi-readelf：显示 elf 格式的目标文件的信息
+arm-lshain-linux-gnueabi-size：显示目标文件各个节的大小和目标文件的大小
+arm-lshain-linux-gnueabi-strings：打印出目标文件中可以打印的字符串，有个默认的长度，为4
+arm-lshain-linux-gnueabi-strip：剥掉目标文件的所有的符号信息
+具体作用可以使用man or info查看
+
+四、 安装 glibc 头文件
+
+cd $SOURCE_DIR
+tar -zxf glibc-$CUR_GLIBC_VERSION.tar.gz
+cd glibc-$CUR_GLIBC_VERSION
+tar -jxf ../glibc-ports-$CUR_GLIBC_PORTS_VERSION.tar.bz2
+mv -v glibc-ports-$CUR_GLIBC_PORTS_VERSION ports
+mkdir -v ../glibc-build
+cd ../glibc-build
+
+#tar -jxf ../glibc-linuxthreads-$CUR_GLIBC_LINUXTHREADS_VERSION.tar.bz2
+建立完成之后，便可以开始配置并编译glibc了，实例：
+
+echo "libc_cv_forced_unwind=yes" > config.cache
+echo "libc_cv_c_cleanup=yes" >> config.cache
+echo "libc_cv_arm_tls=yes" >> config.cache
+echo "install_root=${SYSROOT_ARM}" > configparms
+
+export CC=gcc
+../glibc-${CUR_GLIBC_VERSION}/configure \
+--host=${CCTC_TARGET_ARM} \
+--prefix="/usr" \
+--with-headers=${SYSROOT_ARM}/usr/include \
+--cache-file=config.cache 
+make install-headers
+install -dv ${SYSROOT_ARM}/usr/include/bits
+cp -v bits/stdio_lim.h ${SYSROOT_ARM}/usr/include/bits
+
+touch ${SYSROOT_ARM}/usr/include/gnu/stubs.h
+cp -v ../glibc-$CUR_GLIBC_VERSION/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/pthreadtypes.h \
+  ${SYSROOT_ARM}/usr/include/bits
+
+四、建立初始编译器（简版 gcc）
+
+gcc是最主要的编译器。其编译需要gmp, mpfr, mpc包。
+首先将gcc-4.6.3.tar.bz2解压, 然后将gmp-5.0.5.tar.bz2、mpfr-2.4.2.tar.bz2 、mpc-0.9.tar.gz分别解压至gcc源码所在目录，并将目录重命名为gmp、mpfr、mpc，然后进入gcc-build目录，进行编译配置，然后make all-gcc并安装，最后make all-target-gcc并安装。实例：
+cd $SOURCE_DIR
+tar -jxf gcc-$CUR_GCC_VERSION.tar.bz2
+cd gcc-$CUR_GCC_VERSION
+tar -jxf ../gmp-$CUR_GMP_VERSION.tar.bz2
+mv -v gmp-$CUR_GMP_VERSION gmp
+tar -jxf ../mpfr-$CUR_MPFR_VERSION.tar.bz2
+mv -v mpfr-$CUR_MPFR_VERSION mpfr
+tar -zxf ../mpc-$CUR_MPC_VERSION.tar.gz
+mv -v mpc-$CUR_MPC_VERSION mpc
+
+因为现在还没有 glibc 的支持,所以需要配置一些简单选项。对于 arm-linux 工具,可以修改 $SOURCE_DIR/gcc-4.6.1/gcc/config/arm/t-linux 配置文件。
+将"TARGET_LIBGCC2_CFLAGS = -fomit-frame-pointer –fPIC"改为
+  "TARGET_LIBGCC2-CFLAGS = -fomit-frame-pointer -fPIC -Dinhibit_libc -D__gthr_posix_h"
+-Dinhibit_libc 选项意思是禁止使用 libc,因为现在还没有为目标板编译出 glibc 库。
+
+gedit $SOURCE_DIR/gcc-$CUR_GCC_VERSION/gcc/config/arm/t-linux
+
+
+然后便可以切换到目录gcc-build进行编译了，实例：
+mkdir -v $SOURCE_DIR/gcc-build
+cd $SOURCE_DIR/gcc-build
+
+../gcc-$CUR_GCC_VERSION/configure \
+--target=$CCTC_TARGET_ARM \
+--prefix=${BUILD_TARGET_PREFIX_ARM} \
+--without-headers --with-newlib \
+--disable-threads --disable-shared --disable-libmudflap --disable-libssp --disable-nls --disable-libgomp --disable-multilib \
+--enable-languages=c 
+make all-gcc
+make install-gcc
+make all-target-libgcc
+make install-target-libgcc
+
+完成之后，$CUR_GCC_PATH_ARM/bin下又多了几个文件：
+arm-lshain-linux-gnueabi-cpp
+arm-lshain-linux-gnueabi-gcc
+arm-lshain-linux-gnueabi-gcc-4.6.1
+arm-lshain-linux-gnueabi-gcov
+
+这些生成的文件的作用分别为：
+arm-lshain-linux-gnueabi-cpp：GNU的C的预编译器
+arm-lshain-linux-gnueabi-gcc：GNU的C语言编译器
+arm-lshain-linux-gnueabi-gcc-4.6.1：GNU的C语言编译器，其实和arm-linux-gcc是一样的
+arm-lshain-linux-gnueabi-gcov：gcc 的辅助测试工具，用来分析和优化程序
+
+ln -vs libgcc.a `arm-none-linux-gnueabi-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
+"/mnt/cctc/tools/arm/gcc-4.6.3/lib/gcc/arm-none-linux-gnueabi/4.6.3/libgcc_eh.a" -> "libgcc.a"
+
+六、建立glic库
+
+Glibc是交叉编译环境的运行库。
+首先将glibc-2.16.0.tar.bz2解压，将glibc-ports-2.16.0.tar.bz2解压至glibc源码所在目录，并重命名为ports。进入glibc-build文件夹，建立用于配置glibc的config.cache文件，然后配置并编译glibc，安装glibc，最后修改libc.so。实例：
+
+cd $SOURCE_DIR
+tar -zxf glibc-$CUR_GLIBC_VERSION.tar.gz
+cd glibc-$CUR_GLIBC_VERSION
+tar -jxf ../glibc-ports-$CUR_GLIBC_PORTS_VERSION.tar.bz2
+mv -v glibc-ports-$CUR_GLIBC_PORTS_VERSION ports
+mkdir -v ../glibc-build
+cd ../glibc-build
+
+建立完成之后，便可以开始配置并编译glibc了，实例：
+
+#清理一下
+make distclean 
+
+echo "libc_cv_forced_unwind=yes" > config.cache
+echo "libc_cv_c_cleanup=yes" >> config.cache
+echo "libc_cv_arm_tls=yes" >> config.cache
+echo "install_root=${SYSROOT_ARM}" > configparms
+
+BUILD_CC="gcc" CC="${CCTC_TARGET_ARM}-gcc" \
+AR="${CCTC_TARGET_ARM}-ar" RANLIB="${CCTC_TARGET_ARMT}-ranlib" \
+../glibc-$CUR_GLIBC_VERSION/configure \
+--prefix=/usr \
+--libexecdir=/usr/lib/glibc \
+--build=${CCTC_HOST_ARM} \
+--host=${CCTC_TARGET_ARM} \
+--disable-profile \
+--enable-add-ons --enable-kernel=2.6.0 \
+--with-tls --with-__thread \
+--with-binutils=$CUR_BINUTILS_PATH_ARM/bin \
+--with-headers=${SYSROOT_ARM}/usr/include \
+--cache-file=config.cache
+
+make
+make install
+
+七， 安装完整的GCC
+
+六、编译完整的GCC
+cd $SOURCE_DIR
+tar -jxf gcc-$CUR_GCC_VERSION.tar.bz2
+cd gcc-$CUR_GCC_VERSION
+tar -jxf ../gmp-$CUR_GMP_VERSION.tar.bz2
+mv -v gmp-$CUR_GMP_VERSION gmp
+tar -jxf ../mpfr-$CUR_MPFR_VERSION.tar.bz2
+mv -v mpfr-$CUR_MPFR_VERSION mpfr
+tar -zxf ../mpc-$CUR_MPC_VERSION.tar.gz
+mv -v mpc-$CUR_MPC_VERSION mpc
+
+mkdir -v $SOURCE_DIR/gcc-build
+cd $SOURCE_DIR/gcc-build
+
+../gcc-$CUR_GCC_VERSION/configure \
+--target=$CCTC_TARGET_ARM \
+--prefix=${BUILD_TARGET_PREFIX_ARM} \
+--disable-multilib --disable-nls \
+--enable-shared --enable-languages=c,c++ --enable-__cxa_atexit --enable-c99 \
+--enable-long-long --enable-threads=posix \
+--with-sysroot=${SYSROOT_ARM}
+
+make all
+make install
+

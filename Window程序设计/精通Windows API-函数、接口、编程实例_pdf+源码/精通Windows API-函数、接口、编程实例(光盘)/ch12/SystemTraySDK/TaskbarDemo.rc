@@ -1,0 +1,36 @@
+#include "resource.h"
+
+#pragma code_page(936)
+// ICON
+IDI_TASKBARDEMO         ICON                    "res\\TaskbarDemo.ICO"
+IDI_ICON4               ICON                    "res\\icon4.ico"
+IDI_ICON3               ICON                    "res\\icon3.ico"
+IDI_ICON2               ICON                    "res\\icon2.ico"
+IDI_ICON1               ICON                    "res\\icon1.ico"
+
+// MENU ## IDC_TASKBARDEMO
+IDC_TASKBARDEMO MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Hide",                       IDM_HIDE
+    END
+END
+// MENU ## IDR_POPUP_MENU
+IDR_POPUP_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "Action",                      IDM_ANIMATE
+        MENUITEM "Exit",                        IDM_EXIT
+        MENUITEM "Hide",                        IDM_HIDE
+    END
+END
+
+// STRINGTABLE
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "TaskbarDemo"
+    IDS_HELLO               "System Tray demonstration"
+    IDC_TASKBARDEMO         "TASKBARDEMO"
+END

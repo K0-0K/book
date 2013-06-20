@@ -1,0 +1,1 @@
+﻿document.writeln("<iframe width=\"468\" height=\"60\" marginwidth=\"0\" marginheight=\"0\" allowtransparency=\"true\" scrolling=\"no\" style=\"margin:0px; padding:0px;\" frameborder=\"0\" src=\"http:\/\/www.jz123.cn\/gg\/95.htm\"><\/iframe>")

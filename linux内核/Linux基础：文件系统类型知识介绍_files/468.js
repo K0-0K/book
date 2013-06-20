@@ -1,0 +1,2 @@
+document.writeln("<a href='http://www.72e.net/Combine/surprised.aspx?cid=ad_jz123' target='_blank'><img src='http://www.jz123.cn/kanli/ld468.gif' width='468' height='60' border=0 alt=''></a>");
+document.writeln("<a href='http://www.chinaccnet.com' target='_blank'><img src='http://www.jz123.cn/kanli/zd468.gif' width='468' height='60' border=0 alt=''></a>");

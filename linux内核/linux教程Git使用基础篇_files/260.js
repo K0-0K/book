@@ -1,0 +1,1 @@
+document.writeln("<iframe width=\"250\" height=\"81\" marginwidth=\"0\" marginheight=\"0\" allowtransparency=\"true\" scrolling=\"no\" style=\"margin:0px; padding:0px;\" frameborder=\"0\" src=\"http:\/\/www.jz123.cn\/kanli\/a4.htm\"><\/iframe>")

@@ -1,0 +1,5 @@
+LIBRARY	"env_dll"
+
+EXPORTS
+	EnumEnvironmentVariables
+	ChangeEnviromentVariables

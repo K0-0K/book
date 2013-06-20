@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnumDevice", "EnumDevice\EnumDevice.vcproj", "{F0CF3903-8F39-4E0C-9458-849A0606090C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeviceChange", "DeviceChange\DeviceChange.vcproj", "{EA20286E-6D38-432D-ADDC-F9435872D6C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IOCTL", "IOCTL\ioctl.vcproj", "{5B7D0DD7-1C85-4FDF-AE46-B4E581F5BE56}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DriverLoader", "DriverLoader\DriverLoader.vcproj", "{5966C078-2DA6-4114-8C57-2F9622A9BF08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0CF3903-8F39-4E0C-9458-849A0606090C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F0CF3903-8F39-4E0C-9458-849A0606090C}.Debug|Win32.Build.0 = Debug|Win32
+		{F0CF3903-8F39-4E0C-9458-849A0606090C}.Release|Win32.ActiveCfg = Release|Win32
+		{F0CF3903-8F39-4E0C-9458-849A0606090C}.Release|Win32.Build.0 = Release|Win32
+		{EA20286E-6D38-432D-ADDC-F9435872D6C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EA20286E-6D38-432D-ADDC-F9435872D6C9}.Debug|Win32.Build.0 = Debug|Win32
+		{EA20286E-6D38-432D-ADDC-F9435872D6C9}.Release|Win32.ActiveCfg = Release|Win32
+		{EA20286E-6D38-432D-ADDC-F9435872D6C9}.Release|Win32.Build.0 = Release|Win32
+		{5B7D0DD7-1C85-4FDF-AE46-B4E581F5BE56}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5B7D0DD7-1C85-4FDF-AE46-B4E581F5BE56}.Debug|Win32.Build.0 = Debug|Win32
+		{5B7D0DD7-1C85-4FDF-AE46-B4E581F5BE56}.Release|Win32.ActiveCfg = Release|Win32
+		{5B7D0DD7-1C85-4FDF-AE46-B4E581F5BE56}.Release|Win32.Build.0 = Release|Win32
+		{5966C078-2DA6-4114-8C57-2F9622A9BF08}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5966C078-2DA6-4114-8C57-2F9622A9BF08}.Debug|Win32.Build.0 = Debug|Win32
+		{5966C078-2DA6-4114-8C57-2F9622A9BF08}.Release|Win32.ActiveCfg = Release|Win32
+		{5966C078-2DA6-4114-8C57-2F9622A9BF08}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
