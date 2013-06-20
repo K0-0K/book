@@ -1,0 +1,1216 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0073)http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html -->
+<HTML><HEAD><TITLE>Fractions in The Farey Sequences and the Stern-Brocot Tree</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META content="Dr R Knott: fibandphi (AT) ronknott.com" name=author>
+<META 
+content="An online calculator for Farey Fractions and the Stern-Brocot tree of fractions" 
+name=description>
+<META 
+content="Farey fraction calculator, fractions, sort, order,&#13;  decimal fraction, fractional, rational, calculate, mediant, lowest terms, all fractions, ordered, sorted,&#13;  decimal, decimals, converter, evaluate, convert, convertion, LR paths,&#13; fraction,Stern, Brocot, tree, table, series, sequence, row" 
+name=keywords>
+<META http-equiv=Content-Script-Type content=text/javascript><LINK 
+href="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/global.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css>.fless1 {
+	COLOR: red
+}
+.fgtr1 {
+	COLOR: blue
+}
+</STYLE>
+
+<SCRIPT language=JavaScript 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/global.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/RAT.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/CF.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript src="" type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/FractionsCalc.js" 
+type=text/javascript></SCRIPT>
+
+<META content="MSHTML 6.00.2900.6169" name=GENERATOR></HEAD>
+<BODY>
+<H1>Fractions in the Farey Series and the Stern-Brocot Tree </H1>
+<H2>Contents </H2>The <IMG height=14 alt="Things To Do" 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/ttdIcon.gif" 
+width=25> icon means there is a <SPAN class=ttd>Things to do</SPAN> 
+investigation at the end of the section. The <IMG height=13 alt=calculator 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/calcicon.gif" 
+width=34> icon means there is an interactive calculator in this section. 
+<UL class=contentsl1>
+  <LI><A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#farey">Farey 
+  Series</A> 
+  <UL class=contentsl2>
+    <LI><A 
+    href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareycomp">The 
+    Complementary Fraction</A> 
+    <UL class=contentsl3>
+      <LI><A 
+      href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareydenoms">The 
+      Denominators</A> 
+      <LI><A 
+      href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareynumer">The 
+      Numerators</A> </LI></UL>
+    <LI><A 
+    href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareyneighb">Neighbouring 
+    Fractions in Farey Series</A> 
+    <UL class=contentsl3>
+      <LI><A 
+      href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareymediant">The 
+      Mediant</A> </LI></UL>
+    <LI><A 
+    href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareycalc">The 
+    Farey Fractions Calculator <IMG height=13 alt=calculator 
+    src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/calcicon.gif" 
+    width=34></A> </LI></UL>
+  <LI><A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#anotherser">Another 
+  arrangement of Fractions</A> 
+  <UL class=contentsl2>
+    <LI><A 
+    href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#sbfulltree">The 
+    Stern-Brocot Tree of Fractions</A> 
+    <UL class=contentsl3>
+      <LI><A 
+      href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#thesbtree">The 
+      Stern-Brocot Tree</A> 
+      <LI><A 
+      href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#sbLR">A 
+      Path in the Tree to <I>every</I> fraction</A> </LI></UL>
+    <LI><A 
+    href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#sbcalc">The 
+    Stern-Brocot Fractions Calculator <IMG height=13 alt=calculator 
+    src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/calcicon.gif" 
+    width=34></A> <IMG height=14 alt="Things To Do" 
+    src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/ttdIcon.gif" 
+    width=25> </LI></UL>
+  <LI><A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#refs">References</A> 
+  </LI></UL><A name=farey></A>
+<H2>Farey Series </H2>If we list all the "small" fractions, that is, those using 
+no number higher than 5, say, and if we list them <I><B>in order of size from 0 
+to 1</B></I>, then the resulting series is called a Farey series:<BR>
+<TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=middle>0</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>1</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>1</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>1</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>2</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>1</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>3</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>2</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>3</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>4</TD>
+    <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>1</TD></TR>
+  <TR>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3></TD></TR>
+  <TR>
+    <TD align=middle></TD>
+    <TD align=middle>5</TD>
+    <TD align=middle>4</TD>
+    <TD align=middle>3</TD>
+    <TD align=middle>5</TD>
+    <TD align=middle>2</TD>
+    <TD align=middle>5</TD>
+    <TD align=middle>3</TD>
+    <TD align=middle>4</TD>
+    <TD align=middle>5</TD>
+    <TD align=middle></TD></TR></TBODY></TABLE>Such series of small fractions have 
+many interesting properties. <BR>There is a Farey series for each size of 
+maximum denominator so we call the maximum denominator of a series the 
+<B>order</B> of that series and talk about "the Farey series of order 5" for 
+instance. 
+<P>It makes the maths tidier if we start at 0 and end with 1 and write these as 
+0/1 and 1/1:<BR>
+<TABLE align=center>
+  <TBODY>
+  <TR>
+    <TH>order</TH>
+    <TH>Farey series</TH>
+    <TH>count</TH></TR>
+  <TR>
+    <TD>1</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>2</TD></TR>
+  <TR>
+    <TD>2</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>3</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>5</TD></TR>
+  <TR>
+    <TD>4</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>3</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>7</TD></TR>
+  <TR>
+    <TD>5</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>3</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>3</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>4</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>11</TD></TR>
+  <TR>
+    <TD>6</TD>
+    <TD>
+      <TABLE class=small cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>0</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>3</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>2</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>3</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>4</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>5</TD>
+          <TD vAlign=center rowSpan=3>&nbsp;&nbsp;</TD>
+          <TD vAlign=center align=middle>1</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>1</TD>
+          <TD align=middle>6</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>4</TD>
+          <TD align=middle>5</TD>
+          <TD align=middle>6</TD>
+          <TD align=middle>1</TD></TR></TBODY></TABLE></TD>
+    <TD>13</TD></TR>
+  <TR>
+    <TD colSpan=3>...</TD></TR></TBODY></TABLE>
+<P>The lengths of these series (counts) are 2, 3, 5, 7, 11, 13, 19, 23, 29, 33, 
+.. <A href="http://www.research.att.com/~njas/sequences/A005728">A005728</A> 
+and, apart from the first, are always odd. Up until 29 it looked as if they 
+might all be primes, but 33 puts an end to that theory.<BR><A 
+name=fareycomp></A>
+<H3>The Complementary Fraction </H3>This is because if <SPAN 
+class=math><SUP>a</SUP>/<SUB>b</SUB></SPAN> is in a Farey series then so is 
+<SPAN class=math>1 – <SUP>a</SUP>/<SUB>b</SUB> = 
+<SUP>(b–a)</SUP>/<SUB>b</SUB></SPAN>, called its <B>complement</B>. <BR>Even 
+<SUP>0</SUP>/<SUB>0</SUB> has a complement: <SUP>1</SUP>/<SUB>1</SUB>.<BR>There 
+is one fraction not paired in this way because it is equal to its 
+<I>complement</I>: <SUP>1</SUP>/<SUB>2</SUB>.<BR>So there are always <B>an odd 
+number of fractions in any Farey series</B> beyond those of order 1, as each is 
+paired with its complement except for <SUP>1</SUP>/<SUB>2</SUB>. 
+<P><A name=fareydenoms></A>
+<H4>The Denominators </H4>In the table of Farey series, the denominators have a 
+pattern. To generate the denominators of the next row (order 7) we insert a 7 
+wherever two neighbouring denominators of level 6 sum to 7:<BR>
+<DIV><PRE>Level 6:  1   6   5   4   3   5   2   5   3   4   5   6   1
+Level 7:    7           7       7   7       7           7
+</PRE></DIV>We can then number the new fractions with numerators in order from 1 
+to 6 since there are 6 of them. However, in general there are not n-1 fractions 
+with a denominator of n since some of them will not be in lowest form. <A 
+name=fareynumer></A>
+<H4>The Numerators </H4>Are there any patterns in the numerators?<BR>We noticed 
+above that both <SPAN class=math>a/b</SPAN> and its complement <SPAN 
+class=math>(b–a)/b</SPAN> are in the same Farey series. The Farey series are 
+always in increasing size so the sum of the second fraction from the end is the 
+complement of the second fraction (from the beginning), and so on for the third, 
+fourth, etc, till we get to the central fraction <SUP>1</SUP>/<SUB>2</SUB>. Such 
+pairs have the same denominator and their numerators will sum or n, the order of 
+the Farey series. <A name=fareyneighb></A>
+<H3>Neighbouring Fractions in Farey Series </H3>An important property of two 
+neighbouring fractions in any Farey series is that "cross-multiplying" gives two 
+<I>consecutive</I> integers. In other words, if <SPAN 
+class=math><SUP>a</SUP>/<SUB>b</SUB></SPAN> and <SPAN 
+class=math><SUP>p</SUP>/<SUB>q</SUB></SPAN> are consecutive terms in any Farey 
+series, then <SPAN class=math>b×p</SPAN> is the next integer after <SPAN 
+class=math>a×q</SPAN>. For instance, the Farey seris of order 6 has ..., 
+<SUP>1</SUP>/<SUB>3</SUB>, <SUP>2</SUP>/<SUB>5</SUB>, ... and <SPAN 
+class=math>5×1 = 5</SPAN> , <SPAN class=math>3×2 = 6</SPAN>. This works for 
+<I>all</I> pairs of terms in <I>all</I> Farey series <I>if</I> we write the 
+first fraction, 0, as <SUP>0</SUP>/<SUB>1</SUB>. 
+<DIV align=center>
+<TABLE class=math cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=center rowSpan=3>... ,&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>a</TD>
+    <TD vAlign=center rowSpan=3>,&nbsp;&nbsp;</TD>
+    <TD vAlign=center align=middle>p</TD>
+    <TD vAlign=center rowSpan=3>,&nbsp;&nbsp;... ⇒ b p – a q = 1</TD></TR>
+  <TR>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD>
+    <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 alt=" " 
+      src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+      width="100%"></TD></TR>
+  <TR>
+    <TD align=middle>b</TD>
+    <TD align=middle>q</TD></TR></TBODY></TABLE></DIV><A name=fareymediant></A>
+<H4>The Mediant </H4>Another way to represent all small fractions is to use the 
+fact that between fractions <SPAN class=math><SUP>a</SUP>/<SUB>b</SUB></SPAN> 
+and <SPAN class=math><SUP>p</SUP>/<SUB>q</SUB></SPAN> lies the fraction <SPAN 
+class=math><SUP>(a+p)</SUP>/<SUB>(b+q)</SUB></SPAN> formed by summing their 
+numerators and their denominators:<BR>
+<TABLE cellSpacing=0 cellPadding=0 align=center>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE class=math cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>a</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>b</TD></TR></TBODY></TABLE></TD>
+    <TD>&nbsp;&nbsp;&lt;&nbsp;&nbsp;</TD>
+    <TD>
+      <TABLE class=math cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>a + p</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>b + q</TD></TR></TBODY></TABLE></TD>
+    <TD>&nbsp;&nbsp;&lt;&nbsp;&nbsp;</TD>
+    <TD>
+      <TABLE class=math cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle>p</TD></TR>
+        <TR>
+          <TD style="LINE-HEIGHT: 3px" vAlign=center height=3><IMG height=1 
+            alt=" " 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/black.gif" 
+            width="100%"></TD></TR>
+        <TR>
+          <TD align=middle>q</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR>The 
+central fraction here is called the <I>mediant</I> of the other two.<BR>
+<UL>
+  <LI>between <SUP>1</SUP>/<SUB>2</SUB> and <SUP>1</SUP>/<SUB>3</SUB> lies their 
+  mediant: <SUP>2</SUP>/<SUB>5</SUB> 
+  <LI>the mediant of <SUP>1</SUP>/<SUB>6</SUB> and <SUP>1</SUP>/<SUB>4</SUB> is 
+  <SUP>2</SUP>/<SUB>10</SUB> which reduces to <SUP>1</SUP>/<SUB>5</SUB> 
+  <LI>the mediant of <SUP>0</SUP>/<SUB>1</SUB> and <SUP>1</SUP>/<SUB>4</SUB> is 
+  <SUP>1</SUP>/<SUB>5</SUB> 
+  <LI>the mediant of <SUP>4</SUP>/<SUB>5</SUB> and <SUP>1</SUP>/<SUB>1</SUB> is 
+  <SUP>5</SUP>/<SUB>6</SUB> </LI></UL>For any three successive fractions in any 
+Farey series, the middle one is the mediant of the other two <I>but not always 
+in its lowest form</I> as we saw with the mediant of <SUP>1</SUP>/<SUB>6</SUB> 
+and <SUP>1</SUP>/<SUB>4</SUB> above. <BR>John Farey observed this in a letter of 
+1816 to <I>the Philosophical Magazine</I> and asked if it was always true. It 
+was soon proved so by Cauchy who gave gave them the name "Farey series". However 
+C Haros had already proved this in 1802 and it seems his work was unknown to 
+both Farey and Cauchy but it is Farey's name that is now always given to these 
+series. (See the <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#references">References</A> 
+below for more on this in both Hardy and Wright's book and the wonderfully 
+inspiring book by Beiler.) <A name=anotherser></A>
+<H2>Another arrangement of Fractions </H2>There is another way to arrange all 
+fractions. It uses the mediant operation but this time it <I>always gives the 
+mediant fractions in their lowest terms</I>. <BR>We again start with a row of 
+just two fractions: <SUP>0</SUP>/<SUB>1</SUB> and 
+<SUP>1</SUP>/<SUB>1</SUB>.<BR>The rows of Farey fractions table has <B>all</B> 
+fractions with a denominator n or less. However, in this new table this is not 
+true, but we do still include all fractions once and once only. It uses the 
+mediant of two fractions to fill in each row as follows:<BR>
+<UL>
+  <LI>We again start with <SUP>0</SUP>/<SUB>1</SUB> and 
+  <SUP>1</SUP>/<SUB>1</SUB> as the first row. 
+  <LI>Each subsequent row includes all the fractions from the previous level, as 
+  does the Farey series table 
+  <LI>Every gap between two fractions on the previous level is filled with their 
+  <I>mediant</I> fraction on the next level compared ti the Farey table where 
+  row n only had in it the extra fractions with a denominator of n. </LI></UL>
+<TABLE class=small 
+style="BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; BORDER-LEFT: silver 1px solid; BORDER-BOTTOM: silver 1px solid" 
+cellSpacing=0 cellPadding=3 rules=rows align=center>
+  <TBODY>
+  <TR>
+    <TH>level</TH>
+    <TH colSpan=9>series</TH>
+    <TH class=whitebg align=middle>count</TH></TR>
+  <TR class=lemonbg>
+    <TD class=whitebg align=middle>0</TD>
+    <TD><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=whitebg align=middle>2</TD></TR>
+  <TR class=orangebg>
+    <TD class=whitebg align=middle>1</TD>
+    <TD><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=whitebg align=middle>3</TD></TR>
+  <TR class=lemonbg>
+    <TD class=whitebg align=middle>2</TD>
+    <TD><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD></TD>
+    <TD><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD></TD>
+    <TD><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=whitebg align=middle>5</TD></TR>
+  <TR class=orangebg>
+    <TD class=whitebg align=middle>3</TD>
+    <TD><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD><SUP>1</SUP>/<SUB>4</SUB></TD>
+    <TD><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD><SUP>2</SUP>/<SUB>5</SUB></TD>
+    <TD><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD><SUP>3</SUP>/<SUB>5</SUB></TD>
+    <TD><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD><SUP>3</SUP>/<SUB>4</SUB></TD>
+    <TD><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=whitebg align=middle>9</TD></TR>
+  <TR class=lemonbg>
+    <TD class=whitebg align=middle></TD>
+    <TD align=middle colSpan=9>...</TD></TR></TBODY></TABLE>So every fraction apart 
+from 0/1 and 1/0 is the mediant of two consecutive 'parent' fractions from the 
+level above. <BR>Each fraction produces two 'children' formed from the mediants 
+of itself and the fraction on its left and with the fraction on its 
+right.<BR>This family 'tree' of fractions has some interesting properties: 
+<UL>
+  <LI>eventually all fractions appear in the tree 
+  <LI>fractions with the same denominator first appear on different levels in 
+  the tree, unlike the Farey fraction rows where all fractions with denominator 
+  n appeared on the same row:<BR>
+  <BLOCKQUOTE>level 3: <SPAN class=dim><SUP>0</SUP>/<SUB>1</SUB>, 
+    <SUP>1</SUP>/<SUB>4</SUB>, <SUP>1</SUP>/<SUB>3</SUB>,</SPAN> 
+    <SUP>2</SUP>/<SUB>5</SUB>, <SPAN 
+    class=dim><SUP>1</SUP>/<SUB>2</SUB></SPAN>,<SUP>3</SUP>/<SUB>5</SUB>, <SPAN 
+    class=dim><SUP>2</SUP>/<SUB>3</SUB>, <SUP>3</SUP>/<SUB>4</SUB>, 
+    1</SPAN><BR>level 4:<SPAN class=dim> <SUP>0</SUP>/<SUB>1</SUB>,</SPAN> 
+    <SUP>1</SUP>/<SUB>5</SUB>, <SPAN class=dim><SUP>1</SUP>/<SUB>4</SUB>, 
+    <SUP>2</SUP>/<SUB>7</SUB>, <SUP>1</SUP>/<SUB>3</SUB>, 
+    <SUP>3</SUP>/<SUB>8</SUB>, <SUP>2</SUP>/<SUB>5</SUB>, 
+    <SUP>3</SUP>/<SUB>7</SUB>, <SUP>1</SUP>/<SUB>2</SUB>, 
+    <SUP>4</SUP>/<SUB>7</SUB>, <SUP>3</SUP>/<SUB>5</SUB>, 
+    <SUP>5</SUP>/<SUB>8</SUB>, <SUP>2</SUP>/<SUB>3</SUB>, 
+    <SUP>5</SUP>/<SUB>7</SUB>, <SUP>3</SUP>/<SUB>4</SUB>,</SPAN> 
+    <SUP>4</SUP>/<SUB>5</SUB>, <SPAN class=dim>1</SPAN><BR>but<BR>Farey series 
+    of order 5: <SPAN class=dim><SUP>0</SUP>/<SUB>1</SUB>,</SPAN> 
+    <SUP>1</SUP>/<SUB>5</SUB>, <SPAN class=dim><SUP>1</SUP>/<SUB>4</SUB>, 
+    <SUP>1</SUP>/<SUB>3</SUB>,</SPAN> <SUP>2</SUP>/<SUB>5</SUB>, <SPAN 
+    class=dim><SUP>1</SUP>/<SUB>2</SUB>,</SPAN> <SUP>3</SUP>/<SUB>5</SUB>, <SPAN 
+    class=dim><SUP>2</SUP>/<SUB>3</SUB>, <SUP>3</SUP>/<SUB>4</SUB>,</SPAN> 
+    <SUP>4</SUP>/<SUB>5</SUB>, <SPAN class=dim>1</SPAN> </BLOCKQUOTE>
+  <LI>each time we take the mediant of two fractions to introduce a new one into 
+  this tree, it will always be in its lowest terms 
+  <BLOCKQUOTE>This is not always so in the Farey series where, for instance, 
+    we find the first appearance of <SUP>1</SUP>/<SUB>5</SUB> is between 
+    <SUP>1</SUP>/<SUB>6</SUB> and <SUP>1</SUP>/<SUB>4</SUB> but the mediant of 
+    these two is <SUP>(1+1)</SUP>/<SUB>(6+4)</SUB> = <SUP>2</SUP>/<SUB>10</SUB> 
+    which must be reduced to get <SUP>1</SUP>/<SUB>5</SUB>.<BR></BLOCKQUOTE>
+  <LI>In each Farey series, the mediant rule will still hold for any three 
+  consecutive fractions on the same level <B>but</B> may need to be reduced to 
+  its lowest terms: 
+  <BLOCKQUOTE>level 4:<SPAN class=dim> <SUP>0</SUP>/<SUB>1</SUB>, 
+    <SUP>1</SUP>/<SUB>5</SUB>, ....</SPAN> <B><SUP>2</SUP>/<SUB>7</SUB></B>, 
+    <SUP>1</SUP>/<SUB>3</SUB>, <B><SUP>3</SUP>/<SUB>8</SUB></B>, <SPAN 
+    class=dim>..., <SUP>4</SUP>/<SUB>5</SUB>, 1</SPAN><BR>but 
+    <SUP>(2+7)</SUP>/<SUB>(7+8)</SUB> = <SUP>9</SUP>/<SUB>15</SUB> which then 
+    reduces to <SUP>1</SUP>/<SUB>3</SUB> </BLOCKQUOTE>
+  <LI>Each level has new fractions equal to the number of gaps in the previous 
+  level. Thus if there are n fractions on one level, there are <SPAN 
+  class=math>n–1</SPAN> gaps and the next level has <SPAN class=math>n + (n – 1) 
+  = 2n – 1</SPAN> fractions so each row is almost twice as long as the previous 
+  row. 
+  <BLOCKQUOTE>In the tree there are 2 fractions on level 0, 3 on level 1 and 
+    so on: 2,3,5,9,17,33,... so there are <SPAN class=math>2<SUP>L+1</SUP> + 
+    1</SPAN> fractions on level <SPAN class=math>L</SPAN></BLOCKQUOTE>
+  <LI>The 'cross-multiply' relationship that we saw for Farey series will also 
+  apply to any consecutive pair of fractions in this tree too: 
+  <BLOCKQUOTE>
+    <TABLE>
+      <TBODY>
+      <TR>
+        <TD>level 4:</TD>
+        <TD>..., <SUP>2</SUP>/<SUB>7</SUB>,</TD>
+        <TD><SUP>1</SUP>/<SUB>3</SUB>,... </TD>
+        <TD>and their mediant is <SPAN class=math>2×3 = 6, 7×1 = 
+7</SPAN></TD></TR>
+      <TR>
+        <TD>level 4:</TD>
+        <TD align=right>....,</TD>
+        <TD><SUP>1</SUP>/<SUB>3</SUB>, <SUP>3</SUP>/<SUB>8</SUB>... </TD>
+        <TD>and their mediant is <SPAN class=math>1×8 = 8, 3×3 = 
+      9</SPAN></TD></TR></TBODY></TABLE></BLOCKQUOTE></LI></UL>
+<SCRIPT language=JavaScript type=text/javascript>
+function farf(FM,ct,FSB){
+   var maxd=checkinput(document[FM].maxden.value,'maximum denominator');
+   var which=document[FM].disply[document[FM].disply.selectedIndex].value;
+   ff(maxd,ct,FSB,which)
+};
+</SCRIPT>
+<A name=fareycalc></A>
+<DIV class=calc>C A L C U L A T O R<BR>
+<DIV align=center>
+<FORM name=fF action="">
+<TABLE cellSpacing=0 cellPadding=5>
+  <CAPTION>Farey Fractions</CAPTION>
+  <TBODY>
+  <TR class=calcpeach>
+    <TD><INPUT onclick='outF="fF";farf("fF",false,"farey")' type=button value="Show "> 
+      <BR><INPUT onclick='outF="fF";farf("fF",true,"farey")' type=button value=Count> 
+    </TD>
+    <TD align=right><SELECT style="TEXT-ALIGN: center" name=disply><OPTION 
+        value=n/d selected>fractions</OPTION> <OPTION value=top>numerators of 
+        fractions</OPTION> <OPTION value=bot>denominator of 
+      fractions</OPTION></SELECT> with a denominator up to <INPUT size=5 
+      name=maxden> </TD></TR></TBODY></TABLE><BR>R E S U L T S <INPUT style="COLOR: silver; BACKGROUND-COLOR: #000" onclick=clearmsg(this.form.name) type=button value=CLEAR> 
+<INPUT id=msgfFdepth type=hidden value=15> <INPUT style="COLOR: #ffd; BACKGROUND-COLOR: #666" onclick="showMoreOrLess('msg'+this.form.name,15)" type=button value="More space for RESULTS"> 
+<INPUT style="COLOR: #ffd; BACKGROUND-COLOR: #666" onclick="showMoreOrLess('msg'+this.form.name,-15)" type=button value="Less space for RESULTS"><BR>
+<DIV class=res id=msgfF 
+style="WIDTH: 40em; HEIGHT: 15em"></DIV></FORM></DIV></DIV>
+<HR>
+<A name=sbfulltree></A>
+<H2>The Stern-Brocot Tree of Fractions </H2>Stern and Brocot realised that the 
+table we have above can be extended, using the same fill-in-with-the-mediant 
+rule, to include <I>all</I> fractions, those bigger than one also and not just 
+those between 0 and 1.<BR>Instead of starting with <SUP>0</SUP>/<SUB>1</SUB> and 
+<SUP>1</SUP>/<SUB>1</SUB> we start with <SUP>0</SUP>/<SUB>1</SUB> and 
+<SUP>1</SUP>/<SUB>0</SUB> to represent 0 and <I>infinity</I>. <BR>To start the 
+tree, the first mediant is that of 0/1 and 1/0 which is 
+<SUP>1</SUP>/<SUB>1</SUB>. Now the left half of this new table contains all the 
+fractions between 0 and 1 (0/1 and 1/1) while the right-hand half becomes 
+populated with all the fractions greater than 1, between 1 and <I>infinity</I> 
+(1/1 and 1/0)! 
+<TABLE class=small 
+style="BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; BORDER-LEFT: silver 1px solid; BORDER-BOTTOM: silver 1px solid" 
+cellSpacing=0 cellPadding=3 align=center>
+  <TBODY>
+  <TR>
+    <TH>level</TH>
+    <TH colSpan=16>fractions</TH></TR>
+  <TR>
+    <TD></TD>
+    <TD class=fless1 align=middle colSpan=8>&lt; 1</TD>
+    <TD></TD>
+    <TD class=fgtr1 align=middle colSpan=8>&gt;1</TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>0</TD>
+    <TD class=fless1 colSpan=16><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>1</TD>
+    <TD class=fless1 colSpan=8><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD colSpan=8><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>2</TD>
+    <TD class=fless1 colSpan=4><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD class=fless1 colSpan=4><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD colSpan=4><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1 colSpan=4><SUP>2</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>3</TD>
+    <TD class=fless1 colSpan=2><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD class=fless1 colSpan=2><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD class=fless1 colSpan=2><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD class=fless1 colSpan=2><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD colSpan=2><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1 colSpan=2><SUP>3</SUP>/<SUB>2</SUB></TD>
+    <TD class=fgtr1 colSpan=2><SUP>2</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1 colSpan=2><SUP>3</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>4</TD>
+    <TD class=fless1><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD class=fless1><SUP>1</SUP>/<SUB>4</SUB></TD>
+    <TD class=fless1><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD class=fless1><SUP>2</SUP>/<SUB>5</SUB></TD>
+    <TD class=fless1><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD class=fless1><SUP>3</SUP>/<SUB>5</SUB></TD>
+    <TD class=fless1><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD class=fless1><SUP>3</SUP>/<SUB>4</SUB></TD>
+    <TD><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>4</SUP>/<SUB>3</SUB></TD>
+    <TD class=fgtr1><SUP>3</SUP>/<SUB>2</SUB></TD>
+    <TD class=fgtr1><SUP>5</SUP>/<SUB>3</SUB></TD>
+    <TD class=fgtr1><SUP>2</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>5</SUP>/<SUB>2</SUB></TD>
+    <TD class=fgtr1><SUP>3</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>4</SUP>/<SUB>1</SUB></TD>
+    <TD class=fgtr1><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR>
+    <TD class=whitebg align=middle>5</TD>
+    <TD align=middle colSpan=17>...</TD></TR></TBODY></TABLE>Did you notice that the 
+right-hand half of the table has the same fractions as in the left-hand half, 
+<I>but each is inverted and they are in reverse order</I>? <BR>Since the 
+left-hand half contains all fractions <SUP>m</SUP>/<SUB>n</SUB> &lt; 1, then the 
+right hand half will contain all fractions <SUP>n</SUP>/<SUB>m</SUB> &gt; 1, 
+with <SUP>1</SUP>/<SUB>1</SUB> itself central to every row. <A 
+name=thesbtree></A>
+<H3>The Stern-Brocot Tree </H3>If we ignore the two end fractions 
+<SUP>0</SUP>/<SUB>1</SUB> and <SUP>1</SUP>/<SUB>0</SUB> then the first time a 
+fraction appears, we can draw a line from it to its nearest fraction on the row 
+above. The only fraction that we cannot do this for is <SUP>1</SUP>/<SUB>1</SUB> 
+and this becomes the 'root' of our tree, which, like many trees in computing and 
+mathematics, grows down the page. <BR>Every fraction first appears as the 
+mediant <SUP>(a+p)</SUP>/<SUB>(b+q)</SUB> of the two fractions 
+<SUP>a</SUP>/<SUB>b</SUB> and <SUP>p</SUP>/<SUB>q</SUB> on the level above in 
+the table. The line from <SUP>(a+p)</SUP>/<SUB>(b+q)</SUB> will therefore go to 
+either <SUP>a</SUP>/<SUB>b</SUB> or <SUP>p</SUP>/<SUB>q</SUB>. 
+<TABLE cellSpacing=0 cellPadding=3 align=center border=1>
+  <CAPTION><I>Stern-Brocot Tree<BR>of ALL fractions</I></CAPTION>
+  <TBODY>
+  <TR align=middle>
+    <TD class=dim vAlign=top rowSpan=4><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD colSpan=8><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=dim vAlign=top rowSpan=4><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR align=middle>
+    <TD colSpan=4><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD colSpan=4><SUP>2</SUP>/<SUB>1</SUB></TD></TR>
+  <TR align=middle>
+    <TD colSpan=2><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD colSpan=2><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD colSpan=2><SUP>3</SUP>/<SUB>2</SUB></TD>
+    <TD colSpan=2><SUP>3</SUP>/<SUB>1</SUB></TD></TR>
+  <TR align=middle>
+    <TD><SUP>1</SUP>/<SUB>4</SUB></TD>
+    <TD><SUP>2</SUP>/<SUB>5</SUB></TD>
+    <TD><SUP>3</SUP>/<SUB>5</SUB></TD>
+    <TD><SUP>3</SUP>/<SUB>4</SUB></TD>
+    <TD><SUP>4</SUP>/<SUB>3</SUB></TD>
+    <TD><SUP>5</SUP>/<SUB>3</SUB></TD>
+    <TD><SUP>5</SUP>/<SUB>2</SUB></TD>
+    <TD><SUP>4</SUP>/<SUB>1</SUB></TD></TR></TBODY></TABLE><!-- table align=center cellpadding=3 cellspacing=0  class=small style="border:1px solid silver" ><tr><th>level</th><th colspan=16>fractions</th></tr><tr ><td class=whitebg align=center>0</td><td colspan=32 class=dim><sup>0</sup>/<sub>1</sub></td><td class=dim> <sup>1</sup>/<sub>0</sub></td></tr><tr ><td  class=whitebg align=center>1</td><td colspan=16 class=dim><sup>0</sup>/<sub>1</sub></td><td colspan=16 class=bold><sup>1</sup>/<sub>1</sub></td><td class=dim><sup>1</sup>/<sub>0</sub></td></tr><tr ><td class=whitebg align=center >2</td><td colspan=8 class=dim><sup>0</sup>/<sub>1</sub></td><td colspan=8 class=bold><sup>1</sup>/<sub>2</sub></td><td  class=dim colspan=8><sup>1</sup>/<sub>1</sub></td><td colspan=8 class=bold><sup>2</sup>/<sub>1</sub></td><td class=dim><sup>1</sup>/<sub>0</sub></td></tr><tr ><td class=whitebg align=center>3</td><td colspan=4 class=dim><sup>0</sup>/<sub>1</sub></td><td colspan=4 class=bold><sup>1</sup>/<sub>3</sub></td><td  class=dim colspan=4><sup>1</sup>/<sub>2</sub></td><td colspan=4 class=bold><sup>2</sup>/<sub>3</sub></td><td  class=dim colspan=4><sup>1</sup>/<sub>1</sub></td><td colspan=4 class=bold><sup>3</sup>/<sub>2</sub></td><td  class=dim colspan=4><sup>2</sup>/<sub>1</sub></td><td colspan=4 class=bold><sup>3</sup>/<sub>1</sub></td><td  class=dim><sup>1</sup>/<sub>0</sub></td></tr><tr ><td class=whitebg align=center>4</td><td colspan=2 class=dim><sup>0</sup>/<sub>1</sub></td> <td colspan=2 class=bold><sup>1</sup>/<sub>4</sub></td> <td colspan=2 class=dim><sup>1</sup>/<sub>3</sub></td> <td colspan=2 class=bold><sup>2</sup>/<sub>5</sub></td> <td colspan=2 class=dim><sup>1</sup>/<sub>2</sub></td> <td colspan=2 class=bold><sup>3</sup>/<sub>5</sub></td> <td colspan=2 class=dim><sup>2</sup>/<sub>3</sub></td> <td colspan=2 class=bold><sup>3</sup>/<sub>4</sub></td> <td colspan=2 class=dim><sup>1</sup>/<sub>1</sub></td> <td colspan=2 class=bold><sup>4</sup>/<sub>3</sub></td> <td colspan=2 class=dim><sup>3</sup>/<sub>2</sub></td> <td colspan=2 class=bold><sup>5</sup>/<sub>3</sub></td> <td colspan=2 class=dim><sup>2</sup>/<sub>1</sub></td> <td colspan=2 class=bold><sup>5</sup>/<sub>2</sub></td> <td colspan=2 class=dim><sup>3</sup>/<sub>1</sub></td> <td colspan=2 class=bold><sup>4</sup>/<sub>1</sub></td> <td class=dim><sup>1</sup>/<sub>0</sub></td></tr><tr ><td class=whitebg align=center>5</td><td class=dim><sup>0</sup>/<sub>1</sub></td><td class=bold><sup>1</sup>/<sub>5</sub></td><td class=dim><sup>1</sup>/<sub>4</sub></td><td class=bold><sup>2</sup>/<sub>7</sub></td><td class=dim><sup>1</sup>/<sub>3</sub></td><td class=bold><sup>3</sup>/<sub>8</sub></td><td class=dim><sup>2</sup>/<sub>5</sub></td><td class=bold><sup>3</sup>/<sub>7</sub></td><td class=dim><sup>1</sup>/<sub>2</sub></td><td class=bold><sup>4</sup>/<sub>7</sub></td><td class=dim><sup>3</sup>/<sub>5</sub></td><td class=bold><sup>5</sup>/<sub>8</sub></td><td class=dim><sup>2</sup>/<sub>3</sub></td><td class=bold><sup>5</sup>/<sub>7</sub></td><td class=dim><sup>3</sup>/<sub>4</sub></td><td class=bold><sup>4</sup>/<sub>5</sub></td><td class=dim><sup>1</sup>/<sub>0</sub></td></tr><tr ><td class=whitebg align=center></td><td colspan=17 align=center>...</td></tr></table-->Did you notice that: 
+<DIV class=rule>the fractions on each level are in order of size</DIV><A 
+name=sbLR></A>
+<H3>A Path in the Tree to <I>every</I> fraction </H3>We can now find a unique 
+path from <SUP>1</SUP>/<SUB>1</SUB> to any and every fraction. <BR>From a parent 
+we can go down to the <B>L</B>eft fraction (child) on the next level below or to 
+the <B>R</B> fraction on the level below. Since all the fractions are joined 
+into a single tree with root 1/1, then every fraction has such a string of 
+<B>L</B>s and <B>R</B>s from the top to reach it.<BR>In this table, each 
+fraction appears once, on its highest (first) level and below it are its two 
+children. 
+<TABLE cellSpacing=0 cellPadding=3 align=center border=1>
+  <CAPTION><I>Paths in the Stern-Brocot Tree</I></CAPTION>
+  <TBODY>
+  <TR align=middle>
+    <TD class=dim vAlign=top rowSpan=4><SUP>0</SUP>/<SUB>1</SUB></TD>
+    <TD colSpan=8><SUP>1</SUP>/<SUB>1</SUB></TD>
+    <TD class=dim vAlign=top rowSpan=4><SUP>1</SUP>/<SUB>0</SUB></TD></TR>
+  <TR align=middle>
+    <TD colSpan=4><SPAN class=red>L</SPAN><BR><SUP>1</SUP>/<SUB>2</SUB></TD>
+    <TD colSpan=4><SPAN class=red>R</SPAN><BR><SUP>2</SUP>/<SUB>1</SUB></TD></TR>
+  <TR align=middle>
+    <TD colSpan=2><SPAN class=red>L</SPAN><BR><SUP>1</SUP>/<SUB>3</SUB></TD>
+    <TD colSpan=2><SPAN class=red>R</SPAN><BR><SUP>2</SUP>/<SUB>3</SUB></TD>
+    <TD colSpan=2><SPAN class=red>L</SPAN><BR><SUP>3</SUP>/<SUB>2</SUB></TD>
+    <TD colSpan=2><SPAN class=red>R</SPAN><BR><SUP>3</SUP>/<SUB>1</SUB></TD></TR>
+  <TR align=middle>
+    <TD><SPAN class=red>L</SPAN><BR><SUP>1</SUP>/<SUB>4</SUB></TD>
+    <TD><SPAN class=red>R</SPAN><BR><SUP>2</SUP>/<SUB>5</SUB></TD>
+    <TD><SPAN class=red>L</SPAN><BR><SUP>3</SUP>/<SUB>5</SUB></TD>
+    <TD><SPAN class=red>R</SPAN><BR><SUP>3</SUP>/<SUB>4</SUB></TD>
+    <TD><SPAN class=red>L</SPAN><BR><SUP>4</SUP>/<SUB>3</SUB></TD>
+    <TD><SPAN class=red>R</SPAN><BR><SUP>5</SUP>/<SUB>3</SUB></TD>
+    <TD><SPAN class=red>L</SPAN><BR><SUP>5</SUP>/<SUB>2</SUB></TD>
+    <TD><SPAN 
+class=red>R</SPAN><BR><SUP>4</SUP>/<SUB>1</SUB></TD></TR></TBODY></TABLE>For 
+example: 
+<UL>
+  <LI>L gets us to 1/2 and R to 2/1 
+  <LI>whereas LL reaches 1/3, LR leads to 2/3, RL to 3/2 and RR 3/1 
+  <LI>4/3 is at the end of the path RLL </LI></UL>which gives us a nice method of 
+computing the LR path from 1/1 to m/n:<BR>
+<OL type=A>
+  <LI>Input: the fraction being sought, Output will be the LR path to this 
+  fraction 
+  <LI>Two fractions define the RANGE within which we are looking for our 
+  fraction:<BR>0/1 and 1/0. Call these two fractions Start and End. 
+  <LI>We will build up the path letter by letter and the PATH is initially 
+  empty. 
+  <LI>
+  <OL type=a>
+    <LI>Find the MEDIANT of Start and End 
+    <LI>If MEDIANT = the fraction sought then STOP and print out the PATH found 
+    so far 
+    <LI>Otherwise: 
+    <OL type=i>
+      <LI>If m/n &lt; MEDIANT then <BR>add an "L" on to the end of the PATH and 
+      <BR>change End to be equal to MEDIANT 
+      <LI>If m/n &gt; MEDIANT then <BR>add an "R" on to the end of the PATH and 
+      <BR>change Start to be equal to MEDIANT </LI></OL></LI></OL>
+  <LI>Keep repeating the previous step until the method stops. </LI></OL>The only 
+problem is 1/1 itself which, being at the 'root' of the tree, has no path or, 
+rather, its path is empty. <BR>A similar simple algorithm will compute m/n from 
+a given LR path but here is a Calculator to do both. 
+<P>
+<BLOCKQUOTE><SMALL><B>Limitations in the Calculator:</B><BR>Note that the 
+  fraction 1/N occurs for the first time at the start of row N in the tree so 
+  its path can be very long compared to other fractions: the path to 1/1000000 
+  is one million L's! As a result, the paths of some fractions cannot be fully 
+  computed with this Calculator.<BR>Similarly, computing mediants involves very 
+  large numbers if the fractions have a large denominator or numerator and this 
+  too limits the computation of the fractions corresponding to some paths. 
+  </SMALL></BLOCKQUOTE>
+<SCRIPT language=JavaScript type=text/javascript>
+function doLRpath(which){var inp,rest,t,b;
+  switch(which){
+  case "toF":inp=document.getElementById("LR").value.replace(/\s/g,"");
+             inp=inp.toUpperCase();
+             rest=inp.replace(/[LR]*/gi,"");
+             if(rest!="")halt("Only L and R are allowed in the path: found "+rest);
+             var f=RATfrompath(inp);
+             document.getElementById("F").value=f[0]+"/"+f[1];
+             putmsg((inp==""?"<empty>":inp)+" is the path to "+f[0]+"/"+f[1]); break;
+  
+  case "toLR":inp=document.getElementById("F").value.replace(/\s/g,""),rest,t,b;
+              rest=inp.replace(/[0-9]*/g,"");
+              if(rest==""){rest=checkinput(rest,"fraction");t=parseInt(inp),b=1;}
+               else
+               {  if(rest.replace("/","")!="")halt("A fraction must be just digits or digits/digits: found "+rest.replace("/",""));
+                  t=parseInt(inp);   b=parseInt(inp.slice(inp.indexOf("/")+1))
+               };
+               var g=gcd(t,b),s=t+"/"+b;
+               
+               if(g!=1){t=t/g;b=b/g;s=s+" = "+t+" / "+b};
+               var path=LRpath(t,b);
+               document.getElementById("LR").value=path;
+               putmsg(s+" has path "+(t==1&&b==1?"<empty>":path));
+               break;
+  }
+}
+function sbf(FM,ct,FSB){
+   var lev=checkinput(document[FM].SBlev.value,'level');
+   var which=document[FM].disply[document[FM].disply.selectedIndex].value;
+   ff(lev,ct,FSB,which)
+};
+
+</SCRIPT>
+<A name=sbcalc></A>
+<DIV class=calc>C A L C U L A T O R<BR>
+<DIV align=center>
+<FORM name=SBCalc action="">
+<TABLE cellSpacing=0 cellPadding=3 rules=rows border=1>
+  <CAPTION>The Stern-Brocot Fractions Tree</CAPTION>
+  <TBODY>
+  <TR class=calcpeach>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=3>
+        <TBODY>
+        <TR>
+          <TD align=right>Fraction:</TD>
+          <TD></TD>
+          <TD align=left>LR Path: <INPUT class=btn title="Change L's for R's and vice-versa" onclick="this.form.LR.value=this.form.LR.value.replace(/L/ig,'x').replace(/R/ig,'L').replace(/x/g,'R')" type=button value="L <-> R"></TD></TR>
+        <TR class=calcpeach>
+          <TD align=right><INPUT id=F title="Enter a fraction e.g. 3/7" 
+            style="TEXT-ALIGN: right" size=15 value=3/7> </TD>
+          <TD><A 
+            onmouseover="status='';document.getElementById('FrLbtn').src='../images/LbuttonHiLite.gif';return true" 
+            onmouseout="status='';document.getElementById('FrLbtn').src='../images/Lbutton.gif';return true" 
+            href="javascript:outF='SBCalc';doLRpath('toF')"><IMG id=FrLbtn 
+            height=20 alt="Fraction <- LR path" 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/Lbutton.gif" 
+            width=20 border=0> </A><BR><A 
+            onmouseover="status='';document.getElementById('LRRbtn').src='../images/RbuttonHiLite.gif';return true" 
+            onmouseout="status='';document.getElementById('LRRbtn').src='../images/Rbutton.gif';return true" 
+            href="javascript:outF='SBCalc';doLRpath('toLR')"><IMG id=LRRbtn 
+            height=20 alt="Fraction -> LR path" 
+            src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/Rbutton.gif" 
+            width=20 border=0> </A></TD>
+          <TD><INPUT id=LR title="Enter a string of Ls and Rs e.g. LRLL" 
+            style="TEXT-ALIGN: left" size=45 value=LRLL> 
+  </TD></TR></TBODY></TABLE></TD></TR>
+  <TR class=calcorange align=middle>
+    <TD><INPUT onclick='outF=this.form.name;sbf("SBCalc",false,"sbt")' type=button value="Show "> 
+      <SELECT style="TEXT-ALIGN: center" name=disply><OPTION value=n/d 
+        selected>fractions</OPTION> <OPTION value=top>numerators of 
+        fractions</OPTION> <OPTION value=bot>denominator of 
+      fractions</OPTION></SELECT> from top to level <INPUT size=5 name=SBlev> 
+  </TD></TR></TBODY></TABLE><BR>R E S U L T S <INPUT style="COLOR: silver; BACKGROUND-COLOR: #000" onclick=clearmsg(this.form.name) type=button value=CLEAR> 
+<INPUT id=msgSBCalcdepth type=hidden value=15> <INPUT class=resSPACEbtn onclick="showMoreOrLess('msg'+this.form.name, 15)" type=button value="More space"> 
+<INPUT class=resSPACEbtn onclick="showMoreOrLess('msg'+this.form.name,-15)" type=button value="Less space"><BR>
+<DIV class=res id=msgSBCalc style="HEIGHT: 15em"></DIV></FORM></DIV></DIV>
+<P>There are now several interesting questions that you can work on for 
+yourself: 
+<DIV class=ttd>
+<H4><IMG height=14 alt=/ 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/ttdIcon.gif" 
+width=25> Things to do <IMG height=14 alt=/ 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/ttdIcon.gif" 
+width=25> </H4>
+<OL class=ttd>
+  <LI>(Easy) If <SUP>m</SUP>/<SUB>n</SUB> is in its lowest form, on what level 
+  does it appear in the tree? <!-- If m<n, it appears first on level n; if m>n, then on level m, i.e. on level max(m,n) -->
+  <LI>(Easy) How long is the path for fraction <SUP>m</SUP>/<SUB>n</SUB>? <!-- since it appears first on level max(m,n) ,then its path is of that length also -->
+  <LI>If we know the path for fraction <SUP>m</SUP>/<SUB>n</SUB> and we change 
+  all L's to R's and R's to L's in it, how is the new path's fraction related to 
+  <SUP>m</SUP>/<SUB>n</SUB>? <!-- It is n/m -->
+  <LI>(Easy) Where are the fractions of the form <SUP>1</SUP>/<SUB>n</SUB> in 
+  the tree? <!-- the first on level n -->
+  <LI>(Easy) Where are the integers in the tree? <!-- the last fraction m/1 on level m -->
+  <LI>(Easy) Look again at <A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#farey">the 
+  table of Farey fractions</A> at the start of this page or use the first <A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/fareySB.html#fareycalc">Farey 
+  Calculator</A> above to answer these questions: 
+  <OL type=a>
+    <LI>Make a table of the only the <B>numerators</B> of the Farey fractions 
+    (the left half of the Stern-Brocot tree ) for a particular level. What 
+    pattern do you notice? Does it apply to all levels? 
+    <LI>Now try the same thing but for the <B>denominators</B>. </LI></OL>
+  <LI>Make a list of the ratio of two consecutive <A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonaci/fibtable.html">Fibonacci 
+  numbers 1, 2, 3, 5, 8, 13, 21, ...</A> and let's call these the Fibonacci 
+  Fractions:<BR>1/2, 2/3, 3/5, 5/8, 8/13, ... etc <BR>Where are they in the 
+  table, or in other words, what is the path to each of them? <!-- for fractions less than 1, their paths are the initial parts of LRLRLRLR...           so Fib Fracts bigger than 1 are the inital parts of RLRLRLRLRLRL... -->
+  <LI>What about ratios of two consecutive <A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/lucas200.html">Lucas 
+  numbers (2,) 1, 3, 4, 7, 11, ...</A><BR>(2/1,) 1/3, 3/4, 4/7, 7/11, 11/18, ... 
+  ? What are their paths and what pattern can you see in them? <!-- R,LL,LRR,LRLL,LRLRR, i.e the initial part of LRLRLRLR... but duplicate the final letter --></LI></OL></DIV>What 
+about non-fractional numbers - the <I>irrationals</I> such as √2 or <B>e</B> or 
+π? <BR>There is a close connection between the Stern-Brocot tree and LR paths of 
+the fractions that best approximate any irrational value. There is more to read 
+on this in Graham, Knuth and Patashnik's <B>Concrete Mathematics</B> - see the 
+References section that follows.<BR>What is a Continued Fraction? See <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/cfINTRO.html">An 
+Introduction to Continued Fractions</A> at this site and also the online <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/cfCALC.html">Continued 
+Fractions Calculator</A>.<BR>Or you can explore all the patterns of ordinary 
+decimal fractions using <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/FractionsCalc.html">the 
+Fractions Converter</A> at this site, where the decimal fractions are computed 
+to many places. <A name=refs></A>
+<H2>References </H2>The tree is named after Moritz Stern and Achille Brocot who 
+both wrote about it independently around 1858. 
+<DL>
+  <DT><IMG height=14 alt=Book: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/book.gif" 
+  width=22> <A 
+  href="http://www.amazon.com/exec/obidos/ASIN/0486210960/fibonacnumbersan">Recreations 
+  in the Theory of Numbers - The Queen of Mathematics Entertains</A> A H Beiler, 
+  Dover, 1964 
+  <DD>has a whole chapter on <B>Farey Tales</B> that is informative, fun and not 
+  at all too mathematical. I <I>highly recommend</I> this book to anyone who has 
+  enjoyed this page and <A 
+  href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/index.html">Ron 
+  Knott's other maths web pages</A>. 
+  <DT><IMG height=16 alt=Article: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/openbook.gif" 
+  width=35> <B>On a Curious Property of Vulgar Fractions</B> J Farey <I>London, 
+  Edinburgh and Dublin Phil. Mag</I> vol 47 (1816) page 385. 
+  <DD>
+  <DT><IMG height=14 alt=Book: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/book.gif" 
+  width=22> <A 
+  href="http://www.amazon.com/exec/obidos/ASIN/0198531710/fibonacnumbersan">Introduction 
+  to the Theory of numbers</A> G H Hardy, E M Wright, Oxford University Press, 
+  5th edition, 1980, ISBN: 0198531710 
+  <DD>is a classic book well worth studying but some parts are at mathematics 
+  undergraduate level. There is a whole chapter on teh basic result of Farey 
+  Series with proofs. 
+  <DT><IMG height=16 alt=Article: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/openbook.gif" 
+  width=35> <B>Uebe eine zahlentheoretische Funktion</B> M A Stern, <I>Journal 
+  für die reine und angewandte Mathematik</I> vol 55 (1858) pages 193-220 
+  <DD>... the original references for the Stern-Brocot tree ... 
+  <DT><IMG height=16 alt=Article: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/openbook.gif" 
+  width=35> <B>Calcul des rouages par approximation, nouvelle méthode</B> 
+  Achille Brocot <I>Revue Chronométrique</I> 6 (1860) pages 186-194 
+  <DD>
+  <DT><IMG height=16 alt=Article: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/openbook.gif" 
+  width=3> <B>On a curious property of vulgar fractions</B> J Farey 
+  <I>Philosophical Magazine</I> vol 47 (1816) pages 385-386 
+  <DD>is the original letter by Farey on what are now called 'Farey fractions'. 
+  However, he only spotted that the mediant of two fractions lies between them 
+  and offered no proof. This was already known and had been published : 
+  <DT><IMG height=16 alt=Article: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/openbook.gif" 
+  width=35> <B>Tables pour évaluer une fraction ordinaire avec autant de 
+  decimales qu'on voudra; et pour trouver la fraction ordinaire la plus simple, 
+  et qui approche sensiblement d'une fraction décimal</B> C. Haros <I>Journal de 
+  L'Ecole Royale Polytechnique</I> Tome IV (Cahier 11) (1802), pages 364-368. 
+  <DD>...however, the name that has 'stuck' to the ordered row of fractions less 
+  than one with denominators no bigger than n, is the order n Farey sequence, 
+  i.e. it is Farey's name and not Haros's! 
+  <DT><IMG height=14 alt=Book: 
+  src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/book.gif" 
+  width=22> <A 
+  href="http://www.amazon.com/exec/obidos/ASIN/0201558025/fibonacnumbersan">Concrete 
+  Mathematics</A> (2nd edition, 1994) by Graham, Knuth and Patashnik, 
+  Addison-Wesley.<BR>
+  <DD>is highly recommended but is at undergraduate mathematics level. Section 
+  4.5 is a wonderful introduction to more of the mathematics of the Farey series 
+  and the Stern-Brocot tree. </DD></DL>
+<HR>
+
+<ADDRESS><A href="http://validator.w3.org/check/referer"><IMG height=31 
+alt="Valid HTML 4.01!" 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/valid-html401.gif" 
+width=88 align=right border=0></A> <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fractions/copyright.html">©</A> 
+2008-2011 <A 
+href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/contactron.html">Dr Ron 
+Knott</A> <BR>created: 26 March 2008, updated 16 April 2011 </ADDRESS>
+<SCRIPT 
+src="Fractions in The Farey Sequences and the Stern-Brocot Tree.files/urchin.js" 
+type=text/javascript>
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+_uacct = "UA-2009607-1";
+urchinTracker();
+</SCRIPT>
+</BODY></HTML>
