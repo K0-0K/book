@@ -1,0 +1,4217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>LAB-5205: Developing Swing Applications with NetBeans 4.1 IDE</TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice 8  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Bernard Ng, Chuk Munn Lee">
+	<META NAME="CREATED" CONTENT="20051129;8393899">
+	<META NAME="CHANGEDBY" CONTENT="R P">
+	<META NAME="CHANGED" CONTENT="20051130;19145810">
+	<META NAME="DESCRIPTION" CONTENT="JavaOne Hands On Labs for developing Swing applications with NetBeans 4.1">
+	<!--stopindex-->
+	<STYLE>
+	<!--
+		@page { size: 8.5in 11in }
+		TD P { color: #333333; font-size: 10pt }
+		P { color: #333333; font-size: 10pt }
+		H2 { margin-top: 0in; border: none; padding: 0in; color: #000000; font-size: 14pt }
+		P.main1 { margin-left: 0.1in; margin-right: 0.1in; margin-top: 0.1in; margin-bottom: 0.1in; font-size: 10pt }
+		H2.main1 { margin-left: 0.1in; margin-right: 0.1in; margin-top: 0.1in; margin-bottom: 0.1in; font-size: 14pt }
+		BLOCKQUOTE { color: #333333; font-size: 10pt }
+		A:link { color: #594fbf; font-size: 10pt; text-decoration: none }
+		CODE { color: #666666; font-family: "monaco", "courier", "courier new"; font-size: 10pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#333333" LINK="#594fbf" BGCOLOR="#ffffff" DIR="LTR">
+<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE>&nbsp;&nbsp;
+</CODE>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR>
+		<TD WIDTH=49%>
+			<P>&nbsp;</P>
+		</TD>
+		<TD COLSPAN=3 VALIGN=TOP></TD>
+	</TR>
+	<TR>
+		<TD WIDTH=49%>
+			<P><A HREF="http://www.sun.com/">sun.com</A></P>
+		</TD>
+		<TD COLSPAN=3 WIDTH=49%>
+			<P ALIGN=RIGHT>&nbsp;&nbsp;&nbsp;<A HREF="http://my.sun.com/">My
+			Sun</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="http://www.sun.com/worldwide/">Worldwide
+			Sites</A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=49%>
+			<P>&nbsp;</P>
+		</TD>
+		<TD COLSPAN=3 VALIGN=TOP></TD>
+	</TR>
+</TABLE>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR>
+		<TD VALIGN=TOP BGCOLOR="#594fbf">
+			<P><!-- END GLOBAL NAVIGATION TOOLBAR --><!-- BEGIN GENERIC MASTHEAD --><FONT COLOR="#ffffff"><A HREF="http://www.sun.com/"><IMG SRC="index_files/logo_sun.gif" NAME="graphics1" ALT="Sun Microsystems Logo" ALIGN=BOTTOM WIDTH=110 HEIGHT=43 BORDER=0></A><A HREF="http://www.sun.com/">
+			</A><BR><IMG SRC="a.gif" NAME="graphics2" ALIGN=BOTTOM WIDTH=170 HEIGHT=2 BORDER=0>
+			</FONT>
+			</P>
+		</TD>
+		<TD>
+			<P><IMG SRC="index_files/a.gif" NAME="graphics3" ALIGN=BOTTOM WIDTH=10 HEIGHT=2 BORDER=0>
+						</P>
+		</TD>
+		<TD WIDTH=50% VALIGN=BOTTOM BGCOLOR="#fbe249">
+			<P><BR>&nbsp;</P>
+		</TD>
+		<TD>
+			<P><IMG SRC="index_files/a.gif" NAME="graphics4" ALIGN=BOTTOM WIDTH=10 HEIGHT=2 BORDER=0>
+						</P>
+		</TD>
+		<TD WIDTH=50% VALIGN=BOTTOM BGCOLOR="#d12124">
+			<P><FONT COLOR="#ffffff"><BR>&nbsp;</FONT></P>
+		</TD>
+		<TD>
+			<P><IMG SRC="index_files/a.gif" NAME="graphics5" ALIGN=BOTTOM WIDTH=10 HEIGHT=8 BORDER=0>
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>LAB-5205: Developing JFC/Swing Applications using the NetBeans<FONT SIZE=1><FONT FACE="courier new, courier, monospace"><SUP>TM</SUP></FONT></FONT>
+4.1 IDE</P>
+<P CLASS="main1" ALIGN=CENTER STYLE="margin-left: 0.62in"><B>Expected
+duration: 90 minutes</B></P>
+<P CLASS="main1" STYLE="margin-left: 0.62in">Java Rich clients are
+making a comeback! If you are building an application that requires
+more than simple user interaction or data representation, rich GUIs
+are a more suitable development medium. The barriers that used to
+exist around installation and deployment have been overcome with Java
+Web Start technology, so there is no reason to limit your
+applications to thin client techologies.</P>
+<P CLASS="main1" STYLE="margin-left: 0.62in">NetBeans<FONT SIZE=1><FONT FACE="misc-fixed-iso10646-1"><SUP>TM</SUP></FONT></FONT>
+is the best open source IDE for developing portable JFC/Swing
+applications. You can now use the feature-rich NetBeans<FONT SIZE=1><FONT FACE="misc-fixed-iso10646-1"><SUP>TM</SUP></FONT></FONT>
+4.1 IDE to design, develop, debug and deploy compelling applications.
+Come to this lab to experience first-hand what the buzz is about.</P>
+<P CLASS="main1" STYLE="margin-left: 0.62in">We will walk you through
+using NetBeans<FONT SIZE=1><FONT FACE="misc-fixed-iso10646-1"><SUP>TM</SUP></FONT></FONT>
+to build an ImageBrowser application with basic functionality like
+those image viewers that are shipped with digital cameras (and wild
+dreams of emulating <A HREF="http://picasa.google.com/">Picasa<FONT SIZE=1><FONT FACE="misc-fixed-iso10646-1"><SUP>TM</SUP></FONT></FONT></A>).
+The GUI uses widgets like tables, scroll panes, split panes, combo
+boxes, text boxes and buttons. You will also be familiarized with
+layout managers, handling events, code refactoring and using custom
+models. We believe you will be impressed by what you can build so
+quickly.</P>
+<P STYLE="margin-left: 0.42in"><B>Participant Prerequisites</B></P>
+<UL>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in">Some Java programming experience 
+		</P>
+		<LI><P>Minimal experience developing GUIs with or without an IDE
+		(with no GUI development experience, you can still complete the lab
+		but it will probably take longer than 90 minutes)</P>
+	</UL>
+</UL>
+<P STYLE="margin-left: 0.42in"><B>System requirement</B></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Supported OS: Solaris 8/9/10,
+	Linux, OS X 10.4, Windows</P>
+	<LI><P STYLE="margin-bottom: 0in">Memory requirement: 512MB minimum
+	(OS X 1GB recommended)</P>
+	<LI><P>Disk space requirement: 300MB</P>
+</UL>
+<P CLASS="main1" STYLE="margin-left: 0.62in"><A NAME="SW_needed"></A><B>Software
+needed for the lab:<FONT COLOR="#ff0000"> </FONT></B>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Download and install <A HREF="http://java.sun.com/j2se/1.5.0/download.jsp">Java
+	2 Platform Standard Edition 5.0</A></P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in">The latest version is &quot;JDK
+		5.0 Update 3&quot; or later (the lab was developed on update 3) 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in">For Apple's OS X version 10.4
+		(aka Tiger) , install <A HREF="http://www.apple.com/support/downloads/java2se50release1.html">Java
+		2 SE 5 Release 1</A></P>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0in">Download and install <A HREF="http://www.netbeans.org/downloads/index.html">NetBeans
+	4.1</A> 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in"><FONT SIZE=2>During NetBeans 4.1
+		installation, make sure to select JDK 1.5 if prompted to choose
+		between several VM instances</FONT></P>
+	</UL>
+	<LI><P>Optional: Download and install <A HREF="http://java.sun.com/j2se/1.5.0/download.jsp">J2SE
+	5.0 Documentation</A> 
+	</P>
+</UL>
+<P STYLE="margin-left: 0.42in"><B>Notation used in this documentation</B></P>
+<UL>
+	<LI><P>&lt;JAVA_HOME&gt; is the installation directory of J2SE 5.0
+	SDK</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">&lt;LAB_ROOT&gt; is the directory
+	under which you have unzipped the lab zip file of this hands-on lab 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in">The name of the lab zip file of
+		this hands-on lab is <B>5205_netbeansswing.zip</B>. 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in">Once you unzipped the lab zip
+		file under &lt;LAB_ROOT&gt;, it will create a subdirectory called
+		<B>netbeansswing</B>. For example, under Windows, if you have
+		unzipped the lab zip file in the root of drive <B>E:\</B>, it will
+		create the <B>E:\netbeansswing</B> directory. Under Linux/OS
+		X/Solaris, if you have unzipped the lab zip file in the <B>/home/sang</B>
+		directory, it will create the <B>/home/sang/netbeansswing</B>
+		directory 
+		</P>
+	</UL>
+	<LI><P>&lt;netbeans41_HOME&gt; is the directory you installed
+	NetBeans 4.1</P>
+</UL>
+<UL>
+	<LI><P><I>Text in italics is background information to deepen your
+	understanding. You can skip past it without affecting your ability
+	to complete the lab.</I></P>
+</UL>
+<P STYLE="margin-left: 0.42in"><A NAME="Lab_exercises:_"></A><B>Lab
+exercises</B></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_0">Exercise 0:
+	Install and configure the lab environment</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_1">Exercise 1:
+	NetBeans 4.1 Familiarization</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_2">Exercise 2:
+	Starting a New Project</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_3">Exercise 3:
+	Using Swing Widgets &amp; Layout Managers</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_4">Exercise 4:
+	Customizing GUI Behaviour</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_5">Exercise 5:
+	Advanced Swing Widgets</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Exercise_6">Exercise 6:
+	Handling Events</A> 
+	</P>
+	<LI><P><A HREF="#Exercise_7">Exercise 7: Extras</A> 
+	</P>
+</UL>
+<P STYLE="margin-left: 0.83in">NOTE: If you get stuck in any of
+Exercises 2 to 6, click on the 
+<IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics6" ALIGN=MIDDLE WIDTH=26 HEIGHT=26 BORDER=0><U>Solution</U>
+link at the end.</P>
+<P STYLE="margin-left: 0.42in"><A NAME="Resources"></A><B>Resources:</B></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/products/jfc/index.jsp"><U>Java
+	Foundation Class (JFC/Swing)</U></A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://www.netbeans.org/">NetBeans
+	Home</A> 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="http://www.netbeans.org/kb/41/using-netbeans/index.html">NetBeans
+		4.1 User Guides</A> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in"><A HREF="http://www.netbeans.org/kb/articles/form_getstart40.html">GUI
+		Building in NetBeans 4.0</A></P>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/docs/books/tutorial/uiswing/">Swing
+	Tutorial</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/products/jfc/tsc/sightings">Swing
+	Sightings</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://javaalmanac.com/cgi-bin/search/find.pl?words=Swing">Java
+	Almanac Swing examples and tips</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://cld.blog-city.com/read/15428.htm">Comparing
+	Swing and SWT</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/jdc/technicalArticles/Threads/swing/">Multithreading
+	Swing Applications</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/developer/JDCTechTips/2005/tt0419.html#1">Thread
+	Handling in Swing</A> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="http://java.sun.com/docs/books/tutorial/uiswing/misc/icon.html#getresource">Loading
+	Images as Resources</A></P>
+	<LI><P><A HREF="http://java.sun.com/j2se/corejava/intl">Java
+	Internationalization</A></P>
+</UL>
+<P STYLE="margin-left: 0.42in"><B>Where to send questions or
+feedbacks on this lab and public discussion forums:</B></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">You can send technical questions
+	via email to the authors of this Hands-on lab (and experts on the
+	subject) or you can post the questions to the web.&nbsp; 
+	</P>
+	<UL>
+		<LI><P><A HREF="mailto:handsonlab-netbeansswing@yahoogroups.com">handsonlab-netbeansswing@yahoogroups.com</A>
+		(via email) 
+		</P>
+	</UL>
+</UL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><BR>
+</P>
+<HR>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2 ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_0"></A>Exercise
+0: Things to check before you start the lab:&nbsp;</H2>
+<P ALIGN=LEFT><BR>The example Swing application we are going to build
+is a simple Image Viewer which looks like this:<BR><BR>1. Check that
+you have JDK 1.5 installed and install it from the <A HREF="#SW_needed">Software
+needed links</A> if required 
+</P>
+<UL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#000000">On
+	Windows, open a Command Prompt window, <B>cd c:\&quot;Program
+	Files&quot;\Java</B> (it might be somewhere else if you didn't
+	install it in the default location) followed by <B>dir</B>. You
+	should see a directory entry called <B>jdk1.5.0_XX</B> where XX
+	indicates the revision.</FONT></P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">On Solaris, UNIX or
+	Linux, open a terminal window, type <B>java -fullversion</B>. You
+	should see the following <B>java full version &quot;1.5.0_XX&quot;</B>
+	where the XX indicated the revision. If you have installed JDK 1.5
+	but are not using it as the default, go to <A HREF="#Exercise_0.4">step
+	4</A>.</P>
+	<LI><P ALIGN=LEFT><FONT COLOR="#000000">On OSX, you can check the
+	</FONT><B>/System/Library/Frameworks/JavaVM.framework/Versions</B>
+	directory containing a <B>1.5.0</B> directory with a <B>1.5</B>
+	symbolic link. 
+	</P>
+</UL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_0.2"></A>2.
+Start the NetBeans 4.1 IDE and see if the IDE comes up</P>
+<UL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">On Windows XP, <B>Start
+	&gt; All Programs &gt; NetBeans IDE 4.1 &gt; NetBeans IDE </B>or
+	click the NetBeans 4.1 icon (<IMG SRC="index_files/nb_images/NetBeans_4.1_icon.png" NAME="graphics7" ALIGN=MIDDLE WIDTH=69 HEIGHT=53 BORDER=0>)
+	on the desktop.</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">On Solaris, UNIX, or
+	Linux, open a terminal window, then type
+	<B>&lt;netbeans41_HOME&gt;<FONT FACE="helvetica, arial, sans-serif">/bin/netbeans</FONT></B>
+		</P>
+	<LI><P ALIGN=LEFT><FONT FACE="helvetica, arial, sans-serif"><FONT COLOR="#000000">On
+	OS X 10.4, either click on the NetBeans 4.1 icon or launch it by
+	executing </FONT></FONT><B>/Users/&lt;your_userid&gt;/Desktop/NetBeans.app/bin/netbeans</B>
+	(it might be somewhere else if you moved it)</P>
+</UL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_0.3"></A>3.
+If you have multiple JDK versions installed, check that NetBeans is
+using JDK 1.5.0_03 (or 1.5.0 on OS X)</P>
+<UL>
+	<LI><P ALIGN=LEFT>From the NetBeans menu bar, select <B><U>H</U>elp</B>
+	then <B><U>A</U>bout</B>, and click on the <B>Detail</B> tab on the
+	<B>About</B> dialog. If the <B>Java</B> property indicates <B>1.5.0_03</B>
+	or equivalent then proceed to <A HREF="#Exercise_1">Exercise 1</A>,
+	otherwise you have to configure it in the next step.</P>
+</UL>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><IMG SRC="index_files/nb_images/0_about.png" NAME="graphics8" ALIGN=BOTTOM WIDTH=484 HEIGHT=441 BORDER=0></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><A NAME="Exercise_0.4"></A>
+4. To configure JDK 1.5 as NetBeans default JDK, edit
+<B>&lt;netbeans41_HOME&gt;<FONT FACE="helvetica, arial, sans-serif">/etc/netbeans.conf
+</FONT></B><FONT FACE="helvetica, arial, sans-serif">and add the
+following property:</FONT></P>
+<DL>
+	<DD>
+	<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+		<TR>
+			<TD>
+				<P><B>netbeans_jdkhome=&quot;&lt;JAVA_HOME&gt;&quot;</B></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>Note:
+replace <B>&lt;JAVA_HOME&gt;</B> with the appropriate path in your
+system. An alternate to changing NetBean's configuration file is to
+launch NetBeans with '<B>--jdkhome &lt;JAVA_HOME&gt;</B>'.</I></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><A HREF="#Lab_exercises:_">return
+to the top</A> 
+</P>
+<HR>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_1"></A>&nbsp; Exercise
+1:&nbsp; NetBeans 4.1 Familiarization (5 minutes)</H2>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B><FONT COLOR="#ff0000">Those
+already familiar with NetBeans 4.1 (even if not GUI development) may
+choose to skip to <A HREF="#Exercise_2">Exercise 2</A> after starting
+the IDE.</FONT></B></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><B><U><FONT FACE="helvetica, arial, sans-serif"><FONT COLOR="#000000">Introduction:</FONT></FONT></U></B><BR><BR>To
+familiarize you with the NetBeans 4.1 user interface (UI), we will
+walk you through the most significant windows and introduce you to
+important terminology we will use later.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><BR><B><U><FONT COLOR="#000000">Steps
+to follow:</FONT></U></B><BR><BR>1. Opening an existing project.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">You
+should see this 'Welcome' tabbed pane when NetBeans 4.1 starts up as
+a result of launching NetBeans 4.1 for the very first time (<A HREF="#Exercise_0.2">Step
+2 from Exercise 0</A>). If NetBeans 4.1 has not launched or if you
+see something radically different, please ask for help!</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_new_netbeans.png" NAME="graphics9" ALIGN=BOTTOM WIDTH=100% HEIGHT=93% BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-1: NetBeans startup screen</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>In
+order for you to see some meaningful content in NetBeans, you should
+now open a project we have already created.</I><BR>Click on <B>File</B>
+on the menubar and select <B>Open Project...</B></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_open_project.png" NAME="graphics10" ALIGN=BOTTOM WIDTH=100% HEIGHT=96% BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-2: Open project menu</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Navigate
+the <B>Look in:</B> combobox to the <B>solution</B> directory which
+is under <B>&lt;LAB_ROOT&gt;</B><BR>Select <B>exercise_7<BR></B>Click
+the <B>Open Project Folder</B> button at the bottom</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_open_project_dialog.png" NAME="graphics11" ALIGN=BOTTOM WIDTH=95% HEIGHT=90% BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-3: Selecting an existing project</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>At
+this point, don't be alarmed when you see this warning:</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><IMG SRC="index_files/nb_images/1_ref_problems.png" NAME="graphics12" ALIGN=BOTTOM WIDTH=425 HEIGHT=226 BORDER=0></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><A NAME="Exercise_1.1_jumppoint"></A>
+You can safely click <B>Close</B> and proceed for this
+exercise.<BR><I>Note: The <B>Reference Problems</B> warning was shown
+because additional jar files can only be included to projects using
+absolute paths in this version of NetBeans. The solution was built on
+our own machines so the paths obviously don't correspond. If you wish
+to fix this reference problem, you can take a small detour and jump
+to </I><A HREF="#Exercise_7.1"><I>Step 1 of Exercise 7</I></A> <I>.
+The instructions there can link you right back here <U>but this is
+not unnecessary at this point</U>. If you eventually find time to do
+the extra credit Exercise 7, we will guide you past it anyway.</I><BR><BR>The
+highlighted window is the <B>Project</B> window. There should be a
+solitary project there labelled <B>MyImageViewer</B>.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_project_opened.png" NAME="graphics13" ALIGN=BOTTOM WIDTH=691 HEIGHT=100% BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-4: Project opened and displayed in
+					Project Window</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Examining project
+components</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Click
+on the node expansion glyphs (<IMG SRC="index_files/nb_images/node_unexpanded.png" NAME="graphics14" ALIGN=BOTTOM WIDTH=12 HEIGHT=10 BORDER=0>
+on Solaris/Linux, 
+<IMG SRC="index_files/nb_images/win_plus.png" NAME="graphics15" ALIGN=MIDDLE WIDTH=9 HEIGHT=9 BORDER=0>
+on Windows) to expand the following nodes: <B>MyImageViewer</B>,
+<B>Source Packages</B> and <B>j1viewer</B></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in"><I>When a node is expanded,
+the glyphs should change to </I>
+<IMG SRC="index_files/nb_images/node_expanded.png" NAME="graphics16" ALIGN=BOTTOM WIDTH=12 HEIGHT=12 BORDER=0>
+<I>on Solaris/Linux and </I>
+<IMG SRC="index_files/nb_images/win_minus.png" NAME="graphics17" ALIGN=MIDDLE WIDTH=9 HEIGHT=9 BORDER=0>
+<I>on Windows.</I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Click
+on the <B>ThemeSelectionBean.java</B> text</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>The
+highlighted <B>Navigator</B></I> <I>window should now be populated
+with <B>ThemeSelectionBean</B>'s methods.<BR>You can try changing the
+combobox showing <B>Members View</B></I> <I>to show the <B>Inheritance
+View</B>.</I></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><BR><IMG SRC="index_files/nb_images/1_open_themeselectionbean.png" NAME="graphics18" ALIGN=BOTTOM WIDTH=1024 HEIGHT=744 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-5: Expanding the project node to select
+					a component</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT>3. The <B>Design</B> view, <B>Inspector</B> and <B>Palette</B>
+windows.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Double-click
+on <B>ThemeSelectionBean.java</B> and a new tabbed panel showing the
+<B>Design</B> view will appear<I>.</I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>Notice
+on the left that the <B>Inspector</B></I> <I>window (<FONT COLOR="#ff0000">highlighted
+in red</FONT>) has now taken the place where the <B>Navigator</B></I>
+<I>window used to be. It shows the UI component hierarchy and allows
+you to select a particular component to edit.<BR>Notice the <B>Palette</B></I>
+<I>window (<FONT COLOR="#330099">highlighted in blue</FONT>) on the
+right. Its purpose is for you to select which UI components you want
+to add to the design.</I></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_themeselectionebean_2clicks.png" NAME="graphics19" ALIGN=BOTTOM WIDTH=1024 HEIGHT=744 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-6: Viewing a Swing UI component</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. The <B>Properties</B>
+window</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Click
+in the middle of the highlighted panel with the label <B>Select skins</B>
+on it</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>The
+<B>Properties</B></I> <I>window (highlighted) at the bottom right
+will be populated with the panel's properties, most of which are
+editable.</I><BR>The <B>Properties</B> <U>button</U> at the top left
+of the <B>Properties</B> <U>window</U> also shows a deeper hue
+indicating that it is the active mode. You can try clicking on the
+<B>Events</B> button to show what events have listeners for this
+panel, or the <B>Code</B> button to see if there is any custom code.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_themeselectionebean_jpanel1_properties.png" NAME="graphics20" ALIGN=BOTTOM WIDTH=1024 HEIGHT=744 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-7: Viewing component properties</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT>5. Examining <B>Source</B> code</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Click
+on the <B>Source</B> button to view the Java source code for
+<B>ThemeSelectionBean</B>.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>Try
+clicking on the minus (</I><IMG SRC="index_files/nb_images/1_5_minus.png" NAME="graphics21" ALIGN=MIDDLE WIDTH=13 HEIGHT=13 BORDER=0><I>)
+signs to collapse code fragments, you will see the glyphs change to
+plus (</I><IMG SRC="index_files/nb_images/1_5_plus.png" NAME="graphics22" ALIGN=MIDDLE WIDTH=13 HEIGHT=13 BORDER=0><I>)
+signs and the code will be reduced to short snippets with a trailing
+box containing ellipses (</I><IMG SRC="index_files/nb_images/1_5_ellipses.png" NAME="graphics23" ALIGN=MIDDLE WIDTH=35 HEIGHT=15 BORDER=0><I>).
+When you move your pointer over the&nbsp;<IMG SRC="index_files/nb_images/1_5_ellipses.png" NAME="graphics24" ALIGN=MIDDLE WIDTH=35 HEIGHT=15 BORDER=0>,
+all the collapsed code will appear in a tooltip until you move the
+pointer away.</I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>Also
+try moving the mouse over the screwdriver icon (<IMG SRC="index_files/nb_images/1_5_screwdriver.png" NAME="graphics25" ALIGN=MIDDLE WIDTH=15 HEIGHT=15 BORDER=0>),
+a tooltip telling you which interface the method helps to
+implement.<BR>And later on when you see upward-facing arrows (<IMG SRC="index_files/nb_images/1_5_up_arrow.png" NAME="graphics26" ALIGN=MIDDLE WIDTH=14 HEIGHT=14 BORDER=0>),
+mousing over them will show which ancestral class this method
+overrides.</I></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/1_themeselectionebean_source_view.png" NAME="graphics27" ALIGN=BOTTOM WIDTH=845 HEIGHT=720 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 1-8: Viewing a component's source code</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in"><BR>Now that you've taken
+the 5 minute tour of NetBeans, let's get going!<BR>Back in the
+<B>Project</B> window, pull down the menu on the <B>MyImageViewer</B>
+node and select <B>Close Project</B>.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><B><U><FONT COLOR="#000000">Summary:</FONT></U></B><BR><BR>In
+this exercise, you learned some basic navigation within the NetBeans
+4.1 UI. You opened an existing project, expanded the <B>Source
+Packages</B>, selected a UI component and saw its methods in the
+<B>Navigator</B> window, double-clicked the component to edit it, saw
+the <B>Palette</B> and <B>Inspector</B> windows, looked at a
+component's <B>Properties</B>, moved between <B>Design</B> and <B>Source</B>
+views, and learned how to collapse and expand code, and launch
+informational tooltips.<BR><BR><A HREF="#Lab_exercises:_">return to
+the top</A></P>
+<HR>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_2"></A>Exercise 2:
+Starting a New Project (2 minutes)</H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Introduction:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">In this
+exercise, you will learn how to start a new NetBeans project.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><BR><B><U>Background
+information:</U></B><BR><BR>The first step for any application you
+develop in the NetBeans development environment is to create a
+project. The project contains all the files that make up the
+component or application. These include source files for your pages
+and the Java code they use, and resources your web application needs
+such as images, style sheets, or code libraries (such as JAR files).&nbsp;
+Many of these files are automatically created for you (in your home
+directory) when you create the project for the first time. A project
+can be so small that it only encompasses one Swing component, or so
+large that it includes hundreds of UI screens. The decision on
+appropriate project scale is left to you and your organization. Our
+general advice is to keep your projects to the smallest logical
+grouping of components possible. Projects are not the unit of
+software reuse, we will show you how we reuse Java Beans later
+on.<BR><BR><B><U>Steps to follow:</U></B><BR><BR>1. Creating a new
+project</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>File </B>from the menu bar and select <B>New Project
+(shortcut Ctrl+Shift+N)</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_newproject.png" NAME="graphics28" ALIGN=BOTTOM WIDTH=314 HEIGHT=440 BORDER=0><BR><I><FONT SIZE=1>Fig
+					2-1: Creating a new project</FONT></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">In the <B>New
+Project</B> window, select <B>General </B>(Categories) and <B>Java
+Application</B> (Projects)<BR>Click <B>Next</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_prj_type.png" NAME="graphics29" ALIGN=BOTTOM WIDTH=729 HEIGHT=499 BORDER=0><BR><I>Fig
+					2-2: Selecting project type</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Setting up your project</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Type in the name of your project in <B>Project Name</B> (eg.
+ImageViewer or MyImageViewer)<BR>Enter an appropriate location for
+your project in <B>Project Location</B>. You can either accept the
+default or click on Browse to select an alternate location for your
+project.<BR>Uncheck the <B>Create Main Class</B> checkbox. We will
+create the main class later.<BR>Click <B>Finish</B> to accept the
+values.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_prj_detail.png" NAME="graphics30" ALIGN=BOTTOM WIDTH=729 HEIGHT=499 BORDER=0><BR><I>Fig
+					2-3: Entering project details</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="text-align: left">At this point, NetBeans will
+create the outline and structure of your project.<BR><I>NetBeans
+allows you to open as many projects as you want in the <B>Projects</B>
+window. One limiting consideration would be your ability to keep
+track of too many open projects, and the other being unnecessary
+memory consumption. If you are not going to touch a project for a
+long time, you are advised to close it.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_2.3"></A>3.
+Creating a package</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Expand the node labelled <B>Source Packages</B>.<BR>Right click on it
+and select <B>New</B> followed by <B>Java Package...</B> in the
+cascading menu</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_new_package.png" NAME="graphics31" ALIGN=BOTTOM WIDTH=524 HEIGHT=414 BORDER=0><BR><I>Fig
+					2-4: Creating a new package</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Type in the
+name of new package (we suggest using <B>j1viewer</B> as we will
+refer to it below).</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_package_detail.png" NAME="graphics32" ALIGN=BOTTOM WIDTH=729 HEIGHT=499 BORDER=0><BR><I>Fig
+					2-5: Entering package name</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Click <B>Finish</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/2_pkg_node.png" NAME="graphics33" ALIGN=BOTTOM WIDTH=264 HEIGHT=318 BORDER=0><BR><I>Fig
+					2-6: Created package node</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><B><U>Summary:</U></B><BR><BR>You
+have just created a new project, and a Java package within it called
+<B>jviewer1</B>.<BR><BR><FONT COLOR="#000000"><A HREF="solution/exercise_2"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics34" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_2">Solution</A></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+--><A HREF="#Lab_exercises:_">return
+to the top</A> 
+</P>
+<HR>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_3"></A><FONT COLOR="#000000">Exercise
+3: Using Swing Widgets &amp; Layout Managers (25 minutes)</FONT></H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Learning
+goals of this exercise:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">In this
+exercise, you will learn how to construct GUIs using various
+graphical components, and adjust their position and appearance using
+layout managers and property editors.<BR><BR><B><U>Background
+information:</U></B><BR><BR>The example Swing application we are
+going to build is a simple Image Viewer which looks like this:</P>
+<DL>
+	<DD>
+	<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+		<TR>
+			<TD>
+				<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/2_background_completed_app.png" NAME="graphics35" ALIGN=BOTTOM WIDTH=980 HEIGHT=795 BORDER=0></P>
+				<P ALIGN=LEFT><I>Fig 3-1: Completed Image Viewer application
+				showing thumbnails of all images in a specified directory on the
+				left, a selected image on the top right, and an interface for
+				saving image metainfo on the bottom right. A tooltip (aka
+				balloon) with some image properties should appear when you move
+				the mouse pointer over any thumbnail on the left.</I></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><BR>In
+this Exercise, we will now focus on creating the image metadata panel
+that allows users to view and edit characteristics of an image. This
+is what it should look like when completed.</P>
+<DL>
+	<DD>
+	<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+		<TR>
+			<TD>
+				<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_13a_result.png" NAME="graphics36" ALIGN=BOTTOM WIDTH=396 HEIGHT=346 BORDER=0></P>
+				<P ALIGN=CENTER><I>Fig 3-.2: Completed <B>MetadataPanel</B></I></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><BR><B><U><I>VERY
+IMPORTANT:</I></U></B> <I>There are 4 optional steps in this exercise
+(<A HREF="#Exercise_3.5a">5a</A>, <A HREF="#Exercise_3.6a">6a</A>, <A HREF="#Exercise_3.8a">8a</A>
+&amp; <A HREF="#Exercise_3.13a">13a</A>) which do not affect the
+functionality of the completed application. However, if you want more
+practice putting UI components together, or would like your completed
+application to look exactly like the snapshots we provided, then you
+should spend the time doing those optional steps.</I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.1"></A><!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+--><B><U>Steps
+to follow:</U></B><BR><BR>1. Creating a GUI</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the package name (<B>j1viewer</B>) and select <B>New</B>
+followed by <B>JPanel Form...</B> in the cascading menu.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_1_new_jpanelform.png" NAME="graphics37" ALIGN=BOTTOM WIDTH=405 HEIGHT=359 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-3: Adding a JPanel Form</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>When the <B>New JPanel Form</B> dialog appears, type in
+<B>MetadataPanel</B> in the <B>Class Name</B> field</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_1_metadatapanel.png" NAME="graphics38" ALIGN=BOTTOM WIDTH=729 HEIGHT=492 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-4: Naming the JPanel 'MetadataPanel'</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click
+<B>Finish<BR></B><I>You have just created a <B>JPanel </B>called</I>
+<I><B>MetadataPanel</B>.</I><BR><I>We didn't ask you to create a
+<B>JFrame</B></I> <I>at this point because <B>MetadataPanel</B></I>
+<I>is not meant to exist on its own on the desktop.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Selecting the layout
+manager</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<I>A new tab containing <B>MetadataPanel</B></I> <I>should now appear
+in the middle of the NetBeans window. The <B>Design</B></I> <I>view
+should show an empty rectangle representing the <B>MetadataPanel</B>
+class which is a subclass of <B>JPanel</B>. Since the class is a
+form, the editor is set to <B>Design</B> mode (instead of <B>Source</B>
+mode) which provides a point and click interface for designing a
+form.<BR><BR></I>Right click on the <B>MetadataPanel</B> (shaded box)
+in the editor and select <B>Set Layout</B> followed by <B>GridBagLayout</B>
+in the cascading menu.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_2_metadatapanel_setlayout.png" NAME="graphics39" ALIGN=BOTTOM WIDTH=881 HEIGHT=492 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-5: Setting the layout to <B>GridBagLayout</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR><BR>
+</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">3. Adding borders</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+In the <B>Design</B> window, click on the <B>MetadataPanel<BR></B><I>The</I>
+<I><B>Properties </B>window should now show the <B>JPanel</B></I>
+<I>properties of <B>MetadataPanel</B></I><B><BR></B><BR>Look for the
+<B>border</B> property in the <B>Properties</B> window.<BR>Click on
+the correspoding <B>...</B> button to launch the customizer dialog.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_3_metadatapanel_borderprops.png" NAME="graphics40" ALIGN=BOTTOM WIDTH=298 HEIGHT=413 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-6: Launching border property dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Select <B>TitledBorder</B><BR>Type in the value '<B>Meta
+Information</B>' for the <B>Title</B> property</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_3_borderprops.png" NAME="graphics41" ALIGN=BOTTOM WIDTH=418 HEIGHT=624 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-7: Selecting <B>TitledBorder</B> and
+					customizing title text</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>OK</B></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. Adding Swing widgets to
+the MetadataPanel</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click on <B>JLabel</B> in the <B>Palette</B> to select it.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_4_palettejlabel.png" NAME="graphics42" ALIGN=BOTTOM WIDTH=269 HEIGHT=446 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-8: Select <B>JLabel</B> from palette</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click on the <B>MetadataPanel</B> in the editor.<BR><I>A label widget
+will now be added to the MetadataPanel. This is labelled <B>jLabel1</B>.
+You will notice that the <B>Palette</B> does not retain state after
+the chosen Swing component is added to a container. By design, you
+have to explicitly select a component each time you want to add it
+from the <B>Palette</B>. This minimizes the occurences of
+accidentally adding a component, or adding wrong components.<BR><BR></I>Add
+another <B>JLabel</B> (<B>jLabel2</B>).<BR>Click on <B>jLabel1</B>.<BR>Find
+the <B>text</B> property in the <B>Properties</B> window.<BR>Change
+the value from <B>jLabel1</B> to '<B>Image Name:</B>'.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_4_jlabel_textprop.png" NAME="graphics43" ALIGN=BOTTOM WIDTH=826 HEIGHT=834 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-9: Changing jLabel1's text property to
+					&quot;Image Name:&quot;</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Similarly
+change the <B>text</B> for <B>jLabel2</B> to <B>'* filename goes here
+*</B>'.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.5"></A>5.
+Using GridBagLayout Customizer</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the <B>MetadataPanel</B> in the editor and select
+<B>Customize Layout...</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_5_customizelayout.png" NAME="graphics44" ALIGN=BOTTOM WIDTH=480 HEIGHT=314 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-10: Launching the &quot;Customize
+					Layout...&quot; dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<B><BR></B>Select <B>jLabel1</B> and click on the <B>East</B> button
+(<IMG SRC="index_files/nb_images/3_5_east_button.png" NAME="graphics45" ALIGN=MIDDLE WIDTH=19 HEIGHT=19 BORDER=0>)
+in the <B>Anchor</B> group of buttons.<BR><I>You will know you have
+the right button when you move your mouse pointer there and a tooltip
+showing '<B>East</B>' pops up.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_5_gridbaglayout_customizer.png" NAME="graphics46" ALIGN=BOTTOM WIDTH=823 HEIGHT=629 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-11: Anchoring <B>jLabel1</B> to the
+					East</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Add some space between <B>jLabel1</B> and <B>jLabel2.</B> Select
+<B>jLabel2</B> and click on the left plus button (<IMG SRC="index_files/nb_images/3_5_plus_button.png" NAME="graphics47" ALIGN=MIDDLE WIDTH=22 HEIGHT=22 BORDER=0>)
+3 times in the <B>Insets</B> group fo buttons.<BR><I>This is the <B>Left
++1</B></I> <I>insets button, you can confirm it by moving the mouse
+pointer there and checking that the tooltip shows <B>Left +1</B>.</I><BR>Also
+click the <B>Horizontal Fill</B> (<IMG SRC="index_files/nb_images/3_5_hfill_button.png" NAME="graphics48" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=0>)
+and <B>Vertical Fill</B> (<IMG SRC="index_files/nb_images/3_5_vfill_button.png" NAME="graphics49" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=0>)
+buttons in the <B>Fill</B> group of buttons for <B>jLabel2</B>.<BR><I>You
+will know the fill buttons are activated when they display a deeper
+hue.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_5_gridbaglayout_customizer_jlabel2.png" NAME="graphics50" ALIGN=BOTTOM WIDTH=823 HEIGHT=629 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-12: Customizing <B>jLabel2</B> with
+					insets on the left, horizontal and vertical fill.</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>Close</B></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.5a"></A>
+5a. <U><I>Optional:</I></U> Adding an additional JLabel and
+JTextField</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<U><I>NOTE:</I></U> <I>Ignore the layout when you are adding the
+components below, you will take care of their position later.<BR><BR></I>Add
+a <B>JLabel</B> (<B>jLabel3</B>) to the <B>MetadataPanel</B>. Set the
+following property:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>Photographer:</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add a <B>JTextField</B> (<B>jTextField1</B>) to the <B>MetadataPanel</B>.
+Set the following properties:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>columns</B></P>
+				</TD>
+				<TD>
+					<P><B>20</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;empty string&gt;</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in"><BR>
+</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_5a_result.png" NAME="graphics51" ALIGN=BOTTOM WIDTH=826 HEIGHT=830 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-13: NetBeans display after completing
+					Step 5a</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR><BR>
+</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">6. Using GridBagLayout
+Customizer again (only if you did <A HREF="#Exercise_3.5a">Step 5a</A>,
+otherwise jump to <A HREF="#Exercise_3.6a">Step 6a</A> or <A HREF="#Exercise_3.7">Step
+7</A>)</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the <B>MetadataPanel</B> in the editor and select
+<B>Customize Layout...</B><BR>Drag <B>jLabel3</B> to the grid cell
+directly under <B>jLabel1</B>.<BR>Similarly drag <B>jTextField1</B>
+to the cell directly under <B>jLabel2</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_6_gridbaglayout_customizer.png" NAME="graphics52" ALIGN=BOTTOM WIDTH=823 HEIGHT=629 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-14: Using GridBagLayout Customizer to
+					get desired results</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Anchor
+<B>jLabel3</B> to <B>East</B><BR>Horizontal and vertical fill
+<B>jTextField1</B><BR>Add 3 <B>Left +1</B> insets to
+<B>jTextField1<BR></B>Click <B>Close</B></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.6a"></A>
+6a. <U><I>Optional:</I></U> Adding more labels (we suggest you at
+least add <B>Date:</B> so <A HREF="#Exercise_3.7">Step 7</A>'s
+results are more obvious.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Add the
+following labels to the <B>MetadataPanel</B>: <B>Date:</B>,
+<B>Category:</B>, <B>Type:</B>, <B>Rating:</B> and <B>Comments:</B><BR>Align
+all the <B>JLabel</B>s in the first column under <B>Image Name: </B>as
+shown in the snapshot below (you will have to drag them into position
+one at a time).<B><BR></B>All these <B>JLabel</B>s should be anchored
+to the <B>East</B></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_6a_result.png" NAME="graphics53" ALIGN=BOTTOM WIDTH=426 HEIGHT=379 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-15: MetadataPanel after adding 5 more
+					JLabel's</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT><A NAME="Exercise_3.7"></A>7. Using multiple layouts
+(if you skipped <A HREF="#Exercise_3.5a">Step 5a</A> or <A HREF="#Exercise_3.6a">Step
+6a</A>, <B>MetadataPanel</B> will look different in all the following
+snapshots of course)</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add a <B>JPanel</B> (<B>jPanel1</B>) to <B>MetadataPanel</B><BR>Using
+the GridBagLayout Customizer again, position <B>jPanel1</B> in the
+cell immediately right of the <B>Date:</B> label.<BR><I>Hint: You
+learned how to launch the customizer in </I><A HREF="#Exercise_3.5"><I>Step
+5</I></A><I>.</I><BR>Horizontal and vertical fill <B>jPanel1</B><BR>Add
+3 <B>Left +1</B> insets to <B>jPanel1<BR></B>Click <B>Close</B><BR><B><BR></B>Select
+<B>jPanel1</B> by either clicking on <B>MetadataPanel </B>...
+(alternative below)</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_7_clicking_jpanel1.png" NAME="graphics54" ALIGN=BOTTOM WIDTH=422 HEIGHT=377 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-16: Clicking on <B>jPanel1</B></I> <I>on
+					the right of <B>Date:</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<B><I>jPanel1</I></B> <I>will be highlighted in a blue rectangle.</I><BR>...
+-OR- clicking the <B>jPanel1</B> node in the <B>Inspector</B> window.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><IMG SRC="index_files/nb_images/3_7_clicking_jpanel1_inspector_node.png" NAME="graphics55" ALIGN=BOTTOM WIDTH=323 HEIGHT=405 BORDER=0><BR><I>Fig
+					3-17: Selecting <B>jPanel1</B></I> <I>using <B>Inspector</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Right click on <B>jPanel1</B> (inside the blue rectangle) and
+select <B>Design This Container</B>.<BR><I><B>jPanel1</B> should now
+be the only panel in the editor, and it should be empty.<BR><BR></I>Set
+the jPanel1 layout to <B>GridLayout</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_7_setting_gridlayout.png" NAME="graphics56" ALIGN=BOTTOM WIDTH=427 HEIGHT=432 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-18: Setting <B>GridLayout</B></I> <I>for
+					<B>jPanel1</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Set the following properties on the GridLayout</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>columns</B></P>
+				</TD>
+				<TD>
+					<P><B>3</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>rows</B></P>
+				</TD>
+				<TD>
+					<P><B>1</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>horizontal gap</B></P>
+				</TD>
+				<TD>
+					<P><B>3</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>vertical gap</B></P>
+				</TD>
+				<TD>
+					<P><B>3</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_7_gridlayout_properties.png" NAME="graphics57" ALIGN=BOTTOM WIDTH=268 HEIGHT=131 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-19: <B>GridLayout</B></I> <I>properties</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Right click on <B>jPanel1</B> in the <B>Inspector</B> window and
+select <B>Add From Palette</B> followed by <B>Swing</B> then
+<B>JComboBox</B> in the cascading menu.<BR><I>NetBeans will call this
+<B>jComboBox1</B>.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_7_adding_jcombobox.png" NAME="graphics58" ALIGN=BOTTOM WIDTH=756 HEIGHT=918 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-20: Adding a <B>JComboBox</B></I> <I>to
+					<B>jPanel1</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Add 2 more <B>JComboBox</B> widgets (<B>jComboBox2</B> &amp;
+<B>jComboBox3</B>) in the same manner.<BR><I>You could also have
+clicked on <B>JComboBox</B></I> <I>in the <B>Palette</B></I> <I>window,
+then on <B>jPanel1</B></I> <I>but we wanted to show you an
+alternative.</I><BR><I>We will use <B>jComboBox1</B></I> <I>to
+represent month, <B>jComboBox2</B></I> <I>for day and <B>jComboBox3</B></I>
+<I>for year.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_7_jcomboboxes_added.png" NAME="graphics59" ALIGN=BOTTOM WIDTH=425 HEIGHT=379 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-21: After adding 3 <B>JComboBox</B>es</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR><BR>
+</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">&nbsp;8. Customizing
+JComboBox</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>jCombox1</B> and click on <B>...</B> button of its <B>model</B>
+property<BR>Type <B>January</B> in the <B>Item:</B> field.<BR>Click
+on <B>Add</B>. <B>January</B> will be added to <B>Item List</B>
+window.<BR>Add <B>Febuary</B> through to <B>December</B> in ths same
+manner.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_8_adding_jcombobox_items.png" NAME="graphics60" ALIGN=BOTTOM WIDTH=458 HEIGHT=449 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-22: Adding <B>JComboBox</B></I> <I>items</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click on <B>OK</B> once you are done<BR><BR>Add <B>1</B> to <B>31</B>
+for <B>jComboBox2</B><BR>Add <B>2000</B> to <B>2010</B> for
+<B>jComboxBox3</B><BR>Now right click on <B>jPanel1</B> in the
+<B>Inspector</B> window and select <B>Design Top Container</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_8_result.png" NAME="graphics61" ALIGN=BOTTOM WIDTH=406 HEIGHT=306 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-23:</I> <I>After adding items to
+					<B>JComboBox</B>es</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.8a"></A>
+8a. <U><I>Optional:</I></U> Adding a JComboBox for Category</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<U><I>NOTE:</I></U> <I>You <FONT COLOR="#ff0000">do not</FONT></I>
+<I>need to add a <B>JPanel </B>as you are only using one JComboBox
+here</I><BR>Add a <B>jComboBox</B> (<B>jComboBox4</B>) and align it
+beside <B>Category</B><BR>Add 3 <B>Left +1</B> insets to
+<B>jComboxBox4</B><BR>Horizontal and vertical fill <B>jComboBox4</B><BR>Add
+<B>Nature</B>, <B>People</B> and <B>Places</B> items to <B>jComboBox4</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_8a_result.png" NAME="graphics62" ALIGN=BOTTOM WIDTH=408 HEIGHT=311 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-24: <B>MetadataPanel</B></I> <I>after
+					adding <B>jComboBox4</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">9. Using <B>JRadioButton</B>'s
+in a <B>ButtonGroup</B></P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add a <B>JPanel</B> (<B>jPanel2</B>) to <B>MetadataPanel</B>. Align
+<B>jPanel2</B> beside <B>Type</B><BR>Add 3 <B>Left +1</B> insets to
+<B>jPanel2</B><BR>Horizontal and vertical fill <B>jPanel2</B><BR>Make
+<B>jPanel2</B> be the only Panel to appear in the editor by right
+clicking on it in the <B>Inspector</B> window and selecting <B>Design
+This Container.<BR></B><I>A faster alternative is to double-click</I>
+<I><B>jPanel2 </B>within the</I> <I><B>Design </B>window but we want
+to make sure you know what is going on.</I><B><BR></B>Set the <B>jPanel2</B>
+layout to <B>GridLayout</B>. Set the followng properties on the
+GridLayout:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>columns</B></P>
+				</TD>
+				<TD>
+					<P><B>4</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>rows</B></P>
+				</TD>
+				<TD>
+					<P><B>1</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>horizontal gap</B></P>
+				</TD>
+				<TD>
+					<P><B>3</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>vertical gap</B></P>
+				</TD>
+				<TD>
+					<P><B>3</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on <B>jPanel2</B> in the <B>Inspector</B> window (or
+<B>Design</B> window) and select <B>Add From Palette</B> followed by
+<B>Swing</B> followed by <B>ButtonGroup</B> (<B>buttonGroup1</B>) in
+the cascading menu.<BR><I>You might notice that <B>buttonGroup1</B></I>
+<I>is under <B>Form MetadataPanel</B></I> <I>and <B>Other Components</B></I>
+<I>in the <B>Inspector</B></I> <I>window.</I><BR><BR>Right click on
+<B>jPanel2</B> in the <B>Inspector</B> window (or <B>Design</B>
+window) and select <B>Add From Palette</B> followed by <B>Swing</B>
+followed by <B>JRadioButton</B> (<B>jRadioButton1</B>) in the
+cascading menu.<BR>Add 3 more <B>JRadioButton</B> widgets
+(<B>jRadioButton2</B>, <B>jRadioButton3</B> &amp; <B>jRadioButton4</B>)
+in the same manner.<BR>Set the following properties on the
+<B>JRadioButton</B>s:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Name</P>
+				</TD>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton1</B></P>
+				</TD>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>GIF</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton1</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton1</B></P>
+				</TD>
+				<TD>
+					<P><B>enabled</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton2</B></P>
+				</TD>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>JPEG</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton2</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton2</B></P>
+				</TD>
+				<TD>
+					<P><B>enabled</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton3</B></P>
+				</TD>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>TIFF</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton3</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton3</B></P>
+				</TD>
+				<TD>
+					<P><B>enabled</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton4</B></P>
+				</TD>
+				<TD>
+					<P><B>text</B></P>
+				</TD>
+				<TD>
+					<P><B>BMP</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton4</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup</B></P>
+				</TD>
+				<TD>
+					<P><B>buttonGroup1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jRadioButton4</B></P>
+				</TD>
+				<TD>
+					<P><B>enabled</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Set the following property on jPanel2:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>border</B></P>
+				</TD>
+				<TD>
+					<P><B>EtchedBorder</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Now right click on <B>jPanel2</B> in the <B>Inspector</B> window
+and select <B>Design Top Container</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_9_result.png" NAME="graphics63" ALIGN=BOTTOM WIDTH=411 HEIGHT=311 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-25: <B>MetadataPanel</B></I> <I>after
+					<B>JRadioButton</B></I> <I>group</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">10. Using JSliders</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add a <B>JSlider</B> (<B>jSlider1</B>) to <B>MetadataPanel</B>.<BR>Align
+jSlider1 beside <B>Rating:</B>.<BR>Add 3 <B>Left +1</B> insets to
+<B>jSlider1</B>.<BR>Horizontal and vertical fill <B>jSlider1</B><BR>Set
+the following properties on <B>jSlider1</B>:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>maximum</B></P>
+				</TD>
+				<TD>
+					<P><B>10</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>paintLabels</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;checked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>paintTicks</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;checked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>majorTickSpacing</B></P>
+				</TD>
+				<TD>
+					<P><B>2</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>minorTickSpacing</B></P>
+				</TD>
+				<TD>
+					<P><B>1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>value</B></P>
+				</TD>
+				<TD>
+					<P><B>5</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR><B>MetadataPanel</B> should look like this after adding <B>jSlider1</B>:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_10_result.png" NAME="graphics64" ALIGN=BOTTOM WIDTH=410 HEIGHT=310 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-26: <B>MetadataPanel</B></I> <I>after
+					adding <B>JSlider</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">11. Using JTextArea and
+JScrollPane</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add a <B>JScrollPane</B> (<B>jScrollPane1</B>) to
+<B>MetadataPanel</B>.<BR>Align <B>jScrollPane1</B> beside
+<B>Comments:</B><BR>Right click on <B>jScrollPane1</B> in <B>Inspector</B>
+window and select <B>Add From Palette</B> followed by <B>Swing</B>
+followed by <B>JTextArea</B> (<B>jTextArea1</B>) in the cascading
+menu.<BR>Set the following property on <B>jTextArea1</B>:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>rows</B></P>
+				</TD>
+				<TD>
+					<P><B>7</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR><B>MetadataPanel</B> should look like this after adding
+<B>jScrollpane1 </B>and <B>jTextArea1</B>:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_11_result.png" NAME="graphics65" ALIGN=BOTTOM WIDTH=410 HEIGHT=310 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-27: After adding</I> <B><I>JTextArea</I></B>
+					<I>in <B>JScrollPane</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">12. Using GridBagLayout
+editor (part 3)</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add 3 <B>Left +1 </B>insets to <B>jScrollPane1</B><BR>Horizontal and
+vertical fill <B>jScrollPane1</B><BR>Extend <B>jScrollPane1</B>
+downward by clicking <B>+1 Row</B> in <B>Grid Size</B>. Do this 2
+more times</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_12_gridbaglayout_customizer.png" NAME="graphics66" ALIGN=BOTTOM WIDTH=823 HEIGHT=629 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-28: Adjusting <B>jScrollPane1</B></I>
+					<I>in the <B>GridBagLayout Customizer</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>Close</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_12_result.png" NAME="graphics67" ALIGN=BOTTOM WIDTH=410 HEIGHT=310 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-29: <B>MetadataPanel</B></I> <I>after
+					filling out <B>JScrollPane</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">13. Testing MetadataPanel</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click on the <B>Test Form</B> button above the editor to test
+<B>MetadataPanel</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_13_test_form.png" NAME="graphics68" ALIGN=BOTTOM WIDTH=430 HEIGHT=383 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-30: The <B>Test Form</B></I> <I>button</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Try typing
+in enough text in the <B>Comments:</B> field to activate scrolling of
+the <B>JScrollPane</B>.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_3.13a"></A>
+13a. <U><I>Optional:</I></U> <B>JPanel</B> revisited and <B>JButton</B>
+introduced</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=621 BORDER=1 CELLPADDING=2 CELLSPACING=3 FRAME=VOID RULES=GROUPS>
+			<COLGROUP>
+				<COL WIDTH=0>
+			</COLGROUP>
+			<COLGROUP>
+				<COL WIDTH=400>
+			</COLGROUP>
+			<COLGROUP>
+				<COL WIDTH=0>
+				<COL WIDTH=198>
+			</COLGROUP>
+			<TR>
+				<TD VALIGN=TOP></TD>
+				<TD WIDTH=400>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/3_13a_result.png" NAME="graphics69" ALIGN=BOTTOM WIDTH=396 HEIGHT=346 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 3-31: <B>MetadataPanel </B>with a</I>
+					<I><B>Modify </B>button</I></P>
+				</TD>
+				<TD VALIGN=TOP></TD>
+				<TD ROWSPAN=2 WIDTH=198>
+					<P STYLE="margin-bottom: 0in"><I><BR><BR><BR><IMG SRC="index_files/nb_images/Yoda.jpg" NAME="graphics70" ALIGN=BOTTOM WIDTH=200 HEIGHT=200 BORDER=0></I></P>
+					<P ALIGN=CENTER STYLE="margin-bottom: 0in"><I>Use the <B>FlowLayout</B>
+					Luke!</I></P>
+					<P STYLE="margin-bottom: 0in"><BR>
+					</P>
+					<P ALIGN=CENTER><I><BR><BR><BR>Fig C3-PO: Hint from Master</I></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD COLSPAN=3 WIDTH=406></TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">See if you
+can figure out how to add the <B>Modify</B> button to the
+<B>MetadataPanel</B>. 
+</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><B><U>Summary:</U></B><BR><BR>You
+have just created the <B>MetadataPanel</B> comprising these Swing
+components: <B>JPanel</B>, <B>JLabel</B>, <B>JTextField</B>,
+<B>JComboBox</B>, <B>ButtonGroup</B>, <B>JRadioButton</B>, JS<B>lider</B>,
+<B>JScrollPane</B>, <B>JTextArea</B> and <B>JButton</B>. You have
+also learned how to use the <B>GridBagLayout</B>, <B>GridLayout</B>
+and <B>FlowLayout</B> layout managers. As you've experienced, you
+have fine-grained control over the layout of every component using
+the the layout customizers.<BR><BR><FONT COLOR="#000000"><A HREF="solution/exercise_3"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics71" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_3">Solution</A><BR><BR><A HREF="#Lab_exercises:_">return
+to the top</A></P>
+<HR SIZE=1>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_4"></A>Exercise 4:
+Customizing GUI Behavior (20 minutes)</H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Learning
+goals of this exercise:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">In this
+exercise, you will learn to customize various aspects of GUI
+behavior.<BR><BR><B><U>Background information:</U></B><BR><BR>You've
+experienced how the tooltips in the NetBeans UI helped you figure out
+what the various widgets in an unfamiliar interface do. The first
+thing you will learn in this exercise is how easy it is to add
+tooltips to any component. We will also guide you through: adding an
+image to a button, configuring a focus trail, creating enumerated
+types and Java Bean properties to match your ocmponents, wiring your
+components to the Bean properties with source code, correcting
+'import' errors with assistance, adding event handling methods to a
+component, and finally, adding a component to the Palette as a Bean.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><U><!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+--><B>Steps
+to follow:</B></U></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><BR>1. Adding Tooltips</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>jLabel2</B> (&quot;<B>* filename goes here *</B>&quot;)<BR>Look
+for the <B>toolTipText</B> property in <B>Properties</B> and type in
+the value '<B>image filename</B>'</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_tooltip.png" NAME="graphics72" ALIGN=BOTTOM WIDTH=258 HEIGHT=316 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-1: Tooltip property</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Set tooltips
+for the following:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=70% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Name</P>
+				</TD>
+				<TD>
+					<P>TooltipText</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jTextField1</B></P>
+				</TD>
+				<TD>
+					<P><B>Photographer's name</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jLabel4</B></P>
+				</TD>
+				<TD>
+					<P><B>Capture date</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox1</B></P>
+				</TD>
+				<TD>
+					<P><B>Month</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox2</B></P>
+				</TD>
+				<TD>
+					<P><B>Day</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox3</B></P>
+				</TD>
+				<TD>
+					<P><B>Year</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox4</B></P>
+				</TD>
+				<TD>
+					<P><B>Photo classification</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jLabel6</B></P>
+				</TD>
+				<TD>
+					<P><B>Image format</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jSlider1</B></P>
+				</TD>
+				<TD>
+					<P><B>My rating for this photo: 0(bad) - 10(good)</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jTextArea1</B></P>
+				</TD>
+				<TD>
+					<P><B>Comments</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jButton1</B></P>
+				</TD>
+				<TD>
+					<P><B>Save changes</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>You can validate all the tooltips by clicking the <B>Test Form</B>
+button and placing the mouse pointer over those components.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_1_jslider_tooltips.png" NAME="graphics73" ALIGN=BOTTOM WIDTH=396 HEIGHT=346 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-2: Example: tooltips when pointer is on
+					<B>jSlider1</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Adding images (only if
+you did the <A HREF="#Exercise_3.13a">optional Step 13a of Exercise
+3</A>)</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>jButton1</B> and set the <B>icon</B> property. Select the
+<B>File</B> radio button<BR>Click the <B>Select File...</B> button
+and set the icon image to <B>&lt;LAB_ROOT&gt;/resources/Save24.gif</B>
+</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_specifying_icon_image.png" NAME="graphics74" ALIGN=BOTTOM WIDTH=447 HEIGHT=431 BORDER=0><BR><I>Fig
+					4-3: Specifying button icon</I> 
+					</P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>OK</B> and <B>MetadataPanel</B> should now look like this:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_2_result.png" NAME="graphics75" ALIGN=BOTTOM WIDTH=410 HEIGHT=311 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-4: After adding an image icon to
+					<B>jButton1</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><U><I>NOTE:</I></U>
+<I>Often, resources such as icon images such as this are located in
+the classpath to facilitate packaging. For this lab, we have chosen
+the easy way out but want you to note that absolute file paths are
+not portable. See related link in <A HREF="#Resources">Resouces</A>.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2a. <U><I>Optional:</I></U>
+Focus traversing</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<U><I>NOTE:</I></U> this is deprecated but still works. There is a
+new focus traversal architecture which we won't cover here.)<BR><BR>Select
+<B>jTextField1</B> and find <B>nextFocusableComponent</B> in the
+<B>Properties</B> window.<BR>On the <B>nextFocusableComponent</B>
+combobox, select <B>jComboBox1</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_focus_traversal.png" NAME="graphics76" ALIGN=BOTTOM WIDTH=295 HEIGHT=292 BORDER=0>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp; &nbsp; 
+					<IMG SRC="index_files/nb_images/4_focus_traversal_expanded.png" NAME="graphics77" ALIGN=BOTTOM WIDTH=262 HEIGHT=321 BORDER=0><BR><I>Fig
+					4-5: Focus traversal property</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Create the
+following 'focus trail': (you have to skip the components you opted
+not to create earlier)</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>From</P>
+				</TD>
+				<TD>
+					<P>To</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jTextField1</B></P>
+				</TD>
+				<TD>
+					<P><B>jComboBox1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox1</B></P>
+				</TD>
+				<TD>
+					<P><B>jComboBox2</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox2</B></P>
+				</TD>
+				<TD>
+					<P><B>jComboBox3</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox3</B></P>
+				</TD>
+				<TD>
+					<P><B>jComboBox4</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jComboBox4</B></P>
+				</TD>
+				<TD>
+					<P><B>jSlider1</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>jSlider1</B></P>
+				</TD>
+				<TD>
+					<P><B>jTextArea1</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><B>jTextArea1</B></P>
+				</TD>
+				<TD>
+					<P><B>jButton1</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>jButton1</B></P>
+				</TD>
+				<TD>
+					<P><B>jTextField1</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR>You can
+test focus traversal by clicking <B>Test Form</B>, then use the <B>&lt;Tab&gt;</B>
+key on your keyboard to move focus from <B>jTextField1</B> to
+<B>jTextArea</B>.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. Creating enumerated
+types</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on <B>j1viewer</B> in the <B>Projects</B> window and
+select <B>New</B> followed by <B>File/Folder...</B> on the cascading
+menu<BR>Then on the <B>New File</B> dialog, select <B>Java Classes</B>
+followed by <B>Java Enum</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_selecting_java_enum.png" NAME="graphics78" ALIGN=BOTTOM WIDTH=729 HEIGHT=499 BORDER=0><BR><I>Fig
+					4-6: Creating enumerated type</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>Next &gt;</B></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Enter
+<B>Categories</B> for the <B>Class Name:</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_naming_java_enum.png" NAME="graphics79" ALIGN=BOTTOM WIDTH=729 HEIGHT=499 BORDER=0><BR><I>Fig
+					4-7: Naming enumerated type</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>Finish</B></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Expand
+<B>Categories.java</B> followed by <B>Categories</B><BR>Right click
+on <B>Constants</B> and select <B>Add Constant...</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_adding_java_enum.png" NAME="graphics80" ALIGN=BOTTOM WIDTH=424 HEIGHT=242 BORDER=0><BR><I>Fig
+					4-8: Adding enumerated values</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Type <B>Nature</B>
+for the <B>Name:</B> of the new constant</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_value_java_enum.png" NAME="graphics81" ALIGN=BOTTOM WIDTH=326 HEIGHT=111 BORDER=0><BR><I>Fig
+					4-9: The <B>Add New Constant</B> dialog</I> 
+					</P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>OK</B></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Add the following 2 more constants: <B>People</B> and <B>Places</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_completed_java_enum.png" NAME="graphics82" ALIGN=BOTTOM WIDTH=294 HEIGHT=218 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-10: Completed enumerated values</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">As you can
+guess, these enumerated types match the <B>Categories</B> <B>ComboBox</B>
+that we created earlier for classifying images.<BR><BR>Create another
+enumerated type call <B>ImageFormat</B> with the following constants:
+<B>GIF</B>, <B>JPEG</B>, <B>TIFF</B> and <B>BMP</B>.<BR>This will
+match the <B>JRadioButton</B>s we created earlier to denote image
+<B>Type:</B>.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">5. Exposing MetadataPanel
+as a JavaBean (adding properties)</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Expand the <B>Source Packages</B> node, then <B>j1viewer</B>, the
+<B>MetadataPanel.java</B>, then <B>MetadataPanel</B> in the <B>Projects</B>
+window<BR>Right click on <B>Bean Patterns</B> and select <B>Add</B>
+followed by <B>Property</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_adding_property.png" NAME="graphics83" ALIGN=BOTTOM WIDTH=575 HEIGHT=274 BORDER=0><BR><I>Fig
+					4-11: Adding JavaBean property</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">The property
+dialog box will be displayed.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_dialog_property.png" NAME="graphics84" ALIGN=BOTTOM WIDTH=250 HEIGHT=375 BORDER=0><BR><I>Fig
+					4-12: Property dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Set the following values in this specified order:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P>Field</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>Name</B></P>
+				</TD>
+				<TD>
+					<P><B>imageFilename</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>Type</B></P>
+				</TD>
+				<TD>
+					<P><B>String</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>Generate Return Statement</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>Generate Set Statement</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<P><B>Generate Field</B></P>
+				</TD>
+				<TD>
+					<P><B>&lt;unchecked&gt;</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>OK</B>
+and the <B>Project</B> window should look like this under the <B>Bean
+Patterns</B> node:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_completed_property.png" NAME="graphics85" ALIGN=BOTTOM WIDTH=318 HEIGHT=180 BORDER=0><BR><I>Fig
+					4-13: Newly added JavaBean property</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Create the
+following properties in the above mentioned way:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Property name</P>
+				</TD>
+				<TD>
+					<P>Type</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>photographerName</B></P>
+				</TD>
+				<TD>
+					<P><B>String</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>captureDate</B></P>
+				</TD>
+				<TD>
+					<P><B>java.util.Date</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>category</B></P>
+				</TD>
+				<TD>
+					<P><B>j1viewer.Categories</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>imageFormat</B></P>
+				</TD>
+				<TD>
+					<P><B>j1viewer.ImageFormat</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>ratings</B></P>
+				</TD>
+				<TD>
+					<P><B>int</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>comments</B></P>
+				</TD>
+				<TD>
+					<P><B>String</B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">6. Adding code to
+properties</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+To add source code, click on the <B>MetadataPanel.java</B> tab and
+the <B>Source</B> button</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_6_adding_source.png" NAME="graphics86" ALIGN=BOTTOM WIDTH=825 HEIGHT=798 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-14: The source code for <B>MetadataPanel</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Add the following code (<B><FONT COLOR="#330099">method bodies in
+blue</FONT></B>) to the properties you have created above.<BR>Stating
+the obvious, if you had skipped creating any widgets and the
+corresponding Bean properties, skip those methods.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<B>public String getImageFilename() {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (jLabel2.getText());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setImageFilename(String imageFilename) {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jLabel2.setText(imageFilename);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR>&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public
+					String getPhotographerName() {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (jTextField1.getText());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setPhotographerName(String photographerName)
+					{<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jTextField1.setText(photographerName);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR><BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					Date getCaptureDate() {<BR>&nbsp;&nbsp;<FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					GregorianCalendar cal = new
+					GregorianCalendar(</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					(jComboBox3.getSelectedIndex() + 2000) /* year
+					*/</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					, jComboBox1.getSelectedIndex() /* month
+					*/</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					, jComboBox2.getSelectedIndex() /* day */);</FONT><BR><FONT COLOR="#330099">&nbsp;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (cal.getTime());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setCaptureDate(Date captureDate) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<FONT COLOR="#330099">GregorianCalendar cal = new
+					GregorianCalendar();</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					cal.setTime(captureDate);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					//set month</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jComboBox1.setSelectedIndex(cal.get(Calendar.MONTH));</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					//set day</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jComboBox2.setSelectedIndex(cal.get(Calendar.DATE));</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					//set year - Potential error. Should do more checks
+					here</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jComboBox3.setSelectedIndex(cal.get(Calendar.YEAR) -
+					2000);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR><BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					j1viewer.Categories getCategory() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<FONT COLOR="#330099">switch (jComboBox4.getSelectedIndex())
+					{</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case 0:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (j1viewer.Categories.Nature);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case 1:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (<FONT COLOR="#330099">j1viewer.</FONT>Categories.People);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					default:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (<FONT COLOR="#330099">j1viewer.</FONT>Categories.Places);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR></B>&nbsp;
+					&nbsp; &nbsp; &nbsp; <B>public void
+					setCategory(j1viewer.Categories category) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<FONT COLOR="#330099">int idx;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					switch (category) {</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case Nature:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					idx = 0;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					break;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case People:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					idx = 1;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					break;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					default:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					idx = 2;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jComboBox4.setSelectedIndex(idx);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR><BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<B>public ImageFormat getImageFormat() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<FONT COLOR="#330099">if
+					(jRadioButton1.isSelected())</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (ImageFormat.GIF);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					else if (jRadioButton2.isSelected())</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (ImageFormat.JPEG);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					else if (jRadioButton3.isSelected())</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (ImageFormat.TIFF);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					else</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (ImageFormat.BMP);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setImageFormat(ImageFormat imageFormat) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<FONT COLOR="#330099">switch (imageFormat)
+					{</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case GIF:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jRadioButton1.setSelected(true);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case JPEG:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jRadioButton2.setSelected(true);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					case TIFF:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jRadioButton3.setSelected(true);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					default:</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jRadioButton4.setSelected(true);</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return;</FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR><BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					int getRating() {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (jSlider1.getValue());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setRating(int rating) {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jSlider1.setValue(ratings % jSlider1.getMaximum());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public
+					String getComments() {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					return (jTextArea1.getText());</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}<BR></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B>public
+					void setComments(String comments) {<BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jTextArea1.setText(comments);</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					}</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><I>Code-01:
+Getter and setter methods for the properties we added to
+<B>MetadataPanel</B></I></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<U><I>NOTE:</I></U> <I>There will be some classes that are reported
+as undefined (eg. GregorianCalendar). You can see the squiggly red
+line under the erroneous statements. Look for <B>GregorianCalendar</B></I>
+<I>in the editor within the <B>getCaptureDate()</B></I> <I>and
+<B>setCaptureDate()</B></I> <I>methods.</I><BR><BR>Move your mouse
+pointer over the <B>red box with a diagonal white cross</B> (<IMG SRC="index_files/nb_images/4_6_error_red_box.png" NAME="graphics87" ALIGN=MIDDLE WIDTH=9 HEIGHT=9 BORDER=0>)
+or <B>the squggly red line</B> and you will find out the exact error
+is.<BR><I>Consistent with how a lot of other functions in NetBeans
+work, a tooltip will appear providing the error details.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/4_6_determining_error.png" NAME="graphics88" ALIGN=BOTTOM WIDTH=533 HEIGHT=340 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 4-15: The cause of each error is
+					displayed within a tooltip/balloon</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left"><A NAME="Exercise_4.6_ImportPackage"></A>
+<BR>Click on the <B>GregorianCalendar</B> keyword in the source code
+and type <B>Alt-Shift-i</B><BR>The <B>Import Class</B> dialog will
+launch showing a match to <B>java.util.GregorianCalendar</B><BR>Select
+the <B>Import Package </B>radio button instead and click <B>OK</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_6_importing_package.png" NAME="graphics89" ALIGN=BOTTOM WIDTH=351 HEIGHT=267 BORDER=0><BR><I>Fig
+					4-16: Importing java.util.package to correct GregorianCalendar
+					class not found error</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click
+<B>OK<BR><BR></B><I>You might want to try introducing various syntax
+errors into the source code to try NetBeans diagnostic capabilities.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">7. Adding a method</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Expand the <B>Source Packages</B> node in the <B>Projects</B> window,
+then <B>j1viewer</B> then <B>MetadataPanel.java</B> then
+<B>MetadataPanel</B><BR>Right click on <B>Methods</B> and select <B>Add
+Method...</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_adding_method_listener.png" NAME="graphics90" ALIGN=BOTTOM WIDTH=400 HEIGHT=227 BORDER=0><BR><I>Fig
+					4-17: Adding a method to a class</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">The
+following dialog box will be displayed. Type <B>addActionListener</B>
+in the <B>Name</B> field</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_before_adding_method_listener.png" NAME="graphics91" ALIGN=BOTTOM WIDTH=335 HEIGHT=517 BORDER=0><BR><I>Fig
+					4-18: <B>Add New Method</B> dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Click on <B>Add</B>
+in the <B>Parameters</B> tab.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_dialog_parameter_method_listener.png" NAME="graphics92" ALIGN=BOTTOM WIDTH=308 HEIGHT=168 BORDER=0><BR><I>Fig
+					4-19: Adding a parameter to <B>addActionListener()</B> method</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Enter the following values:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR VALIGN=TOP>
+				<TD>
+					<P>Field</P>
+				</TD>
+				<TD>
+					<P>Value</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>Type</B></P>
+				</TD>
+				<TD>
+					<P><B>ActionListener</B></P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD>
+					<P><B>Name</B></P>
+				</TD>
+				<TD>
+					<P><B>listener </B>
+					</P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>OK</B> to dismiss the <B>Enter Method Parameter </B>dialog<BR>Then
+click <B>OK</B> to dismiss the <B>Add New Method</B> dialog 
+</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_after_dialog_method_listener.png" NAME="graphics93" ALIGN=BOTTOM WIDTH=335 HEIGHT=517 BORDER=0><BR><I>Fig
+					4-20: Completed method</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Expand the
+<B>Methods</B> node and look for <B>addActionListener</B> method.
+Double-click on it; this will cause the editor to display the method.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_after_adding_method.png" NAME="graphics94" ALIGN=BOTTOM WIDTH=256 HEIGHT=176 BORDER=0><BR><I>Fig
+					4-21: Method added successfully</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+There is an error with the <B>addActionListener</B>() method. Try to
+fix it before proceeding<BR>Add the following code (<B><FONT COLOR="#330099">in
+blue</FONT></B>) to the <B>addActionListener()</B> method body:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#ff0000"><B>public void
+					addActionListener(ActionListener listener) {<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; <FONT COLOR="#330099">jButton1.addActionListener(listener);</FONT><BR>}</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><I>Code-02:
+Wiring it up so that the <B>actionPerformed</B> event for <B>jButton1</B>
+will be handled by anyone listening on <B>MetadataPanel</B><BR><BR>Hint:
+You will have to import another package <A HREF="#Exercise_4.6_ImportPackage">just
+like you did in Step 6</A> in order to clear an error.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_4.8"></A>8.
+Adding MetadataPanel to the component palette</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Expand <B>Source Packages</B> followed by <B>j1viewer</B> followed by
+<B>MetadataPanel.java</B> followed by <B>MetadataPanel</B> in the
+<B>Projects</B> window.<BR>Right click on <B>MetadataPanel.java</B>
+and select <B>Tools</B> followed by <B>Add to Palette...</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_adding_to_palette.png" NAME="graphics95" ALIGN=BOTTOM WIDTH=730 HEIGHT=559 BORDER=0><BR><I>Fig
+					4-22: Adding <B>MetadataPanel</B> to Netbean's component palette</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<I>Adding a component to the palette is the recommended way to reuse
+Swing components in NetBeans. It facilitates cleaner integration into
+future projects than copying of source code followed by the necessary
+refactoring.</I></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Select <B>Beans</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_selecting_palette.png" NAME="graphics96" ALIGN=BOTTOM WIDTH=408 HEIGHT=381 BORDER=0><BR><I>Fig
+					4-23: Selecting component tab</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>OK</B></BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Verify that <B>MetadataPanel</B> has been added to the <B>Palette</B>
+window<BR>If you are viewing source code, you can bring back the
+<B>Palette </B>by clicking the <B>Design</B> button<BR>Scroll down to
+the bottom and expand the <B>Beans</B> node and you should see
+<B>MetadataPanel</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/4_metadata_in_palette.png" NAME="graphics97" ALIGN=BOTTOM WIDTH=240 HEIGHT=342 BORDER=0><BR><I>Fig
+					4-24: <B>MetadataPanel</B> in <B>Palette</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><B><U>Summary:</U></B><BR><BR>You
+have learned how to modiy the behavior of GUI components. You added
+tooltips to the components in <B>MetadataPanel</B>, then you added an
+image to a button, followed by configuring the focus traversal path
+of the components. You created enumerated types and properties that
+corresponded to the values of your components, and hooked up getters.
+setters and event handlers. Finally, you added <B>MetadataPanel</B>
+to the Palette as a Bean so that it can be easily reused by this and
+other applications.<BR><BR><FONT COLOR="#000000"><A HREF="solution/exercise_4"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics98" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_4">Solution</A><BR><BR><A HREF="#Lab_exercises:_">return
+to the top</A></P>
+<HR SIZE=1>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_5"></A>Exercise 5:
+Advanced Swing Widgets (20 minutes)</H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Learning
+goals of this exercise:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_5.1"></A>In
+this exercise, you will learn how to combine Swing composite widgets
+into applications. You will also learn how to refactor existing code
+into your application.<BR><BR><B><U>Background information:</U></B><BR><BR><FONT COLOR="#000000">Very
+few software projects start development from scratch where the
+programmers don't bring over any code they had developed for other
+purposes, or incorporate open source or commercial libraries. We will
+now show you how to bring existing source code into your project. And
+in the optional <A HREF="#Exercise_7">Exercise 7</A>, we will show
+you how to use existing jar files.<BR><BR>Although it is not really
+difficult for you to develop the thumbnail table and the image panel,
+it involves lots of low-level details which take up significantly
+more time, so we have pre-built them for you to incorporate as source
+code. In previous exercises, you had created and customized the
+<B>MetadataPanel</B> all by yourself. In this exercise, you will copy
+in and refactor <A HREF="files/ImagePanel.java"><B>ImagePanel</B> </A>to
+display scale-sized image and <A HREF="files/ImagesTableModel.java"><B>ImagesTableModel</B>
+</A>to load the directory of images as thumbnails, then you will
+create the top-level <B>ImageManager</B> application by yourself,
+incorporating all the other components.<BR><BR>To reinforce your
+learning, we have deliberately chosen a much less graphical style in
+the guidance compared to previous exercises. We hope it will help you
+to recall how to perform the required actions. But just in case you
+forgot, we also left a few hints for the more complex
+operations.</FONT><BR><B><U><BR>Steps to follow:</U></B><BR><BR>1.
+Copying additonal files into the project</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the <U>top most node</U> (ImageViewer, MyImageViewer
+or whatever you named it in <A HREF="#Exercise_2">Exercise 2</A>) in
+the <B>Projects</B> window and select <B>Properties</B>.<BR>Note the
+location of the project sources (<B>Project Folder</B>) on the
+<B>Project Properties</B> dialog.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_1_project_props.png" NAME="graphics99" ALIGN=BOTTOM WIDTH=758 HEIGHT=524 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-1: <B>Project Properties</B></I> <I>dialog
+					showing Project Folder location</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click <B>OK</B> to dismiss this dialog once you've noted the location
+of <B>&lt;PROJECT_FOLDER&gt;</B><BR><BR>Now (using your usual means,
+GUI or command line) copy <B>ImagePanel.java</B>, <B>ImagePanel.form</B>
+and <B>ImagesTableModel.java</B> from <B>&lt;LAB_ROOT&gt;/files</B>
+to <B>&lt;PROJECT_FOLDER&gt;/src<BR></B>(Reminder: &lt;LAB_ROOT&gt;
+is where the lab zip file was unzipped before <A HREF="#Exercise_0">Exercise
+0</A>)<BR><BR>Expand the <B>Source Packages</B> node in the Projects
+Window.<BR>A new node, <B>&lt;default package&gt;</B>, should appear
+above the <B>j1viewer</B> package we created in <A HREF="#Exercise_2.3">Step
+3 of Exercise 2</A>.<BR>Expand the <B>&lt;default package&gt;</B>
+node<BR>Click on <B>ImagePanel.java </B>to select it<BR>Hold down the
+<B>Shift</B> key and click on <B>ImagesTableModel.java</B>. but DO
+NOT RELEASE the mouse button<BR>Release the <B>Shift</B> key (<B>Shift</B>
+enables multiple selections)<BR>Now drag the 2 highlighted files over
+to the <B>j1viewer</B> node and release the mouse button there<BR>A
+dialog (called <B>Refactor Code for Moved Class</B>) will now appear.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_1_refactoring_dialog.png" NAME="graphics100" ALIGN=BOTTOM WIDTH=462 HEIGHT=334 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-2: <B>Refactor Code for Moved Classes</B></I>
+					<I>dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Check <B>Preview All Changes</B> and click on <B>Next &gt;</B>.<BR><BR>The
+<B>Refactoring</B> window will open below.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_1_refactoring_window.png" NAME="graphics101" ALIGN=BOTTOM WIDTH=352 HEIGHT=242 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-3: <B>Refactoring</B></I> <I>window
+					showing changes</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Go through
+the list of changes in the window.<BR>Once you are satisfied, click
+on <B>Do Refactoring</B> button to perform the class move.<BR><BR>Now
+add <B>ImagePanel.java</B> to the <B>Beans</B> palette.<BR><I>Hint:
+You did the same thing for <B>MetadataPanel.java</B> in <A HREF="#Exercise_4.8">Step
+8 of Exercise 4</A>.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Creating the
+<B>ImageManager</B> application</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">In the
+<B>Projects</B> window, right click <B>j1viewer</B><BR>Select <B>New</B>
+followed by <B>JFrame Form...</B> in the cascading menu.<BR><BR>Type
+<B>ImageManager</B> in the <B>Class Name:</B> field<BR>Click
+<B>Finish<BR></B><I>The <B>Design</B></I> <I>window should now show
+an empty rectangle representing the <B>ImageManager</B></I> <I>panel,
+similar to when you just created the <B>JPanel Form</B></I> <I>in
+</I><A HREF="#Exercise_3.1"><I>Step 1 of Exercise 3</I></A><I>.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">3. Adding Menubar and
+Menuitem</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>JMenuBar</B> from the <B>Palette</B> window and click on
+the <B>ImageManager</B> panel in the editor. You will notice that a
+menubar would have been added.<BR>Click on the highlighted <B>Menu</B>
+object in the panel and change its <B>text</B> property to <B>File</B>.<BR><BR>In
+the <B>Inspector</B> window, expand <B>Form ImageManager</B> followed
+by <B>[JFrame]</B> followed by <B>jMenuBar1[jMenuBar]</B>.<BR>Right
+click on <B>jMenu1[JMenu]</B> and select <B>Add</B> followed by
+<B>JMenuItem</B>.<BR>Add 2 more items, <B>a JSeperator</B> and a
+<B>JMenuItem</B> (in that specific order) to <B>jMenu1</B>.<BR><I>You
+can actually do this from the <B>Design</B></I> <I>window as well but
+we wanted you to be familiar with the <B>Inspector</B></I> <I>window
+as it is sometimes easier to do it from here when the UI has many
+components.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_3_result.png" NAME="graphics102" ALIGN=BOTTOM WIDTH=328 HEIGHT=198 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-4: <B>Inspector</B></I> <I>window after
+					adding items</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR>Now
+click on <B>jMenuItem1</B> in the <B>Inspector</B> window. Change
+<B>jMenuItem1</B>'s <B>text</B> property to <B>Open...</B>.<BR>Similarly
+change <B>jMenuItem2</B>'s <B>text</B> property to <B>Exit</B>.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. Splitting the
+ImageManager window and putting all the components together</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>JSplitPane</B> from the <B>Palette</B> window and click on
+the <B>ImageManager</B> panel.<BR><I>The main <B>JFrame</B></I> <I>panel
+will now contain a narrower <B>left button</B></I> <I>and a wider
+<B>right button</B>.</I><BR><BR>Select <B>JScrollPane</B> from the
+<B>Palette</B> and click on the left pane labelled <B>left
+button</B>.<BR><I>This will create a node called <B>jScrollPane1</B></I>
+<I>under <B>jSplitPane1</B></I> <I>in the Inspector window.</I><BR><BR>Select
+<B>JTable</B> from the <B>Palette</B> and click inside <B>jScrollPane1</B>
+(the left portion of the split pane).<BR>Check the
+<B>cellSelectionEnabled</B> property on the <B>JTable</B>
+(<B>jTable1</B>).<BR><BR>Select another <B>JSplitPane</B> and click
+on the right pane labelled <B>right button</B>.<BR><I>This will
+create a node called <B>jSplitPane2</B></I> <I>under <B>jSplitPane1</B></I>
+<I>(again in the Inspector window).<BR><BR></I>Change the <B>orientation</B>
+property of <B>jSplitPane2</B> from <B>HORIZONTAL_SPLIT</B> to
+<B>VERTICAL_SPLIT</B>.<BR>Select <B>JScrollPane</B>&nbsp; from the
+<B>Palette</B> window and click on the <B>left button</B> (now at the
+top right).<BR><I>This will create a node called <B>jScrollPanel2</B></I>
+<I>under <B>jSplitPane2</B>.<BR><BR></I>Select <B>ImagePanel</B> from
+the <B>Beans</B> part of the <B>Palette</B> window and add it to
+<B>jScrollPane2</B>.<BR><I>This will create a node called <B>imagePanel1</B></I>
+<I>under <B>jScrollPane2</B>.<BR><U>NOTE:</U> If you have trouble
+adding the <B>ImagePanel</B>, try compiling it via the <B>Project</B>
+window first! The same may be true of <B>MetadataPanel</B> in the
+next step. Adding a component to the <B>Palette</B> does not
+automatically compile it.<BR><BR></I>Select <B>MetadataPanel</B> from
+the <B>Beans </B>part of the <B>Palette</B> window and click on <B>right
+button</B>.<BR><I>Ths will create another node called <B>metadataPanel1</B></I>
+<I>under <B>jSplitPane2</B>.<BR><BR></I>The <B>Inspector</B> and
+<B>Design</B> windows should look like this now:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><BR><IMG SRC="index_files/nb_images/5_4_inspector_result.png" NAME="graphics103" ALIGN=BOTTOM WIDTH=329 HEIGHT=320 BORDER=0></P>
+					<P ALIGN=CENTER><I><B><BR></B>Fig 5-5:</I> <I><B>Inspector
+					</B>window</I></P>
+				</TD>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_4_design_result.png" NAME="graphics104" ALIGN=BOTTOM WIDTH=460 HEIGHT=383 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-6: <B>Design</B></I> <I>window</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR><BR>
+</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">5. Setting model for JTable</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Select <B>jTable1</B> from either the <B>Inspector</B> or <B>Design</B>
+window.<BR>Find the <B>model</B> property in the <B>Properties</B>
+window. Click on the <B>...</B> button to bring up the model
+editor.<BR>Select <B>Form Connection</B> from the <B>Select Mode</B>
+combo box.<BR>Select the <B>User Code</B> radio button and type the
+following code in the text area:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#330099"><B>new ImagesTableModel()</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<I>Code-03:&nbsp; User provided code that defines the table model,
+the data that the <B>JTable</B> displays</I> 
+</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_5_tablemodel_editor.png" NAME="graphics105" ALIGN=BOTTOM WIDTH=645 HEIGHT=549 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-7: <B>JTable</B></I> <B><I>model</I></B>
+					<I>property dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click <B>OK</B></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">6. Testing ImageManager</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">Click on the
+<B>Test Form</B> button above the <B>Design</B> window to test
+<B>ImageManager</B>.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">6a. <U><I>Optional:</I></U>
+One touch expandability</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Try enabling the <B>oneTouchExpandable</B> property on both
+<B>jSplitPane1</B> and <B>jSplitPane2</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/5_6a_result.png" NAME="graphics106" ALIGN=BOTTOM WIDTH=410 HEIGHT=311 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 5-8: After enabling one touch
+					expandability</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR>Save
+your work and retest <B>ImageManager</B> using <B>Test Form</B>.<BR>Try
+clicking on the various blue arrow glyphs (<IMG SRC="index_files/nb_images/5_6_horiz_arrows.png" NAME="graphics107" ALIGN=MIDDLE WIDTH=24 HEIGHT=8 BORDER=0>
+or 
+<IMG SRC="index_files/nb_images/5_6_vert_arrows.png" NAME="graphics108" ALIGN=MIDDLE WIDTH=8 HEIGHT=24 BORDER=0>)
+several times.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><B><U>Summary:</U></B><BR><BR>You
+have now successfully created the entire visible portion of the UI.
+And you achieved this by combining and configuring most of the UI
+components yourself! We only supplied the ready-made ImagePanel which
+comes ready to render images due to time
+constraints.<BR><BR><FONT COLOR="#000000"><A HREF="solution/exercise_5"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics109" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_5">Solution</A><BR><BR><A HREF="#Lab_exercises:_">return
+to the top</A></P>
+<P ALIGN=LEFT STYLE="border-top: none; border-bottom: 1.10pt double #808080; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.02in; padding-left: 0in; padding-right: 0in">
+<!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+--><BR><BR>
+</P>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_6"></A>Exercise 6:
+Handling Events (15 minutes)</H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Learning
+goals of this exercise:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">In this
+exercise, you will learn how to program the event handlers for your
+application components.<BR><BR><B><U>Background
+information:</U></B><BR><BR>Traditional GUI programming involved
+non-trivial hand-coding of event handlers so that the right thing
+would happen when the user manipulates a component. Modern IDEs like
+NetBeans take most of the the complexity away by letting you
+associate event handlers to components in a visual intuitive (for
+programmer's anyway) manner. This exercise will walk you through the
+use of <B>JFileChooser</B>, showing how to incorporate event handling
+code that has to execute when an action (file or directory selection)
+is performed on it. We will also guide you to adding an event handler
+for selection of the <B>Exit</B> <B>JMenuItem</B>. And most
+importantly, you will get to add the <B>valueChanged()</B> event
+handling code for <B>ListSelectionEvent</B>, this tells the
+application what to do when an item within a collection is selected.
+For our ImageViewer application, when a thumbnail image is clicked
+(selected) we want the image panel to display the image in its actual
+size.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+--><B><U>Steps
+to follow:</U></B><BR><BR>1. Adding a File Chooser</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+In the <B>Inspector</B> window, expand <B>Form ImageManager</B>.<BR>Right
+click on <B>Other Components</B> and select <B>Add From Palette</B>
+followed by <B>Swing</B> followed by <B>JFileChooser</B> in the
+cascading menus. 
+</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_before_adding_filechooser.png" NAME="graphics110" ALIGN=BOTTOM WIDTH=590 HEIGHT=382 BORDER=0><BR><I>Fig
+					6-1: Adding <B>JFileChooser</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">Set the
+<B>fileSelectionMode</B> property of <B>JFileChooser</B> you have
+just added to <B>DIRECTORIES_ONLY</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_fileSelectionMode.png" NAME="graphics111" ALIGN=BOTTOM WIDTH=202 HEIGHT=242 BORDER=0><BR><I>Fig
+					6-2: Show directories only</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2. Selecting the project's
+main class</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+In the <B>Projects</B> window, right click on the <U>top most node</U>
+and select <B>Properties</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_project_property.png" NAME="graphics112" ALIGN=BOTTOM WIDTH=392 HEIGHT=360 BORDER=0><BR><I>Fig
+					6-3: Project properties</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Select <B>Run</B> under <B>Categories:</B> on the left.<BR>Click
+on the <B>Browse</B> button on the right of the <B>Main Class</B>
+field.<B><BR>j1viewer.ImageManager</B> will be displayed in the
+<B>Browse Main Class</B> dialog.<BR>Click on the <B>Select Main Class</B>
+button to select that as the main class.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_select_main_class.png" NAME="graphics113" ALIGN=BOTTOM WIDTH=758 HEIGHT=531 BORDER=0><BR><I>Fig
+					6-4: Selecting the main project class</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.62in; margin-bottom: 0in; text-align: left">
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-bottom: 0in; text-align: left">You may wish
+to increase the heap size. Eg. type '<B>-Xms512m -Xmx512m</B>' in the
+<B>VM Options</B> text box to set the heap size of the running VM to
+be 512MB.<BR>Click <B>OK</B></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_after_select_main_class.png" NAME="graphics114" ALIGN=BOTTOM WIDTH=758 HEIGHT=531 BORDER=0><BR><I>Fig
+					6-5: Adding command line options</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A NAME="Exercise_6.3"></A>3.
+Handling Open menu event</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+In the <B>Inspector</B> window, expand the <B>Form ImageManager</B>
+node followed by <B>[JFrame]</B> followed by <B>jMenu1[jMenu]</B><BR>Right
+click on <B>jMenuItem1</B> and select <B>Events</B> followed by
+<B>Action</B> followed by <B>actionPerformed</B> in the cascading
+menu.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/6_menuitem_open_event.png" NAME="graphics115" ALIGN=BOTTOM WIDTH=794 HEIGHT=460 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 6-6: Adding event to menu item</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>Add the following code snippet to the event handler.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#330099"><B>if
+					(jFileChooser1.showOpenDialog(this) ==
+					JFileChooser.APPROVE_OPTION) {<BR>&nbsp; &nbsp; &nbsp; &nbsp;
+					File f = jFileChooser1.getSelectedFile();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					ImagesTableModel model = new
+					ImagesTableModel(f.getAbsolutePath());<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jTable1.setModel(model);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jTable1.setDefaultRenderer(ImagesTableModel._ImageTablePanel.class,
+					model);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					setTableCellSize(ImagesTableModel.THUMBNAIL_SIZE);<BR>}</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<I>Code-04: <B>JFileChooser</B> event handling code that constructs a
+new <B>ImagesTableModel</B> object using the chosen directory
+path<BR><BR></I>And add the following method immediately after the
+<B>jMenu1ActionPerformed()</B> method above</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><B><FONT COLOR="#330099">private void setTableCellSize(int
+					thumbnailSize) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					jTable1.setRowHeight(thumbnailSize + 10);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					TableModel model = jTable1.getModel();</FONT></B><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<B>TableColumnModel tableColumnModel =
+					jTable1.getColumnModel();</B></FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<B>for (int i = 0; i &lt; model.getColumnCount();
+					i++)</B></FONT><BR><FONT COLOR="#330099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<B>tableColumnModel.getColumn(i).setPreferredWidth(thumbnailSize
+					+ 10);</B></FONT><BR><B><FONT COLOR="#330099">}</FONT></B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><I>Code-05:
+Setting the row height and column width of the <B>JTable</B>
+appropriately</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. Building the project</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the <U>top most node</U>t in the <B>Projects</B>
+window and select <B>Build Project</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_build_project.png" NAME="graphics116" ALIGN=BOTTOM WIDTH=392 HEIGHT=428 BORDER=0><BR><I>Fig
+					6-7: Building the project</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<BR>You may ignore the following messages (from creating the focus
+trail) in the <B>Output</B> window:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P>Note: .../ImageManager/src/j1viewer/MetadataPanel.java uses
+					or overrides a deprecated API.<BR>Note: Recompile with
+					-Xlint:deprecation for details.</P>
+					<P ALIGN=CENTER><I>Fig 6-8: <B>Output</B></I> <I>window warning
+					messages</I> 
+					</P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left">If you
+hadn't already corrected some 'import errors' after <A HREF="#Exercise_6.3">Step
+3</A>, you have to do so now.<BR><I>Hint: <B>JFileChooser</B></I> <I>is
+in the <B>javax.swing</B></I> <I>package, <B>File</B></I> <I>is in
+the <B>java.io</B></I> <I>package, <B>TableModel</B> and
+<B>TableColumnModel</B> are in the javax.swing.table package.</I> 
+</BLOCKQUOTE>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Right click on the <U>top most node</U> again, and select <B>Run
+Project</B>.</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/6_run_project.png" NAME="graphics117" ALIGN=BOTTOM WIDTH=351 HEIGHT=396 BORDER=0><BR><I>Fig
+					6-9: Running the application</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><BR>When the
+<B>ImageViewer</B> window appears, select <B>File</B> followed by
+<B>Open...</B> and open the <B>&lt;LAB_ROOT&gt;/resources/images</B>
+directory. Thumbnails of all the images in that directory should
+appear in the table on the left.<BR><I><FONT COLOR="#ff0000">We
+included 60+ sample images (10MB) in <B>&lt;LAB_ROOT&gt;/resources/images</B>.
+The application wll freeze for 10 to 30 seconds (depending on your
+system) while the images are loading. We will discuss some possible
+ways to overcome this in </FONT></I><A HREF="#Exercise_7"><I><FONT COLOR="#ff0000">Exercise
+7</FONT></I></A><I><FONT COLOR="#ff0000">.</FONT></I><BR><I>Be
+mindful of which directories you choose to open on your own computer
+at home, those with thousands of images will naturally consume a lot
+of memory. If you didn't set your <B>-Xmx</B></I> <I>VM option high
+enough or computer has insufficient swap space (paging space for
+Windows), some thumbnails won't be generated and you should see some
+error 'insufficient memory' message in the <B>Output</B></I> <I>window.</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4a. <U><I>Optional:</I></U>
+Handling Exit menu event.</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Handle the <B>Exit</B> (<B>jMenuItem2</B>) event. Add the following
+code snippet appropriately:</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE WIDTH=50% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#330099"><B>setVisible(false);<BR>dispose();<BR>System.exit(0);</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><I>Code-06:
+Event handling code that will cause the GUI application to disappear
+and the process to exit</I></BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">5. Displaying selected
+images</P>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+Click on the <B>Source</B> button of <B>ImageManager</B>. The editor
+will switch from the GUI view to the code view.<BR>Implement
+<B>ListSelectionListener</B> for <B>ImageManager</B>.<BR>You will
+have to fix 'import errors' as before.<BR><BR>The
+<B>ListSelectionListener</B> interface has 1 method called
+<B>valueChanged()</B>. Add the following code for it:<BR><I>Hint:
+<B>ListSelectionListener</B></I> <I>is in the <B>javax.swing.event</B></I>
+<I>package.</I></BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><FONT COLOR="#330099"><B>public void
+					valueChanged(ListSelectionEvent lsEvt) {<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; //Get the selected row and column<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; int row = jTable1.getSelectedRow();<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; int col = jTable1.getSelectedColumn();<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; if ((row &lt;= -1) || (col &lt;= -1))<BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return;<BR><BR>&nbsp; &nbsp;
+					&nbsp; &nbsp; //Get the table model<BR>&nbsp; &nbsp; &nbsp; &nbsp;
+					ImagesTableModel model =
+					(ImagesTableModel)jTable1.getModel();<BR><BR>&nbsp; &nbsp; &nbsp;
+					&nbsp; //Get the selected image file name from the model and
+					pass this to<BR>&nbsp; &nbsp; &nbsp; &nbsp; //ImagePanel.
+					ImagePanel will then load the image<BR>&nbsp; &nbsp; &nbsp; &nbsp;
+					imagePanel1.setImage(model.getImageName(row, col));<BR>&nbsp; &nbsp;
+					&nbsp; &nbsp;
+					jScrollPane2.setPreferredSize(imagePanel1.getPreferredSize());<BR>&nbsp;
+					&nbsp; &nbsp; &nbsp; jScrollPane2.doLayout();<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					setTitle(&quot;MyImageManager:&quot; + model.getImageName(row,
+					col));<BR>}</B> </FONT>
+					</P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; margin-bottom: 0in; text-align: left">
+<I>Code-07: Event handling code that is invoked whenever a thumbnail
+is selected, it gets the <B>ImagePanel</B> to re-render with the
+chosen image<BR><BR></I>Add the following lines in <B>ImageManger</B>'s
+<B>constructor</B>, after i<B>nitComponents();</B> :</BLOCKQUOTE>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD VALIGN=TOP>
+					<P><FONT COLOR="#330099"><B>jTable1.getColumnModel().getSelectionModel().addListSelectionListener(this);<BR>jTable1.getSelectionModel().addListSelectionListener(this);<BR>setTitle(&quot;MyImageManager&quot;);</B></FONT></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<BLOCKQUOTE STYLE="margin-left: 1.2in; text-align: left"><I>Code-08:
+<B>addListSelectionListener()</B> registers the current object's
+(<B>ImageManager</B>'s) <B>valueChanged()</B> method for the
+<B>ListSelectionEvent</B>.</I><BR><BR>Rebuild and rerun the
+application to make sure it works to your satisfaction. You can use
+the images in the <B>&lt;LAB_ROOT&gt;/resources/images</B> or
+<B>&lt;LAB_ROOT&gt;/index_files/nb_images</B> directories to test the
+<B>ImageManager</B> application.</BLOCKQUOTE>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><B><U>Summary:</U></B><BR><BR><FONT COLOR="#000000">You
+have built a Swing application in the NetBeans 4.1 IDE using a
+combination of techniques:</FONT></P>
+<UL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Designing a UI
+	component from scratch 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Modifying component
+	behavior through property editors 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Modifying component
+	behavior by editing source code 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Adding a UI component
+	to the Palette as a Bean</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">incorporating a UI
+	component into another from the Beans available in the Palette 
+	</P>
+	<LI><P ALIGN=LEFT>Incorporating a UI component through refactoring
+	existing code</P>
+</UL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><A HREF="solution/exercise_6"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics118" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_6">Solution</A><BR><BR><A HREF="#Lab_exercises:_">return
+to the top</A></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<HR>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><B><FONT COLOR="#000000"><FONT SIZE=1><BR>Congratulations!&nbsp;
+You have successfully completed the &quot;</FONT>Developing Swing
+Applications with NetBeans 4.1 IDE<FONT SIZE=1>&quot; Hands-on lab.</FONT></FONT></B>&nbsp;
+<FONT SIZE=1><FONT SIZE=2><B>Please send your feedback to
+</B><A HREF="mailto:handsonlab-basicstruts@yahoogroups.com"><B>handsonlab</B></A></FONT><A HREF="mailto:handsonlab-java2dperf@yahoogroups.com"><B>-netbeansswing@yahoogroups.com</B></A><B><FONT SIZE=2>.</FONT></B></FONT></P>
+<HR>
+<HR>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><FONT SIZE=2>We hope you
+have enjoyed the lab. There were many capabilities of NetBeans and
+Swing that we didn't even mention due to time constraints, so we have
+packaged an extra exercise for you to discover some of them at your
+leisure.</FONT></P>
+<HR>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<H2 CLASS="main1" ALIGN=LEFT><A NAME="Exercise_7"></A>Exercise 7:
+Extras (At your leisure)</H2>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><FONT COLOR="#000000"><FONT FACE="helvetica, arial, sans-serif"><U><B>Learning
+goals of this exercise:</B></U></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">In this exercise you will
+learn:</P>
+<UL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">To add additional Jars
+	to NetBeans' compile and execution enviroment 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">To use Swing's
+	Pluggable Look and Feel (PLAF) capability. 
+	</P>
+	<UL>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">To incorporate the
+		Skin Look and Feel (SkinLF) from <A HREF="http://www.l2fprod.com/">L2FProd.com</A>
+				</P>
+	</UL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">To internationalize an
+	application 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Generate javadocs 
+	</P>
+	<LI><P ALIGN=LEFT>Improve several usability aspects of the
+	application</P>
+</UL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in"><A NAME="Exercise_7.1"></A>
+<BR><B><U>Background information:</U></B><BR><BR>Swing had supported
+PLAF from the very beginning so that applications could selectively
+sport a native L&amp;F, or a uniquely uniform L&amp;F across
+platforms. We found out that L2FProd's SkinLF had a nice collection
+of skin theme packs so we decided to showcase it here for you to have
+fun with. If you are interested in customizing some visual aspects of
+your application, creating a skin theme pack may be a much easier
+alternative than a complete L&amp;F.<BR><BR>Many developers need to
+write their applications for international use, we show how NetBeans
+has built-in support for this such that you can write your
+application for one language, then convert it to remove all hardcoded
+strings later. And for developers who build components or libraries
+for others to use, or that their organizations need to maintain for
+some time, we just point out that Javadoc generation can be invoked
+for an entire project in a single action.<BR><BR><B><U>Steps to
+follow:</U></B><BR><BR>1.&nbsp; Adding additional Jars 
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Right
+click on the project (topmost) node, right click and select
+<B>Properties<BR><BR></B>When the <B>Project Properties</B> dialog
+appears, select the <B>Libraries</B> node, make sure the <B>Compile</B>
+tab is selected.<BR>Click on <B>Add JAR/Folder</B> button. Browse to
+<B>&lt;LAB_ROOT&gt;/files </B>directory and add skinlf.jar.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_1_adding_3rdparty_jar_compile_env.png" NAME="graphics119" ALIGN=BOTTOM WIDTH=758 HEIGHT=531 BORDER=0><BR><I>Fig
+					7-1: Adding jar files to the</I> <I><B>Compile </B>and</I> <I><B>Run
+					</B>environments</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in">Perform the same steps
+(adding skinlf.jar) for the <B>Run</B> tab (just right of
+<B>Compile</B>).<BR>Click <B>OK</B> when done.<BR><BR>If you had
+jumped here directly from Exercise 1, <A HREF="#Exercise_1.1_jumppoint">then
+click here to go back and resume it</A>.</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">2.&nbsp; Making
+MyImageManager skinnable. 
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Copy
+and refactor <B>ThemeSelectionBean.java</B> and
+<B>ThemeSelectionBean.form</B> from <B>&lt;LAB_ROOT&gt;/files</B>
+into the <B>j1viewer</B> package.<BR><I>Reminder: You did something
+very similar in </I><A HREF="#Exercise_5.1"><I>Step 1 of Exercise
+5</I></A><I>.</I><BR><I>This bean uses L2FProd.com's Skin look and
+feel.</I><BR><BR>You are to add an addtional menu item to <B>File</B>
+menu as shown in the diagram below</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_2_changing_lnf.png" NAME="graphics120" ALIGN=BOTTOM WIDTH=954 HEIGHT=664 BORDER=0><BR><I>Fig
+					7-2: The new <B>Change Skin...</B> menu item</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 1.25in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">When you select <B>Change
+Skin...</B> the following dialog box should appear. 
+</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_2_skin_selector.png" NAME="graphics121" ALIGN=BOTTOM WIDTH=588 HEIGHT=231 BORDER=0><BR><I>Fig
+					7-3: Using our <B>Skin Selector</B> dialog to select a skin</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Select
+one of the theme packs and click <B>OK</B>.<BR><BR>Use the following
+code snippet appropriately to help you initialize
+<B>ThemeSelectionBean</B>.<BR>Remember to substitute <B><FONT COLOR="#ff0000">&lt;LAB_ROOT&gt;</FONT></B>
+with the directory appropriately.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P><B><FONT COLOR="#330099">//this refers to MyImageManager
+					which is a JFrame<BR>ThemeSelectionBean themeSelection = new
+					ThemeSelectionBean(this);<BR><BR>//Change &lt;LAB_ROOT&gt; to
+					the actual lab
+					directory</FONT></B><BR><B><FONT COLOR="#330099">themeSelection.setSkinFolder(&quot;<FONT COLOR="#ff0000">&lt;LAB_ROOT&gt;</FONT>/resources/themepacks&quot;);<BR><BR>//display
+					it<BR>themeSelection.setVisible(true);</FONT></B></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><I>Code-08:
+<B>ThemeSelectionBean</B> initialization.<BR></I>&nbsp;<BR>The
+following figure shows you how the application looks like after you
+have change its look and feel to SkinLF with the cellshaded skin.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_2_changed_lnf.png" NAME="graphics122" ALIGN=BOTTOM WIDTH=954 HEIGHT=664 BORDER=0><BR><I>Fig
+					7-4: After changing to SkinLF and selecting the cellshaded theme
+					pack</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT>3. Internationalization</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Expand
+<B>Source Packages </B>node. Right click on <B>j1viewer</B> package
+node and select <B>New...</B> followed by <B>File/Folder</B></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/7_3_new_file.png" NAME="graphics123" ALIGN=BOTTOM WIDTH=407 HEIGHT=371 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 7-5: Invoking the <B>New File</B> idalog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Select
+<B>Other</B> followed by <B>Properties File</B></P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_new_file_dialog.png" NAME="graphics124" ALIGN=BOTTOM WIDTH=729 HEIGHT=492 BORDER=0><BR><I>Fig
+					7-6: Creating a <B>Properties File</B> in the <B>New File</B>
+					dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Click
+<B>Next &gt;<BR><BR></B>Enter the name of the resource bundle as
+shown. Click <B>Finish</B> when completed.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_naming_props_file.png" NAME="graphics125" ALIGN=BOTTOM WIDTH=729 HEIGHT=492 BORDER=0><BR><I>Fig
+					7-7: Naming the file in the <B>New Properties File</B> dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 1.25in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">The
+resource bundle will appear in <B>j1viewer</B> node as shown.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_created_props_file.png" NAME="graphics126" ALIGN=BOTTOM WIDTH=632 HEIGHT=277 BORDER=0><BR><I>Fig
+					7-8: Newly created properties file</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><!--THE ORIGINAL TABLE FROM THE TEMPLATE
+    ..ALL THE TEXT WAS IN THE TD
+	..BUT THE H1..H4 HEADINGS WERE ALL THE SAME SIZE, INSIDE THE TABLE					
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="1022">
+  <tbody>
+    <tr>
+      <td valign="top" height="971">
+      </td>
+    </tr>
+    <!.. BEGIN SPACER ROW ..>
+    <!.. END SPACER ROW ..>
+  </tbody>
+</table>
+-->Click
+on <B>MetadataPanel.java</B> to set the context for
+internationalization<BR>Pull down the <B>Tools </B>menu, then select
+<B>Internationalization </B>followed by <B>Internationalize... </B>in
+the cascading menu</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/7_3_invoke_internationalize.png" NAME="graphics127" ALIGN=BOTTOM WIDTH=762 HEIGHT=413 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 7-9: Invoking <B>Internationalize...</B>
+					on <B>MetadataPanel.java</B></I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>The
+<B>Internationalize</B> dialog will pop up<BR>Click on <B>Browse...</B>
+to select the resource bundle</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_internationalize_dialog.png" NAME="graphics128" ALIGN=BOTTOM WIDTH=528 HEIGHT=467 BORDER=0><BR><I>Fig
+					7-10: The <B>Internationalize</B> dialog</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in"><I>The NetBeans editor will
+simultaneously display the <B>Source</B></I> <I>view of
+<B>MetadataPanel.java</B></I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">The
+<B>Select Resource Bundles</B> dialog will appear next<BR>Expand the
+<B>Source Packages</B> node followed by <B>j1viewer</B> then select
+the <B>resources_fr.properties</B> file you just created<BR>Click <B>OK</B>
+to dismiss this dialog</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_select_resource_bundle.png" NAME="graphics129" ALIGN=BOTTOM WIDTH=431 HEIGHT=282 BORDER=0><BR><I>Fig
+					7-11: Selecting resource bundle for Internationalization</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 1.25in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Click <B>Replace</B> back on
+the <B>Internationalize</B> dialog to process all the hardcoded
+strings</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_internationalize_w_bundle.png" NAME="graphics130" ALIGN=BOTTOM WIDTH=528 HEIGHT=467 BORDER=0><BR><I>Fig
+					7-12: Initiating hardcoded string replacement</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 1.25in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">The <B>Internationalize</B>
+dialog will iterate through all hardcoded strings it finds in
+<B>MetadataPanel.java</B><BR>The <B>Source</B> view in the main
+NetBeans window will correspondingly highlight each hardcoded
+string<BR>You have to decide whether to <B>Replace</B> or <B>Skip</B>
+each string<BR>For example, image file format strings like GIF, JPEG,
+TIFF and BMP don't need to be localized.<BR><I><U>Note:</U> The
+<B>Internationalize</B></I> <I>tool may not be able to pick up all
+strings so you should inspect the source manually.</I><BR>For
+simplicity, we suggest you continuously click <B>Replace</B> until
+you see the &quot;<B>No more hard-coded strings found.</B>&quot;</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_3_internationalize_done.png" NAME="graphics131" ALIGN=BOTTOM WIDTH=528 HEIGHT=467 BORDER=0><BR><I>Fig
+					7-13: <B>Internationalize</B> dialog after processing all
+					hardcoded strings</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">At this
+point, click <B>Close</B> to dismiss the <B>Internationalize</B>
+dialog.</P>
+<P ALIGN=LEFT STYLE="margin-left: 1.25in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Click the <B>resources_fr</B>
+tab to edit the generated resource bundle.<BR>Replace each string
+value with the appropriate language.<BR>We have shown an example
+French translation below.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/7_3_french_translation.png" NAME="graphics132" ALIGN=BOTTOM WIDTH=931 HEIGHT=911 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 7-14: Modifying the resource bundle with
+					the translated strings</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>Test
+the <B>ImageManager</B> application again to verify that the strings
+in the resource bundle are being used now.</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/7_3_french_imageviewer.png" NAME="graphics133" ALIGN=BOTTOM WIDTH=813 HEIGHT=615 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 7-15 <B>ImageViewer</B></I> <I>app with
+					the <B>MetadataPanel</B></I> <I>localized to French</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in"><BR><I>If you merely
+translated the same strings as we did as shown above, you'll notice
+that there are other strings in <B>MetadataPanel</B></I> <I>like the
+titled border and all the constants in the comboboxes that we did not
+translate yet. Some of these strings reside in other source files so
+the best approach for your projects is to use the
+<B>Internationalization Wizard</B></I> <I>to go through all your
+source files. Furthermore, once software has been internationalized,
+it is often localized into more than one other language, so the more
+scalable approach of using multiple resource bundles is required. We
+just wanted to introduce you to this feature and encourage you to
+follow the Internationalization link listed in the </I><A HREF="#Resources"><I>resources</I></A><I>.</I></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in">4. Generating Javadoc</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in">Right
+click on project node, select <B>Generate Javadoc for Project</B> 
+</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P ALIGN=CENTER><IMG SRC="index_files/nb_images/7_4_generate_javadoc.png" NAME="graphics134" ALIGN=BOTTOM WIDTH=396 HEIGHT=396 BORDER=0><BR><I>Fig
+					7-15: Generating Javadoc documentation</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>When
+the source files have been processed and the Javadoc documentation
+generated, a browser window should be launched showing the <B>jviewer</B>
+package:</P>
+<DL>
+	<DL>
+		<DD>
+		<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+			<TR>
+				<TD>
+					<P STYLE="margin-bottom: 0in"><IMG SRC="index_files/nb_images/7_4_javadoc_done.png" NAME="graphics135" ALIGN=BOTTOM WIDTH=919 HEIGHT=747 BORDER=0></P>
+					<P ALIGN=CENTER><I>Fig 7-16: Generated Javadoc for the <B>j1viewer</B></I>
+					<I>package</I></P>
+				</TD>
+			</TR>
+		</TABLE>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT>5. There are some quirks about the ImageViewer
+application you have just created, some of these are:</P>
+<OL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">The
+	JTable is fixed at 3 columns.</FONT> It should adjust the number of
+	columns for thumbnails/filenames appropriately when the splitpane or
+	frame is resized. It should rearrange itself to a minimum width of 1
+	column when the vertical splitpane is collapsed towards the left. It
+	should also ideally rearrange itself to use more columns as more
+	space is made available, up to the point where all image thumbnails
+	are visible. Where there is excessive space available (no scrolling
+	required), the ratio of rows to columns should be somewhat
+	proportionate to the JTable dimensions. 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Thumbnail
+	loading is single-threaded and freezes the UI.</FONT> Applications
+	that perform lots of I/O should ideally be multithreaded. And if
+	there are long-running activities that inherently hold back all
+	other actions, there should be a clear indicator like the pointer
+	glyph changing to an hourglass. And in the ideal case, a relatively
+	accurate progress bar should be shown.</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">When
+	a large image is selected, it may take some time to be rendered.</FONT>
+	There should be a message telling the user something is happening. 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">The
+	thumbnail image size is fixed.</FONT> Thumbnail sizes should ideally
+	be configurable, or even changeable on-the-fly to cater to each
+	user's personal preferences.</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Selected
+	images appear at the top left corner of the ImagePanel.</FONT> They
+	should instead be centered within the ImagePanel when there is
+	excessive width and/or height.</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Some
+	people prefer image filenames instead of thumbnails.</FONT> Users
+	should be able to toggle between image thumbnails and filenames in
+	the JTable. 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">There
+	is no UI feedback when a thumbnail has been selected.</FONT> There
+	should be some clear feedback on the thumbnail table, like
+	highlighting the border of the&nbsp; 
+	</P>
+	<LI><P ALIGN=LEFT><FONT COLOR="#ff0000">You can only view one
+	directory of images at any time.</FONT> Most similar applications
+	allow the user to view sets of images from multiple directories.
+	There are many possible schemes you can implement but at a minimum,
+	there should be a function to clear the thumbnail view, and each&nbsp;
+	Open... operation should add to the set of images that are already
+	there. 
+	</P>
+</OL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">As an
+example, we have implemented <B>5d</B> and <B>5f</B> which is
+depicted in this screenshot:</P>
+<DL>
+	<DD>
+	<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+		<TR>
+			<TD>
+				<P><IMG SRC="index_files/nb_images/7_5_thumbnails.png" NAME="graphics136" ALIGN=BOTTOM WIDTH=871 HEIGHT=732 BORDER=0></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in; margin-bottom: 0in">You can
+look at the <A HREF="solution/exercise_7">solution code</A> to see
+how this feature was implemented.<BR>The final screenshot below shows
+how the application looks when you select the <B>Filename</B>
+view.<BR>Notice how we have modified the tooltip to show&nbsp; the
+thumbnail instead.</P>
+<DL>
+	<DD>
+	<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+		<TR>
+			<TD>
+				<P><IMG SRC="index_files/nb_images/7_5_list.png" NAME="graphics137" ALIGN=BOTTOM WIDTH=801 HEIGHT=744 BORDER=0></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><BR>In addition, there are
+several other enhancements you may want to implement:</P>
+<OL>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">Connect the
+	MetadataPanel to a database so that you can actually store, recall
+	and update image-related information. We suggest you try <A HREF="http://hsqldb.sourceforge.net/">Hypersonic</A>
+	because it is 100% Java, has a small memory footprint, is fast, and
+	is embeddable. 
+	</P>
+	<LI><P ALIGN=LEFT STYLE="margin-bottom: 0in">If you think a typical
+	user's usage pattern is such that they will view several sets of
+	images interchangeably and repeatedly, you will want to implement
+	some caching scheme so that the loading and rendering of thumbnail
+	images is accelerated on subsequent visits. 
+	</P>
+	<LI><P ALIGN=LEFT>Even though this is an image viewing rather than
+	image editing application, you may want to implement rotation and
+	scaling on the current image as those are frequently used
+	operations.</P>
+</OL>
+<P ALIGN=LEFT STYLE="margin-left: 0.83in; margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><B><U>Summary:</U></B><BR><BR><FONT COLOR="#000000">Even
+though you have learned a lot about NetBeans and Swing in the last
+few hours, there are MANY more NetBeans features that we have not
+even mentioned. We hope the time you have put into this lab has whet
+you appetite for more Swing development using NetBeans, and perhaps
+for using NetBeans to develop applications for your mobile phone and
+enterprise services as well. Please check out the <A HREF="#Resources">resources
+we mentioned earlier</A>.<BR><BR><A HREF="solution/exercise_7"><FONT COLOR="#594fbf"><IMG SRC="index_files/nb_images/smile.wry.gif" NAME="graphics138" ALIGN=MIDDLE WIDTH=29 HEIGHT=29 BORDER=1></FONT></A></FONT><A HREF="solution/exercise_7">Solution</A></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.42in"><A HREF="#Lab_exercises:_">return
+to the top</A><BR><BR>Updated: June 22nd 2005</P>
+<HR SIZE=1>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=10>
+	<TR>
+		<TD>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><A HREF="http://wwws.sun.com/company/"><FONT COLOR="#000000">Company
+Info</FONT></A><FONT COLOR="#000000"> &nbsp;&nbsp;|&nbsp;&nbsp;
+</FONT><A HREF="http://wwws.sun.com/contact/"><FONT COLOR="#000000">Contact</FONT></A><FONT COLOR="#000000">
+&nbsp;&nbsp;|</FONT>&nbsp;&nbsp; Copyright 2005 Sun Microsystems 
+</P>
+<P STYLE="margin-bottom: 0in"><!-- END GLOBAL FOOTER --><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,342 @@
+/*
+ * Copyright 2004 Sun Microsystems, Inc. All rights reserved.
+ * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
+/* DEFAULT.CSS V1.7.1 */
+
+
+
+/* THIS FILE IS BACKWARDS COMPATIBLE TO THE SUNSTYLE.CSS PLEASE CHANGE YOUR CSS REFERENCES TO /css/default.css */
+
+
+
+body,th,td,p,div,span,a,.main,.pop-main,.date-stamp,.redlink,input,select,textarea,form,ul,ol,dl,h1,h2,h3,h4,h5,h6,li,.sunfont{font-family:geneva,helvetica,arial,"lucida sans",sans-serif}
+
+body,th,td,p,span,a,div,li,ul,ol{font-size:10pt}
+
+body,th,td,p{color:#333}
+
+code,kbd,tt,pre{font-family:monaco,courier,"courier new";font-size:10pt;color:#666}
+
+h1,h2,h3,h4,h5,h6{margin-top:0px;padding-top:0px;color:#000}
+
+h1,h1 span,h1 a{font-size:16pt}
+
+h2,h2 span,h2 a{font-size:14pt}
+
+h3,h3 span,h3 a{font-size:12pt}
+
+h4,h4 span,h4 a{font-size:11pt}
+
+h5,h6,big,.big,h5 span,h6 span,big span,.big span,h5 a,h6 a,.big a,big a{font-size:10pt}
+
+DT{font-weight:bold;padding-top:5px}
+
+UL{list-style:disc}
+
+UL UL{list-style:circle}
+
+UL UL UL{list-style:square}
+
+HR{color:#000;height:1px}
+
+
+
+/* TEMPLATE */
+
+.gnlnk{color:#F90}
+
+.brd{padding:3px 8px;font-weight:bold}
+
+.mstmnu{padding-top:0px;padding-bottom:1px;padding-left:2px;margin-top:0px;margin-bottom:0px;float:left}
+
+.srchbx{padding-top:0px;padding-bottom:1px;margin-top:0px;margin-bottom:0px;float:right}
+
+.gfbtn{padding-left:3px;padding-right:3px}
+
+A.nonuw:link,A.nonuw:visited{text-decoration:none;color:#FFF}
+
+A.nonuw:active{text-decoration:none;color:#F00}
+
+A.nonuw:hover{text-decoration:none;color:#CCF}
+
+A.undw:link,A.undw:visited{color:#FFF}
+
+A.undw:active,A.undw:hover{color:#CCF}
+
+TD.tid,.pop-tid{color:#FFF;font-weight:bold}
+
+TD.tid{padding-left:4px;text-indent:4px}
+
+A.nonu:link,A.nonu:visited,A.nonuc:active,.brd A:link,.brd A:visited{text-decoration:none;color:#000}
+
+A.nonu:active,A.nonu:hover,A.nonuc:link,A.nonuc:visited,.brd A:hover{text-decoration:none;color:#F00}
+
+A.nonuc:hover{text-decoration:none;color:#333}
+
+TD.citm{padding-right:2px;color:#F00;text-align:right;background:#FFF}
+
+TD.itm{padding-right:2px;color:#000;text-align:right}
+
+.hde{visibility:hidden}
+
+DIV.cpyftr{padding:5px 3px 7px 8px;color:#FFF}
+
+DIV.cpyftr-add{padding:3px 0px 0px 0px;color:#FFF}
+
+
+
+/* COMPONENTS */
+
+.redcopy{color:#C33}
+
+.whtcopy{color:#FFF}
+
+.dkbluecopy{color:#669}
+
+.ltgreycopy{color:#888}
+
+.whitehdr{color:#FFF}
+
+A.unbl:link,A.unbl:visited{color:#000}
+
+A.unbl:active,A.unbl:hover{color:#F00}
+
+A.unwt:link,A.unwt:visited{color:#FFF}
+
+A.unwt:active,A.unwt:hover{color:#F00}
+
+.solo-pad{margin:0px;padding:9px 5px 1px 10px}
+
+DIV.group-pad{margin:0px;padding:9px 10px 8px 10px}
+
+DIV.group-pad P,DIV.group-pad DIV{margin:0px;padding:2px 0px 4px 0px}
+
+.main1{margin:10px}
+
+.main2{margin:5px 0px 0px 0px}
+
+.main3{margin:0px 10px 0px 10px}
+
+.main4{margin:10px 10px 0px 10px}
+
+.main5{margin:10px 0px 0px 0px}
+
+.fea-main1{margin:5px 8px 10px 8px}
+
+.fea-main2{margin:5px 0px 0px 0px}
+
+.menupad{margin:1px 3px 4px 2px}
+
+.padded{padding:4px}
+
+UL.padded{padding:4px 0px}
+
+.date-stamp{color:#666;text-align:right;margin:8px 2px 0px 0px}
+
+.prev-next{color:#C33;text-align:center}
+
+.prev-next A:link,.prev-next A:visited,A.redlink:link,A.redlink:visited,A.redlink:active{color:#C33}
+
+.prev-next A:hover,A.redlink:hover{color:#F00}
+
+.frm,.bttn,SPAN.pull,SPAN.pull SELECT{background:#CCF;font-weight:bold;text-decoration:none;color:#000}
+
+.linespace,P.intro{line-height:112%}
+
+.just{text-align:justify}
+
+.bold,TR.bold TD,TR.bold TH{font-weight:bold}
+
+.italic,TR.italic TD,TR.italic TH{font-style:italic}
+
+.whtbld{color:#FFF;font-weight:bold}
+
+.blkbld,.blknote,.note{color:#000;font-weight:bold}
+
+.redbld,.rednote,.new,.updated{color:#F00;font-weight:bold}
+
+.blknote,.note,.rednote,.new,.updated{text-transform:uppercase}
+
+.updated{letter-spacing:.2em}
+
+
+
+/* TABLE COLORS */
+
+TD.black,TH.black,TR.black TD,TR.black TH,TABLE TR TD.black,TABLE TR TH.black{background:#000;color:#FFF}
+
+TD.promo,TH.promo,TR.promo TD,TR.promo TH,TABLE TR TD.promo,TABLE TR TH.promo{background:#FC6;color:#000}
+
+TD.present,TH.present,TR.present TD,TR.present TH,TABLE TR TD.present,TABLE TR TH.present{background:#C60;color:#FFF}
+
+TD.dkred,TH.dkred,TR.dkred TD,TR.dkred TH,TABLE TR TD.dkred,TABLE TR TH.dkred{background:#C33;color:#FFF}
+
+TD.ltred,TH.ltred,TR.ltred TD,TR.ltred TH,TABLE TR TD.ltred,TABLE TR TH.ltred{background:#F99;color:#000}
+
+TD.dkblue,TH.dkblue,TR.dkblue TD,TR.dkblue TH,TABLE TR TD.dkblue,TABLE TR TH.dkblue{background:#669;color:#FFF}
+
+TD.dktan,TH.dktan,TR.dktan TD,TR.dktan TH,TABLE TR TD.dktan,TABLE TR TH.dktan{background:#C96;color:#000}
+
+TD.lttan,TH.lttan,TR.lttan TD,TR.lttan TH,TABLE TR TD.lttan,TABLE TR TH.lttan{background:#FFC;color:#000}
+
+TD.dkgrey,TH.dkgrey,TR.dkgrey TD,TR.dkgrey TH,TABLE TR TD.dkgrey,TABLE TR TH.dkgrey{background:#666;color:#FFF}
+
+TD.ltgrey,TH.ltgrey,TR.ltgrey TD,TR.ltgrey TH,TABLE TR TD.ltgrey,TABLE TR TH.ltgrey{background:#CCC;color:#000}
+
+TD.ltblue,TH.ltblue,TR.ltblue TD,TR.ltblue TH,TABLE TR TD.ltblue,TABLE TR TH.ltblue{background:#CCF;color:#000}
+
+TD.vltgrey,TH.vltgrey,TR.vltgrey TD,TR.vltgrey TH,TABLE TR TD.vltgrey,TABLE TR TH.vltgrey{background:#E8E8E8;color:#000}
+
+TD.yell,TH.yell,TR.yell TD,TR.yell TH,TABLE TR TD.yell,TABLE TR TH.yell{background:#FF6;color:#000}
+
+TD.green,TH.green,TR.green TD,TR.green TH,TABLE TR TD.green,TABLE TR TH.green{background:#CC6;color:#000}
+
+TD.orange,TH.orange,TR.orange TD,TR.orange TH,TABLE TR TD.orange,TABLE TR TH.orange{background:#F90;color:#000}
+
+TD.white,TH.white,TR.white TD,TR.white TH,TABLE TR TD.white,TABLE TR TH.white,TD.white{background:#FFF;color:#000}
+
+
+
+table.dkgrey1,tr.dkgrey1,td.dkgrey1{background:#ccc}
+
+table.grey1,tr.grey1,td.grey1{background:#f1f1f1}
+
+table.white1,tr.white1,td.white1{background:#fff}
+
+
+
+/*  NEW STYLES  */
+
+/* fundamental link style */
+
+a{text-decoration:none}
+
+a:visited{color:#96C}
+
+a:link,a.named:visited,div.breadcrumb a:visited,div.sitelinks a:visited {color:#594fbf}
+
+a:hover {text-decoration:underline}
+
+big{font-size:12pt}
+
+ul li{list-style-type:square;list-style-image:url("/css/ic_bullet.gif");margin:0px 0px 0px 0px;padding:0px}
+
+form{padding:0px;margin:0px;display:inline}
+
+
+
+/* TABLE STYLES */
+
+td.vatop,th.vatop,tr.vatop,tr.vatop td,tr.vatop th,table.vatop td,table.vatop th,table td.vatop,table th.vatop{vertical-align:top}
+
+td.vabottom,th.vabottom,table td.vabottom,table th.vabottom,div.vabottom{vertical-align:bottom}
+
+td.vamiddle,th.vamiddle,table td.vamiddle,table th.vamiddle,div.vamiddle{vertical-align:middle}
+
+td.smaller,span.smaller,div.smaller,td.smaller a,span.smaller a,div.smaller a{font-size:9pt}
+
+.sunred{background:#d12124;color:#fff}
+
+td.sunred b,td.sunred div.navtitle{color:#ffde00;font-weight:bold}
+
+td.sunred a:link,td.sunred a:visited{color:#fff}
+
+td.sunred a:hover{color:#fff;text-decoration:underline}
+
+td.sunred li{list-style-image:url("/css/ic_bullet_white.gif")}
+
+.redwidget{background:#d12124;color:#fff;vertical-align:top}
+
+td.redwidget b{color:#ffde00}
+
+td.redwidget a:link,td.redwidget a:visited{color:#fff}
+
+td.redwidget a:hover{color:#fbe249;text-decoration:none}
+
+.sunblue{background:#594fbf;color:#fff}
+
+td.sunblue b,td.sunblue div.navtitle{color:#ffde00}
+
+td.sunblue a:link,td.sunblue a:visited{color:#fff}
+
+td.sunblue a:hover{color:#fff;text-decoration:underline}
+
+td.sunblue li{list-style-image:url("/css/ic_bullet_white.gif")}
+
+.sunyellow{background:#fbe249}
+
+td.sunyellow b,td.sunyellow div.navtitle{color:#594fbf}
+
+td.sunyellow a:link,td.sunyellow a:visited{color:#594fbf}
+
+td.sunyellow a:hover{color:#594fbf;text-decoration:underline}
+
+td.tablecaption,th.tablecaption{color:#fff;background:#666;font-weight:bold}
+
+td.tablecaption2,th.tablecaption2{color:#fff;background:#000;font-weight:bold}
+
+td.tablecaption2 a:link,td.tablecaption2 a:visited{color:#fff}
+
+td.tablecaption2 a:hover{color:#fff}
+
+th.columncaption,td.columncaption{text-align:left;background:#fbf47c;font-weight:bold}
+
+th.columncaption2,td.columncaption2{text-align:left;background:#ccc;font-weight:bold}
+
+th.columncaption2 a:link, th.columncaption2:visited,td.columncaption2 a:link, td.columncaption2:visited{color:#594fbf}
+
+th.columncaption2 a:hover,td.columncaption2 a:hover{color:#594fbf}
+
+td.sectiontitle1,td.sectiontitle1 a,td.sectiontitle1 div{font-size:14pt;font-family:geneva,helvetica,arial,"lucida sans",sans-serif;font-weight:bold}
+
+td.sectiontitle2,td.sectiontitle2 a,td.sectiontitle2 div{font-size:13pt;font-family:geneva,helvetica,arial,"lucida sans",sans-serif;font-weight:bold}
+
+
+
+/* misc text styles */
+
+p.largewhite{font-size:12pt;color:#fff;margin:3px 0px 0px 0px}
+
+p.largewhite a:link,p.largewhite a:hover,p.largewhite a:visited{color:#fff;font-size:12pt}
+
+.red,.sunblue .red,.sunyellow .red{color:#d12124}
+
+span.rightarrow{font-family:verdana,sans-serif}
+
+span.rightarrowblue{font-family:verdana,sans-serif;color:#899ce6}
+
+span.rightarrowred{font-family:verdana,sans-serif;color:#cc3335}
+
+span.rightarrowwhite{font-family:verdana,sans-serif;color:#fff}
+
+
+
+/* padding styles */
+
+div.pagetitle{padding:0px 10px 0px 10px;font-size:19pt;font-weight:bold;color:#000}
+
+div.pagetitle2{padding:0px 10px 0px 10px;font-size:14pt;color:#333}
+
+div.smallpagetitle{padding:0px 10px 0px 10px;font-size:18pt;font-weight:bold;color:#000}
+
+div.breadcrumb{color:#899ce6;padding:0px 10px 0px 10px;font-size:9pt}
+
+div.sitelinks a{font-size:9pt}
+
+div.sitelinks{padding:0px 10px 0px 10px;font-size:9pt}
+
+div.navtitle{padding:0px 0px 5px 0px;font-weight:bold}
+
+
+
+/* spacer styles */
+
+.sp10{font-size:8px}
+
+.sp8{font-size:7px}
+
+.sp5{font-size:4px}
+
+.sp2{font-size:2px}
