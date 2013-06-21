@@ -1,1 +1,0 @@
-for /F %%i in ('dir /s /b *.sln') do msbuild %%i >%%i.txt
